@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="text_size_small">12sp</dimen>
+    <dimen name="text_size_less">14sp</dimen>
+    <dimen name="text_size_medium">16sp</dimen>
+    <dimen name="text_size_large">18sp</dimen>
+    <dimen name="text_size_xlarge">20sp</dimen>
+    <dimen name="text_size_xxlarge">22sp</dimen>
+    <dimen name="offset_micro">2dp</dimen>
+    <dimen name="offset_small">7dp</dimen>
+    <dimen name="offset_less">8dp</dimen>
+    <dimen name="offset_lless">10dp</dimen>
+    <dimen name="offset_medium">15dp</dimen>
+    <dimen name="offset_large">22dp</dimen>
+    <dimen name="offset_xlarge">34dp</dimen>
+    <dimen name="offset_xxlarge">48dp</dimen>
+    <dimen name="icon_size_small">30dp</dimen>
+    <dimen name="icon_size_medium">40dp</dimen>
+    <dimen name="icon_size_large">65dp</dimen>
+    <dimen name="icon_size_xlarge">80dp</dimen>
+    <dimen name="radius_small">3dp</dimen>
+    <dimen name="radius_medium">6dp</dimen>
+    
+
+</resources>

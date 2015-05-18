@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MCHelper</string>
+
+
+    <string name="tab_title_setting">配置</string>
+    <string name="tab_title_status">状态</string>
+    <string name="tab_title_data">数据</string>
+    <string name="tab_title_system">系统</string>
+
+</resources>
