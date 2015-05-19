@@ -17,12 +17,14 @@ public class SettingFragment extends BaseFragment {
 
     private ListView mListView;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         super.onCreateView(inflater,container,savedInstanceState);
         View rootView = inflater.inflate(R.layout.fragment_setting, container, false);
         mListView = (ListView) rootView.findViewById(R.id.ll_fragment_setting);
+
 
         return rootView;
     }
