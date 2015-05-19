@@ -1,17 +1,18 @@
 package com.vgomc.mchelper.fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.vgomc.mchelper.R;
+import com.vgomc.mchelper.base.BaseFragment;
+
+import org.holoeverywhere.LayoutInflater;
 
 /**
  * Created by weizhouh on 5/18/2015.
  */
-public class DataFragment extends Fragment {
+public class DataFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

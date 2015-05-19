@@ -1,30 +1,16 @@
 package com.vgomc.mchelper;
 
-import java.util.Locale;
-
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 
 import com.vgomc.mchelper.adapter.MainFragmentPagerAdapter;
+import com.vgomc.mchelper.base.BaseActivity;
 import com.vgomc.mchelper.factory.MainFragmentFactory;
 
+import org.holoeverywhere.widget.ViewPager;
 
-public class MainActivity extends FragmentActivity {
+
+public class MainActivity extends BaseActivity {
 
     MainFragmentPagerAdapter mPagerAdapter;
 
