@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.holoeverywhere.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <org.holoeverywhere.widget.LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <org.holoeverywhere.widget.TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="@integer/radio_left"
+            android:text="@string/setting_system_info_content_name" />
+
+        <org.holoeverywhere.widget.EditText
+            android:id="@+id/et_setting_system_info_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="@integer/radio_right"
+            android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            android:hint="@string/setting_system_info_content_name_hint"
+            android:maxLength="10" />
+    </org.holoeverywhere.widget.LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_divider_line"/>
+
+    <org.holoeverywhere.widget.LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <org.holoeverywhere.widget.TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="@integer/radio_left"
+            android:text="@string/setting_system_info_content_password" />
+
+        <org.holoeverywhere.widget.EditText
+            android:id="@+id/et_setting_system_info_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="@integer/radio_right"
+            android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            android:hint="@string/setting_system_info_content_password_hint"
+            android:inputType="textPassword"
+            android:maxLength="6" />
+    </org.holoeverywhere.widget.LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_divider_line"/>
+
+    <org.holoeverywhere.widget.LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <org.holoeverywhere.widget.TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="@integer/radio_left"
+            android:text="@string/setting_system_info_content_zone" />
+
+        <org.holoeverywhere.widget.TextView
+            android:id="@+id/tv_setting_system_info_zone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="@integer/radio_right" />
+    </org.holoeverywhere.widget.LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_divider_line"/>
+
+    <org.holoeverywhere.widget.LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <org.holoeverywhere.widget.TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="@integer/radio_left"
+            android:text="@string/setting_system_info_content_bluetooth_time" />
+
+        <org.holoeverywhere.widget.LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="@integer/radio_right"
+            android:orientation="horizontal">
+
+            <org.holoeverywhere.widget.EditText
+                android:id="@+id/et_setting_system_info_bluetooth_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/setting_system_info_content_bluetooth_time_hint"
+                android:inputType="number" />
+
+            <org.holoeverywhere.widget.Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:textOff="@string/setting_system_info_content_bluetooth_time_switch_off"
+                android:textOn="@string/setting_system_info_content_bluetooth_time_switch_on" />
+
+        </org.holoeverywhere.widget.LinearLayout>
+
+    </org.holoeverywhere.widget.LinearLayout>
+
+</org.holoeverywhere.widget.LinearLayout>

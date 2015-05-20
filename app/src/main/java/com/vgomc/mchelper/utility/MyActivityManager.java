@@ -10,7 +10,7 @@ import java.util.Stack;
  */
 public class MyActivityManager {
 
-    private static Stack<Activity> activityStack;
+    private static Stack<Activity> mActivityStack;
     private static MyActivityManager instance;
 
     private MyActivityManager(){
@@ -32,10 +32,10 @@ public class MyActivityManager {
      * @param activity
      */
     public void addActivity(Activity activity){
-        if (activityStack == null){
-            activityStack = new Stack<Activity>();
+        if (mActivityStack == null){
+            mActivityStack = new Stack<Activity>();
         }
-        activityStack.add(activity);
+        mActivityStack.add(activity);
     }
 
     /**
@@ -43,7 +43,7 @@ public class MyActivityManager {
      * @return
      */
     public Activity currentActivity(){
-        Activity activity = activityStack.lastElement();
+        Activity activity = mActivityStack.lastElement();
         return activity;
     }
 
@@ -51,7 +51,7 @@ public class MyActivityManager {
      * 功能描述: 结束当前Activity（堆栈中最后一个压入的）
      */
     public void finishActivity(){
-        Activity activity = activityStack.lastElement();
+        Activity activity = mActivityStack.lastElement();
         finishActivity(activity);
     }
 
@@ -61,7 +61,7 @@ public class MyActivityManager {
      */
     public void finishActivity(Activity activity){
         if (activity != null){
-            activityStack.remove(activity);
+            mActivityStack.remove(activity);
             activity.finish();
             activity = null;
         }
@@ -73,7 +73,7 @@ public class MyActivityManager {
      */
     public void removeActivity(Activity activity){
         if (activity != null){
-            activityStack.remove(activity);
+            mActivityStack.remove(activity);
             activity = null;
         }
     }
@@ -85,7 +85,7 @@ public class MyActivityManager {
     public static void finishActivity(Class<?> cls){
         try {
             Stack<Activity> activityStackTemp = new Stack<Activity>();
-            for (Activity activity : activityStack){
+            for (Activity activity : mActivityStack){
                 if (activity.getClass().equals(cls)){
                     //判断activity是否已经消失,如果未消失,则消失activity,如果栈里面有activity,但是已经消失了,则从栈里面
                     //移除该对象,为了防止多页面跳时,部分activity被错误加入.
@@ -96,7 +96,7 @@ public class MyActivityManager {
                 }
             }
             //在list集合遍历的时候，不能删除list中的元素，否则会报java.util.ConcurrentModificationException异常
-            activityStack.removeAll(activityStackTemp);
+            mActivityStack.removeAll(activityStackTemp);
             // 在这里捕获空，当程序退出，又接收推送，点击推送，这个方法报空
         } catch (Exception e) {
             e.printStackTrace();
@@ -109,7 +109,7 @@ public class MyActivityManager {
     public static void finishAllActivity(){
         //这里可能会报数组越界的错误提前异常捕获
         Stack<Activity> activityStackTemp = new Stack<Activity>();
-        activityStackTemp.addAll(activityStack);
+        activityStackTemp.addAll(mActivityStack);
         try {
             for (int i = 0, size = activityStackTemp.size(); i < size; i++){
                 if (null != activityStackTemp.get(i)){
@@ -118,7 +118,7 @@ public class MyActivityManager {
                     }
                 }
             }
-            activityStack.clear();
+            mActivityStack.clear();
         } catch (Exception e) {
             e.printStackTrace();
         }

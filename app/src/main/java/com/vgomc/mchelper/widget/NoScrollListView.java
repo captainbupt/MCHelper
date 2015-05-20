@@ -48,7 +48,7 @@ public class NoScrollListView extends LinearLayout {
     private int dividerHeight = 0;
     private int dividerColor = 0x00000000;
 
-    public void setmAdapter(Adapter mAdapter) {
+    public void setAdapter(Adapter adapter) {
         this.mAdapter = mAdapter;
         if (mAdapter != null) {
             mAdapter.registerDataSetObserver(new DataSetObserver() {

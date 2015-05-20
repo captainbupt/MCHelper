@@ -1,10 +1,22 @@
 <resources>
     <string name="app_name">MCHelper</string>
 
-
     <string name="tab_title_setting">配置</string>
     <string name="tab_title_status">状态</string>
     <string name="tab_title_data">数据</string>
     <string name="tab_title_system">系统</string>
+
+    <string name="setting_system_info_title">系统</string>
+    <string name="setting_system_info_content_name">名称</string>
+    <string name="setting_system_info_content_name_hint">请输入名称</string>
+    <string name="setting_system_info_content_password">密码</string>
+    <string name="setting_system_info_content_password_hint">请输入密码</string>
+    <string name="setting_system_info_content_zone">时区</string>
+    <string name="setting_system_info_content_bluetooth_time">蓝牙时长</string>
+    <string name="setting_system_info_content_bluetooth_time_hint">0 ~ 1440 分钟</string>
+
+    <string name="setting_system_info_content_bluetooth_time_switch_on">启用</string>
+    <string name="setting_system_info_content_bluetooth_time_switch_off">禁用</string>
+
 
 </resources>

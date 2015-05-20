@@ -5,7 +5,6 @@ import android.widget.RadioGroup;
 
 import com.vgomc.mchelper.adapter.MainFragmentPagerAdapter;
 import com.vgomc.mchelper.base.BaseActivity;
-import com.vgomc.mchelper.factory.MainFragmentFactory;
 
 import org.holoeverywhere.widget.ViewPager;
 
@@ -25,7 +24,7 @@ public class MainActivity extends BaseActivity {
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mPagerAdapter = new MainFragmentPagerAdapter(getSupportFragmentManager(), MainActivity.this, new MainFragmentFactory(this));
+        mPagerAdapter = new MainFragmentPagerAdapter(getSupportFragmentManager(), mContext);
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.activity_main_view_pager);

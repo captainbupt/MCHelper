@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.vgomc.mchelper.R;
+import com.vgomc.mchelper.adapter.SettingFragmentAdapter;
 import com.vgomc.mchelper.base.BaseFragment;
 
 /**
@@ -23,8 +24,9 @@ public class SettingFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         super.onCreateView(inflater,container,savedInstanceState);
         View rootView = inflater.inflate(R.layout.fragment_setting, container, false);
-        mListView = (ListView) rootView.findViewById(R.id.ll_fragment_setting);
+        mListView = (ListView) rootView.findViewById(R.id.lv_fragment_setting);
 
+        mListView.setAdapter(new SettingFragmentAdapter(mContext));
 
         return rootView;
     }
