@@ -1,6 +1,8 @@
 package com.vgomc.mchelper.base;
 
 import android.content.Context;
+
+import org.holoeverywhere.LayoutInflater;
 import org.holoeverywhere.widget.LinearLayout;
 
 /**
@@ -13,8 +15,13 @@ public abstract class BaseCollapsibleContentView extends LinearLayout {
     public BaseCollapsibleContentView(Context context) {
         super(context);
         this.mContext = context;
-        setLayoutResource();
+        setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT));
+        LayoutInflater inflater = (LayoutInflater) mContext
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        inflater.inflate(getLayoutResId(), this);
     }
 
-    protected abstract void setLayoutResource();
+    protected abstract int getLayoutResId();
 }

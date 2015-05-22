@@ -18,6 +18,11 @@ import org.holoeverywhere.widget.LinearLayout;
 
 public class NoScrollListView extends LinearLayout {
 
+    private Context mContext;
+    private Adapter mAdapter;
+    private int dividerHeight = 0;
+    private int dividerColor = 0x00000000;
+
     public NoScrollListView(Context context) {
         super(context);
         this.mContext = context;
@@ -43,11 +48,6 @@ public class NoScrollListView extends LinearLayout {
         }
     }
 
-    private Context mContext;
-    private Adapter mAdapter;
-    private int dividerHeight = 0;
-    private int dividerColor = 0x00000000;
-
     public void setAdapter(Adapter adapter) {
         this.mAdapter = mAdapter;
         if (mAdapter != null) {
@@ -55,7 +55,6 @@ public class NoScrollListView extends LinearLayout {
 
                 @Override
                 public void onChanged() {
-                    // TODO Auto-generated method stub
                     super.onChanged();
                     notifyDataSetChanged();
                 }
@@ -100,7 +99,6 @@ public class NoScrollListView extends LinearLayout {
 
                         @Override
                         public void onClick(View arg0) {
-                            // TODO Auto-generated method stub
                             int index = (Integer) arg0.getTag();
                             mOnItemClickListener.onItemClick(arg0, index,
                                     mAdapter.getItemId(index));
@@ -112,7 +110,6 @@ public class NoScrollListView extends LinearLayout {
 
                         @Override
                         public boolean onLongClick(View arg0) {
-                            // TODO Auto-generated method stub
                             int index = (Integer) arg0.getTag();
                             mOnItemLongClickListener.onItemClick(arg0, index,
                                     mAdapter.getItemId(index));

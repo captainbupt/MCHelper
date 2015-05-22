@@ -20,7 +20,7 @@ public class SystemInfoView extends BaseCollapsibleView {
 
     public SystemInfoView(Context context) {
         super(context);
-        initContentView(new SystemInfoContentView(context));
+        setContentView(new SystemInfoContentView(context));
         setTitle(R.string.setting_system_info_title);
     }
 
@@ -31,13 +31,8 @@ public class SystemInfoView extends BaseCollapsibleView {
         }
 
         @Override
-        protected void setLayoutResource() {
-            setLayoutParams(new AbsListView.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT));
-            LayoutInflater inflater = (LayoutInflater) mContext
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            inflater.inflate(R.layout.view_setting_system_info, this);
+        protected int getLayoutResId() {
+            return R.layout.view_setting_system_info;
         }
     }
 }

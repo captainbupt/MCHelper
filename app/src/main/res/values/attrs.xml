@@ -5,4 +5,21 @@
         <attr name="dividerHeight" format="dimension" />
         <attr name="dividerColor" format="color" />
     </declare-styleable>
+
+    <declare-styleable name="SeekBarPressure">
+        <attr name="minValue" format="float" />
+        <attr name="maxValue" format="float" />
+        <attr name="duration" format="float" />
+        <attr name="width" format="dimension">
+            <enum name="fill_parent" value="-1" />
+            <enum name="match_parent" value="-1" />
+            <enum name="wrap_content" value="-2" />
+        </attr>
+        <attr name="height" format="dimension">
+            <enum name="fill_parent" value="-1" />
+            <enum name="match_parent" value="-1" />
+            <enum name="wrap_content" value="-2" />
+        </attr>
+    </declare-styleable>
+
 </resources>

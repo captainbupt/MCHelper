@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <org.holoeverywhere.widget.TextView
+        android:id="@+id/tv_adapter_setting_battery_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/offset_less"
+        android:textSize="@dimen/text_size_medium" />
+
+    <org.holoeverywhere.widget.Switch
+        android:id="@+id/sw_adapter_setting_battery_model"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/offset_less"
+        android:textOff="@string/setting_battery_channel_off"
+        android:textOn="@string/setting_battery_channel_on"
+        android:textSize="@dimen/text_size_medium" />
+
+<!--
+    <org.holoeverywhere.widget.TextView
+        android:id="@+id/tv_adapter_setting_battery_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/offset_less"
+        android:textSize="@dimen/text_size_medium" />
+-->
+
+</LinearLayout>

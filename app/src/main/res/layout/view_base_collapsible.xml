@@ -8,11 +8,20 @@
         android:id="@+id/tv_base_collapsible_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/color_title_background" />
+        android:background="@color/color_title_background"
+        android:padding="@dimen/offset_less"
+        android:textSize="@dimen/text_size_medium" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/color_divider_line"/>
+        android:background="@color/color_divider_line" />
+
+    <org.holoeverywhere.widget.FrameLayout
+        android:id="@+id/fl_base_collapsible_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </org.holoeverywhere.widget.FrameLayout>
 
 </org.holoeverywhere.widget.LinearLayout>

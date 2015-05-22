@@ -18,5 +18,14 @@
     <string name="setting_system_info_content_bluetooth_time_switch_on">启用</string>
     <string name="setting_system_info_content_bluetooth_time_switch_off">禁用</string>
 
+    <string name="setting_channel">通道</string>
+
+    <string name="setting_battery">电源</string>
+    <string name="setting_battery_pattern">供电模式</string>
+    <string name="setting_battery_pattern_off">顺序</string>
+    <string name="setting_battery_pattern_on">自定义</string>
+    <string name="setting_battery_channel_on">自动</string>
+    <string name="setting_battery_channel_off">常开</string>
+
 
 </resources>
