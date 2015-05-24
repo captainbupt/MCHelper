@@ -49,7 +49,7 @@ public class NoScrollListView extends LinearLayout {
     }
 
     public void setAdapter(Adapter adapter) {
-        this.mAdapter = mAdapter;
+        this.mAdapter = adapter;
         if (mAdapter != null) {
             mAdapter.registerDataSetObserver(new DataSetObserver() {
 
@@ -100,7 +100,7 @@ public class NoScrollListView extends LinearLayout {
                         @Override
                         public void onClick(View arg0) {
                             int index = (Integer) arg0.getTag();
-                            mOnItemClickListener.onItemClick(arg0, index,
+                            mOnItemClickListener.onItemClick(arg0, mAdapter.getItem(index), index,
                                     mAdapter.getItemId(index));
                         }
                     });
@@ -111,7 +111,7 @@ public class NoScrollListView extends LinearLayout {
                         @Override
                         public boolean onLongClick(View arg0) {
                             int index = (Integer) arg0.getTag();
-                            mOnItemLongClickListener.onItemClick(arg0, index,
+                            mOnItemLongClickListener.onItemClick(arg0, mAdapter.getItem(index), index,
                                     mAdapter.getItemId(index));
                             return true;
                         }
@@ -132,10 +132,10 @@ public class NoScrollListView extends LinearLayout {
     }
 
     public interface OnNoScrollItemClickListener {
-        public void onItemClick(View v, int position, long id);
+        public void onItemClick(View v, Object item, int position, long id);
     }
 
     public interface OnNoScrollItemLongClcikListener {
-        public void onItemClick(View v, int position, long id);
+        public void onItemClick(View v, Object item, int position, long id);
     }
 }

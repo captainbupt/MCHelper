@@ -18,4 +18,9 @@ public class SystemFragment extends BaseFragment {
         View rootView = inflater.inflate(R.layout.fragment_system, container, false);
         return rootView;
     }
+
+    @Override
+    protected void updateData() {
+
+    }
 }

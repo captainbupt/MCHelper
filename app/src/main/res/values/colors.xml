@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="color_divider_line">@android:color/darker_gray</color>
-    <color name="color_title_background">@android:color/background_dark</color>
+    <color name="color_title_background">@android:color/background_light</color>
 
 </resources>

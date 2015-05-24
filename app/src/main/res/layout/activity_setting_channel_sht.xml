@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <org.holoeverywhere.widget.LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <org.holoeverywhere.widget.TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="@integer/radio_left"
+            android:padding="@dimen/offset_less"
+            android:text="@string/setting_channel_warm_time"
+            android:textSize="@dimen/text_size_medium" />
+
+        <org.holoeverywhere.widget.LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="@integer/radio_right"
+            android:gravity="center_vertical">
+
+            <org.holoeverywhere.widget.EditText
+                android:id="@+id/et_activity_setting_channel_sht_warm_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="number"
+                android:maxLength="6"
+                android:padding="@dimen/offset_less"
+                android:textSize="@dimen/text_size_medium" />
+
+            <org.holoeverywhere.widget.TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="@string/setting_channel_warm_time_unit"
+                android:textSize="@dimen/text_size_medium" />
+        </org.holoeverywhere.widget.LinearLayout>
+    </org.holoeverywhere.widget.LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <org.holoeverywhere.widget.LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_divider_line" />
+
+            <com.vgomc.mchelper.widget.VariableEditView
+                android:id="@+id/vev_activity_setting_channel_sht_temperature"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_divider_line" />
+
+            <com.vgomc.mchelper.widget.VariableEditView
+                android:id="@+id/vev_activity_setting_channel_sht_humidity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_divider_line" />
+
+            <com.vgomc.mchelper.widget.VariableEditView
+                android:id="@+id/vev_activity_setting_channel_sht_dew_point"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_divider_line" />
+        </org.holoeverywhere.widget.LinearLayout>
+    </ScrollView>
+</LinearLayout>

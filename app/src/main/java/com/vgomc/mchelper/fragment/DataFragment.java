@@ -19,4 +19,9 @@ public class DataFragment extends BaseFragment {
         View rootView = inflater.inflate(R.layout.fragment_data, container, false);
         return rootView;
     }
+
+    @Override
+    protected void updateData() {
+
+    }
 }

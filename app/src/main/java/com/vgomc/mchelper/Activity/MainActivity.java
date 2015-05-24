@@ -1,8 +1,9 @@
-package com.vgomc.mchelper;
+package com.vgomc.mchelper.Activity;
 
 import android.os.Bundle;
 import android.widget.RadioGroup;
 
+import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.adapter.MainFragmentPagerAdapter;
 import com.vgomc.mchelper.base.BaseActivity;
 

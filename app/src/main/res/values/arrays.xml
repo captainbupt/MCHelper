@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="setting_channel_variable_register_type_array">
+        <item>线圈状态</item>
+        <item>输入状态</item>
+        <item>输入寄存器</item>
+        <item>保持寄存器</item>
+    </string-array>
+    <string-array name="setting_channel_variable_register_type_code_array">
+        <item>01</item>
+        <item>02</item>
+        <item>04</item>
+        <item>03</item>
+    </string-array>
+    <string-array name="setting_channel_variable_data_type_array_1">
+        <item>位</item>
+    </string-array>
+    <string-array name="setting_channel_variable_data_type_code_array_1">
+        <item>BIT</item>
+    </string-array>
+    <string-array name="setting_channel_variable_data_type_array_2">
+        <item>双字节无符号整数</item>
+        <item>双字节有符号整数</item>
+        <item>四字节无符号整数，高字节在前</item>
+        <item>四字节有符号整数，高字节在前</item>
+        <item>四字节无符号整数，低字节在前</item>
+        <item>四字节有符号整数，低字节在前</item>
+        <item>四字节浮点数，高字节在前</item>
+        <item>四字节浮点数，低字节在前</item>
+    </string-array>
+    <string-array name="setting_channel_variable_data_type_code_array_2">
+        <item>U16</item>
+        <item>S16</item>
+        <item>U32M</item>
+        <item>S32M</item>
+        <item>U32L</item>
+        <item>S32L</item>
+        <item>FP32M</item>
+        <item>FP32L</item>
+    </string-array>
+</resources>

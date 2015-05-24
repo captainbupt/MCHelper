@@ -114,7 +114,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="@integer/radio_right"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
+
+            <org.holoeverywhere.widget.Switch
+                android:id="@+id/sw_setting_system_info_bluetooth_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/offset_less"
+                android:textOff="@string/setting_system_info_content_bluetooth_time_switch_off"
+                android:textOn="@string/setting_system_info_content_bluetooth_time_switch_on"
+                android:textSize="@dimen/text_size_medium" />
 
             <org.holoeverywhere.widget.EditText
                 android:id="@+id/et_setting_system_info_bluetooth_time"
@@ -126,14 +136,13 @@
                 android:padding="@dimen/offset_less"
                 android:textSize="@dimen/text_size_medium" />
 
-            <org.holoeverywhere.widget.Switch
+            <org.holoeverywhere.widget.TextView
+                android:id="@+id/tv_setting_system_info_bluetooth_time_unit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:padding="@dimen/offset_less"
-                android:textOff="@string/setting_system_info_content_bluetooth_time_switch_off"
-                android:textOn="@string/setting_system_info_content_bluetooth_time_switch_on"
+                android:hint="@string/setting_system_info_content_bluetooth_time_unit"
                 android:textSize="@dimen/text_size_medium" />
+
 
         </org.holoeverywhere.widget.LinearLayout>
 

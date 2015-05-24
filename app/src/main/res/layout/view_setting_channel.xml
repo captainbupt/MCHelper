@@ -12,6 +12,11 @@
         myattr:dividerColor="@color/color_divider_line"
         myattr:dividerHeight="1dp"></com.vgomc.mchelper.widget.NoScrollListView>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_divider_line" />
+
     <com.vgomc.mchelper.widget.NoScrollListView
         android:id="@+id/nslv_setting_channel_multiple"
         android:layout_width="match_parent"

@@ -10,7 +10,7 @@ import org.holoeverywhere.widget.LinearLayout;
  */
 public abstract class BaseCollapsibleContentView extends LinearLayout {
 
-    public Context mContext;
+    protected Context mContext;
 
     public BaseCollapsibleContentView(Context context) {
         super(context);
@@ -24,4 +24,6 @@ public abstract class BaseCollapsibleContentView extends LinearLayout {
     }
 
     protected abstract int getLayoutResId();
+
+    protected abstract void updateData();
 }

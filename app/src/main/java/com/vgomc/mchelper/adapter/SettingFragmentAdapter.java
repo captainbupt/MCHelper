@@ -3,10 +3,10 @@ package com.vgomc.mchelper.adapter;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 
+import com.vgomc.mchelper.base.BaseCollapsibleView;
 import com.vgomc.mchelper.base.MyBaseAdapter;
-import com.vgomc.mchelper.view.setting.ChannelSingleView;
+import com.vgomc.mchelper.view.setting.ChannelView;
 import com.vgomc.mchelper.view.setting.SystemInfoView;
 
 import java.util.ArrayList;
@@ -20,13 +20,22 @@ public class SettingFragmentAdapter extends MyBaseAdapter {
 
     public SettingFragmentAdapter(Context context) {
         super(context);
+        this.mContext = context;
         mList = new ArrayList<>();
-        mList.add(new SystemInfoView(mContext));
-        mList.add(new ChannelSingleView(mContext));
+        mList.add(new SystemInfoView(context));
+        mList.add(new ChannelView(context));
+    }
+
+    public void updateData(){
+        for(Object o : mList){
+            BaseCollapsibleView view = (BaseCollapsibleView) o;
+            view.updateData();
+        }
+        notifyDataSetChanged();
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        return new SystemInfoView(mContext);
+        return (View) getItem(position);
     }
 }

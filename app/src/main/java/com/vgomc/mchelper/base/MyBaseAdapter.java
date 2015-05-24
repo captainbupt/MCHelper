@@ -21,10 +21,11 @@ public abstract class MyBaseAdapter extends BaseAdapter {
     protected Context mContext;
     protected LayoutInflater mInflater;
 
-    public MyBaseAdapter(Context context){
+    public MyBaseAdapter(Context context) {
         this.mContext = context;
         this.mInflater = (LayoutInflater) mContext
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);;
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        ;
     }
 
     public void setList(List<Object> list) {
@@ -51,6 +52,8 @@ public abstract class MyBaseAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
+        if (mList == null)
+            return 0;
         return mList.size();
     }
 

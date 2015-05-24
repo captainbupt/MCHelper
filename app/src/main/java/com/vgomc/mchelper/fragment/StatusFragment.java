@@ -18,4 +18,9 @@ public class StatusFragment extends BaseFragment {
         View rootView = inflater.inflate(R.layout.fragment_status, container, false);
         return rootView;
     }
+
+    @Override
+    protected void updateData() {
+
+    }
 }

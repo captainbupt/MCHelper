@@ -1,6 +1,7 @@
 package com.vgomc.mchelper.base;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.vgomc.mchelper.utility.MyActivityManager;
@@ -14,12 +15,14 @@ import org.holoeverywhere.app.Activity;
 public class BaseActivity extends Activity {
     protected Context mContext;
     protected Activity mActivity;
+    protected Intent mReceivedIntent;
 
     @Override
     protected void onCreate(Bundle arg0) {
         super.onCreate(arg0);
         mContext = this;
         mActivity = this;
+        mReceivedIntent = getIntent();
         MyActivityManager.getAppManager().addActivity(this);
     }
 
@@ -31,11 +34,11 @@ public class BaseActivity extends Activity {
     }
 
 
-    private void showToast(String content){
+    private void showToast(String content) {
         ToastUtil.showToast(mContext, content);
     }
 
-    private void showToast(int resId){
+    private void showToast(int resId) {
         ToastUtil.showToast(mContext, resId);
     }
 }

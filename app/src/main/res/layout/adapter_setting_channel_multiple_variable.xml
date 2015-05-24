@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tv_adapter_setting_channel_multiple_variable_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="@integer/radio_left"
+        android:padding="@dimen/offset_less"
+        android:textSize="@dimen/text_size_medium" />
+
+    <com.vgomc.mchelper.widget.DefaultFormulaTextView
+        android:id="@+id/dftv_adapter_setting_channel_multiple_variable_formula"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="@integer/radio_right"
+        android:padding="@dimen/offset_less"
+        android:textSize="@dimen/text_size_medium" />
+</LinearLayout>

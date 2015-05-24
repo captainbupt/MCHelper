@@ -6,6 +6,8 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.util.DisplayMetrics;
 
+import com.vgomc.mchelper.Entity.Configuration;
+
 import org.holoeverywhere.app.Application;
 
 /**
@@ -42,6 +44,8 @@ public class AppApplication extends Application {
             appVersion = "1.0";
             e.printStackTrace();
         }
+
+        Configuration.initInstance();
     }
 
     private String getVersionName() throws Exception {

@@ -13,12 +13,36 @@
     <string name="setting_system_info_content_password_hint">请输入密码</string>
     <string name="setting_system_info_content_zone">时区</string>
     <string name="setting_system_info_content_bluetooth_time">蓝牙时长</string>
-    <string name="setting_system_info_content_bluetooth_time_hint">0 ~ 1440 分钟</string>
+    <string name="setting_system_info_content_bluetooth_time_hint">1 ~ 1440</string>
+    <string name="setting_system_info_content_bluetooth_time_unit">分钟</string>
 
     <string name="setting_system_info_content_bluetooth_time_switch_on">启用</string>
     <string name="setting_system_info_content_bluetooth_time_switch_off">禁用</string>
 
     <string name="setting_channel">通道</string>
+    <string name="setting_channel_default_edit_view_formula">转换公式</string>
+    <string name="setting_channel_default_edit_view_formula_on">On</string>
+    <string name="setting_channel_default_edit_view_formula_off">Off</string>
+
+    <string name="setting_channel_sht_temperature">温度</string>
+    <string name="setting_channel_sht_humidity">湿度</string>
+    <string name="setting_channel_sht_dew_point">露点温度</string>
+    <string name="setting_channel_sht_on">On</string>
+    <string name="setting_channel_sht_off">Off</string>
+
+    <string name="setting_channel_warm_time">预热时长</string>
+    <string name="setting_channel_warm_time_unit">毫秒</string>
+    <string name="setting_channel_variable_name">变量名称</string>
+    <string name="setting_channel_variable_name_hint">请输入变量名称</string>
+    <string name="setting_channel_variable_sensor_address">传感器地址</string>
+    <string name="setting_channel_variable_sensor_address_hint">请输入地址(1~254)</string>
+    <string name="setting_channel_variable_register_type">寄存器组</string>
+    <string name="setting_channel_variable_data_type">寄存器组</string>
+    <string name="setting_channel_variable_register_address">寄存器地址</string>
+    <string name="setting_channel_variable_register_address_hint">请输入地址(1~99999)</string>
+    <string name="setting_channel_variable_signal_type">信号类型</string>
+    <string name="setting_channel_signal_type_voltage">电压</string>
+    <string name="setting_channel_signal_type_current">电流</string>
 
     <string name="setting_battery">电源</string>
     <string name="setting_battery_pattern">供电模式</string>
@@ -27,5 +51,10 @@
     <string name="setting_battery_channel_on">自动</string>
     <string name="setting_battery_channel_off">常开</string>
 
+
+    <string name="dialog_confirm">确认</string>
+    <string name="dialog_cancel">取消</string>
+
+    <string name="tip_variable_reach_max_count">已达到变量最大数量，不能继续添加</string>
 
 </resources>

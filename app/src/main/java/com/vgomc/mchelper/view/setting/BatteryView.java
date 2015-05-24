@@ -38,6 +38,11 @@ public class BatteryView extends BaseCollapsibleView {
             return R.layout.view_setting_battery;
         }
 
+        @Override
+        protected void updateData() {
+
+        }
+
         private void initView() {
             mPatternSwitch = (Switch) findViewById(R.id.sw_setting_battery_pattern);
             mChannelListView = (NoScrollListView) findViewById(R.id.nslv_setting_battery);

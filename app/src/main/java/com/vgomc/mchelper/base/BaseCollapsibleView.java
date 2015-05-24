@@ -2,7 +2,6 @@ package com.vgomc.mchelper.base;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.AbsListView;
 
 import com.vgomc.mchelper.R;
 
@@ -15,9 +14,9 @@ import org.holoeverywhere.widget.TextView;
 /**
  * Created by weizhouh on 5/20/2015.
  */
-public class BaseCollapsibleView extends org.holoeverywhere.widget.LinearLayout {
+public class BaseCollapsibleView extends LinearLayout {
 
-    private Context mContext;
+    protected Context mContext;
     private TextView mTitleTextView;
     private FrameLayout mContainerFrameLayout;
     private BaseCollapsibleContentView mContentView;
@@ -49,6 +48,7 @@ public class BaseCollapsibleView extends org.holoeverywhere.widget.LinearLayout 
 
     public void setContentView(BaseCollapsibleContentView contentView) {
         this.mContentView = contentView;
+        //this.mContentView.updateData();
         mContainerFrameLayout.addView(mContentView);
         //hideContent();
     }
@@ -77,6 +77,10 @@ public class BaseCollapsibleView extends org.holoeverywhere.widget.LinearLayout 
     public void hideContent() {
         mContainerFrameLayout.setVisibility(View.GONE);
         isContentShow = false;
+    }
+
+    public void updateData(){
+        mContentView.updateData();
     }
 
 }

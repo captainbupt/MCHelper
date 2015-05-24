@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.holoeverywhere.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <org.holoeverywhere.widget.LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <org.holoeverywhere.widget.TextView
+            android:id="@+id/tv_setting_channel_sht_subject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="@integer/radio_left"
+            android:padding="@dimen/offset_less"
+            android:textSize="@dimen/text_size_medium" />
+
+        <org.holoeverywhere.widget.Switch
+            android:id="@+id/sw_setting_channel_sht_subject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="@integer/radio_right"
+            android:padding="@dimen/offset_less"
+            android:textOff="@string/setting_channel_sht_off"
+            android:textOn="@string/setting_channel_sht_on"
+            android:textSize="@dimen/text_size_medium" />
+    </org.holoeverywhere.widget.LinearLayout>
+
+    <org.holoeverywhere.widget.LinearLayout
+        android:id="@+id/ll_setting_channel_sht_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/offset_less"
+            android:layout_marginRight="@dimen/offset_less"
+            android:background="@color/color_divider_line" />
+
+        <org.holoeverywhere.widget.LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <org.holoeverywhere.widget.TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="@integer/radio_left"
+                android:padding="@dimen/offset_less"
+                android:text="@string/setting_channel_variable_name"
+                android:textSize="@dimen/text_size_medium" />
+
+            <org.holoeverywhere.widget.EditText
+                android:id="@+id/et_setting_channel_sht_variable_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="@integer/radio_right"
+                android:hint="@string/setting_channel_variable_name_hint"
+                android:padding="@dimen/offset_less"
+                android:textSize="@dimen/text_size_medium" />
+        </org.holoeverywhere.widget.LinearLayout>
+
+        <com.vgomc.mchelper.widget.DefaultFormulaEditView
+            android:id="@+id/dfev_setting_channel_sht"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></com.vgomc.mchelper.widget.DefaultFormulaEditView>
+    </org.holoeverywhere.widget.LinearLayout>
+</org.holoeverywhere.widget.LinearLayout>

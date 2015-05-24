@@ -13,7 +13,7 @@ import org.holoeverywhere.widget.Toast;
 /**
  * Created by weizhouh on 5/19/2015.
  */
-public class BaseFragment extends Fragment {
+public abstract class BaseFragment extends Fragment {
     protected Context mContext;
     protected Activity mActivity;
 
@@ -23,6 +23,14 @@ public class BaseFragment extends Fragment {
         mContext = activity;
         mActivity = activity;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateData();
+    }
+
+    protected abstract void updateData();
 
     private void showToast(String content){
         ToastUtil.showToast(mContext, content);
