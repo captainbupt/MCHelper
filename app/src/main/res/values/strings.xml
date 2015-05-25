@@ -43,6 +43,18 @@
     <string name="setting_channel_variable_signal_type">信号类型</string>
     <string name="setting_channel_signal_type_voltage">电压</string>
     <string name="setting_channel_signal_type_current">电流</string>
+    <string name="setting_channel_title_sht">SHT通道</string>
+    <string name="setting_channel_title_rs485">RS485通道</string>
+    <string name="setting_channel_rs485_model">模式</string>
+    <string name="setting_channel_rs485_model_master">主机</string>
+    <string name="setting_channel_rs485_model_slave">从机</string>
+    <string name="setting_channel_rs485_protocol">协议</string>
+    <string name="setting_channel_rs485_protocol_rtu">MODBUS RTU</string>
+    <string name="setting_channel_rs485_protocol_ascii">MODBUS-ASCII</string>
+    <string name="setting_channel_rs485_slave_address">从机地址</string>
+    <string name="setting_channel_rs485_slave_address_hint">请输入地址(0~255)</string>
+    <string name="setting_channel_rs485_baud">波特率</string>
+    <string name="setting_channel_rs485_sensor">传感器</string>
 
     <string name="setting_battery">电源</string>
     <string name="setting_battery_pattern">供电模式</string>

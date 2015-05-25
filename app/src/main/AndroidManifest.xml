@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.Setting.SHTChannelActivity" />
+        <activity android:name=".Activity.Setting.RS485ChannelActivity" />
     </application>
 
 </manifest>

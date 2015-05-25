@@ -74,10 +74,14 @@ public class Configuration {
         AN7Variables.add(new Variable());
         instance.channelMap.put(Channel.SUBJECT_AN7, new Channel(Channel.TYPE_AN, Channel.SUBJECT_AN7, AN7Variables));
         ArrayList<Variable> AN8Variables = new ArrayList<>();
-        AN8Variables.add(new Variable());
+        Variable AN8Variable = new Variable();
+        AN8Variable.isVariableOn = false;
+        AN8Variables.add(AN8Variable);
         instance.channelMap.put(Channel.SUBJECT_AN8, new Channel(Channel.TYPE_AN, Channel.SUBJECT_AN8, AN8Variables));
         ArrayList<Variable> AN9Variables = new ArrayList<>();
-        AN9Variables.add(new Variable());
+        Variable AN9Variable = new Variable();
+        AN9Variable.isVariableOn = false;
+        AN9Variables.add(AN9Variable);
         instance.channelMap.put(Channel.SUBJECT_AN9, new Channel(Channel.TYPE_AN, Channel.SUBJECT_AN9, AN9Variables));
         ArrayList<Variable> AN10Variables = new ArrayList<>();
         Variable AN10Variable = new Variable();
@@ -96,7 +100,7 @@ public class Configuration {
         instance.channelMap.put(Channel.SUBJECT_SHT, new Channel(Channel.TYPE_SHT, Channel.SUBJECT_SHT, SHTVariables));
         ArrayList<Variable> RS485Variables = new ArrayList<>();
         RS485Variables.add(new Variable());
-        instance.channelMap.put(Channel.SUBJECT_RS485, new Channel(Channel.TYPE_RS485, Channel.SUBJECT_RS485, RS485Variables));
+        instance.channelMap.put(Channel.SUBJECT_RS485, new RS485Channel(RS485Variables));
         ArrayList<Variable> SDIVariables = new ArrayList<>();
         SDIVariables.add(new Variable());
         instance.channelMap.put(Channel.SUBJECT_SDI, new Channel(Channel.TYPE_SDI, Channel.SUBJECT_SDI, SDIVariables));

@@ -38,4 +38,14 @@
         <item>FP32M</item>
         <item>FP32L</item>
     </string-array>
+    <string-array name="setting_channel_rs485_baud">
+        <item>1200</item>
+        <item>2400</item>
+        <item>4800</item>
+        <item>9600</item>
+        <item>19200</item>
+        <item>38400</item>
+        <item>57600</item>
+        <item>115200</item>
+    </string-array>
 </resources>
