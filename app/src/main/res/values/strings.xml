@@ -54,14 +54,17 @@
     <string name="setting_channel_rs485_slave_address">从机地址</string>
     <string name="setting_channel_rs485_slave_address_hint">请输入地址(0~255)</string>
     <string name="setting_channel_rs485_baud">波特率</string>
-    <string name="setting_channel_rs485_sensor">传感器</string>
+    <string name="setting_channel_multi_variable_sensor">传感器</string>
+    <string name="setting_channel_multi_variable_sensor_add">添加</string>
+
+    <string name="setting_channel_title_sdi">SDI通道</string>
 
     <string name="setting_battery">电源</string>
     <string name="setting_battery_pattern">供电模式</string>
-    <string name="setting_battery_pattern_off">顺序</string>
-    <string name="setting_battery_pattern_on">自定义</string>
-    <string name="setting_battery_channel_on">自动</string>
-    <string name="setting_battery_channel_off">常开</string>
+    <string name="setting_battery_pattern_order">顺序</string>
+    <string name="setting_battery_pattern_custom">自定义</string>
+    <string name="setting_battery_channel_mode_order">自动</string>
+    <string name="setting_battery_channel_mode_always">常开</string>
 
 
     <string name="dialog_confirm">确认</string>

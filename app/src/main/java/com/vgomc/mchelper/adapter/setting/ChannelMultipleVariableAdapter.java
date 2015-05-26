@@ -7,14 +7,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.vgomc.mchelper.Activity.Setting.RS485ChannelActivity;
+import com.vgomc.mchelper.Activity.Setting.SDIChannelActivity;
 import com.vgomc.mchelper.Activity.Setting.SHTChannelActivity;
 import com.vgomc.mchelper.Entity.Channel;
 import com.vgomc.mchelper.Entity.Configuration;
+import com.vgomc.mchelper.Entity.RS485Channel;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.base.MyBaseAdapter;
+import com.vgomc.mchelper.utility.ToastUtil;
 import com.vgomc.mchelper.widget.NoScrollListView;
 
 import org.holoeverywhere.widget.TextView;
+import org.holoeverywhere.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -31,7 +35,7 @@ public class ChannelMultipleVariableAdapter extends MyBaseAdapter {
         mList = new ArrayList<>();
         mList.add(Configuration.getInstance().channelMap.get(Channel.SUBJECT_SHT));
         mList.add(Configuration.getInstance().channelMap.get(Channel.SUBJECT_RS485));
-        //mList.add(Configuration.getInstance().channelMap.get(Channel.SUBJECT_SDI));
+        mList.add(Configuration.getInstance().channelMap.get(Channel.SUBJECT_SDI));
         notifyDataSetChanged();
     }
 
@@ -68,10 +72,15 @@ public class ChannelMultipleVariableAdapter extends MyBaseAdapter {
 
     private void toEditActivity(int type) {
         if (type == Channel.TYPE_SHT) {
-            Intent intent = new Intent(mContext, SHTChannelActivity.class);
-            mContext.startActivity(intent);
+            mContext.startActivity(new Intent(mContext, SHTChannelActivity.class));
         } else if (type == Channel.TYPE_RS485) {
             mContext.startActivity(new Intent(mContext, RS485ChannelActivity.class));
+        } else if (type == Channel.TYPE_SDI) {
+            if (((RS485Channel) Configuration.getInstance().channelMap.get(Channel.SUBJECT_RS485)).mode == RS485Channel.TYPE_MODE_SLAVE) {
+                ToastUtil.showToast(mContext, "RS485为从机模式，无法设置SDI通道");
+                return;
+            }
+            mContext.startActivity(new Intent(mContext, SDIChannelActivity.class));
         }
     }
 }

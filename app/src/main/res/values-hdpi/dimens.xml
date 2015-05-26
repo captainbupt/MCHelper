@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="text_size_small">12sp</dimen>
-    <dimen name="text_size_less">14sp</dimen>
-    <dimen name="text_size_medium">16sp</dimen>
-    <dimen name="text_size_large">18sp</dimen>
-    <dimen name="text_size_xlarge">20sp</dimen>
-    <dimen name="text_size_xxlarge">22sp</dimen>
+    <dimen name="text_size_small">10sp</dimen>
+    <dimen name="text_size_less">12sp</dimen>
+    <dimen name="text_size_medium">14sp</dimen>
+    <dimen name="text_size_large">16sp</dimen>
+    <dimen name="text_size_xlarge">18sp</dimen>
+    <dimen name="text_size_xxlarge">20sp</dimen>
     <dimen name="offset_micro">2dp</dimen>
-    <dimen name="offset_small">7dp</dimen>
-    <dimen name="offset_less">8dp</dimen>
+    <dimen name="offset_small">5dp</dimen>
+    <dimen name="offset_less">7dp</dimen>
     <dimen name="offset_lless">10dp</dimen>
     <dimen name="offset_medium">15dp</dimen>
     <dimen name="offset_large">22dp</dimen>

@@ -66,6 +66,16 @@ public class Channel implements Serializable, Cloneable {
         return count;
     }
 
+    public int getVariableCountInSensor(int sensorAddress) {
+        int count = 0;
+        for (Variable variable : variables) {
+            if (variable.sensorAddress == sensorAddress) {
+                count++;
+            }
+        }
+        return count;
+    }
+
     public Object clone() {
         try {
             return super.clone();

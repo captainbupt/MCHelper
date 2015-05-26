@@ -6,8 +6,11 @@ import android.view.ViewGroup;
 
 import com.vgomc.mchelper.base.BaseCollapsibleView;
 import com.vgomc.mchelper.base.MyBaseAdapter;
+import com.vgomc.mchelper.view.setting.BatteryView;
 import com.vgomc.mchelper.view.setting.ChannelView;
 import com.vgomc.mchelper.view.setting.SystemInfoView;
+
+import org.holoeverywhere.widget.ListView;
 
 import java.util.ArrayList;
 
@@ -24,10 +27,11 @@ public class SettingFragmentAdapter extends MyBaseAdapter {
         mList = new ArrayList<>();
         mList.add(new SystemInfoView(context));
         mList.add(new ChannelView(context));
+        mList.add(new BatteryView(mContext));
     }
 
-    public void updateData(){
-        for(Object o : mList){
+    public void updateData() {
+        for (Object o : mList) {
             BaseCollapsibleView view = (BaseCollapsibleView) o;
             view.updateData();
         }

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <org.holoeverywhere.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:myattrs="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -13,6 +12,11 @@
         android:text="@string/setting_channel_title_rs485"
         android:textSize="@dimen/text_size_medium" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_divider_line" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -22,10 +26,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/color_divider_line" />
 
             <org.holoeverywhere.widget.LinearLayout
                 android:layout_width="match_parent"
@@ -200,39 +200,10 @@
                     android:layout_height="1dp"
                     android:background="@color/color_divider_line" />
 
-                <org.holoeverywhere.widget.LinearLayout
+                <com.vgomc.mchelper.widget.MultiVariableView
+                    android:id="@+id/mvv_activity_setting_channel_rs485_variables"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/color_title_background"
-                    android:orientation="horizontal">
-
-                    <org.holoeverywhere.widget.TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="@integer/radio_left"
-                        android:padding="@dimen/offset_less"
-                        android:text="@string/setting_channel_rs485_baud"
-                        android:textSize="@dimen/text_size_medium" />
-
-                    <org.holoeverywhere.widget.Button
-                        android:id="@+id/btn_activity_setting_channel_rs485_add"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="@integer/radio_right"
-                        android:padding="@dimen/offset_less" />
-                </org.holoeverywhere.widget.LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/color_divider_line" />
-
-                <com.vgomc.mchelper.widget.NoScrollListView
-                    android:id="@+id/nslv_activity_setting_channel_rs485_variable"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    myattrs:dividerColor="@color/color_divider_line"
-                    myattrs:dividerHeight="1dp" />
+                    android:layout_height="wrap_content" />
             </org.holoeverywhere.widget.LinearLayout>
         </org.holoeverywhere.widget.LinearLayout>
     </ScrollView>

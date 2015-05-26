@@ -11,22 +11,38 @@
         android:orientation="horizontal">
 
         <org.holoeverywhere.widget.TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="@integer/radio_left"
             android:padding="@dimen/offset_less"
+            android:text="@string/setting_battery_pattern"
             android:textSize="@dimen/text_size_medium" />
 
-        <org.holoeverywhere.widget.Switch
-            android:id="@+id/sw_setting_battery_pattern"
-            android:layout_width="wrap_content"
+        <RadioGroup
+            android:id="@+id/rg_view_setting_battery_pattern"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:padding="@dimen/offset_less"
-            android:textOff="@string/setting_battery_pattern_off"
-            android:textOn="@string/setting_battery_pattern_on"
-            android:textSize="@dimen/text_size_medium" />
+            android:layout_weight="@integer/radio_right"
+            android:orientation="horizontal"
+            android:padding="@dimen/offset_less">
+
+            <org.holoeverywhere.widget.RadioButton
+                android:id="@+id/rb_view_setting_battery_pattern_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/setting_battery_pattern_order"
+                android:textSize="@dimen/text_size_medium" />
+
+            <org.holoeverywhere.widget.RadioButton
+                android:id="@+id/rb_view_setting_battery_pattern_custom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/setting_battery_pattern_custom"
+                android:textSize="@dimen/text_size_medium" />
+        </RadioGroup>
     </org.holoeverywhere.widget.LinearLayout>
-
 
     <View
         android:layout_width="match_parent"
@@ -38,6 +54,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         myattr:dividerColor="@color/color_divider_line"
-        myattr:dividerHeight="1dp"></com.vgomc.mchelper.widget.NoScrollListView>
+        myattr:dividerHeight="1dp" />
 
 </org.holoeverywhere.widget.LinearLayout>

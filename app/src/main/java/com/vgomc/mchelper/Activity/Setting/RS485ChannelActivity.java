@@ -8,17 +8,12 @@ import android.widget.RadioGroup;
 import com.vgomc.mchelper.Entity.Channel;
 import com.vgomc.mchelper.Entity.Configuration;
 import com.vgomc.mchelper.Entity.RS485Channel;
-import com.vgomc.mchelper.Entity.Variable;
 import com.vgomc.mchelper.R;
-import com.vgomc.mchelper.adapter.setting.ChannelVariableAdapter;
 import com.vgomc.mchelper.base.BaseActivity;
-import com.vgomc.mchelper.widget.NoScrollListView;
-import com.vgomc.mchelper.widget.VariableEditView;
+import com.vgomc.mchelper.widget.MultiVariableView;
 
 import org.holoeverywhere.app.AlertDialog;
-import org.holoeverywhere.app.Dialog;
 import org.holoeverywhere.widget.ArrayAdapter;
-import org.holoeverywhere.widget.Button;
 import org.holoeverywhere.widget.EditText;
 import org.holoeverywhere.widget.LinearLayout;
 import org.holoeverywhere.widget.RadioButton;
@@ -41,10 +36,8 @@ public class RS485ChannelActivity extends BaseActivity {
     private Spinner mBaudRateSpinner;
     private ArrayAdapter<String> mBaudRateAdapter;
     private EditText mWarmTimeEditText;
-    private Button mAddVariableButton;
-    private NoScrollListView mVariableListView;
-    private ChannelVariableAdapter mVariableAdapter;
     private LinearLayout mVariableLayout;
+    private MultiVariableView mVariableListView;
 
     @Override
     protected void onCreate(Bundle arg0) {
@@ -76,13 +69,10 @@ public class RS485ChannelActivity extends BaseActivity {
         mSlaveAddressEditText = (EditText) findViewById(R.id.et_activity_setting_channel_rs485_slave_address);
         mBaudRateSpinner = (Spinner) findViewById(R.id.sp_activity_setting_channel_rs485_baud);
         mWarmTimeEditText = (EditText) findViewById(R.id.et_activity_setting_channel_rs485_warm_time);
-        mAddVariableButton = (Button) findViewById(R.id.btn_activity_setting_channel_rs485_add);
-        mVariableListView = (NoScrollListView) findViewById(R.id.nslv_activity_setting_channel_rs485_variable);
-        mVariableAdapter = new ChannelVariableAdapter(mContext);
-        mVariableListView.setAdapter(mVariableAdapter);
         mBaudRateAdapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.setting_channel_rs485_baud));
         mBaudRateSpinner.setAdapter(mBaudRateAdapter);
         mVariableLayout = (LinearLayout) findViewById(R.id.ll_activity_setting_channel_rs485_variables);
+        mVariableListView = (MultiVariableView) findViewById(R.id.mvv_activity_setting_channel_rs485_variables);
     }
 
     private void initListener() {
@@ -90,7 +80,7 @@ public class RS485ChannelActivity extends BaseActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (checkedId == R.id.rb_activity_setting_channel_rs485_mode_slave) {
-                    new AlertDialog.Builder(mContext).setTitle("确认转为从机模式？").setMessage("已有变量将会被清除").setPositiveButton("确认", new AlertDialog.OnClickListener(
+                    new AlertDialog.Builder(mContext).setTitle("确认转为从机模式？").setMessage("已有变量将会被清除(RS485和SDI)").setPositiveButton("确认", new AlertDialog.OnClickListener(
 
                     ) {
                         @Override
@@ -109,19 +99,7 @@ public class RS485ChannelActivity extends BaseActivity {
                 }
             }
         });
-        mAddVariableButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showVariableDialog(-1, new Variable());
-            }
-        });
 
-        mVariableListView.setOnItemClickListener(new NoScrollListView.OnNoScrollItemClickListener() {
-            @Override
-            public void onItemClick(View v, Object item, int position, long id) {
-                showVariableDialog(position, (Variable) mVariableAdapter.getItem(position));
-            }
-        });
     }
 
     private void initDate() {
@@ -146,30 +124,14 @@ public class RS485ChannelActivity extends BaseActivity {
             }
         }
         mWarmTimeEditText.setText(mRS485Channel.warmTime + "");
-        mVariableAdapter.setVariabletList(mRS485Channel.variables);
-    }
-
-    private void showVariableDialog(final int position, Variable variable) {
-        final VariableEditView editView = new VariableEditView(mContext);
-        editView.initData(Channel.TYPE_RS485, Channel.SUBJECT_RS485 + "通道", variable);
-        new AlertDialog.Builder(mContext).setView(editView).setPositiveButton(R.string.dialog_confirm, new AlertDialog.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Variable variable = editView.getData();
-                if (position >= 0) {
-                    mRS485Channel.variables.set(position, variable);
-                } else {
-                    mRS485Channel.variables.add(variable);
-                }
-                mVariableAdapter.setVariabletList(mRS485Channel.variables);
-            }
-        }).create().show();
+        mVariableListView.setData(mRS485Channel.subject, 32);
     }
 
     private void setSlaveMode() {
         mVariableLayout.setVisibility(View.GONE);
         mRS485Channel.variables.clear();
+        Configuration.getInstance().channelMap.get(Channel.SUBJECT_SDI).variables.clear();
+        mVariableListView.removeAllVariable();
     }
 
     private void setMasterMode() {
