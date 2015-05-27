@@ -11,6 +11,7 @@ import com.vgomc.mchelper.Entity.RS485Channel;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.base.BaseActivity;
 import com.vgomc.mchelper.widget.MultiVariableView;
+import com.vgomc.mchelper.widget.MyBigNumberPicker;
 
 import org.holoeverywhere.app.AlertDialog;
 import org.holoeverywhere.widget.ArrayAdapter;
@@ -99,7 +100,12 @@ public class RS485ChannelActivity extends BaseActivity {
                 }
             }
         });
-
+        mSlaveAddressEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(mContext).setView(new MyBigNumberPicker(mContext, 255, 1, 3)).create().show();
+            }
+        });
     }
 
     private void initDate() {

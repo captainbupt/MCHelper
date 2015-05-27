@@ -54,13 +54,13 @@ public class BatteryView extends BaseCollapsibleView {
             mBatterChannelAdapter = new BatteryChannelAdapter(mContext, Configuration.getInstance().isBatteryOrder);
             mChannelListView.setAdapter(mBatterChannelAdapter);
             mBatterChannelAdapter.setList(Configuration.getInstance().batteryList);
-
+/*
             if (Configuration.getInstance().isBatteryOrder) {
                 mOrderPatternRadioButton.setChecked(true);
             }
             else{
                 mCustomPatternRadioButton.setChecked(true);
-            }
+            }*/
         }
 
         private void initListener() {
