@@ -1,14 +1,16 @@
-package com.vgomc.mchelper.Activity.Setting;
+package com.vgomc.mchelper.activity.setting;
 
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
 
 import com.vgomc.mchelper.Entity.Channel;
 import com.vgomc.mchelper.Entity.Configuration;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.base.BaseActivity;
+import com.vgomc.mchelper.dialog.BigNumberPickerDialog;
 import com.vgomc.mchelper.widget.VariableEditView;
 
-import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.widget.EditText;
 
 /**
@@ -35,6 +37,15 @@ public class SHTChannelActivity extends BaseActivity {
         mTemperatureVariableEditView = (VariableEditView) findViewById(R.id.vev_activity_setting_channel_sht_temperature);
         mHumidityVariableEditView = (VariableEditView) findViewById(R.id.vev_activity_setting_channel_sht_humidity);
         mDewPointVariableEditView = (VariableEditView) findViewById(R.id.vev_activity_setting_channel_sht_dew_point);
+        mWarmTimeEditText.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    BigNumberPickerDialog.getBigNumberPickerDialog(mContext, 6, 0, 600000, mWarmTimeEditText, getResources().getString(R.string.setting_channel_warm_time)).show();
+                }
+                return true;
+            }
+        });
     }
 
     private void initData() {

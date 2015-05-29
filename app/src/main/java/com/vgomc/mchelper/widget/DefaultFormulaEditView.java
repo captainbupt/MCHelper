@@ -115,8 +115,13 @@ public class DefaultFormulaEditView extends LinearLayout {
     public float[] getFactors() {
         float[] factors = new float[Variable.COUNT_FACTORS];
         for (int ii = 0; ii < Variable.COUNT_FACTORS; ii++) {
-            factors[ii] = Float.parseFloat(mFactorEditTexts[ii].getText().toString());
+            try {
+                factors[ii] = Float.parseFloat(mFactorEditTexts[ii].getText().toString());
+            } catch (Exception e) {
+                return null;
+            }
         }
         return factors;
     }
+
 }

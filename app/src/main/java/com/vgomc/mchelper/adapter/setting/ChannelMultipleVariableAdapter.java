@@ -6,13 +6,13 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.vgomc.mchelper.Activity.Setting.RS485ChannelActivity;
-import com.vgomc.mchelper.Activity.Setting.SDIChannelActivity;
-import com.vgomc.mchelper.Activity.Setting.SHTChannelActivity;
 import com.vgomc.mchelper.Entity.Channel;
 import com.vgomc.mchelper.Entity.Configuration;
 import com.vgomc.mchelper.Entity.RS485Channel;
 import com.vgomc.mchelper.R;
+import com.vgomc.mchelper.activity.setting.RS485ChannelActivity;
+import com.vgomc.mchelper.activity.setting.SDIChannelActivity;
+import com.vgomc.mchelper.activity.setting.SHTChannelActivity;
 import com.vgomc.mchelper.base.MyBaseAdapter;
 import com.vgomc.mchelper.utility.ToastUtil;
 import com.vgomc.mchelper.widget.NoScrollListView;

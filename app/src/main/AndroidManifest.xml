@@ -9,7 +9,7 @@
         android:label="@string/app_name"
         android:theme="@style/Holo.Theme.Light">
         <activity
-            android:name=".Activity.MainActivity"
+            android:name=".activity.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,9 +17,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.Setting.SHTChannelActivity" />
-        <activity android:name=".Activity.Setting.RS485ChannelActivity" />
-        <activity android:name=".Activity.Setting.SDIChannelActivity" />
+        <activity android:name=".activity.setting.SHTChannelActivity" />
+        <activity android:name=".activity.setting.RS485ChannelActivity" />
+        <activity android:name=".activity.setting.SDIChannelActivity" />
     </application>
 
 </manifest>

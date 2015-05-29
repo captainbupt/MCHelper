@@ -25,7 +25,6 @@ public abstract class MyBaseAdapter extends BaseAdapter {
         this.mContext = context;
         this.mInflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        ;
     }
 
     public void setList(List<Object> list) {

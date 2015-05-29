@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <com.vgomc.mchelper.widget.NoScrollListView
-        android:id="@+id/nslv_setting_battery"
+        android:id="@+id/nslv_setting_storage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         myattr:dividerColor="@color/color_divider_line"

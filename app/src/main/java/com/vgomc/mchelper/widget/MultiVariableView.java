@@ -17,6 +17,8 @@ import org.holoeverywhere.app.AlertDialog;
 import org.holoeverywhere.widget.Button;
 import org.holoeverywhere.widget.LinearLayout;
 
+import java.lang.reflect.Field;
+
 /**
  * Created by weizhouh on 5/26/2015.
  */
@@ -88,22 +90,36 @@ public class MultiVariableView extends LinearLayout {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Variable variable = editView.getData();
-                if (variable.isVariableOn) {
-                    if (mChannel.getVariableCountInSensor(variable.sensorAddress) >= MAX_VARIABLE_COUNT) {
-                        ToastUtil.showToast(mContext, "添加失败，该传感器可支持变量数已达上限");
-                        return;
-                    }
-                    if (position >= 0) {
-                        mChannel.variables.set(position, variable);
+                if (variable != null) {
+                    if (variable.isVariableOn) {
+                        if (mChannel.getVariableCountInSensor(variable.sensorAddress) >= MAX_VARIABLE_COUNT) {
+                            ToastUtil.showToast(mContext, "添加失败，该传感器可支持变量数已达上限");
+                            return;
+                        }
+                        if (position >= 0) {
+                            mChannel.variables.set(position, variable);
+                        } else {
+                            mChannel.variables.add(variable);
+                        }
                     } else {
-                        mChannel.variables.add(variable);
+                        if (position >= 0) {
+                            mChannel.variables.remove(position);
+                        }
                     }
+                    mVariableAdapter.setVariabletList(mChannel.variables);
                 } else {
-                    if (position >= 0) {
-                        mChannel.variables.remove(position);
+                    ToastUtil.showToast(mContext, R.string.tip_invalid_input);
+                    try {
+                        Field field = dialog.getClass()
+                                .getSuperclass().getDeclaredField(
+                                        "mShowing");
+                        field.setAccessible(true);
+                        //   将mShowing变量设为false，表示对话框已关闭
+                        field.set(dialog, false);
+                        dialog.dismiss();
+                    } catch (Exception e) {
                     }
                 }
-                mVariableAdapter.setVariabletList(mChannel.variables);
             }
         }).create().show();
     }

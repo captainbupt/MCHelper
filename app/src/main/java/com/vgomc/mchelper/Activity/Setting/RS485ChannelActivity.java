@@ -1,7 +1,8 @@
-package com.vgomc.mchelper.Activity.Setting;
+package com.vgomc.mchelper.activity.setting;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RadioGroup;
 
@@ -10,8 +11,8 @@ import com.vgomc.mchelper.Entity.Configuration;
 import com.vgomc.mchelper.Entity.RS485Channel;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.base.BaseActivity;
+import com.vgomc.mchelper.dialog.BigNumberPickerDialog;
 import com.vgomc.mchelper.widget.MultiVariableView;
-import com.vgomc.mchelper.widget.MyBigNumberPicker;
 
 import org.holoeverywhere.app.AlertDialog;
 import org.holoeverywhere.widget.ArrayAdapter;
@@ -94,16 +95,27 @@ public class RS485ChannelActivity extends BaseActivity {
                             mModeMasterRadioButton.setChecked(true);
                         }
                     }).create().show();
-                    ;
                 } else {
                     setMasterMode();
                 }
             }
         });
-        mSlaveAddressEditText.setOnClickListener(new View.OnClickListener() {
+        mSlaveAddressEditText.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View v) {
-                new AlertDialog.Builder(mContext).setView(new MyBigNumberPicker(mContext, 255, 1, 3)).create().show();
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    BigNumberPickerDialog.getBigNumberPickerDialog(mContext, 3, 0, 255, mSlaveAddressEditText, getResources().getString(R.string.setting_channel_rs485_slave_address)).show();
+                }
+                return true;
+            }
+        });
+        mWarmTimeEditText.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    BigNumberPickerDialog.getBigNumberPickerDialog(mContext, 6, 0, 600000, mWarmTimeEditText, getResources().getString(R.string.setting_channel_warm_time)).show();
+                }
+                return true;
             }
         });
     }

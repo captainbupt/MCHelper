@@ -1,4 +1,4 @@
-package com.vgomc.mchelper.Activity.Setting;
+package com.vgomc.mchelper.activity.setting;
 
 import android.os.Bundle;
 

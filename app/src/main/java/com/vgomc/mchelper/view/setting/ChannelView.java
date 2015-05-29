@@ -12,10 +12,14 @@ import com.vgomc.mchelper.adapter.setting.ChannelMultipleVariableAdapter;
 import com.vgomc.mchelper.adapter.setting.ChannelSingleVariableAdapter;
 import com.vgomc.mchelper.base.BaseCollapsibleContentView;
 import com.vgomc.mchelper.base.BaseCollapsibleView;
+import com.vgomc.mchelper.utility.ToastUtil;
 import com.vgomc.mchelper.widget.NoScrollListView;
 import com.vgomc.mchelper.widget.VariableEditView;
 
 import org.holoeverywhere.app.AlertDialog;
+import org.holoeverywhere.widget.Toast;
+
+import java.lang.reflect.Field;
 
 /**
  * Created by weizhouh on 5/22/2015.
@@ -74,9 +78,23 @@ public class ChannelView extends BaseCollapsibleView {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     Variable variable = editView.getData();
-                    channel.variables.set(0, variable);
-                    Configuration.getInstance().channelMap.put(channel.subject, channel);
-                    ChannelView.this.updateData();
+                    if (variable != null) {
+                        channel.variables.set(0, variable);
+                        Configuration.getInstance().channelMap.put(channel.subject, channel);
+                        ChannelView.this.updateData();
+                    } else {
+                        ToastUtil.showToast(mContext, R.string.tip_invalid_input);
+                        try {
+                            Field field = dialog.getClass()
+                                    .getSuperclass().getDeclaredField(
+                                            "mShowing");
+                            field.setAccessible(true);
+                            //   将mShowing变量设为false，表示对话框已关闭
+                            field.set(dialog, false);
+                            dialog.dismiss();
+                        } catch (Exception e) {
+                        }
+                    }
                 }
             }).create().show();
         }

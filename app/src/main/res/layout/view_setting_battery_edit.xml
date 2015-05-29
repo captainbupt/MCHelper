@@ -11,25 +11,42 @@
         android:orientation="horizontal">
 
         <org.holoeverywhere.widget.TextView
-            android:id="@+id/tv_adapter_setting_battery_subject"
+            android:id="@+id/tv_view_setting_battery_edit_subject"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="@integer/radio_left"
             android:paddingLeft="@dimen/offset_less"
             android:textSize="@dimen/text_size_medium" />
 
-        <TextView
-            android:id="@+id/tv_adapter_setting_battery_mode"
+        <RadioGroup
+            android:id="@+id/rg_view_setting_battery_edit_mode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="@integer/radio_right"
-            android:padding="@dimen/offset_less"
-            android:textSize="@dimen/text_size_medium" />
+            android:orientation="horizontal"
+            android:padding="@dimen/offset_less">
+
+            <RadioButton
+                android:id="@+id/rb_view_setting_battery_edit_mode_auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/setting_battery_channel_mode_auto"
+                android:textSize="@dimen/text_size_medium" />
+
+            <RadioButton
+                android:id="@+id/rb_view_setting_battery_edit_mode_always"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/setting_battery_channel_mode_always"
+                android:textSize="@dimen/text_size_medium" />
+        </RadioGroup>
 
     </org.holoeverywhere.widget.LinearLayout>
 
     <org.holoeverywhere.widget.LinearLayout
-        android:id="@+id/ll_adapter_setting_battery_detail"
+        android:id="@+id/ll_view_setting_battery_edit_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -48,14 +65,30 @@
                 android:text="@string/setting_battery_pattern"
                 android:textSize="@dimen/text_size_medium" />
 
-            <TextView
-                android:id="@+id/tv_adapter_setting_battery_pattern"
+            <RadioGroup
+                android:id="@+id/rg_view_setting_battery_edit_pattern"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="@integer/radio_right"
-                android:padding="@dimen/offset_less"
-                android:textSize="@dimen/text_size_medium" />
+                android:orientation="horizontal"
+                android:padding="@dimen/offset_less">
 
+                <RadioButton
+                    android:id="@+id/rb_view_setting_battery_edit_pattern_order"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/setting_battery_pattern_order"
+                    android:textSize="@dimen/text_size_medium" />
+
+                <RadioButton
+                    android:id="@+id/rb_view_setting_battery_edit_pattern_custom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/setting_battery_pattern_custom"
+                    android:textSize="@dimen/text_size_medium" />
+            </RadioGroup>
         </org.holoeverywhere.widget.LinearLayout>
 
         <org.holoeverywhere.widget.LinearLayout
@@ -72,13 +105,12 @@
                 android:text="@string/setting_battery_time_begin"
                 android:textSize="@dimen/text_size_medium" />
 
-            <org.holoeverywhere.widget.TextView
-                android:id="@+id/tv_adapter_setting_battery_time_begin"
+            <com.vgomc.mchelper.widget.TimeEditView
+                android:id="@+id/tev_view_setting_battery_edit_time_begin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="@integer/radio_right"
-                android:paddingLeft="@dimen/offset_less"
-                android:paddingRight="@dimen/offset_less" />
+                android:padding="@dimen/offset_less" />
 
         </org.holoeverywhere.widget.LinearLayout>
 
@@ -89,16 +121,16 @@
             android:orientation="horizontal">
 
             <org.holoeverywhere.widget.TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="@integer/radio_left"
                 android:padding="@dimen/offset_less"
                 android:text="@string/setting_battery_time_live"
                 android:textSize="@dimen/text_size_medium" />
 
-            <org.holoeverywhere.widget.TextView
-                android:id="@+id/tv_adapter_setting_battery_time_last"
-                android:layout_width="wrap_content"
+            <com.vgomc.mchelper.widget.TimeEditView
+                android:id="@+id/tev_view_setting_battery_edit_time_last"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="@integer/radio_right"
                 android:padding="@dimen/offset_less" />

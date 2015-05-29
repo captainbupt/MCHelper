@@ -63,13 +63,27 @@
     <string name="setting_battery_pattern">供电模式</string>
     <string name="setting_battery_pattern_order">顺序</string>
     <string name="setting_battery_pattern_custom">自定义</string>
-    <string name="setting_battery_channel_mode_order">自动</string>
+    <string name="setting_battery_channel_mode_auto">自动</string>
     <string name="setting_battery_channel_mode_always">常开</string>
+    <string name="setting_battery_time_begin">开始</string>
+    <string name="setting_battery_time_live">时长</string>
 
+    <string name="setting_storage">存储</string>
+    <string name="setting_storage_time">存储时间</string>
+    <string name="setting_storage_interval">存储间隔</string>
+    <string name="setting_storage_send">远程发送</string>
 
     <string name="dialog_confirm">确认</string>
     <string name="dialog_cancel">取消</string>
 
+    <string name="setting_time_hour">时</string>
+    <string name="setting_time_minute">分</string>
+    <string name="setting_time_second">秒</string>
+    <string name="setting_time_millisecond">毫秒</string>
+    <string name="setting_time_picker_tip_begin">请选择起始时间</string>
+    <string name="setting_time_picker_tip_live">请选择持续时间</string>
+
     <string name="tip_variable_reach_max_count">已达到变量最大数量，不能继续添加</string>
+    <string name="tip_invalid_input">输入非法，请重新修改</string>
 
 </resources>

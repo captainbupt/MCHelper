@@ -1,4 +1,4 @@
-package com.vgomc.mchelper.Activity;
+package com.vgomc.mchelper.activity;
 
 import android.os.Bundle;
 import android.widget.RadioGroup;

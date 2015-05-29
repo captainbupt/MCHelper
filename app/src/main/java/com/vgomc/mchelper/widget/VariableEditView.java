@@ -2,6 +2,7 @@ package com.vgomc.mchelper.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.RadioGroup;
@@ -10,6 +11,7 @@ import com.vgomc.mchelper.Entity.Channel;
 import com.vgomc.mchelper.Entity.Configuration;
 import com.vgomc.mchelper.Entity.Variable;
 import com.vgomc.mchelper.R;
+import com.vgomc.mchelper.dialog.BigNumberPickerDialog;
 import com.vgomc.mchelper.utility.ToastUtil;
 
 import org.holoeverywhere.LayoutInflater;
@@ -125,6 +127,24 @@ public class VariableEditView extends LinearLayout {
                 mRegisterTypeSpinner.setSelection(0);
             }
         });
+        mSensorAddressEditText.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    BigNumberPickerDialog.getBigNumberPickerDialog(mContext, 3, 1, 254, mSensorAddressEditText, getResources().getString(R.string.setting_channel_variable_sensor_address)).show();
+                }
+                return true;
+            }
+        });
+        mRegisterAddressEditText.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    BigNumberPickerDialog.getBigNumberPickerDialog(mContext, 5, 1, 99999, mRegisterAddressEditText, getResources().getString(R.string.setting_channel_variable_register_address)).show();
+                }
+                return true;
+            }
+        });
     }
 
     public void initData(int type, String subject, Variable variable) {
@@ -181,7 +201,10 @@ public class VariableEditView extends LinearLayout {
         variable.dataType = mDataTypeSpinner.getSelectedItemPosition();
         variable.signalType = mSignalTypeRadioGroup.getCheckedRadioButtonId() == R.id.rb_view_setting_channel_signal_type_current ? Variable.TYPE_SIGNAL_CURRENT : Variable.TYPE_SIGNAL_VOLTAGE;
         variable.isFormulaOn = mFormulaEditView.isOn();
-        variable.factors = mFormulaEditView.getFactors();
+        float[] factors = mFormulaEditView.getFactors();
+        if (factors == null)
+            return null;
+        variable.factors = factors;
         return variable;
     }
 
