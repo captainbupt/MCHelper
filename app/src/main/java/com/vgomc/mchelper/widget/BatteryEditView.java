@@ -19,7 +19,7 @@ import org.holoeverywhere.widget.RadioButton;
  * Created by weizhouh on 5/29/2015.
  */
 
-public class SettingBatteryEditView extends LinearLayout {
+public class BatteryEditView extends LinearLayout {
 
     private Context mContext;
     private RadioGroup mModeRadioGroup;
@@ -36,7 +36,7 @@ public class SettingBatteryEditView extends LinearLayout {
     private long mLastBatteryEndTime;
     private Battery mBattery;
 
-    public SettingBatteryEditView(Context context, int position) {
+    public BatteryEditView(Context context, int position) {
         super(context);
         this.mContext = context;
         this.mPosition = position;
@@ -55,6 +55,7 @@ public class SettingBatteryEditView extends LinearLayout {
         inflater.inflate(R.layout.view_setting_battery_edit, this);
         initView();
         initListener();
+        initData();
     }
 
     private void initView() {
@@ -91,15 +92,17 @@ public class SettingBatteryEditView extends LinearLayout {
                 }
             }
         });
+
         mBeginTimeEditView.setOnTouchListener(new OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                final MyTimePickerView view = new MyTimePickerView(mContext, MyTimePickerView.MODE_MSM, mBattery.startTime, Battery.MAX_TIME);
+                final MyTimePickerView view = new MyTimePickerView(mContext, MyTimePickerView.MODE_MSM, mBattery.startTime, Battery.MAX_TIME, 0);
                 new AlertDialog.Builder(mContext).setTitle(R.string.setting_time_picker_tip_begin).setView(view).setPositiveButton(R.string.dialog_confirm, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         long startTime = view.getTime();
                         mBeginTimeEditView.setTime(startTime);
+                        System.out.println(startTime + ", " + mLiveTimeEditView.getTime());
                         if (startTime + mLiveTimeEditView.getTime() > Battery.MAX_TIME) {
                             long liveTime = Battery.MAX_TIME - startTime;
                             mLiveTimeEditView.setTime(liveTime);
@@ -112,7 +115,8 @@ public class SettingBatteryEditView extends LinearLayout {
         mLiveTimeEditView.setOnTouchListener(new OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                final MyTimePickerView view = new MyTimePickerView(mContext, MyTimePickerView.MODE_MSM, mBattery.liveTime, Battery.MAX_TIME - mBattery.startTime);
+
+                final MyTimePickerView view = new MyTimePickerView(mContext, MyTimePickerView.MODE_MSM, mBattery.liveTime, Battery.MAX_TIME - mBattery.startTime, 0);
                 new AlertDialog.Builder(mContext).setTitle(R.string.setting_time_picker_tip_begin).setView(view).setPositiveButton(R.string.dialog_confirm, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -123,6 +127,26 @@ public class SettingBatteryEditView extends LinearLayout {
                 return true;
             }
         });
+    }
+
+    private void initData() {
+        if (mBattery.isAlwaysOn) {
+            mModeAlwaysRadioButton.setChecked(true);
+            mContentLayout.setVisibility(View.GONE);
+        } else {
+            mModeAutoRadioButton.setChecked(true);
+            mContentLayout.setVisibility(View.VISIBLE);
+        }
+        if (mBattery.isOrder) {
+            mPatternOrderRadioButton.setChecked(true);
+            mBeginTimeEditView.setEnabled(false);
+        } else {
+            mPatternCustomRadioButton.setChecked(true);
+        }
+        mBeginTimeEditView.setTime(mBattery.startTime);
+        mBeginTimeEditView.setMode(MyTimePickerView.MODE_MSM);
+        mLiveTimeEditView.setTime(mBattery.liveTime);
+        mLiveTimeEditView.setMode(MyTimePickerView.MODE_MSM);
     }
 
     public Battery getBattery() {

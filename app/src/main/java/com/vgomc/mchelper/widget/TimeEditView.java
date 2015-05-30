@@ -25,6 +25,7 @@ import java.util.Calendar;
  */
 public class TimeEditView extends LinearLayout {
 
+    private int mMode;
     private Context mContext;
     private LinearLayout mHourLayout;
     private LinearLayout mMinuteLayout;
@@ -34,6 +35,8 @@ public class TimeEditView extends LinearLayout {
     private EditText mMinuteEditText;
     private EditText mSecondEditText;
     private EditText mMillisecondEditText;
+
+    private OnTouchListener mOnTouchListener;
 
     public TimeEditView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -58,19 +61,32 @@ public class TimeEditView extends LinearLayout {
         mMillisecondEditText = (EditText) findViewById(R.id.et_view_setting_time_millisecond);
     }
 
-    public void setFormat(boolean hasHour, boolean hasMinute, boolean hasSecond, boolean hasMillisecond) {
-        mHourLayout.setVisibility(hasHour ? View.VISIBLE : View.GONE);
-        mMinuteLayout.setVisibility(hasMinute ? View.VISIBLE : View.GONE);
-        mSecondLayout.setVisibility(hasSecond ? View.VISIBLE : View.GONE);
-        mMillisecondLayout.setVisibility(hasMillisecond ? View.VISIBLE : View.GONE);
+    public void setMode(int mode) {
+        this.mMode = mode;
+        if (mode == MyTimePickerView.MODE_MSM) {
+            mHourLayout.setVisibility(View.GONE);
+            mMinuteLayout.setVisibility(View.VISIBLE);
+            mSecondLayout.setVisibility(View.VISIBLE);
+            mMillisecondLayout.setVisibility(View.VISIBLE);
+        } else if (mode == MyTimePickerView.MODE_HM) {
+            mHourLayout.setVisibility(View.VISIBLE);
+            mMinuteLayout.setVisibility(View.VISIBLE);
+            mSecondLayout.setVisibility(View.GONE);
+            mMillisecondLayout.setVisibility(View.GONE);
+        } else {
+            mHourLayout.setVisibility(View.VISIBLE);
+            mMinuteLayout.setVisibility(View.VISIBLE);
+            mSecondLayout.setVisibility(View.VISIBLE);
+            mMillisecondLayout.setVisibility(View.GONE);
+        }
     }
 
     public void setTime(long time) {
-        Calendar calendar = TimeUtil.long2calendar(time);
-        mHourEditText.setText(calendar.get(Calendar.HOUR) + "");
-        mMinuteEditText.setText(calendar.get(Calendar.MINUTE) + "");
-        mSecondEditText.setText(calendar.get(Calendar.SECOND) + "");
-        mMillisecondEditText.setText(calendar.get(Calendar.MILLISECOND) + "");
+        int[] timeArray = TimeUtil.long2timeArray(time);
+        mHourEditText.setText(timeArray[0] + "");
+        mMinuteEditText.setText(timeArray[1] + "");
+        mSecondEditText.setText(timeArray[2] + "");
+        mMillisecondEditText.setText(timeArray[3] + "");
     }
 
     public long getTime() {
@@ -78,10 +94,29 @@ public class TimeEditView extends LinearLayout {
         String minuteStr = mMinuteEditText.getText().toString();
         String secondStr = mSecondEditText.getText().toString();
         String millisecondStr = mMillisecondEditText.getText().toString();
+        if (mMode == MyTimePickerView.MODE_MSM) {
+            hourStr = "0";
+        } else if (mMode == MyTimePickerView.MODE_HM) {
+            secondStr = "0";
+            millisecondStr = "0";
+        } else {
+            millisecondStr = "0";
+        }
         return TimeUtil.time2long(TextUtils.isEmpty(hourStr) ? 0 : Integer.parseInt(hourStr),
                 TextUtils.isEmpty(minuteStr) ? 0 : Integer.parseInt(minuteStr),
                 TextUtils.isEmpty(secondStr) ? 0 : Integer.parseInt(secondStr),
                 TextUtils.isEmpty(millisecondStr) ? 0 : Integer.parseInt(millisecondStr));
     }
 
+    public void setOnTouchListener(OnTouchListener onTouchListener) {
+        this.mOnTouchListener = onTouchListener;
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        if (mOnTouchListener != null) {
+            return mOnTouchListener.onTouch(this, ev);
+        }
+        return super.onInterceptTouchEvent(ev);
+    }
 }

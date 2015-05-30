@@ -11,16 +11,18 @@ import java.util.Date;
 public class TimeUtil {
 
     public static long time2long(int hour, int minute, int second, int millisecond) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(0, 0, 0, hour, minute, second);
-        calendar.setTimeInMillis(calendar.getTimeInMillis() + millisecond);
-        return calendar.getTimeInMillis();
+        return (long) hour * 3600000l + (long) minute * 60000l + (long) second * 1000l + (long) millisecond;
     }
 
-    public static Calendar long2calendar(long time) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(time);
-        return calendar;
+    public static int[] long2timeArray(long time) {
+        int[] timeArray = new int[4];
+        timeArray[0] = (int) (time / 3600000l);
+        time %= 3600000l;
+        timeArray[1] = (int) (time / 60000l);
+        time %= 60000l;
+        timeArray[2] = (int) (time / 1000l);
+        timeArray[3] = (int) (time % 1000l);
+        return timeArray;
     }
 
 }

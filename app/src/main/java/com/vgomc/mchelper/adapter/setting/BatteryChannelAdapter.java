@@ -20,16 +20,8 @@ import java.util.Calendar;
  */
 public class BatteryChannelAdapter extends MyBaseAdapter {
 
-    private boolean isOrder;
-
-    public BatteryChannelAdapter(Context context, boolean isOrder) {
+    public BatteryChannelAdapter(Context context) {
         super(context);
-        this.isOrder = isOrder;
-    }
-
-    public void setIsOrder(boolean isOrder) {
-        this.isOrder = isOrder;
-        notifyDataSetChanged();
     }
 
     @Override
@@ -50,10 +42,10 @@ public class BatteryChannelAdapter extends MyBaseAdapter {
             modeTextView.setText(R.string.setting_battery_channel_mode_auto);
             detailLayout.setVisibility(View.VISIBLE);
             patternTextView.setText(battery.isOrder ? R.string.setting_battery_pattern_order : R.string.setting_battery_pattern_custom);
-            Calendar startCalendar = TimeUtil.long2calendar(battery.startTime);
-            beginTextView.setText(String.format("%2d分%2d秒%3d毫秒", startCalendar.get(Calendar.MINUTE), startCalendar.get(Calendar.SECOND), startCalendar.get(Calendar.MILLISECOND)));
-            Calendar liveCalendar = TimeUtil.long2calendar(battery.liveTime);
-            lastTextView.setText(String.format("%2d分%2d秒%3d毫秒", startCalendar.get(Calendar.MINUTE), startCalendar.get(Calendar.SECOND), startCalendar.get(Calendar.MILLISECOND)));
+            int[] startTimeArray = TimeUtil.long2timeArray(battery.startTime);
+            beginTextView.setText(String.format("%2d分%2d秒%3d毫秒", startTimeArray[1], startTimeArray[2], startTimeArray[3]));
+            int[] liveTimeArray = TimeUtil.long2timeArray(battery.liveTime);
+            lastTextView.setText(String.format("%2d分%2d秒%3d毫秒", liveTimeArray[1], liveTimeArray[2], liveTimeArray[3]));
         }
         return view;
     }

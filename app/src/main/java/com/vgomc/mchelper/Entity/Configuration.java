@@ -23,8 +23,10 @@ public class Configuration {
     public boolean bluetoothTimeOn;
     public Map<String, Channel> channelMap;
     public int channelVariableMaxCount = 17;
-    public boolean isBatteryOrder;
     public List<Object> batteryList;
+    public List<Object> storageList;
+    public List<Object> measuringList;
+    public Network network;
 
 
     private static Configuration instance;
@@ -108,7 +110,6 @@ public class Configuration {
         SDIVariables.add(new Variable());
         instance.channelMap.put(Channel.SUBJECT_SDI, new Channel(Channel.TYPE_SDI, Channel.SUBJECT_SDI, SDIVariables));
 
-        instance.isBatteryOrder = false;
         instance.batteryList = new ArrayList<>();
         instance.batteryList.add(new Battery(Battery.SUBJECT_3V1));
         instance.batteryList.add(new Battery(Battery.SUBJECT_SWV1));
@@ -117,6 +118,15 @@ public class Configuration {
         instance.batteryList.add(new Battery(Battery.SUBJECT_SWV4));
         instance.batteryList.add(new Battery(Battery.SUBJECT_SWV5));
 
+        instance.storageList = new ArrayList<>();
+        instance.storageList.add(new Storage());
+        instance.storageList.add(new Storage());
+
+        instance.measuringList = new ArrayList<>();
+        instance.measuringList.add(new Measuring());
+        instance.measuringList.add(new Measuring());
+
+        instance.network = new Network();
     }
 
     public int getChannelVariableCount() {

@@ -89,7 +89,7 @@
             android:orientation="horizontal">
 
             <org.holoeverywhere.widget.TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="@integer/radio_left"
                 android:padding="@dimen/offset_less"
@@ -98,7 +98,7 @@
 
             <org.holoeverywhere.widget.TextView
                 android:id="@+id/tv_adapter_setting_battery_time_last"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="@integer/radio_right"
                 android:padding="@dimen/offset_less" />

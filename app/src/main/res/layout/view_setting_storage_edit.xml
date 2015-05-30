@@ -10,7 +10,7 @@
         android:orientation="horizontal">
 
         <org.holoeverywhere.widget.TextView
-            android:id="@+id/tv_adapter_setting_storage_subject"
+            android:id="@+id/tv_view_setting_storage_subject"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="@integer/radio_left"
@@ -18,19 +18,23 @@
             android:text="@string/setting_storage_plan"
             android:textSize="@dimen/text_size_medium" />
 
-        <org.holoeverywhere.widget.TextView
-            android:id="@+id/tv_adapter_setting_storage_mode"
+        <org.holoeverywhere.widget.FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="@integer/radio_right"
-            android:padding="@dimen/offset_less"
-            android:textSize="@dimen/text_size_medium" />
+            android:padding="@dimen/offset_less">
 
+            <org.holoeverywhere.widget.Switch
+                android:id="@+id/sw_view_setting_storage_mode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_medium" />
+        </org.holoeverywhere.widget.FrameLayout>
     </org.holoeverywhere.widget.LinearLayout>
 
 
     <org.holoeverywhere.widget.LinearLayout
-        android:id="@+id/ll_adapter_setting_storage_content"
+        android:id="@+id/ll_view_setting_storage_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -54,8 +58,8 @@
                 android:layout_weight="@integer/radio_right"
                 android:padding="@dimen/offset_less">
 
-                <org.holoeverywhere.widget.TextView
-                    android:id="@+id/tv_adapter_setting_storage_begin"
+                <org.holoeverywhere.widget.EditText
+                    android:id="@+id/et_view_setting_storage_begin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -67,8 +71,8 @@
                     android:text="-"
                     android:textSize="@dimen/text_size_medium" />
 
-                <org.holoeverywhere.widget.TextView
-                    android:id="@+id/tv_adapter_setting_storage_end"
+                <org.holoeverywhere.widget.EditText
+                    android:id="@+id/et_view_setting_storage_end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -96,10 +100,11 @@
                 android:layout_weight="@integer/radio_right"
                 android:padding="@dimen/offset_less">
 
-                <org.holoeverywhere.widget.TextView
-                    android:id="@+id/tv_adapter_setting_storage_interval"
+                <org.holoeverywhere.widget.EditText
+                    android:id="@+id/et_view_setting_storage_interval"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:textSize="@dimen/text_size_medium" />
 
                 <org.holoeverywhere.widget.TextView
@@ -125,13 +130,18 @@
                 android:textSize="@dimen/text_size_medium" />
 
 
-            <org.holoeverywhere.widget.TextView
-                android:id="@+id/tv_adapter_setting_storage_send"
+            <org.holoeverywhere.widget.FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="@integer/radio_right"
-                android:padding="@dimen/offset_less"
-                android:textSize="@dimen/text_size_medium" />
+                android:padding="@dimen/offset_less">
+
+                <org.holoeverywhere.widget.Switch
+                    android:id="@+id/sw_view_setting_storage_send"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_medium" />
+            </org.holoeverywhere.widget.FrameLayout>
 
         </org.holoeverywhere.widget.LinearLayout>
     </org.holoeverywhere.widget.LinearLayout>

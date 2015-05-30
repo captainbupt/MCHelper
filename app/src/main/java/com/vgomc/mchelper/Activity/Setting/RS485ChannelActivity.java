@@ -104,7 +104,7 @@ public class RS485ChannelActivity extends BaseActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_UP) {
-                    BigNumberPickerDialog.getBigNumberPickerDialog(mContext, 3, 0, 255, mSlaveAddressEditText, getResources().getString(R.string.setting_channel_rs485_slave_address)).show();
+                    BigNumberPickerDialog.getBigNumberPickerDialog(mContext, 3, 0, 255, Integer.parseInt(mSlaveAddressEditText.getText().toString()), mSlaveAddressEditText, getResources().getString(R.string.setting_channel_rs485_slave_address)).show();
                 }
                 return true;
             }
@@ -113,7 +113,7 @@ public class RS485ChannelActivity extends BaseActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_UP) {
-                    BigNumberPickerDialog.getBigNumberPickerDialog(mContext, 6, 0, 600000, mWarmTimeEditText, getResources().getString(R.string.setting_channel_warm_time)).show();
+                    BigNumberPickerDialog.getBigNumberPickerDialog(mContext, 6, 0, 600000, Integer.parseInt(mWarmTimeEditText.getText().toString()), mWarmTimeEditText, getResources().getString(R.string.setting_channel_warm_time)).show();
                 }
                 return true;
             }

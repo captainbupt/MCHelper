@@ -41,7 +41,7 @@ public class SHTChannelActivity extends BaseActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_UP) {
-                    BigNumberPickerDialog.getBigNumberPickerDialog(mContext, 6, 0, 600000, mWarmTimeEditText, getResources().getString(R.string.setting_channel_warm_time)).show();
+                    BigNumberPickerDialog.getBigNumberPickerDialog(mContext, 6, 0, 600000, Integer.parseInt(mWarmTimeEditText.getText().toString()), mWarmTimeEditText, getResources().getString(R.string.setting_channel_warm_time)).show();
                 }
                 return true;
             }

@@ -10,16 +10,16 @@
         android:orientation="horizontal">
 
         <org.holoeverywhere.widget.TextView
-            android:id="@+id/tv_adapter_setting_storage_subject"
+            android:id="@+id/tv_adapter_setting_measuring_subject"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="@integer/radio_left"
             android:padding="@dimen/offset_less"
-            android:text="@string/setting_storage_plan"
+            android:text="@string/setting_measuring_plan"
             android:textSize="@dimen/text_size_medium" />
 
         <org.holoeverywhere.widget.TextView
-            android:id="@+id/tv_adapter_setting_storage_mode"
+            android:id="@+id/tv_adapter_setting_measuring_mode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="@integer/radio_right"
@@ -30,7 +30,7 @@
 
 
     <org.holoeverywhere.widget.LinearLayout
-        android:id="@+id/ll_adapter_setting_storage_content"
+        android:id="@+id/ll_adapter_setting_measuring_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="@integer/radio_left"
                 android:padding="@dimen/offset_less"
-                android:text="@string/setting_storage_time"
+                android:text="@string/setting_measuring_time"
                 android:textSize="@dimen/text_size_medium" />
 
             <org.holoeverywhere.widget.LinearLayout
@@ -55,7 +55,7 @@
                 android:padding="@dimen/offset_less">
 
                 <org.holoeverywhere.widget.TextView
-                    android:id="@+id/tv_adapter_setting_storage_begin"
+                    android:id="@+id/tv_adapter_setting_measuring_begin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -68,7 +68,7 @@
                     android:textSize="@dimen/text_size_medium" />
 
                 <org.holoeverywhere.widget.TextView
-                    android:id="@+id/tv_adapter_setting_storage_end"
+                    android:id="@+id/tv_adapter_setting_measuring_end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -87,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="@integer/radio_left"
                 android:padding="@dimen/offset_less"
-                android:text="@string/setting_storage_interval"
+                android:text="@string/setting_measuring_interval"
                 android:textSize="@dimen/text_size_medium" />
 
             <org.holoeverywhere.widget.LinearLayout
@@ -97,7 +97,7 @@
                 android:padding="@dimen/offset_less">
 
                 <org.holoeverywhere.widget.TextView
-                    android:id="@+id/tv_adapter_setting_storage_interval"
+                    android:id="@+id/tv_adapter_setting_measuring_interval"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_size_medium" />
@@ -121,16 +121,18 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="@integer/radio_left"
                 android:padding="@dimen/offset_less"
-                android:text="@string/setting_storage_send"
+                android:text="@string/setting_measuring_variables"
                 android:textSize="@dimen/text_size_medium" />
 
 
             <org.holoeverywhere.widget.TextView
-                android:id="@+id/tv_adapter_setting_storage_send"
+                android:id="@+id/tv_adapter_setting_measuring_variable"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="@integer/radio_right"
+                android:ellipsize="end"
                 android:padding="@dimen/offset_less"
+                android:singleLine="true"
                 android:textSize="@dimen/text_size_medium" />
 
         </org.holoeverywhere.widget.LinearLayout>

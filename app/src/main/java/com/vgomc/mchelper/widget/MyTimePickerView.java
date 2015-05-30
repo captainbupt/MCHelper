@@ -20,7 +20,9 @@ public class MyTimePickerView extends LinearLayout {
 
     public static final int MODE_MSM = 1;
     public static final int MODE_HM = 2;
+    public static final int MODE_HMS = 3;
 
+    private int mMode;
     private LinearLayout mHourLinearLayout;
     private LinearLayout mMinuteLinearLayout;
     private LinearLayout mSecondLinearLayout;
@@ -31,7 +33,7 @@ public class MyTimePickerView extends LinearLayout {
     private int[] mRangeMaxs;
     private int[] mRangeMins;
 
-    public MyTimePickerView(Context context, int mode, long current, long max) {
+    public MyTimePickerView(Context context, int mode, long current, long max, long min) {
         super(context);
         setLayoutParams(new LayoutParams(
                 LayoutParams.MATCH_PARENT,
@@ -39,11 +41,11 @@ public class MyTimePickerView extends LinearLayout {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.dialog_time_picker, this);
-        mRangeMaxs = new int[]{24, 60, 60, 999};
+        mRangeMaxs = new int[]{24, 59, 59, 999};
         mRangeMins = new int[]{0, 0, 0, 0};
-        mMinDigits = new int[]{0, 0, 0, 0};
-        Calendar maxCalendar = TimeUtil.long2calendar(max);
-        mMaxDigits = new int[]{maxCalendar.get(Calendar.HOUR), maxCalendar.get(Calendar.MINUTE), maxCalendar.get(Calendar.SECOND), maxCalendar.get(Calendar.MILLISECOND)};
+        mMaxDigits = TimeUtil.long2timeArray(max);
+        mMinDigits = TimeUtil.long2timeArray(min);
+        mMode = mode;
         initView(mode);
         initListener(max);
         initData(current);
@@ -56,18 +58,16 @@ public class MyTimePickerView extends LinearLayout {
         mMillisecondLinearLayout = (LinearLayout) findViewById(R.id.ll_dialog_time_picker_layout_millisecond);
         mNumberPickers = new MyBigNumberPicker[4];
         mNumberPickers[0] = (MyBigNumberPicker) findViewById(R.id.mbnp_dialog_time_picker_hour);
-        mNumberPickers[0].setData(24, 0, 2);
         mNumberPickers[1] = (MyBigNumberPicker) findViewById(R.id.mbnp_dialog_time_picker_minute);
-        mNumberPickers[1].setData(60, 0, 2);
         mNumberPickers[2] = (MyBigNumberPicker) findViewById(R.id.mbnp_dialog_time_picker_second);
-        mNumberPickers[2].setData(60, 0, 2);
         mNumberPickers[3] = (MyBigNumberPicker) findViewById(R.id.mbnp_dialog_time_picker_millisecond);
-        mNumberPickers[3].setData(999, 0, 3);
         if (mode == MODE_HM) {
             mSecondLinearLayout.setVisibility(View.GONE);
             mMillisecondLinearLayout.setVisibility(View.GONE);
         } else if (mode == MODE_MSM) {
             mHourLinearLayout.setVisibility(View.GONE);
+        } else if (mode == MODE_HMS) {
+            mMillisecondLinearLayout.setVisibility(View.GONE);
         }
     }
 
@@ -82,15 +82,22 @@ public class MyTimePickerView extends LinearLayout {
     }
 
     private void initData(long current) {
-        Calendar currentCalendar = TimeUtil.long2calendar(current);
-        mNumberPickers[0].setValue(currentCalendar.get(Calendar.HOUR));
-        mNumberPickers[1].setValue(currentCalendar.get(Calendar.MINUTE));
-        mNumberPickers[2].setValue(currentCalendar.get(Calendar.SECOND));
-        mNumberPickers[3].setValue(currentCalendar.get(Calendar.MILLISECOND));
+        int[] timeArray = TimeUtil.long2timeArray(current);
+        for (int ii = 0; ii < timeArray.length - 1; ii++) {
+            mNumberPickers[ii].setData(mMaxDigits[ii], mMinDigits[ii], 2, timeArray[ii]);
+        }
+        mNumberPickers[3].setData(mMaxDigits[3], mMinDigits[3], 3, timeArray[3]);
     }
 
     public long getTime() {
-        return TimeUtil.time2long(mNumberPickers[0].getValue(), mNumberPickers[1].getValue(), mNumberPickers[2].getValue(), mNumberPickers[3].getValue());
+        if (mMode == MODE_MSM) {
+            return TimeUtil.time2long(0, mNumberPickers[1].getValue(), mNumberPickers[2].getValue(), mNumberPickers[3].getValue());
+        } else if (mMode == MODE_HM) {
+            return TimeUtil.time2long(mNumberPickers[0].getValue(), mNumberPickers[1].getValue(), 0, 0);
+        } else {
+            return TimeUtil.time2long(mNumberPickers[0].getValue(), mNumberPickers[1].getValue(), mNumberPickers[2].getValue(), 0);
+
+        }
     }
 
 }

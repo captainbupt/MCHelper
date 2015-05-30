@@ -131,7 +131,7 @@ public class VariableEditView extends LinearLayout {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_UP) {
-                    BigNumberPickerDialog.getBigNumberPickerDialog(mContext, 3, 1, 254, mSensorAddressEditText, getResources().getString(R.string.setting_channel_variable_sensor_address)).show();
+                    BigNumberPickerDialog.getBigNumberPickerDialog(mContext, 3, 1, 254, Integer.parseInt(mSensorAddressEditText.getText().toString()),mSensorAddressEditText, getResources().getString(R.string.setting_channel_variable_sensor_address)).show();
                 }
                 return true;
             }
@@ -140,7 +140,7 @@ public class VariableEditView extends LinearLayout {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_UP) {
-                    BigNumberPickerDialog.getBigNumberPickerDialog(mContext, 5, 1, 99999, mRegisterAddressEditText, getResources().getString(R.string.setting_channel_variable_register_address)).show();
+                    BigNumberPickerDialog.getBigNumberPickerDialog(mContext, 5, 1, 99999, Integer.parseInt(mRegisterAddressEditText.getText().toString()),mRegisterAddressEditText, getResources().getString(R.string.setting_channel_variable_register_address)).show();
                 }
                 return true;
             }

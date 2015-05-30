@@ -21,18 +21,20 @@ public class MyBigNumberPicker extends LinearLayout {
     private NumberPicker[] mNumberPickers;
     private int[] mMaxDigits;
     private int[] mMinDigits;
-
+    LayoutParams lp;
     private OnBigNumberValueChangeListener mOnBigNumberValueChangeListener;
 
-    public MyBigNumberPicker(Context context, int max, int min, int digitNumber) {
+    public MyBigNumberPicker(Context context, int max, int min, int digitNumber, int current) {
         super(context);
         setGravity(Gravity.CENTER_HORIZONTAL);
-        this.mMaxDigits = ClassUtil.int2array(max, mDigitNumber);
-        this.mMinDigits = ClassUtil.int2array(min, mDigitNumber);
+        this.mMaxDigits = ClassUtil.int2array(max, digitNumber);
+        this.mMinDigits = ClassUtil.int2array(min, digitNumber);
         this.mDigitNumber = digitNumber;
         this.mContext = context;
+        lp = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         initView();
         initListener();
+        initData(current);
     }
 
     public MyBigNumberPicker(Context context, AttributeSet attrs) {
@@ -41,18 +43,20 @@ public class MyBigNumberPicker extends LinearLayout {
         setGravity(Gravity.CENTER_HORIZONTAL);
     }
 
-    public void setData(int max, int min, int digitNumber) {
+    public void setData(int max, int min, int digitNumber, int current) {
         this.mMaxDigits = ClassUtil.int2array(max, digitNumber);
         this.mMinDigits = ClassUtil.int2array(min, digitNumber);
         this.mDigitNumber = digitNumber;
+        lp = new LayoutParams(60, LayoutParams.WRAP_CONTENT);
         initView();
         initListener();
+        initData(current);
     }
 
     private void initView() {
 
         mNumberPickers = new NumberPicker[mDigitNumber];
-        LayoutParams lp = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+
         for (int ii = 0; ii < mDigitNumber; ii++) {
             mNumberPickers[ii] = new NumberPicker(mContext);
             mNumberPickers[ii].setLayoutParams(lp);
@@ -64,15 +68,22 @@ public class MyBigNumberPicker extends LinearLayout {
 
     private void initListener() {
         for (int ii = 0; ii < mDigitNumber; ii++) {
-            mNumberPickers[ii].setOnValueChangedListener(new MyBigNumberPickerListener(ii, mMaxDigits, mMinDigits, mDigitNumber, mNumberPickers));
+            mNumberPickers[ii].setOnValueChangedListener(new MyBigNumberPickerListener(ii, mMaxDigits, mMinDigits, mDigitNumber, mNumberPickers, mOnBigNumberValueChangeListener));
         }
+    }
+
+    private void initData(int current) {
+        int[] array = ClassUtil.int2array(current, mDigitNumber);
         for (int ii = 0; ii < mDigitNumber; ii++) {
-            mNumberPickers[ii].setValue(mMaxDigits[ii]);
+            mNumberPickers[ii].setValue(array[ii]);
         }
     }
 
     public void setOnBigNumberValueChangeListener(OnBigNumberValueChangeListener mOnBigNumberValueChangeListener) {
         this.mOnBigNumberValueChangeListener = mOnBigNumberValueChangeListener;
+        for (int ii = 0; ii < mDigitNumber; ii++) {
+            mNumberPickers[ii].setOnValueChangedListener(new MyBigNumberPickerListener(ii, mMaxDigits, mMinDigits, mDigitNumber, mNumberPickers, mOnBigNumberValueChangeListener));
+        }
     }
 
 
