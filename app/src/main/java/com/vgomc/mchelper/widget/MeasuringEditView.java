@@ -153,19 +153,21 @@ public class MeasuringEditView extends LinearLayout {
         mBeginEditText.setText(getTimeText(mMeasuring.beginTime));
         mEndEditText.setText(getTimeText(mMeasuring.endTime));
         mIntervalEditText.setText(mMeasuring.interval + "");
-        mVariableTextView.setText(mMeasuring.getVariableNamesWithNewLine());
+        mVariableTextView.setText(mMeasuring.getVariableNames("\n"));
         mVariableItems = new ArrayList<>();
         mVariableSelections = new ArrayList<>();
         for (Channel channel : Configuration.getInstance().channelMap.values()) {
             for (int ii = 0; ii < channel.variables.size(); ii++) {
-                mVariableItems.add(channel.variables.get(ii).name + "-" + channel.subject);
-                boolean isSelected = false;
-                for (int jj = 0; jj < mMeasuring.channelList.size() && !isSelected; jj++) {
-                    if (channel.subject.equals(mMeasuring.channelList.get(jj).subject) && mMeasuring.variablePositionList.get(jj) == ii) {
-                        isSelected = true;
+                if (channel.variables.get(ii).isVariableOn) {
+                    mVariableItems.add(channel.variables.get(ii).name + "-" + channel.subject);
+                    boolean isSelected = false;
+                    for (int jj = 0; jj < mMeasuring.channelList.size() && !isSelected; jj++) {
+                        if (channel.subject.equals(mMeasuring.channelList.get(jj).subject) && mMeasuring.variablePositionList.get(jj) == ii) {
+                            isSelected = true;
+                        }
                     }
+                    mVariableSelections.add(isSelected);
                 }
-                mVariableSelections.add(isSelected);
             }
         }
     }
@@ -176,13 +178,15 @@ public class MeasuringEditView extends LinearLayout {
         mMeasuring.variablePositionList.clear();
         for (Channel channel : Configuration.getInstance().channelMap.values()) {
             for (int jj = 0; jj < channel.variables.size(); jj++, ii++) {
-                if (mVariableSelections.get(ii)) {
-                    mMeasuring.channelList.add(channel);
-                    mMeasuring.variablePositionList.add(jj);
+                if (channel.variables.get(ii).isVariableOn) {
+                    if (mVariableSelections.get(ii)) {
+                        mMeasuring.channelList.add(channel);
+                        mMeasuring.variablePositionList.add(jj);
+                    }
                 }
             }
         }
-        mVariableTextView.setText(mMeasuring.getVariableNamesWithNewLine());
+        mVariableTextView.setText(mMeasuring.getVariableNames("\n"));
     }
 
     private String getTimeText(long time) {

@@ -1,6 +1,9 @@
 package com.vgomc.mchelper.view.setting;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.support.v7.internal.view.menu.ContextMenuCallbackGetter;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -12,8 +15,11 @@ import com.vgomc.mchelper.Entity.Configuration;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.base.BaseCollapsibleContentView;
 import com.vgomc.mchelper.base.BaseCollapsibleView;
+import com.vgomc.mchelper.dialog.BigNumberPickerDialog;
+import com.vgomc.mchelper.widget.MyBigNumberPicker;
 
 import org.holoeverywhere.LayoutInflater;
+import org.holoeverywhere.app.AlertDialog;
 import org.holoeverywhere.widget.EditText;
 import org.holoeverywhere.widget.LinearLayout;
 import org.holoeverywhere.widget.Switch;
@@ -81,11 +87,29 @@ public class SystemInfoView extends BaseCollapsibleView {
                     }
                 }
             });
+            mBluetoothTimeEditText.setOnTouchListener(new OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    if (event.getAction() == MotionEvent.ACTION_UP) {
+                        final MyBigNumberPicker numberPicker = new MyBigNumberPicker(mContext, 1440, 1, 4, Configuration.getInstance().bluetoothTime);
+                        new AlertDialog.Builder(mContext).setTitle(R.string.setting_system_info_content_bluetooth_time).setView(numberPicker)
+                                .setPositiveButton(R.string.dialog_confirm, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        int time = numberPicker.getValue();
+                                        mBluetoothTimeEditText.setText(time + "");
+                                        Configuration.getInstance().bluetoothTime = time;
+                                    }
+                                }).create().show();
+                    }
+                    return true;
+                }
+            });
         }
 
         private void hideBluetooth() {
-            mBluetoothTimeEditText.setVisibility(View.INVISIBLE);
-            mBluetoothTimeUnitTextView.setVisibility(View.INVISIBLE);
+            mBluetoothTimeEditText.setVisibility(View.GONE);
+            mBluetoothTimeUnitTextView.setVisibility(View.GONE);
         }
 
         private void showBluetooth() {

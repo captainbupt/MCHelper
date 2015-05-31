@@ -16,23 +16,19 @@ public class Measuring {
     public List<Channel> channelList = new ArrayList<>();
     public List<Integer> variablePositionList = new ArrayList<>();
 
-    public String getVariableNames() {
+    public String getVariableNames(String split) {
         if (channelList.size() == 0)
             return "无";
-        String result = channelList.get(0).variables.get(variablePositionList.get(0)).name;
-        for (int ii = 1; ii < channelList.size(); ii++) {
-            result = result + "," + channelList.get(0).variables.get(variablePositionList.get(0)).name;
+        StringBuilder builder = new StringBuilder();
+        for (int ii = 0; ii < channelList.size(); ii++) {
+            if (variablePositionList.get(ii) < channelList.get(ii).variables.size()) {
+                Variable variable = channelList.get(ii).variables.get(variablePositionList.get(ii));
+                if (variable.isVariableOn) {
+                    builder.append(split + variable.name);
+                }
+            }
         }
-        return result;
-    }
-
-    public String getVariableNamesWithNewLine() {
-        if (channelList.size() == 0)
-            return "无";
-        String result = channelList.get(0).variables.get(variablePositionList.get(0)).name;
-        for (int ii = 1; ii < channelList.size(); ii++) {
-            result = result + "\n" + channelList.get(0).variables.get(variablePositionList.get(0)).name;
-        }
-        return result;
+        builder.deleteCharAt(0);
+        return builder.toString();
     }
 }

@@ -26,7 +26,7 @@
 
             <org.holoeverywhere.widget.Switch
                 android:id="@+id/sw_view_setting_storage_mode"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/text_size_medium" />
         </org.holoeverywhere.widget.FrameLayout>
@@ -138,7 +138,7 @@
 
                 <org.holoeverywhere.widget.Switch
                     android:id="@+id/sw_view_setting_storage_send"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_size_medium" />
             </org.holoeverywhere.widget.FrameLayout>

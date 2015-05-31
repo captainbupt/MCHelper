@@ -45,55 +45,89 @@
             android:text="y = "
             android:textSize="@dimen/text_size_medium" />
 
-        <org.holoeverywhere.widget.EditText
-            android:id="@+id/et_default_formula_k0"
-            android:layout_width="wrap_content"
+        <org.holoeverywhere.widget.LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size_medium" />
+            android:gravity="left"
+            android:orientation="vertical">
 
-        <org.holoeverywhere.widget.TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" + "
-            android:textSize="@dimen/text_size_medium" />
+            <org.holoeverywhere.widget.LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-        <org.holoeverywhere.widget.EditText
-            android:id="@+id/et_default_formula_k1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size_medium" />
+                <org.holoeverywhere.widget.EditText
+                    android:id="@+id/et_default_formula_k0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:digits="+-.0123456789"
+                    android:singleLine="true"
+                    android:textSize="@dimen/text_size_medium" />
 
-        <org.holoeverywhere.widget.TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="*x + "
-            android:textSize="@dimen/text_size_medium" />
+                <org.holoeverywhere.widget.TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" + "
+                    android:textSize="@dimen/text_size_medium" />
 
-        <org.holoeverywhere.widget.EditText
-            android:id="@+id/et_default_formula_k2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size_medium" />
+                <org.holoeverywhere.widget.EditText
+                    android:id="@+id/et_default_formula_k1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:digits="+-.0123456789"
+                    android:singleLine="true"
+                    android:textSize="@dimen/text_size_medium" />
 
-        <org.holoeverywhere.widget.TextView
-            android:id="@+id/tv_default_formula_x2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" * x2 + "
-            android:textSize="@dimen/text_size_medium" />
+                <org.holoeverywhere.widget.TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*x + "
+                    android:textSize="@dimen/text_size_medium" />
 
-        <org.holoeverywhere.widget.EditText
-            android:id="@+id/et_default_formula_k3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size_medium" />
+            </org.holoeverywhere.widget.LinearLayout>
 
-        <org.holoeverywhere.widget.TextView
-            android:id="@+id/tv_default_formula_x3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" * x3"
-            android:textSize="@dimen/text_size_medium" />
+            <org.holoeverywhere.widget.LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <org.holoeverywhere.widget.EditText
+                    android:id="@+id/et_default_formula_k2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:digits="+-.0123456789"
+                    android:singleLine="true"
+                    android:textSize="@dimen/text_size_medium" />
+
+                <org.holoeverywhere.widget.TextView
+                    android:id="@+id/tv_default_formula_x2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" * x2 + "
+                    android:textSize="@dimen/text_size_medium" />
+
+                <org.holoeverywhere.widget.EditText
+                    android:id="@+id/et_default_formula_k3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:digits="+-.0123456789"
+                    android:singleLine="true"
+                    android:textSize="@dimen/text_size_medium" />
+
+                <org.holoeverywhere.widget.TextView
+                    android:id="@+id/tv_default_formula_x3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" * x3"
+                    android:textSize="@dimen/text_size_medium" />
+            </org.holoeverywhere.widget.LinearLayout>
+        </org.holoeverywhere.widget.LinearLayout>
     </org.holoeverywhere.widget.LinearLayout>
 
 </org.holoeverywhere.widget.LinearLayout>

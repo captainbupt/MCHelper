@@ -51,9 +51,9 @@ public class SHTChannelActivity extends BaseActivity {
     private void initData() {
         mSHTChannel = Configuration.getInstance().channelMap.get(Channel.SUBJECT_SHT);
         mWarmTimeEditText.setText(mSHTChannel.warmTime + "");
-        mTemperatureVariableEditView.initData(mSHTChannel.type, getResources().getString(R.string.setting_channel_sht_temperature), mSHTChannel.variables.get(0));
-        mHumidityVariableEditView.initData(mSHTChannel.type, getResources().getString(R.string.setting_channel_sht_humidity), mSHTChannel.variables.get(1));
-        mDewPointVariableEditView.initData(mSHTChannel.type, getResources().getString(R.string.setting_channel_sht_dew_point), mSHTChannel.variables.get(2));
+        mTemperatureVariableEditView.initData(mSHTChannel.type, getResources().getString(R.string.setting_channel_sht_temperature), Channel.SUBJECT_SHT, mSHTChannel.variables.get(0));
+        mHumidityVariableEditView.initData(mSHTChannel.type, getResources().getString(R.string.setting_channel_sht_humidity), Channel.SUBJECT_SHT, mSHTChannel.variables.get(1));
+        mDewPointVariableEditView.initData(mSHTChannel.type, getResources().getString(R.string.setting_channel_sht_dew_point), Channel.SUBJECT_SHT, mSHTChannel.variables.get(2));
     }
 
     @Override

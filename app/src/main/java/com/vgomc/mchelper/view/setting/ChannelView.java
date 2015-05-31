@@ -72,7 +72,7 @@ public class ChannelView extends BaseCollapsibleView {
         public void onItemClick(final View v, Object item, int position, long id) {
             final Channel channel = (Channel) item;
             final VariableEditView editView = new VariableEditView(mContext);
-            editView.initData(channel.type, channel.subject + "通道", channel.variables.get(0));
+            editView.initData(channel.type, channel.subject + "通道", channel.subject, channel.variables.get(0));
             new AlertDialog.Builder(mContext).setView(editView).setPositiveButton(R.string.dialog_confirm, new AlertDialog.OnClickListener() {
 
                 @Override
@@ -80,20 +80,11 @@ public class ChannelView extends BaseCollapsibleView {
                     Variable variable = editView.getData();
                     if (variable != null) {
                         channel.variables.set(0, variable);
+                        channel.warmTime = editView.getWarmTime();
                         Configuration.getInstance().channelMap.put(channel.subject, channel);
                         ChannelView.this.updateData();
                     } else {
                         ToastUtil.showToast(mContext, R.string.tip_invalid_input);
-                        try {
-                            Field field = dialog.getClass()
-                                    .getSuperclass().getDeclaredField(
-                                            "mShowing");
-                            field.setAccessible(true);
-                            //   将mShowing变量设为false，表示对话框已关闭
-                            field.set(dialog, false);
-                            dialog.dismiss();
-                        } catch (Exception e) {
-                        }
                     }
                 }
             }).create().show();

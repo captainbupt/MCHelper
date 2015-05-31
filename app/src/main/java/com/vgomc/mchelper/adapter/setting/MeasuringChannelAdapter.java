@@ -44,7 +44,7 @@ public class MeasuringChannelAdapter extends MyBaseAdapter {
         int[] endTimeArray = TimeUtil.long2timeArray(measuring.endTime);
         endTextView.setText(endTimeArray[0] + ":" + endTimeArray[1]);
         intervalTextView.setText(measuring.interval + "");
-        variableTextView.setText(measuring.getVariableNames());
+        variableTextView.setText(measuring.getVariableNames(","));
         return view;
     }
 }

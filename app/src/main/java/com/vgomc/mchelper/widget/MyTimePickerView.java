@@ -47,7 +47,7 @@ public class MyTimePickerView extends LinearLayout {
         mMinDigits = TimeUtil.long2timeArray(min);
         mMode = mode;
         initView(mode);
-        initListener(max);
+        initListener();
         initData(current);
     }
 
@@ -71,11 +71,11 @@ public class MyTimePickerView extends LinearLayout {
         }
     }
 
-    private void initListener(final long max) {
+    private void initListener() {
         for (int ii = 0; ii < mNumberPickers.length - 1; ii++) {
-            mNumberPickers[ii].setOnBigNumberValueChangeListener(new MyBigNumberValueChangeListener(ii, mMaxDigits, mMinDigits, mRangeMaxs, mRangeMins, 2, mNumberPickers));
+            mNumberPickers[ii].setOnBigNumberValueChangeListener(new MyBigNumberValueChangeListener(ii, mMaxDigits, mMinDigits, mRangeMaxs, mRangeMins, 4, mNumberPickers));
         }
-        mNumberPickers[3].setOnBigNumberValueChangeListener(new MyBigNumberValueChangeListener(3, mMaxDigits, mMinDigits, mRangeMaxs, mRangeMins, 3, mNumberPickers));
+        mNumberPickers[3].setOnBigNumberValueChangeListener(new MyBigNumberValueChangeListener(3, mMaxDigits, mMinDigits, mRangeMaxs, mRangeMins, 4, mNumberPickers));
         for (int ii = 0; ii < mNumberPickers.length; ii++) {
             mNumberPickers[ii].setValue(mMaxDigits[ii]);
         }
@@ -85,8 +85,10 @@ public class MyTimePickerView extends LinearLayout {
         int[] timeArray = TimeUtil.long2timeArray(current);
         for (int ii = 0; ii < timeArray.length - 1; ii++) {
             mNumberPickers[ii].setData(mMaxDigits[ii], mMinDigits[ii], 2, timeArray[ii]);
+            mNumberPickers[ii].getOnBigNumberValueChangeListener().onValueChange(timeArray[ii]);
         }
         mNumberPickers[3].setData(mMaxDigits[3], mMinDigits[3], 3, timeArray[3]);
+        mNumberPickers[3].getOnBigNumberValueChangeListener().onValueChange(timeArray[3]);
     }
 
     public long getTime() {
@@ -96,8 +98,6 @@ public class MyTimePickerView extends LinearLayout {
             return TimeUtil.time2long(mNumberPickers[0].getValue(), mNumberPickers[1].getValue(), 0, 0);
         } else {
             return TimeUtil.time2long(mNumberPickers[0].getValue(), mNumberPickers[1].getValue(), mNumberPickers[2].getValue(), 0);
-
         }
     }
-
 }

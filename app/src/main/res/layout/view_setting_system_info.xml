@@ -24,7 +24,6 @@
 
             android:layout_height="wrap_content"
             android:layout_weight="@integer/radio_right"
-            android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
             android:hint="@string/setting_system_info_content_name_hint"
             android:maxLength="10"
             android:padding="@dimen/offset_less"
@@ -57,7 +56,6 @@
             android:layout_weight="@integer/radio_right"
             android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
             android:hint="@string/setting_system_info_content_password_hint"
-            android:inputType="textPassword"
             android:maxLength="6"
             android:padding="@dimen/offset_less"
             android:textSize="@dimen/text_size_medium" />
@@ -131,8 +129,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="@string/setting_system_info_content_bluetooth_time_hint"
-                android:inputType="number"
                 android:padding="@dimen/offset_less"
                 android:textSize="@dimen/text_size_medium" />
 

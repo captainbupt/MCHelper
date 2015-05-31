@@ -96,13 +96,12 @@ public class BatteryEditView extends LinearLayout {
         mBeginTimeEditView.setOnTouchListener(new OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                final MyTimePickerView view = new MyTimePickerView(mContext, MyTimePickerView.MODE_MSM, mBattery.startTime, Battery.MAX_TIME, 0);
+                final MyTimePickerView view = new MyTimePickerView(mContext, MyTimePickerView.MODE_MSM, mBeginTimeEditView.getTime(), Battery.MAX_TIME, 0);
                 new AlertDialog.Builder(mContext).setTitle(R.string.setting_time_picker_tip_begin).setView(view).setPositiveButton(R.string.dialog_confirm, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         long startTime = view.getTime();
                         mBeginTimeEditView.setTime(startTime);
-                        System.out.println(startTime + ", " + mLiveTimeEditView.getTime());
                         if (startTime + mLiveTimeEditView.getTime() > Battery.MAX_TIME) {
                             long liveTime = Battery.MAX_TIME - startTime;
                             mLiveTimeEditView.setTime(liveTime);
@@ -116,7 +115,7 @@ public class BatteryEditView extends LinearLayout {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
 
-                final MyTimePickerView view = new MyTimePickerView(mContext, MyTimePickerView.MODE_MSM, mBattery.liveTime, Battery.MAX_TIME - mBattery.startTime, 0);
+                final MyTimePickerView view = new MyTimePickerView(mContext, MyTimePickerView.MODE_MSM, mLiveTimeEditView.getTime(), Battery.MAX_TIME - mBeginTimeEditView.getTime(), 0);
                 new AlertDialog.Builder(mContext).setTitle(R.string.setting_time_picker_tip_begin).setView(view).setPositiveButton(R.string.dialog_confirm, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

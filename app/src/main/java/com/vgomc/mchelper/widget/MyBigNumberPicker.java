@@ -21,7 +21,6 @@ public class MyBigNumberPicker extends LinearLayout {
     private NumberPicker[] mNumberPickers;
     private int[] mMaxDigits;
     private int[] mMinDigits;
-    LayoutParams lp;
     private OnBigNumberValueChangeListener mOnBigNumberValueChangeListener;
 
     public MyBigNumberPicker(Context context, int max, int min, int digitNumber, int current) {
@@ -31,7 +30,6 @@ public class MyBigNumberPicker extends LinearLayout {
         this.mMinDigits = ClassUtil.int2array(min, digitNumber);
         this.mDigitNumber = digitNumber;
         this.mContext = context;
-        lp = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         initView();
         initListener();
         initData(current);
@@ -47,14 +45,14 @@ public class MyBigNumberPicker extends LinearLayout {
         this.mMaxDigits = ClassUtil.int2array(max, digitNumber);
         this.mMinDigits = ClassUtil.int2array(min, digitNumber);
         this.mDigitNumber = digitNumber;
-        lp = new LayoutParams(60, LayoutParams.WRAP_CONTENT);
         initView();
         initListener();
         initData(current);
     }
 
     private void initView() {
-
+        LayoutParams lp = new LayoutParams(60, LayoutParams.WRAP_CONTENT);
+        lp.setMargins(5, 0, 5, 0);
         mNumberPickers = new NumberPicker[mDigitNumber];
 
         for (int ii = 0; ii < mDigitNumber; ii++) {
@@ -86,6 +84,9 @@ public class MyBigNumberPicker extends LinearLayout {
         }
     }
 
+    public OnBigNumberValueChangeListener getOnBigNumberValueChangeListener() {
+        return mOnBigNumberValueChangeListener;
+    }
 
     public int getValue() {
         int[] values = new int[mDigitNumber];
@@ -104,11 +105,17 @@ public class MyBigNumberPicker extends LinearLayout {
 
     public void setMaxValue(int max) {
         mMaxDigits = ClassUtil.int2array(max, mDigitNumber);
+        for (int ii = 0; ii < mDigitNumber; ii++) {
+            mNumberPickers[ii].setMaxValue(mMaxDigits[ii]);
+        }
         initListener();
     }
 
     public void setMinValue(int min) {
         this.mMinDigits = ClassUtil.int2array(min, mDigitNumber);
+        for (int ii = 0; ii < mDigitNumber; ii++) {
+            mNumberPickers[ii].setMinValue(mMinDigits[ii]);
+        }
         initListener();
     }
 

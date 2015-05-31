@@ -33,6 +33,8 @@ public class VariableEditView extends LinearLayout {
     private TextView mSubjectTextView;
     private Switch mVariableSwitch;
     private LinearLayout mContentLayout;
+    private EditText mWarmTimeEditText;
+    private LinearLayout mWarmTimeLinearLayout;
     private EditText mVariableNameEditText;
     private LinearLayout mSensorAddressLayout;
     private EditText mSensorAddressEditText;
@@ -83,6 +85,8 @@ public class VariableEditView extends LinearLayout {
         mSubjectTextView = (TextView) findViewById(R.id.tv_view_setting_channel_variable_subject);
         mVariableSwitch = (Switch) findViewById(R.id.sw_view_setting_channel_variable);
         mContentLayout = (LinearLayout) findViewById(R.id.ll_view_setting_channel_content);
+        mWarmTimeEditText = (EditText) findViewById(R.id.et_view_setting_channel_variable_warm_time);
+        mWarmTimeLinearLayout = (LinearLayout) findViewById(R.id.ll_view_setting_channel_variable_warm_time);
         mVariableNameEditText = (EditText) findViewById(R.id.et_view_setting_channel_variable_name);
         mSensorAddressLayout = (LinearLayout) findViewById(R.id.ll_view_setting_channel_variable_sensor_address);
         mSensorAddressEditText = (EditText) findViewById(R.id.et_view_setting_channel_variable_sensor_address);
@@ -131,7 +135,7 @@ public class VariableEditView extends LinearLayout {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_UP) {
-                    BigNumberPickerDialog.getBigNumberPickerDialog(mContext, 3, 1, 254, Integer.parseInt(mSensorAddressEditText.getText().toString()),mSensorAddressEditText, getResources().getString(R.string.setting_channel_variable_sensor_address)).show();
+                    BigNumberPickerDialog.getBigNumberPickerDialog(mContext, 3, 1, 254, Integer.parseInt(mSensorAddressEditText.getText().toString()), mSensorAddressEditText, getResources().getString(R.string.setting_channel_variable_sensor_address)).show();
                 }
                 return true;
             }
@@ -140,14 +144,23 @@ public class VariableEditView extends LinearLayout {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_UP) {
-                    BigNumberPickerDialog.getBigNumberPickerDialog(mContext, 5, 1, 99999, Integer.parseInt(mRegisterAddressEditText.getText().toString()),mRegisterAddressEditText, getResources().getString(R.string.setting_channel_variable_register_address)).show();
+                    BigNumberPickerDialog.getBigNumberPickerDialog(mContext, 5, 1, 99999, Integer.parseInt(mRegisterAddressEditText.getText().toString()), mRegisterAddressEditText, getResources().getString(R.string.setting_channel_variable_register_address)).show();
+                }
+                return true;
+            }
+        });
+        mWarmTimeEditText.setOnTouchListener(new OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    BigNumberPickerDialog.getBigNumberPickerDialog(mContext, 6, 0, 600000, Integer.parseInt(mWarmTimeEditText.getText().toString()), mWarmTimeEditText, getResources().getString(R.string.setting_channel_warm_time));
                 }
                 return true;
             }
         });
     }
 
-    public void initData(int type, String subject, Variable variable) {
+    public void initData(int type, String subject,String channelSubject, Variable variable) {
         showView(type);
         mSubjectTextView.setText(subject);
         mVariableSwitch.setOnCheckedChangeListener(null);
@@ -189,6 +202,7 @@ public class VariableEditView extends LinearLayout {
             mSignalCurrentRadioButton.setChecked(true);
         }
         mFormulaEditView.setFactors(variable.isFormulaOn, variable.factors);
+        mWarmTimeEditText.setText(Configuration.getInstance().channelMap.get(channelSubject).warmTime + "");
     }
 
     public Variable getData() {
@@ -208,6 +222,10 @@ public class VariableEditView extends LinearLayout {
         return variable;
     }
 
+    public int getWarmTime(){
+        return Integer.parseInt(mWarmTimeEditText.getText().toString());
+    }
+
     public void showView(int type) {
         if (type == Channel.TYPE_P || type == Channel.TYPE_SHT) {
             mSensorAddressLayout.setVisibility(View.GONE);
@@ -215,14 +233,23 @@ public class VariableEditView extends LinearLayout {
             mRegisterAddressLayout.setVisibility(View.GONE);
             mDataTypeLayout.setVisibility(View.GONE);
             mSignalTypeLayout.setVisibility(View.GONE);
-        } else if (type == Channel.TYPE_AN0 || type == Channel.TYPE_AN) {
+            mWarmTimeLinearLayout.setVisibility(View.GONE);
+        } else if (type == Channel.TYPE_AN0) {
+            mWarmTimeLinearLayout.setVisibility(View.GONE);
+            mSensorAddressLayout.setVisibility(View.GONE);
+            mRegisterTypeLayout.setVisibility(View.GONE);
+            mRegisterAddressLayout.setVisibility(View.GONE);
+            mDataTypeLayout.setVisibility(View.GONE);
+        } else if (type == Channel.TYPE_AN) {
             mSensorAddressLayout.setVisibility(View.GONE);
             mRegisterTypeLayout.setVisibility(View.GONE);
             mRegisterAddressLayout.setVisibility(View.GONE);
             mDataTypeLayout.setVisibility(View.GONE);
         } else if (type == Channel.TYPE_RS485) {
             mSignalTypeLayout.setVisibility(View.GONE);
+            mWarmTimeLinearLayout.setVisibility(View.GONE);
         } else if (type == Channel.TYPE_SDI) {
+            mWarmTimeLinearLayout.setVisibility(View.GONE);
             mSignalTypeLayout.setVisibility(View.GONE);
             mRegisterTypeLayout.setVisibility(View.GONE);
             mDataTypeLayout.setVisibility(View.GONE);

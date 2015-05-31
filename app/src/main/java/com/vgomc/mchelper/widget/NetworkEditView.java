@@ -6,7 +6,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RadioGroup;
 
-import com.vgomc.mchelper.Entity.Battery;
 import com.vgomc.mchelper.Entity.Configuration;
 import com.vgomc.mchelper.Entity.Network;
 import com.vgomc.mchelper.R;
@@ -63,7 +62,7 @@ public class NetworkEditView extends LinearLayout {
         mModeRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId == R.id.rb_view_setting_battery_edit_mode_auto) {
+                if (checkedId == R.id.rb_view_setting_network_edit_mode_auto) {
                     mContentLayout.setVisibility(View.VISIBLE);
                 } else {
                     mContentLayout.setVisibility(View.GONE);

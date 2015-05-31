@@ -44,6 +44,7 @@ public class MyBigNumberValueChangeListener implements MyBigNumberPicker.OnBigNu
                 mNumberPickers[ii].setMinValue(mMinDigits[ii]);
             }
         } else {
+            System.out.println("4---------------------");
             for (int ii = mPosition + 1; ii < mDigitNumber; ii++) {
                 mNumberPickers[ii].setMinValue(mRangeMins[ii]);
             }

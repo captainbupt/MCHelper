@@ -84,7 +84,7 @@ public class MultiVariableView extends LinearLayout {
 
     private void showVariableDialog(final int position, Variable variable) {
         final VariableEditView editView = new VariableEditView(mContext);
-        editView.initData(mChannel.type, mChannel.subject + "通道", variable);
+        editView.initData(mChannel.type, mChannel.subject + "通道",mChannel.subject, variable);
         new AlertDialog.Builder(mContext).setView(editView).setPositiveButton(R.string.dialog_confirm, new AlertDialog.OnClickListener() {
 
             @Override

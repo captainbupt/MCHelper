@@ -63,11 +63,26 @@ public class BatteryView extends BaseCollapsibleView {
                         public void onClick(DialogInterface dialog, int which) {
                             Battery battery = editView.getBattery();
                             Configuration.getInstance().batteryList.set(position, battery);
+                            updateLaterBatteryTime(position);
                             mBatterChannelAdapter.setList(Configuration.getInstance().batteryList);
                         }
                     }).create().show();
                 }
             });
+        }
+    }
+
+    private void updateLaterBatteryTime(int position) {
+        for (int ii = position; ii < Configuration.getInstance().batteryList.size() - 1; ii++) {
+            Battery currentBattery = (Battery) Configuration.getInstance().batteryList.get(position);
+            Battery nextBattery = (Battery) Configuration.getInstance().batteryList.get(position + 1);
+            if (nextBattery.isOrder) {
+                nextBattery.startTime = currentBattery.startTime + currentBattery.liveTime;
+                if (nextBattery.startTime + nextBattery.liveTime > Battery.MAX_TIME) {
+                    nextBattery.liveTime = Battery.MAX_TIME - nextBattery.startTime;
+                }
+                Configuration.getInstance().batteryList.set(position + 1, nextBattery);
+            }
         }
     }
 }
