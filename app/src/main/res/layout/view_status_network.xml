@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.holoeverywhere.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <org.holoeverywhere.widget.LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <org.holoeverywhere.widget.TextView
+            style="@style/layout_left_style"
+            android:text="@string/status_network_status" />
+
+        <org.holoeverywhere.widget.TextView
+            android:id="@+id/tv_view_status_network_status"
+            style="@style/layout_right_style" />
+    </org.holoeverywhere.widget.LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_divider_line" />
+
+    <org.holoeverywhere.widget.LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <org.holoeverywhere.widget.TextView
+            style="@style/layout_left_style"
+            android:text="@string/status_network_name" />
+
+        <org.holoeverywhere.widget.TextView
+            android:id="@+id/tv_view_status_network_name"
+            style="@style/layout_right_style" />
+    </org.holoeverywhere.widget.LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_divider_line" />
+
+    <org.holoeverywhere.widget.LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <org.holoeverywhere.widget.TextView
+            style="@style/layout_left_style"
+            android:text="@string/status_network_strength" />
+
+        <org.holoeverywhere.widget.TextView
+            android:id="@+id/tv_view_status_network_strength"
+            style="@style/layout_right_style" />
+
+    </org.holoeverywhere.widget.LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_divider_line" />
+
+    <org.holoeverywhere.widget.LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <org.holoeverywhere.widget.TextView
+            style="@style/layout_left_style"
+            android:text="@string/status_network_error_rate" />
+
+        <org.holoeverywhere.widget.TextView
+            android:id="@+id/tv_view_status_network_error_rate"
+            style="@style/layout_right_style" />
+
+    </org.holoeverywhere.widget.LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_divider_line" />
+
+    <org.holoeverywhere.widget.LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <org.holoeverywhere.widget.TextView
+            style="@style/layout_left_style"
+            android:text="@string/status_network_error_flag" />
+
+        <org.holoeverywhere.widget.TextView
+            android:id="@+id/tv_view_status_network_error_flag"
+            style="@style/layout_right_style" />
+
+    </org.holoeverywhere.widget.LinearLayout>
+
+</org.holoeverywhere.widget.LinearLayout>

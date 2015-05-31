@@ -102,6 +102,7 @@
     <string name="status_system_time">时间</string>
     <string name="status_system_synchronize">同步</string>
     <string name="status_status">状态</string>
+    <string name="status_status_status">状态</string>
     <string name="status_status_error_code">故障码</string>
     <string name="status_status_location">GPS坐标</string>
     <string name="status_storage">存储</string>
@@ -109,10 +110,12 @@
     <string name="status_storage_sdcard">SD卡</string>
     <string name="status_network">网络</string>
     <string name="status_network_status">工作状态</string>
+    <string name="status_network_name">网络名称</string>
     <string name="status_network_strength">信号强度</string>
     <string name="status_network_error_rate">误码率</string>
     <string name="status_network_error_flag">错误标志</string>
 
+    <string name="status_control">运行</string>
     <string name="status_control_measuring">测量</string>
     <string name="status_control_measuring_start">启动</string>
     <string name="status_control_measuring_pause">暂停</string>

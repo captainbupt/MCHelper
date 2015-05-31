@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.holoeverywhere.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <org.holoeverywhere.widget.LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <org.holoeverywhere.widget.TextView
+            style="@style/layout_left_style"
+            android:text="@string/status_system_version" />
+
+        <org.holoeverywhere.widget.TextView
+            android:id="@+id/tv_view_status_system_version"
+            style="@style/layout_right_style" />
+    </org.holoeverywhere.widget.LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_divider_line" />
+
+    <org.holoeverywhere.widget.LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <org.holoeverywhere.widget.TextView
+            style="@style/layout_left_style"
+            android:text="@string/status_system_serial" />
+
+        <org.holoeverywhere.widget.TextView
+            android:id="@+id/tv_view_status_system_serial"
+            style="@style/layout_right_style" />
+    </org.holoeverywhere.widget.LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_divider_line" />
+
+    <org.holoeverywhere.widget.LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <org.holoeverywhere.widget.TextView
+            style="@style/layout_left_style"
+            android:text="@string/status_system_time" />
+
+        <org.holoeverywhere.widget.LinearLayout
+            style="@style/layout_right_style"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <org.holoeverywhere.widget.TextView
+                android:id="@+id/tv_view_status_system_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="@dimen/text_size_medium" />
+
+            <org.holoeverywhere.widget.Button
+                android:id="@+id/btn_view_status_system_synchronize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/status_system_synchronize"
+                android:textSize="@dimen/text_size_medium" />
+        </org.holoeverywhere.widget.LinearLayout>
+    </org.holoeverywhere.widget.LinearLayout>
+
+</org.holoeverywhere.widget.LinearLayout>

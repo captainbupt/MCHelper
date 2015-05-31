@@ -5,12 +5,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.vgomc.mchelper.base.BaseCollapseAdapter;
-import com.vgomc.mchelper.view.setting.BatteryView;
-import com.vgomc.mchelper.view.setting.ChannelView;
-import com.vgomc.mchelper.view.setting.MeasuringView;
-import com.vgomc.mchelper.view.setting.NetworkView;
-import com.vgomc.mchelper.view.setting.StorageView;
-import com.vgomc.mchelper.view.setting.SystemInfoView;
+import com.vgomc.mchelper.view.status.ControlView;
+import com.vgomc.mchelper.view.status.NetworkView;
+import com.vgomc.mchelper.view.status.StatusView;
+import com.vgomc.mchelper.view.status.StorageView;
+import com.vgomc.mchelper.view.status.SystemView;
 
 import java.util.ArrayList;
 
@@ -25,9 +24,11 @@ public class StatusFragmentAdapter extends BaseCollapseAdapter {
         super(context);
         this.mContext = context;
         mList = new ArrayList<>();
-        ChannelView channelView = new ChannelView(context);
-        channelView.hideContent();
-        mList.add(channelView);
+        mList.add(new SystemView(context));
+        mList.add(new StatusView(context));
+        mList.add(new StorageView(context));
+        mList.add(new NetworkView(context));
+        mList.add(new ControlView(context));
     }
 
     @Override

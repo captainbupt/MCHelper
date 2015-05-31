@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.holoeverywhere.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <org.holoeverywhere.widget.LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <org.holoeverywhere.widget.TextView
+            style="@style/layout_left_style"
+            android:text="@string/status_control_measuring" />
+
+        <org.holoeverywhere.widget.FrameLayout style="@style/layout_right_style">
+
+            <org.holoeverywhere.widget.Switch
+                android:id="@+id/sw_view_status_control_measuring"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="@string/status_control_measuring_pause"
+                android:textOn="@string/status_control_measuring_start"
+                android:textSize="@dimen/text_size_medium" />
+        </org.holoeverywhere.widget.FrameLayout>
+    </org.holoeverywhere.widget.LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_divider_line" />
+
+    <org.holoeverywhere.widget.LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <org.holoeverywhere.widget.TextView
+            style="@style/layout_left_style"
+            android:text="@string/status_control_network" />
+
+        <org.holoeverywhere.widget.FrameLayout style="@style/layout_right_style">
+
+            <org.holoeverywhere.widget.Switch
+                android:id="@+id/sw_view_status_control_network"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="@string/status_control_network_close"
+                android:textOn="@string/status_control_network_start"
+                android:textSize="@dimen/text_size_medium" />
+        </org.holoeverywhere.widget.FrameLayout>
+    </org.holoeverywhere.widget.LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_divider_line" />
+
+    <org.holoeverywhere.widget.LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <org.holoeverywhere.widget.TextView
+            style="@style/layout_left_style"
+            android:text="@string/status_control_bluetooth" />
+
+        <org.holoeverywhere.widget.FrameLayout style="@style/layout_right_style">
+
+            <org.holoeverywhere.widget.Switch
+                android:id="@+id/sw_view_status_control_bluetooth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="@string/status_control_bluetooth_close"
+                android:textOn="@string/status_control_bluetooth_start"
+                android:textSize="@dimen/text_size_medium" />
+        </org.holoeverywhere.widget.FrameLayout>
+    </org.holoeverywhere.widget.LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_divider_line" />
+
+    <org.holoeverywhere.widget.LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <org.holoeverywhere.widget.TextView
+            style="@style/layout_left_style"
+            android:text="@string/status_control_collector" />
+
+        <org.holoeverywhere.widget.FrameLayout style="@style/layout_right_style">
+
+            <org.holoeverywhere.widget.Button
+                android:id="@+id/btn_view_status_control_collector"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/status_control_collector_reset"
+                android:textSize="@dimen/text_size_medium" />
+        </org.holoeverywhere.widget.FrameLayout>
+    </org.holoeverywhere.widget.LinearLayout>
+
+</org.holoeverywhere.widget.LinearLayout>
