@@ -6,17 +6,9 @@
 
     <TextView
         android:id="@+id/tv_adapter_setting_channel_multiple_variable_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="@integer/radio_left"
-        android:padding="@dimen/offset_less"
-        android:textSize="@dimen/text_size_medium" />
+        style="@style/layout_left_style" />
 
     <com.vgomc.mchelper.widget.DefaultFormulaTextView
         android:id="@+id/dftv_adapter_setting_channel_multiple_variable_formula"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="@integer/radio_right"
-        android:padding="@dimen/offset_less"
-        android:textSize="@dimen/text_size_medium" />
+        style="@style/layout_right_style" />
 </LinearLayout>

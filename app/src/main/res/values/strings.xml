@@ -87,9 +87,6 @@
     <string name="setting_network_time">关机时长</string>
     <string name="setting_network_address">服务器地址</string>
     <string name="setting_network_port">服务器端口</string>
-    
-    <string name="dialog_confirm">确认</string>
-    <string name="dialog_cancel">取消</string>
 
     <string name="setting_time_hour">时</string>
     <string name="setting_time_minute">分</string>
@@ -99,7 +96,41 @@
     <string name="setting_time_picker_tip_live">请选择持续时间</string>
     <string name="setting_time_picker_tip_end">请选择结束时间</string>
 
+    <string name="status_system">系统</string>
+    <string name="status_system_version">版本/型号</string>
+    <string name="status_system_serial">序列号</string>
+    <string name="status_system_time">时间</string>
+    <string name="status_system_synchronize">同步</string>
+    <string name="status_status">状态</string>
+    <string name="status_status_error_code">故障码</string>
+    <string name="status_status_location">GPS坐标</string>
+    <string name="status_storage">存储</string>
+    <string name="status_storage_memory">内存</string>
+    <string name="status_storage_sdcard">SD卡</string>
+    <string name="status_network">网络</string>
+    <string name="status_network_status">工作状态</string>
+    <string name="status_network_strength">信号强度</string>
+    <string name="status_network_error_rate">误码率</string>
+    <string name="status_network_error_flag">错误标志</string>
+
+    <string name="status_control_measuring">测量</string>
+    <string name="status_control_measuring_start">启动</string>
+    <string name="status_control_measuring_pause">暂停</string>
+    <string name="status_control_network">网络</string>
+    <string name="status_control_network_start">启动</string>
+    <string name="status_control_network_close">关闭</string>
+    <string name="status_control_bluetooth">蓝牙</string>
+    <string name="status_control_bluetooth_start">打开</string>
+    <string name="status_control_bluetooth_close">关闭</string>
+    <string name="status_control_collector">采集器</string>
+    <string name="status_control_collector_reset">复位</string>
+
+
+    <string name="dialog_confirm">确认</string>
+    <string name="dialog_cancel">取消</string>
+
     <string name="tip_variable_reach_max_count">已达到变量最大数量，不能继续添加</string>
     <string name="tip_invalid_input">输入非法，请重新修改</string>
+    <string name="tip_none_content">暂无</string>
 
 </resources>

@@ -15,20 +15,13 @@
             android:orientation="horizontal">
 
             <org.holoeverywhere.widget.TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="@integer/radio_left"
-                android:padding="@dimen/offset_less"
-                android:text="@string/setting_network_mode"
-                android:textSize="@dimen/text_size_medium" />
+                style="@style/layout_left_style"
+                android:text="@string/setting_network_mode" />
 
             <RadioGroup
                 android:id="@+id/rg_view_setting_network_edit_mode"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="@integer/radio_right"
-                android:orientation="horizontal"
-                android:padding="@dimen/offset_less">
+                style="@style/layout_right_style"
+                android:orientation="horizontal">
 
                 <RadioButton
                     android:id="@+id/rb_view_setting_network_edit_mode_auto"
@@ -62,20 +55,12 @@
                 android:orientation="horizontal">
 
                 <org.holoeverywhere.widget.TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="@integer/radio_left"
-                    android:padding="@dimen/offset_less"
-                    android:text="@string/setting_network_time"
-                    android:textSize="@dimen/text_size_medium" />
+                    style="@style/layout_left_style"
+                    android:text="@string/setting_network_time" />
 
                 <com.vgomc.mchelper.widget.TimeEditView
                     android:id="@+id/tev_view_setting_network_edit_time"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="@integer/radio_right"
-                    android:padding="@dimen/offset_less"
-                    android:textSize="@dimen/text_size_medium" />
+                    style="@style/layout_right_style" />
             </org.holoeverywhere.widget.LinearLayout>
 
             <org.holoeverywhere.widget.LinearLayout
@@ -84,22 +69,14 @@
                 android:orientation="horizontal">
 
                 <org.holoeverywhere.widget.TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="@integer/radio_left"
-                    android:padding="@dimen/offset_less"
-                    android:text="@string/setting_network_address"
-                    android:textSize="@dimen/text_size_medium" />
+                    style="@style/layout_left_style"
+                    android:text="@string/setting_network_address" />
 
                 <org.holoeverywhere.widget.EditText
                     android:id="@+id/et_view_setting_network_edit_address"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="@integer/radio_right"
+                    style="@style/layout_right_style"
                     android:maxLength="40"
-                    android:padding="@dimen/offset_less"
-                    android:singleLine="true"
-                    android:textSize="@dimen/text_size_medium" />
+                    android:singleLine="true" />
 
             </org.holoeverywhere.widget.LinearLayout>
 
@@ -109,20 +86,12 @@
                 android:orientation="horizontal">
 
                 <org.holoeverywhere.widget.TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="@integer/radio_left"
-                    android:padding="@dimen/offset_less"
-                    android:text="@string/setting_network_port"
-                    android:textSize="@dimen/text_size_medium" />
+                    style="@style/layout_left_style"
+                    android:text="@string/setting_network_port" />
 
                 <org.holoeverywhere.widget.EditText
                     android:id="@+id/et_view_setting_network_edit_port"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="@integer/radio_right"
-                    android:padding="@dimen/offset_less"
-                    android:textSize="@dimen/text_size_medium" />
+                    style="@style/layout_right_style" />
 
             </org.holoeverywhere.widget.LinearLayout>
         </org.holoeverywhere.widget.LinearLayout>

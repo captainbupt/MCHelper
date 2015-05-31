@@ -12,19 +12,12 @@
 
         <org.holoeverywhere.widget.TextView
             android:id="@+id/tv_adapter_setting_battery_subject"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="@integer/radio_left"
-            android:paddingLeft="@dimen/offset_less"
-            android:textSize="@dimen/text_size_medium" />
+            style="@style/layout_left_style"
+            android:paddingLeft="@dimen/offset_less" />
 
         <TextView
             android:id="@+id/tv_adapter_setting_battery_mode"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="@integer/radio_right"
-            android:padding="@dimen/offset_less"
-            android:textSize="@dimen/text_size_medium" />
+            style="@style/layout_right_style" />
 
     </org.holoeverywhere.widget.LinearLayout>
 
@@ -41,20 +34,12 @@
             android:orientation="horizontal">
 
             <org.holoeverywhere.widget.TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="@integer/radio_left"
-                android:padding="@dimen/offset_less"
-                android:text="@string/setting_battery_pattern"
-                android:textSize="@dimen/text_size_medium" />
+                style="@style/layout_left_style"
+                android:text="@string/setting_battery_pattern" />
 
             <TextView
                 android:id="@+id/tv_adapter_setting_battery_pattern"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="@integer/radio_right"
-                android:padding="@dimen/offset_less"
-                android:textSize="@dimen/text_size_medium" />
+                style="@style/layout_right_style" />
 
         </org.holoeverywhere.widget.LinearLayout>
 
@@ -65,20 +50,12 @@
             android:orientation="horizontal">
 
             <org.holoeverywhere.widget.TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="@integer/radio_left"
-                android:padding="@dimen/offset_less"
-                android:text="@string/setting_battery_time_begin"
-                android:textSize="@dimen/text_size_medium" />
+                style="@style/layout_left_style"
+                android:text="@string/setting_battery_time_begin" />
 
             <org.holoeverywhere.widget.TextView
                 android:id="@+id/tv_adapter_setting_battery_time_begin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="@integer/radio_right"
-                android:paddingLeft="@dimen/offset_less"
-                android:paddingRight="@dimen/offset_less" />
+                style="@style/layout_right_style" />
 
         </org.holoeverywhere.widget.LinearLayout>
 
@@ -89,19 +66,12 @@
             android:orientation="horizontal">
 
             <org.holoeverywhere.widget.TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="@integer/radio_left"
-                android:padding="@dimen/offset_less"
-                android:text="@string/setting_battery_time_live"
-                android:textSize="@dimen/text_size_medium" />
+                style="@style/layout_left_style"
+                android:text="@string/setting_battery_time_live" />
 
             <org.holoeverywhere.widget.TextView
                 android:id="@+id/tv_adapter_setting_battery_time_last"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="@integer/radio_right"
-                android:padding="@dimen/offset_less" />
+                style="@style/layout_right_style" />
         </org.holoeverywhere.widget.LinearLayout>
     </org.holoeverywhere.widget.LinearLayout>
 </org.holoeverywhere.widget.LinearLayout>

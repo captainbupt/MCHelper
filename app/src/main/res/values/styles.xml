@@ -13,4 +13,28 @@
         <item name="android:button">@null</item>
         <item name="android:background">@null</item>
     </style>
+
+    <style name="title_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/color_title_background</item>
+        <item name="android:padding">@dimen/offset_less</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+    </style>
+
+    <style name="layout_left_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">@integer/radio_left</item>
+        <item name="android:padding">@dimen/offset_less</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+    </style>
+
+    <style name="layout_right_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">@integer/radio_right</item>
+        <item name="android:padding">@dimen/offset_less</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+    </style>
 </resources>

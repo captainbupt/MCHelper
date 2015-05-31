@@ -6,11 +6,7 @@
 
     <org.holoeverywhere.widget.TextView
         android:id="@+id/tv_base_collapsible_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/color_title_background"
-        android:padding="@dimen/offset_less"
-        android:textSize="@dimen/text_size_medium" />
+        style="@style/title_style" />
 
     <View
         android:layout_width="match_parent"

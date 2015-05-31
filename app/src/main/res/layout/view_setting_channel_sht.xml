@@ -11,21 +11,18 @@
 
         <org.holoeverywhere.widget.TextView
             android:id="@+id/tv_setting_channel_sht_subject"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="@integer/radio_left"
-            android:padding="@dimen/offset_less"
-            android:textSize="@dimen/text_size_medium" />
+            style="@style/layout_left_style" />
 
-        <org.holoeverywhere.widget.Switch
-            android:id="@+id/sw_setting_channel_sht_subject"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="@integer/radio_right"
-            android:padding="@dimen/offset_less"
-            android:textOff="@string/setting_channel_sht_off"
-            android:textOn="@string/setting_channel_sht_on"
-            android:textSize="@dimen/text_size_medium" />
+        <org.holoeverywhere.widget.FrameLayout style="@style/layout_right_style">
+
+            <org.holoeverywhere.widget.Switch
+                android:id="@+id/sw_setting_channel_sht_subject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="@string/setting_channel_sht_off"
+                android:textOn="@string/setting_channel_sht_on"
+                android:textSize="@dimen/text_size_medium" />
+        </org.holoeverywhere.widget.FrameLayout>
     </org.holoeverywhere.widget.LinearLayout>
 
     <org.holoeverywhere.widget.LinearLayout
@@ -47,26 +44,18 @@
             android:orientation="horizontal">
 
             <org.holoeverywhere.widget.TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="@integer/radio_left"
-                android:padding="@dimen/offset_less"
-                android:text="@string/setting_channel_variable_name"
-                android:textSize="@dimen/text_size_medium" />
+                style="@style/layout_left_style"
+                android:text="@string/setting_channel_variable_name" />
 
             <org.holoeverywhere.widget.EditText
                 android:id="@+id/et_setting_channel_sht_variable_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="@integer/radio_right"
-                android:hint="@string/setting_channel_variable_name_hint"
-                android:padding="@dimen/offset_less"
-                android:textSize="@dimen/text_size_medium" />
+                style="@style/layout_right_style"
+                android:hint="@string/setting_channel_variable_name_hint" />
         </org.holoeverywhere.widget.LinearLayout>
 
         <com.vgomc.mchelper.widget.DefaultFormulaEditView
             android:id="@+id/dfev_setting_channel_sht"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></com.vgomc.mchelper.widget.DefaultFormulaEditView>
+            android:layout_height="wrap_content"/>
     </org.holoeverywhere.widget.LinearLayout>
 </org.holoeverywhere.widget.LinearLayout>

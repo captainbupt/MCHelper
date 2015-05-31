@@ -10,32 +10,24 @@
         android:orientation="horizontal">
 
         <org.holoeverywhere.widget.TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="@integer/radio_left"
-            android:padding="@dimen/offset_less"
-            android:text="@string/setting_channel_default_edit_view_formula"
-            android:textSize="@dimen/text_size_medium" />
+            style="@style/layout_left_style"
+            android:text="@string/setting_channel_default_edit_view_formula" />
 
-        <org.holoeverywhere.widget.LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="@integer/radio_right"
-            android:gravity="left"
-            android:padding="@dimen/offset_less">
+        <org.holoeverywhere.widget.FrameLayout
+            style="@style/layout_right_style">
 
             <org.holoeverywhere.widget.Switch
                 android:id="@+id/sw_default_formula"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/text_size_medium" />
-        </org.holoeverywhere.widget.LinearLayout>
+        </org.holoeverywhere.widget.FrameLayout>
     </org.holoeverywhere.widget.LinearLayout>
 
     <org.holoeverywhere.widget.LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:gravity="top"
         android:orientation="horizontal"
         android:padding="@dimen/offset_less">
 
