@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.vgomc.mchelper.Entity.Measuring;
+import com.vgomc.mchelper.Entity.setting.Measuring;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.base.MyBaseAdapter;
 import com.vgomc.mchelper.utility.TimeUtil;

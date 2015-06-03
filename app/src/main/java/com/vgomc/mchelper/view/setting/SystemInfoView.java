@@ -2,26 +2,18 @@ package com.vgomc.mchelper.view.setting;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.support.v7.internal.view.menu.ContextMenuCallbackGetter;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.BaseAdapter;
 import android.widget.CompoundButton;
 
-import com.vgomc.mchelper.Entity.Channel;
-import com.vgomc.mchelper.Entity.Configuration;
+import com.vgomc.mchelper.Entity.setting.Configuration;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.base.BaseCollapsibleContentView;
 import com.vgomc.mchelper.base.BaseCollapsibleView;
-import com.vgomc.mchelper.dialog.BigNumberPickerDialog;
 import com.vgomc.mchelper.widget.MyBigNumberPicker;
 
-import org.holoeverywhere.LayoutInflater;
 import org.holoeverywhere.app.AlertDialog;
 import org.holoeverywhere.widget.EditText;
-import org.holoeverywhere.widget.LinearLayout;
 import org.holoeverywhere.widget.Switch;
 import org.holoeverywhere.widget.TextView;
 

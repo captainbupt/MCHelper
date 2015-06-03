@@ -4,16 +4,13 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.vgomc.mchelper.Entity.Battery;
+import com.vgomc.mchelper.Entity.setting.Battery;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.base.MyBaseAdapter;
 import com.vgomc.mchelper.utility.TimeUtil;
 
-import org.holoeverywhere.widget.FrameLayout;
 import org.holoeverywhere.widget.LinearLayout;
 import org.holoeverywhere.widget.TextView;
-
-import java.util.Calendar;
 
 /**
  * Created by weizhouh on 5/21/2015.

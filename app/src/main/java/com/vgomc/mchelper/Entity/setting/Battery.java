@@ -1,4 +1,4 @@
-package com.vgomc.mchelper.Entity;
+package com.vgomc.mchelper.Entity.setting;
 
 /**
  * Created by weizhouh on 5/26/2015.
@@ -20,6 +20,8 @@ public class Battery {
     public long startTime = 0;
     public long liveTime = 0;
 
+    public Battery() {
+    }
 
     public Battery(String subject) {
         this.subject = subject;

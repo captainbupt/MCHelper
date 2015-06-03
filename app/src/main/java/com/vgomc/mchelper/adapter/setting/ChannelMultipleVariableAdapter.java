@@ -2,13 +2,12 @@ package com.vgomc.mchelper.adapter.setting;
 
 import android.content.Context;
 import android.content.Intent;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.vgomc.mchelper.Entity.Channel;
-import com.vgomc.mchelper.Entity.Configuration;
-import com.vgomc.mchelper.Entity.RS485Channel;
+import com.vgomc.mchelper.Entity.setting.Channel;
+import com.vgomc.mchelper.Entity.setting.Configuration;
+import com.vgomc.mchelper.Entity.setting.RS485Channel;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.activity.setting.RS485ChannelActivity;
 import com.vgomc.mchelper.activity.setting.SDIChannelActivity;
@@ -18,7 +17,6 @@ import com.vgomc.mchelper.utility.ToastUtil;
 import com.vgomc.mchelper.widget.NoScrollListView;
 
 import org.holoeverywhere.widget.TextView;
-import org.holoeverywhere.widget.Toast;
 
 import java.util.ArrayList;
 

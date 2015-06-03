@@ -6,8 +6,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CompoundButton;
 
-import com.vgomc.mchelper.Entity.Configuration;
-import com.vgomc.mchelper.Entity.Storage;
+import com.vgomc.mchelper.Entity.setting.Configuration;
+import com.vgomc.mchelper.Entity.setting.Storage;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.dialog.BigNumberPickerDialog;
 import com.vgomc.mchelper.utility.TimeUtil;
@@ -18,10 +18,6 @@ import org.holoeverywhere.widget.EditText;
 import org.holoeverywhere.widget.LinearLayout;
 import org.holoeverywhere.widget.Switch;
 import org.holoeverywhere.widget.TextView;
-import org.holoeverywhere.widget.datetimepicker.time.RadialPickerLayout;
-import org.holoeverywhere.widget.datetimepicker.time.TimePickerDialog;
-
-import java.util.Calendar;
 
 /**
  * Created by weizhouh on 5/30/2015.

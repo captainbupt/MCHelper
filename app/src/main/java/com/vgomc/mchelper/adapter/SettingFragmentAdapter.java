@@ -4,18 +4,13 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.vgomc.mchelper.Entity.Measuring;
 import com.vgomc.mchelper.base.BaseCollapseAdapter;
-import com.vgomc.mchelper.base.BaseCollapsibleView;
-import com.vgomc.mchelper.base.MyBaseAdapter;
 import com.vgomc.mchelper.view.setting.BatteryView;
 import com.vgomc.mchelper.view.setting.ChannelView;
 import com.vgomc.mchelper.view.setting.MeasuringView;
 import com.vgomc.mchelper.view.setting.NetworkView;
 import com.vgomc.mchelper.view.setting.StorageView;
 import com.vgomc.mchelper.view.setting.SystemInfoView;
-
-import org.holoeverywhere.widget.ListView;
 
 import java.util.ArrayList;
 

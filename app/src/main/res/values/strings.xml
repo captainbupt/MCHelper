@@ -1,5 +1,14 @@
 <resources>
     <string name="app_name">MCHelper</string>
+    <string name="menu_action_bar_read_from_device">读入配置</string>
+    <string name="menu_action_bar_write_to_device">写入配置</string>
+    <string name="menu_action_bar_read_from_file">打开配置文件</string>
+    <string name="menu_action_bar_write_to_file">保存配置文件</string>
+
+    <string name="menu_action_bar_read_from_file_choice">请选择配置文件</string>
+    <string name="menu_action_bar_read_from_file_empty">没有找到任何配置文件</string>
+    <string name="menu_action_bar_read_from_file_fail">读入文件失败</string>
+    <string name="menu_action_bar_read_from_file_success">读入文件成功</string>
 
     <string name="tab_title_setting">配置</string>
     <string name="tab_title_status">状态</string>

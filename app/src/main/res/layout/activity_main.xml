@@ -3,20 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--    <org.holoeverywhere.widget.LinearLayout
-            android:id="@+id/activity_main_action_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:orientation="horizontal">
-
-            <org.holoeverywhere.widget.TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="This is title" />
-        </org.holoeverywhere.widget.LinearLayout>-->
-
     <RadioGroup
         android:id="@+id/activity_main_radio_group"
         android:layout_width="match_parent"

@@ -48,4 +48,23 @@
         <item>57600</item>
         <item>115200</item>
     </string-array>
+
+    <string-array name="device_flag_representation">
+        <item>GPRS开启</item>
+        <item>蓝牙开启</item>
+        <item></item>
+        <item></item>
+        <item>FLASH错误</item>
+        <item>SD卡错误</item>
+        <item>GPRS错误</item>
+        <item>蓝牙错误</item>
+        <item>FLASH重新初始化</item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item>电池故障</item>
+        <item>正在充电</item>
+        <item>备用电池供电</item>
+    </string-array>
 </resources>

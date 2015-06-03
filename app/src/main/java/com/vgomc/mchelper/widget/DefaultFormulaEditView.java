@@ -8,7 +8,7 @@ import android.text.style.SuperscriptSpan;
 import android.util.AttributeSet;
 import android.widget.CompoundButton;
 
-import com.vgomc.mchelper.Entity.Variable;
+import com.vgomc.mchelper.Entity.setting.Variable;
 import com.vgomc.mchelper.R;
 
 import org.holoeverywhere.LayoutInflater;

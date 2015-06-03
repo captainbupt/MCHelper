@@ -1,4 +1,4 @@
-package com.vgomc.mchelper.Entity;
+package com.vgomc.mchelper.Entity.setting;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -40,6 +40,9 @@ public class Channel implements Serializable, Cloneable {
     public String subject = "null";
     public int warmTime = 1000;
     public List<Variable> variables = new ArrayList<>();
+
+    public Channel() {
+    }
 
     public Channel(int type, String subject, ArrayList<Variable> variables) {
         this.type = type;

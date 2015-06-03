@@ -1,13 +1,29 @@
 package com.vgomc.mchelper.activity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.RadioGroup;
+import android.widget.SpinnerAdapter;
 
+import com.thoughtworks.xstream.XStream;
+import com.vgomc.mchelper.Entity.setting.Configuration;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.adapter.MainFragmentPagerAdapter;
 import com.vgomc.mchelper.base.BaseActivity;
+import com.vgomc.mchelper.fragment.SettingFragment;
+import com.vgomc.mchelper.transmit.file.FileServiceProvider;
+import com.vgomc.mchelper.utility.ToastUtil;
 
+import org.holoeverywhere.app.AlertDialog;
+import org.holoeverywhere.widget.ArrayAdapter;
 import org.holoeverywhere.widget.ViewPager;
+
+import java.io.File;
+import java.security.Policy;
 
 
 public class MainActivity extends BaseActivity {
@@ -21,7 +37,6 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -38,7 +53,7 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onPageSelected(int i) {
-                mRadioGroup.check(R.id.activity_main_radio_button_1+i);
+                mRadioGroup.check(R.id.activity_main_radio_button_1 + i);
             }
 
             @Override
@@ -51,7 +66,7 @@ public class MainActivity extends BaseActivity {
         mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                mViewPager.setCurrentItem(checkedId-R.id.activity_main_radio_button_1);
+                mViewPager.setCurrentItem(checkedId - R.id.activity_main_radio_button_1);
             }
         });
 
@@ -59,4 +74,51 @@ public class MainActivity extends BaseActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_action_bar, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_action_bar_read_from_device:
+                return true;
+            case R.id.menu_action_bar_read_from_file:
+                return true;
+            case R.id.menu_action_bar_write_to_device:
+                return true;
+            case R.id.menu_action_bar_write_to_file:
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void showConfigurationFiles() {
+        final String[] configurationFiles = FileServiceProvider.getConfigurationFileNames();
+        if(configurationFiles == null || configurationFiles.length == 0){
+            showToast(R.string.menu_action_bar_read_from_file_empty);
+            return;
+        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+        builder.setTitle(R.string.menu_action_bar_read_from_file_choice)
+                .setItems(configurationFiles, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Configuration configuration = FileServiceProvider.readObjectFromFile(FileServiceProvider.getExternalStoragePath() + File.separator + configurationFiles[which]);
+                        if (configuration == null) {
+                            showToast(R.string.menu_action_bar_read_from_file_fail);
+                        } else {
+                            showToast(R.string.menu_action_bar_read_from_file_success);
+                            Configuration.setInstance(configuration);
+                            ((SettingFragment)mPagerAdapter.getItem(0)).updateData();
+                        }
+                    }
+                }).show();
+    }
 }

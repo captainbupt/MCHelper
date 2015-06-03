@@ -6,9 +6,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RadioGroup;
 
-import com.vgomc.mchelper.Entity.Channel;
-import com.vgomc.mchelper.Entity.Configuration;
-import com.vgomc.mchelper.Entity.RS485Channel;
+import com.vgomc.mchelper.Entity.setting.Channel;
+import com.vgomc.mchelper.Entity.setting.Configuration;
+import com.vgomc.mchelper.Entity.setting.RS485Channel;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.base.BaseActivity;
 import com.vgomc.mchelper.dialog.BigNumberPickerDialog;

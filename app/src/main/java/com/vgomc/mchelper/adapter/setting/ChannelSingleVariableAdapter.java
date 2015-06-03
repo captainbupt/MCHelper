@@ -4,8 +4,8 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.vgomc.mchelper.Entity.Channel;
-import com.vgomc.mchelper.Entity.Configuration;
+import com.vgomc.mchelper.Entity.setting.Channel;
+import com.vgomc.mchelper.Entity.setting.Configuration;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.base.MyBaseAdapter;
 import com.vgomc.mchelper.widget.DefaultFormulaTextView;
@@ -13,7 +13,6 @@ import com.vgomc.mchelper.widget.DefaultFormulaTextView;
 import org.holoeverywhere.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by weizhouh on 5/22/2015.

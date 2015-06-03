@@ -1,4 +1,4 @@
-package com.vgomc.mchelper.Entity;
+package com.vgomc.mchelper.Entity.setting;
 
 /**
  * Created by weizhouh on 5/24/2015.

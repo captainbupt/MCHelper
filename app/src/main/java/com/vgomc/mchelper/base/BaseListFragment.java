@@ -28,8 +28,7 @@ public abstract class BaseListFragment extends BaseFragment {
         return rootView;
     }
 
-    @Override
-    protected void updateData() {
+    public void updateData() {
         mFragmentAdapter.updateData();
     }
 

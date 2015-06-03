@@ -1,10 +1,6 @@
-package com.vgomc.mchelper.Entity;
+package com.vgomc.mchelper.Entity.setting;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 /**
  * Created by weizhouh on 5/22/2015.
@@ -20,6 +16,9 @@ public class RS485Channel extends Channel {
     public int protocol;
     public int slaveAddress;
     public int baudRate;
+
+    public RS485Channel() {
+    }
 
     public RS485Channel(ArrayList<Variable> variables) {
         super(TYPE_RS485, SUBJECT_RS485, variables);

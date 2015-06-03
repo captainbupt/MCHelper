@@ -1,4 +1,4 @@
-package com.vgomc.mchelper.Entity;
+package com.vgomc.mchelper.Entity.setting;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -35,8 +35,8 @@ public class Configuration {
         return instance;
     }
 
-    public static void setInstanceFromFile(String path) {
-        instance = readObjectFromFile(path);
+    public static void setInstance(Configuration configuration) {
+        instance = configuration;
     }
 
     public static void initInstance() {
@@ -136,40 +136,4 @@ public class Configuration {
         }
         return count;
     }
-
-    public static void writeObjectToFile(String path) {
-        File file = new File(path);
-        if (file.exists()) {
-            file.delete();
-        }
-        FileOutputStream out;
-        try {
-            file.createNewFile();
-            out = new FileOutputStream(file);
-            ObjectOutputStream objOut = new ObjectOutputStream(out);
-            objOut.writeObject(getInstance());
-            objOut.flush();
-            objOut.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static Configuration readObjectFromFile(String path) {
-        Configuration temp = null;
-        File file = new File(path);
-        FileInputStream in;
-        try {
-            in = new FileInputStream(file);
-            ObjectInputStream objIn = new ObjectInputStream(in);
-            temp = (Configuration) objIn.readObject();
-            objIn.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return temp;
-    }
-
 }

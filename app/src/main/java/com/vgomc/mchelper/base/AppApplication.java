@@ -6,7 +6,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.util.DisplayMetrics;
 
-import com.vgomc.mchelper.Entity.Configuration;
+import com.vgomc.mchelper.Entity.setting.Configuration;
 
 import org.holoeverywhere.app.Application;
 

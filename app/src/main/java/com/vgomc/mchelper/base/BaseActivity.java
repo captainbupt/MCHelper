@@ -38,7 +38,7 @@ public class BaseActivity extends Activity {
         ToastUtil.showToast(mContext, content);
     }
 
-    private void showToast(int resId) {
+    public void showToast(int resId) {
         ToastUtil.showToast(mContext, resId);
     }
 }

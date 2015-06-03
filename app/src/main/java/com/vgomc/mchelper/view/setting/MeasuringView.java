@@ -4,8 +4,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.view.View;
 
-import com.vgomc.mchelper.Entity.Configuration;
-import com.vgomc.mchelper.Entity.Measuring;
+import com.vgomc.mchelper.Entity.setting.Configuration;
+import com.vgomc.mchelper.Entity.setting.Measuring;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.adapter.setting.MeasuringChannelAdapter;
 import com.vgomc.mchelper.base.BaseCollapsibleContentView;

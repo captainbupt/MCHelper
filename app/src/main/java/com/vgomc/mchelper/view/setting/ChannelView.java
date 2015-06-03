@@ -4,9 +4,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.view.View;
 
-import com.vgomc.mchelper.Entity.Channel;
-import com.vgomc.mchelper.Entity.Configuration;
-import com.vgomc.mchelper.Entity.Variable;
+import com.vgomc.mchelper.Entity.setting.Channel;
+import com.vgomc.mchelper.Entity.setting.Configuration;
+import com.vgomc.mchelper.Entity.setting.Variable;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.adapter.setting.ChannelMultipleVariableAdapter;
 import com.vgomc.mchelper.adapter.setting.ChannelSingleVariableAdapter;
@@ -17,9 +17,6 @@ import com.vgomc.mchelper.widget.NoScrollListView;
 import com.vgomc.mchelper.widget.VariableEditView;
 
 import org.holoeverywhere.app.AlertDialog;
-import org.holoeverywhere.widget.Toast;
-
-import java.lang.reflect.Field;
 
 /**
  * Created by weizhouh on 5/22/2015.
