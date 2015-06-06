@@ -25,8 +25,9 @@ import java.util.List;
  */
 public class FileServiceProvider {
 
-    public static void writeObjectToFile(Configuration configuration, String path) {
+    public static final String SUFFIX = ".xml";
 
+    public static boolean writeObjectToFile(Configuration configuration, String path) {
         XStream xstream = new XStream();
         String xml = xstream.toXML(configuration);
         File file = new File(path);
@@ -42,7 +43,9 @@ public class FileServiceProvider {
             out.close();
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
+        return true;
     }
 
     public static Configuration readObjectFromFile(String path) {
@@ -52,7 +55,13 @@ public class FileServiceProvider {
     }
 
     public static String getExternalStoragePath() {
-        return Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).getAbsolutePath();
+        String directory = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "configurations";
+        File directoryFile = new File(directory);
+        if (!directoryFile.exists() || !directoryFile.isDirectory()) {
+            directoryFile.delete();
+            directoryFile.mkdirs();
+        }
+        return directory;
     }
 
     public static String[] getConfigurationFileNames() {
@@ -60,7 +69,7 @@ public class FileServiceProvider {
         return rootDirectory.list(new FilenameFilter() {
             @Override
             public boolean accept(File dir, String filename) {
-                return filename.endsWith(".xml");
+                return filename.endsWith(SUFFIX);
             }
         });
     }

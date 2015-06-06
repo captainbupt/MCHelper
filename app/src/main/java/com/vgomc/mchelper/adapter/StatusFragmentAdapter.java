@@ -18,11 +18,8 @@ import java.util.ArrayList;
  */
 public class StatusFragmentAdapter extends BaseCollapseAdapter {
 
-    private Context mContext;
-
     public StatusFragmentAdapter(Context context) {
         super(context);
-        this.mContext = context;
         mList = new ArrayList<>();
         mList.add(new SystemView(context));
         mList.add(new StatusView(context));

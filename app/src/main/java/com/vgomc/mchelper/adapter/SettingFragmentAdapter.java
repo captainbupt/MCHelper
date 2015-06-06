@@ -19,8 +19,6 @@ import java.util.ArrayList;
  */
 public class SettingFragmentAdapter extends BaseCollapseAdapter {
 
-    private Context mContext;
-
     public SettingFragmentAdapter(Context context) {
         super(context);
         this.mContext = context;

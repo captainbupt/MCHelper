@@ -5,7 +5,7 @@ package com.vgomc.mchelper.Entity.data;
  */
 public class VariableData {
     public String name;
-    public float realValue;
+    public float currentValue;
     public float averageValue;
     public float maxValue;
     public long maxTime;

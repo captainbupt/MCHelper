@@ -25,4 +25,9 @@ public class TimeUtil {
         return timeArray;
     }
 
+    public static String long2HMString(long time) {
+        SimpleDateFormat df = new SimpleDateFormat("HH:mm");
+        return df.format(new Date(time));
+    }
+
 }

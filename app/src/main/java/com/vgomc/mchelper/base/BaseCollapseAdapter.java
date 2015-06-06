@@ -18,8 +18,6 @@ import java.util.ArrayList;
  */
 public abstract class BaseCollapseAdapter extends MyBaseAdapter {
 
-    private Context mContext;
-
     public BaseCollapseAdapter(Context context) {
         super(context);
     }

@@ -5,6 +5,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.vgomc.mchelper.base.BaseCollapseAdapter;
+import com.vgomc.mchelper.view.data.CurrentDataView;
+import com.vgomc.mchelper.view.data.HistoryDataView;
 import com.vgomc.mchelper.view.status.ControlView;
 import com.vgomc.mchelper.view.status.NetworkView;
 import com.vgomc.mchelper.view.status.StatusView;
@@ -18,12 +20,11 @@ import java.util.ArrayList;
  */
 public class DataFragmentAdapter extends BaseCollapseAdapter {
 
-    private Context mContext;
-
     public DataFragmentAdapter(Context context) {
         super(context);
-        this.mContext = context;
         mList = new ArrayList<>();
+        mList.add(new CurrentDataView(mContext));
+        mList.add(new HistoryDataView(mContext));
     }
 
     @Override

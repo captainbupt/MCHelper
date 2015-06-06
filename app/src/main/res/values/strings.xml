@@ -5,6 +5,11 @@
     <string name="menu_action_bar_read_from_file">打开配置文件</string>
     <string name="menu_action_bar_write_to_file">保存配置文件</string>
 
+    <string name="menu_action_bar_write_to_file_input">请输入文件名称</string>
+    <string name="menu_action_bar_write_to_file_input_empty">文件名不能为空</string>
+    <string name="menu_action_bar_write_to_file_existed">该文件已存在，是否替换？</string>
+    <string name="menu_action_bar_write_to_file_success">写入文件成功</string>
+    <string name="menu_action_bar_write_to_file_fail">写入文件失败</string>
     <string name="menu_action_bar_read_from_file_choice">请选择配置文件</string>
     <string name="menu_action_bar_read_from_file_empty">没有找到任何配置文件</string>
     <string name="menu_action_bar_read_from_file_fail">读入文件失败</string>
@@ -82,7 +87,7 @@
     <string name="setting_measuring_time">测量时间</string>
     <string name="setting_measuring_interval">测量间隔</string>
     <string name="setting_measuring_variables">测量变量</string>
-    
+
     <string name="setting_storage">存储</string>
     <string name="setting_storage_plan">存储计划</string>
     <string name="setting_storage_time">存储时间</string>
@@ -137,6 +142,29 @@
     <string name="status_control_collector">采集器</string>
     <string name="status_control_collector_reset">复位</string>
 
+    <string name="data_current">实时数据</string>
+    <string name="data_current_detail">详细数据</string>
+    <string name="data_current_detail_table">储存表</string>
+    <string name="data_current_detail_current">实时值</string>
+    <string name="data_current_detail_average">平均值</string>
+    <string name="data_current_detail_max">最大值</string>
+    <string name="data_current_detail_min">最小值</string>
+    <string name="data_current_detail_period">周期积累值</string>
+    <string name="data_current_detail_ever">永久积累</string>
+    <string name="data_current_detail_reset">重置</string>
+
+    <string name="data_history">历史数据</string>
+    <string name="data_history_download">历史数据下载</string>
+    <string name="data_history_memory_backup">备份内存数据</string>
+    <string name="data_history_clear">清空历史记录</string>
+
+    <string name="system_operation">其他</string>
+
+    <string name="system_operation_cloud">云端</string>
+    <string name="system_operation_manager">文件管理</string>
+    <string name="system_operation_update">自动更新</string>
+    <string name="system_operation_other">其他</string>
+
 
     <string name="dialog_confirm">确认</string>
     <string name="dialog_cancel">取消</string>
@@ -144,5 +172,7 @@
     <string name="tip_variable_reach_max_count">已达到变量最大数量，不能继续添加</string>
     <string name="tip_invalid_input">输入非法，请重新修改</string>
     <string name="tip_none_content">暂无</string>
+    <string name="symbol_left"><![CDATA[<]]></string>
+    <string name="symbol_right"><![CDATA[>]]></string>
 
 </resources>
