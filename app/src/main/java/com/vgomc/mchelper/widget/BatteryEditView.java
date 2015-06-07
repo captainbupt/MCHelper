@@ -26,6 +26,7 @@ public class BatteryEditView extends LinearLayout {
     private RadioGroup mPatternRadioGroup;
     private RadioButton mModeAutoRadioButton;
     private RadioButton mModeAlwaysRadioButton;
+    private RadioButton mModeExternalRadioButton;
     private RadioButton mPatternOrderRadioButton;
     private RadioButton mPatternCustomRadioButton;
     private TimeEditView mBeginTimeEditView;
@@ -63,6 +64,7 @@ public class BatteryEditView extends LinearLayout {
         mPatternRadioGroup = (RadioGroup) findViewById(R.id.rg_view_setting_battery_edit_pattern);
         mModeAutoRadioButton = (RadioButton) findViewById(R.id.rb_view_setting_battery_edit_mode_auto);
         mModeAlwaysRadioButton = (RadioButton) findViewById(R.id.rb_view_setting_battery_edit_mode_always);
+        mModeExternalRadioButton = (RadioButton) findViewById(R.id.rb_view_setting_battery_edit_mode_external);
         mPatternOrderRadioButton = (RadioButton) findViewById(R.id.rb_view_setting_battery_edit_pattern_order);
         mPatternCustomRadioButton = (RadioButton) findViewById(R.id.rb_view_setting_battery_edit_pattern_custom);
         mBeginTimeEditView = (TimeEditView) findViewById(R.id.tev_view_setting_battery_edit_time_begin);
@@ -129,8 +131,11 @@ public class BatteryEditView extends LinearLayout {
     }
 
     private void initData() {
-        if (mBattery.isAlwaysOn) {
+        if (mBattery.mode == Battery.MODE_ALWAYS) {
             mModeAlwaysRadioButton.setChecked(true);
+            mContentLayout.setVisibility(View.GONE);
+        } else if (mBattery.mode == Battery.MODE_EXTERNAL) {
+            mModeExternalRadioButton.setChecked(true);
             mContentLayout.setVisibility(View.GONE);
         } else {
             mModeAutoRadioButton.setChecked(true);
@@ -149,7 +154,17 @@ public class BatteryEditView extends LinearLayout {
     }
 
     public Battery getBattery() {
-        mBattery.isAlwaysOn = mModeRadioGroup.getCheckedRadioButtonId() == R.id.rb_view_setting_battery_edit_mode_always;
+        switch (mModeRadioGroup.getCheckedRadioButtonId()) {
+            case R.id.rb_view_setting_battery_edit_mode_always:
+                mBattery.mode = Battery.MODE_ALWAYS;
+                break;
+            case R.id.rb_view_setting_battery_edit_mode_external:
+                mBattery.mode = Battery.MODE_EXTERNAL;
+                break;
+            case R.id.rb_view_setting_battery_edit_mode_auto:
+                mBattery.mode = Battery.MODE_AUTO;
+                break;
+        }
         mBattery.isOrder = mPatternRadioGroup.getCheckedRadioButtonId() == R.id.rb_view_setting_battery_edit_pattern_order;
         mBattery.startTime = mBeginTimeEditView.getTime();
         mBattery.liveTime = mLiveTimeEditView.getTime();

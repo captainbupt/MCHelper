@@ -13,9 +13,12 @@ public class Battery {
     public static String SUBJECT_SWV4 = "SWV4";
     public static String SUBJECT_SWV5 = "SWV5";
 
+    public final static int MODE_AUTO = 0;
+    public final static int MODE_ALWAYS = 1;
+    public final static int MODE_EXTERNAL = 2;
 
     public String subject;
-    public boolean isAlwaysOn = true;
+    public int mode = MODE_ALWAYS;
     public boolean isOrder = false;
     public long startTime = 0;
     public long liveTime = 0;

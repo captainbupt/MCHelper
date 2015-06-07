@@ -1,6 +1,7 @@
 package com.vgomc.mchelper.activity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.view.Menu;
@@ -15,6 +16,7 @@ import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.adapter.MainFragmentPagerAdapter;
 import com.vgomc.mchelper.base.BaseActivity;
 import com.vgomc.mchelper.fragment.SettingFragment;
+import com.vgomc.mchelper.transmit.bluetooth.BluetoothHelper;
 import com.vgomc.mchelper.transmit.file.FileServiceProvider;
 import com.vgomc.mchelper.utility.ToastUtil;
 
@@ -46,6 +48,7 @@ public class MainActivity extends BaseActivity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.activity_main_view_pager);
         mViewPager.setAdapter(mPagerAdapter);
+        mViewPager.setOffscreenPageLimit(3);
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i2) {
@@ -108,9 +111,29 @@ public class MainActivity extends BaseActivity {
             case R.id.menu_action_bar_write_to_file:
                 showWriteToFileDialog();
                 return true;
+            case R.id.menu_action_test:
+                showTextDialog();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void showTextDialog() {
+        final EditText et = new EditText(mContext);
+
+        new AlertDialog.Builder(this).setTitle("测试内容")
+                .setView(et)
+                .setPositiveButton(R.string.dialog_confirm, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        String input = et.getText().toString();
+                        if (input.equals("")) {
+                            showToast(R.string.menu_action_bar_write_to_file_input_empty);
+                        } else {
+                            BluetoothHelper.sendMessage(input);
+                        }
+                    }
+                }).setNegativeButton("取消", null).show();
     }
 
     private void showConfigurationFiles() {

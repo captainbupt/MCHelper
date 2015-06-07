@@ -32,8 +32,11 @@ public class BatteryChannelAdapter extends MyBaseAdapter {
         TextView lastTextView = (TextView) view.findViewById(R.id.tv_adapter_setting_battery_time_last);
         LinearLayout detailLayout = (LinearLayout) view.findViewById(R.id.ll_adapter_setting_battery_detail);
         nameTextView.setText(battery.subject);
-        if (battery.isAlwaysOn) {
+        if (battery.mode == Battery.MODE_ALWAYS) {
             modeTextView.setText(R.string.setting_battery_channel_mode_always);
+            detailLayout.setVisibility(View.GONE);
+        } else if (battery.mode == Battery.MODE_EXTERNAL) {
+            modeTextView.setText(R.string.setting_battery_channel_mode_external);
             detailLayout.setVisibility(View.GONE);
         } else {
             modeTextView.setText(R.string.setting_battery_channel_mode_auto);

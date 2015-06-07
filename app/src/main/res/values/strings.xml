@@ -79,6 +79,7 @@
     <string name="setting_battery_pattern_custom">自定义</string>
     <string name="setting_battery_channel_mode_auto">自动</string>
     <string name="setting_battery_channel_mode_always">常开</string>
+    <string name="setting_battery_channel_mode_external">外部</string>
     <string name="setting_battery_time_begin">开始</string>
     <string name="setting_battery_time_live">时长</string>
 
@@ -172,7 +173,21 @@
     <string name="tip_variable_reach_max_count">已达到变量最大数量，不能继续添加</string>
     <string name="tip_invalid_input">输入非法，请重新修改</string>
     <string name="tip_none_content">暂无</string>
+    <string name="tip_bluetooth_busy">其他蓝牙数据正在传输中，请稍后</string>
+    <string name="tip_bluetooth_empty">请求不能为空</string>
+    <string name="tip_bluetooth_fail">蓝牙请求失败</string>
+    <string name="tip_bluetooth_parse">数据解析异常，请重试</string>
     <string name="symbol_left"><![CDATA[<]]></string>
     <string name="symbol_right"><![CDATA[>]]></string>
+
+
+    <!--  DeviceListActivity -->
+    <string name="scanning">scanning for devices...</string>
+    <string name="select_device">select a device to connect</string>
+    <string name="none_paired">No devices have been paired</string>
+    <string name="none_found">No devices found</string>
+    <string name="title_paired_devices">Paired Devices</string>
+    <string name="title_other_devices">Other Available Devices</string>
+    <string name="button_scan">Scan for devices</string>
 
 </resources>

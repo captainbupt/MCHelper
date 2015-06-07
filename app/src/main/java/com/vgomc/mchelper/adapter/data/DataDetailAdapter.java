@@ -26,6 +26,10 @@ public class DataDetailAdapter extends BaseCollapseAdapter {
         this.isLast = isLast;
     }
 
+    @Override
+    public void updateData() {
+
+    }
 
     @Override
     public int getCount() {
@@ -35,7 +39,8 @@ public class DataDetailAdapter extends BaseCollapseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (position == 0) {
-            return new DataDetailTitleView(mContext, isFirst, isLast);
+            VariableData variableData = (VariableData) getItem(1);
+            return new DataDetailTitleView(mContext, isFirst, isLast, variableData.name);
         } else {
             VariableData variableData = (VariableData) getItem(position - 1);
             return new DateDetailTableView(mContext, position, variableData);

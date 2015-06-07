@@ -17,6 +17,7 @@ import org.holoeverywhere.widget.TextView;
 public class BaseCollapsibleView extends LinearLayout {
 
     protected Context mContext;
+    private LinearLayout mTitleCustomContainerLayout;
     private TextView mTitleTextView;
     private FrameLayout mContainerFrameLayout;
     private BaseCollapsibleContentView mContentView;
@@ -36,14 +37,19 @@ public class BaseCollapsibleView extends LinearLayout {
     }
 
     private void initView() {
+        mTitleCustomContainerLayout = (LinearLayout) findViewById(R.id.ll_base_collapsible_title_container);
         mTitleTextView = (TextView) findViewById(R.id.tv_base_collapsible_title);
-        mTitleTextView.setOnClickListener(new OnClickListener() {
+        mTitleCustomContainerLayout.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 onTitleClick();
             }
         });
         mContainerFrameLayout = (FrameLayout) findViewById(R.id.fl_base_collapsible_container);
+    }
+
+    public void addTitleView(View view) {
+        mTitleCustomContainerLayout.addView(view);
     }
 
     public void setContentView(BaseCollapsibleContentView contentView) {
@@ -79,7 +85,7 @@ public class BaseCollapsibleView extends LinearLayout {
         isContentShow = false;
     }
 
-    public void updateData(){
+    public void updateData() {
         mContentView.updateData();
     }
 

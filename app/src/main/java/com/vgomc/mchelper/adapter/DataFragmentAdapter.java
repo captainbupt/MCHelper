@@ -5,6 +5,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.vgomc.mchelper.base.BaseCollapseAdapter;
+import com.vgomc.mchelper.base.BaseCollapsibleView;
+import com.vgomc.mchelper.base.MyBaseAdapter;
 import com.vgomc.mchelper.view.data.CurrentDataView;
 import com.vgomc.mchelper.view.data.HistoryDataView;
 import com.vgomc.mchelper.view.status.ControlView;

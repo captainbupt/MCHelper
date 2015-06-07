@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.vgomc.mchelper.transmit.bluetooth.BluetoothHelper;
 import com.vgomc.mchelper.utility.MyActivityManager;
 import com.vgomc.mchelper.utility.ToastUtil;
 
@@ -24,6 +25,7 @@ public class BaseActivity extends Activity {
         mActivity = this;
         mReceivedIntent = getIntent();
         MyActivityManager.getAppManager().addActivity(this);
+        BluetoothHelper.initBluetooth(mContext);
     }
 
     @Override
@@ -33,6 +35,11 @@ public class BaseActivity extends Activity {
         super.finish();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        BluetoothHelper.onActivityResult(requestCode, resultCode, data);
+    }
 
     private void showToast(String content) {
         ToastUtil.showToast(mContext, content);

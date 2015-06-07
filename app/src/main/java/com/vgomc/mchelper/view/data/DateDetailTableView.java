@@ -20,6 +20,7 @@ public class DateDetailTableView extends BaseCollapsibleView {
 
     public DateDetailTableView(Context context, int index, VariableData variableData) {
         super(context);
+        this.mVariableData = variableData;
         setTitle(getResources().getString(R.string.data_current_detail_table) + index);
         setContentView(new DataDetailTableContentView(context));
     }

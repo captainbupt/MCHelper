@@ -20,6 +20,8 @@
         <activity android:name=".activity.setting.SHTChannelActivity" />
         <activity android:name=".activity.setting.RS485ChannelActivity" />
         <activity android:name=".activity.setting.SDIChannelActivity" />
+        <activity android:name=".transmit.bluetooth.DeviceListActivity" />
+        <activity android:name=".activity.data.DataDetailActivity" />
     </application>
 
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />

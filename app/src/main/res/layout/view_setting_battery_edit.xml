@@ -34,6 +34,14 @@
                 android:layout_weight="1"
                 android:text="@string/setting_battery_channel_mode_always"
                 android:textSize="@dimen/text_size_medium" />
+
+            <RadioButton
+                android:id="@+id/rb_view_setting_battery_edit_mode_external"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/setting_battery_channel_mode_external"
+                android:textSize="@dimen/text_size_medium" />
         </RadioGroup>
 
     </org.holoeverywhere.widget.LinearLayout>

@@ -2,16 +2,24 @@ package com.vgomc.mchelper.activity.data;
 
 import android.os.Bundle;
 
+import com.vgomc.mchelper.Entity.data.VariableData;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.adapter.data.DataDetailFragmentAdapter;
 import com.vgomc.mchelper.base.BaseActivity;
+import com.vgomc.mchelper.view.data.CurrentDataView;
 
 import org.holoeverywhere.widget.ViewPager;
+
+import java.util.List;
 
 /**
  * Created by weizhouh on 6/6/2015.
  */
-public class DataDetailActivity extends BaseActivity{
+public class DataDetailActivity extends BaseActivity {
+
+    public static final String KEY_DATA = "data";
+    public static final String KEY_POSITION = "position";
+
     DataDetailFragmentAdapter mFragmentAdapter;
     ViewPager mDetailFragmentViewPager;
 
@@ -21,5 +29,8 @@ public class DataDetailActivity extends BaseActivity{
         setContentView(R.layout.activity_data_detail);
         mDetailFragmentViewPager = (ViewPager) findViewById(R.id.vp_activity_data_detail);
         mFragmentAdapter = new DataDetailFragmentAdapter(getSupportFragmentManager());
+        mFragmentAdapter.setList(CurrentDataView.mVariableDataLists);
+        mDetailFragmentViewPager.setAdapter(mFragmentAdapter);
+        mDetailFragmentViewPager.setCurrentItem(mReceivedIntent.getIntExtra(KEY_POSITION, 0));
     }
 }

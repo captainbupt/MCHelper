@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.util.DisplayMetrics;
 
 import com.vgomc.mchelper.Entity.setting.Configuration;
+import com.vgomc.mchelper.transmit.bluetooth.BluetoothHelper;
 
 import org.holoeverywhere.app.Application;
 
@@ -19,9 +20,10 @@ public class AppApplication extends Application {
     public static final String SYSVERSION = android.os.Build.VERSION.RELEASE;
 
     private static AppApplication appApplication;
+
     //公开，静态的工厂方法
     public static AppApplication getInstance() {
-        if(appApplication==null){
+        if (appApplication == null) {
             appApplication = new AppApplication();
         }
         return appApplication;
@@ -30,7 +32,6 @@ public class AppApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
         // Bitmap初始化必须在MyVolley之前，否则会丢出异常
         // BitmapLruCache.init(getApplicationContext());
         // MyVolley.init(getApplicationContext());
@@ -60,21 +61,23 @@ public class AppApplication extends Application {
 
     /**
      * 功能描述: 获取屏幕高度
+     *
      * @return 屏幕高度
      */
-    public int getScreenHeight(Context context){
+    public int getScreenHeight(Context context) {
         // 获得手机分辨率
-        DisplayMetrics dm=context.getResources().getDisplayMetrics();
+        DisplayMetrics dm = context.getResources().getDisplayMetrics();
         return dm.heightPixels;
     }
 
     /**
      * 功能描述: 获取屏幕宽度
+     *
      * @return 屏幕宽度
      */
-    public int getScreenWidth(Context context){
+    public int getScreenWidth(Context context) {
         // 获得手机分辨率
-        DisplayMetrics dm=context.getResources().getDisplayMetrics();
+        DisplayMetrics dm = context.getResources().getDisplayMetrics();
         return dm.widthPixels;
     }
 
