@@ -13,6 +13,8 @@ import com.vgomc.mchelper.utility.ToastUtil;
 
 import org.holoeverywhere.app.Activity;
 
+import java.io.UnsupportedEncodingException;
+
 /**
  * Created by weizhouh on 6/6/2015.
  */
@@ -84,7 +86,7 @@ public class BluetoothHelper {
     }
 
     public interface OnReceivedMessageListener {
-        void onReceivedMessage(String message);
+        void onReceivedMessage(byte[] messageByte, int length);
     }
 
     public static void setOnReceivedMessageListener(OnReceivedMessageListener onReceivedMessageListener) {
@@ -124,9 +126,11 @@ public class BluetoothHelper {
                 case MESSAGE_READ:
                     byte[] readBuf = (byte[]) msg.obj;
                     // construct a string from the valid bytes in the buffer
-                    String readMessage = new String(readBuf, 0, msg.arg1);
+                    String readMessage = null;
+
+                    readMessage = new String(readBuf, 0, msg.arg1);
                     if (mOnReceivedMessageListener != null) {
-                        mOnReceivedMessageListener.onReceivedMessage(readMessage);
+                        mOnReceivedMessageListener.onReceivedMessage(readBuf, msg.arg1);
                     } else {
                         ToastUtil.showToast(mContext, "Read message: " + readMessage);
                     }

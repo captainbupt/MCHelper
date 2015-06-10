@@ -20,7 +20,7 @@ public class BaseCollapsibleView extends LinearLayout {
     private LinearLayout mTitleCustomContainerLayout;
     private TextView mTitleTextView;
     private FrameLayout mContainerFrameLayout;
-    private BaseCollapsibleContentView mContentView;
+    protected BaseCollapsibleContentView mContentView;
 
     private boolean isContentShow = false;
 

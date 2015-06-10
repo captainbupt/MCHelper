@@ -97,4 +97,58 @@
 
     </org.holoeverywhere.widget.LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_divider_line" />
+
+    <org.holoeverywhere.widget.LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <org.holoeverywhere.widget.TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/text_size_less"
+            android:text="@string/status_network_on_time"
+            android:textSize="@dimen/text_size_medium" />
+
+        <org.holoeverywhere.widget.TextView
+            android:id="@+id/tv_view_status_network_on_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="@dimen/text_size_medium" />
+
+        <org.holoeverywhere.widget.TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/text_size_less"
+            android:text="@string/status_network_wait_time"
+            android:textSize="@dimen/text_size_medium" />
+
+        <org.holoeverywhere.widget.TextView
+            android:id="@+id/tv_view_status_network_wait_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="@dimen/text_size_medium" />
+
+        <org.holoeverywhere.widget.TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/text_size_less"
+            android:text="@string/status_network_retry_time"
+            android:textSize="@dimen/text_size_medium" />
+
+        <org.holoeverywhere.widget.TextView
+            android:id="@+id/tv_view_status_network_retry_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="@dimen/text_size_medium" />
+    </org.holoeverywhere.widget.LinearLayout>
+
 </org.holoeverywhere.widget.LinearLayout>

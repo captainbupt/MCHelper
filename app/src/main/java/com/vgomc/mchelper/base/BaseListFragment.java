@@ -14,8 +14,8 @@ import org.holoeverywhere.widget.ListView;
  */
 public abstract class BaseListFragment extends BaseFragment {
 
-    private ListView mListView;
-    private BaseCollapseAdapter mFragmentAdapter;
+    protected ListView mListView;
+    protected BaseCollapseAdapter mFragmentAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -26,10 +26,6 @@ public abstract class BaseListFragment extends BaseFragment {
         mFragmentAdapter = getBaseCollapseAdapter();
         mListView.setAdapter(mFragmentAdapter);
         return rootView;
-    }
-
-    public void updateData() {
-        mFragmentAdapter.updateData();
     }
 
     protected abstract BaseCollapseAdapter getBaseCollapseAdapter();

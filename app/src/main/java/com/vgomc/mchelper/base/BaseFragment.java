@@ -23,20 +23,11 @@ public abstract class BaseFragment extends Fragment {
         mContext = activity;
         mActivity = activity;
     }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        updateData();
-    }
-
-    protected abstract void updateData();
-
-    private void showToast(String content){
+    private void showToast(String content) {
         ToastUtil.showToast(mContext, content);
     }
 
-    private void showToast(int resId){
+    private void showToast(int resId) {
         ToastUtil.showToast(mContext, resId);
     }
 }

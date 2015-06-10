@@ -129,6 +129,9 @@
     <string name="status_network_strength">信号强度</string>
     <string name="status_network_error_rate">误码率</string>
     <string name="status_network_error_flag">错误标志</string>
+    <string name="status_network_on_time">剩余时间</string>
+    <string name="status_network_wait_time">操作延时</string>
+    <string name="status_network_retry_time">重试次数</string>
 
     <string name="status_control">运行</string>
     <string name="status_control_measuring">测量</string>

@@ -24,4 +24,15 @@ public class SettingFragment extends BaseListFragment {
         return new SettingFragmentAdapter(mContext);
     }
 
+    public void updateData() {
+        mFragmentAdapter.updateData();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateData();
+    }
+
+
 }

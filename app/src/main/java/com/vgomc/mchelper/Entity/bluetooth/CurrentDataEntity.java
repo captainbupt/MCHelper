@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by weizhouh on 6/7/2015.
  */
-public class CurrentData extends BaseBluetoothEntity {
+public class CurrentDataEntity extends BaseBluetoothEntity {
 
     public static final int COUNT_TABLE = 2;
 
@@ -16,7 +16,7 @@ public class CurrentData extends BaseBluetoothEntity {
 
     public int tableIndex;
 
-    public CurrentData(int tableIndex) {
+    public CurrentDataEntity(int tableIndex) {
         this.tableIndex = tableIndex;
     }
 
@@ -27,12 +27,10 @@ public class CurrentData extends BaseBluetoothEntity {
 
     @Override
     public boolean parseData(String data) {
-        System.out.println(data);
         variableDataList = new ArrayList<>();
         try {
             String[] variableStrings = data.split(SEPERATOR);
             for (int ii = 0; ii < variableStrings.length; ii++) {
-                System.out.println(variableStrings[ii]);
                 VariableData tempVariableData = new VariableData();
                 String nameDataStrings[] = variableStrings[ii].split(":");
                 tempVariableData.name = nameDataStrings[0];

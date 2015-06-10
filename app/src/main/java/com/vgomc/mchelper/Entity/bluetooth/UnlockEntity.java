@@ -3,13 +3,13 @@ package com.vgomc.mchelper.Entity.bluetooth;
 /**
  * Created by weizhouh on 6/7/2015.
  */
-public class DeviceTime extends BaseBluetoothEntity {
+public class UnlockEntity extends BaseBluetoothEntity {
 
-    public long time;
+    public String password = "MC301A";
 
     @Override
     public String getRequest() {
-        return "AT_TIME?";
+        return "AT+UNLOCK=" + password;
     }
 
     @Override
