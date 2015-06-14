@@ -9,6 +9,7 @@ import android.widget.CompoundButton;
 import com.vgomc.mchelper.Entity.setting.Channel;
 import com.vgomc.mchelper.Entity.setting.Configuration;
 import com.vgomc.mchelper.Entity.setting.Measuring;
+import com.vgomc.mchelper.Entity.setting.Variable;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.dialog.BigNumberPickerDialog;
 import com.vgomc.mchelper.utility.TimeUtil;
@@ -40,6 +41,7 @@ public class MeasuringEditView extends LinearLayout {
     private LinearLayout mContentLayout;
     private List<String> mVariableItems;
     private List<Boolean> mVariableSelections;
+    private List<Variable> mVariableList;
 
     public MeasuringEditView(Context context, int position) {
         super(context);
@@ -155,34 +157,22 @@ public class MeasuringEditView extends LinearLayout {
         mVariableTextView.setText(mMeasuring.getVariableNames("\n"));
         mVariableItems = new ArrayList<>();
         mVariableSelections = new ArrayList<>();
-        for (Channel channel : Configuration.getInstance().channelMap.values()) {
-            for (int ii = 0; ii < channel.variables.size(); ii++) {
-                if (channel.variables.get(ii).isVariableOn) {
-                    mVariableItems.add(channel.variables.get(ii).name + "-" + channel.subject);
-                    boolean isSelected = false;
-                    for (int jj = 0; jj < mMeasuring.channelList.size() && !isSelected; jj++) {
-                        if (channel.subject.equals(mMeasuring.channelList.get(jj).subject) && mMeasuring.variablePositionList.get(jj) == ii) {
-                            isSelected = true;
-                        }
-                    }
-                    mVariableSelections.add(isSelected);
-                }
+        mVariableList = Configuration.getInstance().variableManager.getAllVariableList();
+        for (Variable variable : mVariableList) {
+            mVariableItems.add(variable.name + "-" + variable.subjectName);
+            boolean isSelected = false;
+            if (mMeasuring.variableIndexList.contains(variable.index)) {
+                isSelected = true;
             }
+            mVariableSelections.add(isSelected);
         }
     }
 
     private void updateSelection() {
-        int ii = 0;
-        mMeasuring.channelList.clear();
-        mMeasuring.variablePositionList.clear();
-        for (Channel channel : Configuration.getInstance().channelMap.values()) {
-            for (int jj = 0; jj < channel.variables.size(); jj++, ii++) {
-                if (channel.variables.get(ii).isVariableOn) {
-                    if (mVariableSelections.get(ii)) {
-                        mMeasuring.channelList.add(channel);
-                        mMeasuring.variablePositionList.add(jj);
-                    }
-                }
+        mMeasuring.variableIndexList.clear();
+        for (int ii = 0; ii < mVariableSelections.size(); ii++) {
+            if (mVariableSelections.get(ii)) {
+                mMeasuring.variableIndexList.add(mVariableList.get(ii).index);
             }
         }
         mVariableTextView.setText(mMeasuring.getVariableNames("\n"));

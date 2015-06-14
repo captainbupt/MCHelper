@@ -5,12 +5,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.vgomc.mchelper.Entity.bluetooth.BaseBluetoothEntity;
-import com.vgomc.mchelper.Entity.bluetooth.DeviceParameterEntity;
-import com.vgomc.mchelper.Entity.bluetooth.DeviceStatusEntity;
-import com.vgomc.mchelper.Entity.bluetooth.DeviceTimeEntity;
-import com.vgomc.mchelper.Entity.bluetooth.GPRSStatusEntity;
-import com.vgomc.mchelper.Entity.bluetooth.MemoryStatusEntity;
-import com.vgomc.mchelper.Entity.bluetooth.SDCardStatusEntity;
+import com.vgomc.mchelper.Entity.bluetooth.inquiry.DeviceParameterEntity;
+import com.vgomc.mchelper.Entity.bluetooth.inquiry.DeviceStatusEntity;
+import com.vgomc.mchelper.Entity.bluetooth.inquiry.DeviceTimeEntity;
+import com.vgomc.mchelper.Entity.bluetooth.inquiry.GPRSStatusEntity;
+import com.vgomc.mchelper.Entity.bluetooth.inquiry.MemoryStatusEntity;
+import com.vgomc.mchelper.Entity.bluetooth.inquiry.SDCardStatusEntity;
 import com.vgomc.mchelper.base.BaseCollapseAdapter;
 import com.vgomc.mchelper.view.status.ControlView;
 import com.vgomc.mchelper.view.status.NetworkView;

@@ -1,11 +1,5 @@
 package com.vgomc.mchelper.Entity.setting;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,7 +16,7 @@ public class Configuration {
     public int bluetoothTime;
     public boolean bluetoothTimeOn;
     public Map<String, Channel> channelMap;
-    public int channelVariableMaxCount = 17;
+    public VariableManager variableManager;
     public List<Object> batteryList;
     public List<Object> storageList;
     public List<Object> measuringList;
@@ -42,81 +36,62 @@ public class Configuration {
     public static void initInstance() {
         instance = new Configuration();
         instance.name = "默认名称";
-        instance.password = "123456";
+        instance.password = "MC301A";
         instance.timeZone = 8;
         instance.bluetoothTime = 0;
         instance.bluetoothTimeOn = false;
 
         instance.channelMap = new HashMap<>();
-        ArrayList<Variable> P2Variables = new ArrayList<>();
-        P2Variables.add(new Variable());
-        instance.channelMap.put(Channel.SUBJECT_P2, new Channel(Channel.TYPE_P, Channel.SUBJECT_P2, P2Variables));
-        ArrayList<Variable> P3Variables = new ArrayList<>();
-        P3Variables.add(new Variable());
-        instance.channelMap.put(Channel.SUBJECT_P3, new Channel(Channel.TYPE_P, Channel.SUBJECT_P3, P3Variables));
-        ArrayList<Variable> AN0Variables = new ArrayList<>();
-        AN0Variables.add(new Variable());
-        instance.channelMap.put(Channel.SUBJECT_AN0, new Channel(Channel.TYPE_AN0, Channel.SUBJECT_AN0, AN0Variables));
-        ArrayList<Variable> AN1Variables = new ArrayList<>();
-        AN1Variables.add(new Variable());
-        instance.channelMap.put(Channel.SUBJECT_AN1, new Channel(Channel.TYPE_AN, Channel.SUBJECT_AN1, AN1Variables));
-        ArrayList<Variable> AN2Variables = new ArrayList<>();
-        AN2Variables.add(new Variable());
-        instance.channelMap.put(Channel.SUBJECT_AN2, new Channel(Channel.TYPE_AN, Channel.SUBJECT_AN2, AN2Variables));
-        ArrayList<Variable> AN3Variables = new ArrayList<>();
-        AN3Variables.add(new Variable());
-        instance.channelMap.put(Channel.SUBJECT_AN3, new Channel(Channel.TYPE_AN, Channel.SUBJECT_AN3, AN3Variables));
-        ArrayList<Variable> AN4Variables = new ArrayList<>();
-        AN4Variables.add(new Variable());
-        instance.channelMap.put(Channel.SUBJECT_AN4, new Channel(Channel.TYPE_AN, Channel.SUBJECT_AN4, AN4Variables));
-        ArrayList<Variable> AN5Variables = new ArrayList<>();
-        AN5Variables.add(new Variable());
-        instance.channelMap.put(Channel.SUBJECT_AN5, new Channel(Channel.TYPE_AN, Channel.SUBJECT_AN5, AN5Variables));
-        ArrayList<Variable> AN6Variables = new ArrayList<>();
-        AN6Variables.add(new Variable());
-        instance.channelMap.put(Channel.SUBJECT_AN6, new Channel(Channel.TYPE_AN, Channel.SUBJECT_AN6, AN6Variables));
-        ArrayList<Variable> AN7Variables = new ArrayList<>();
-        AN7Variables.add(new Variable());
-        instance.channelMap.put(Channel.SUBJECT_AN7, new Channel(Channel.TYPE_AN, Channel.SUBJECT_AN7, AN7Variables));
-        ArrayList<Variable> AN8Variables = new ArrayList<>();
-        Variable AN8Variable = new Variable();
-        AN8Variable.isVariableOn = false;
-        AN8Variables.add(AN8Variable);
-        instance.channelMap.put(Channel.SUBJECT_AN8, new Channel(Channel.TYPE_AN, Channel.SUBJECT_AN8, AN8Variables));
-        ArrayList<Variable> AN9Variables = new ArrayList<>();
-        Variable AN9Variable = new Variable();
-        AN9Variable.isVariableOn = false;
-        AN9Variables.add(AN9Variable);
-        instance.channelMap.put(Channel.SUBJECT_AN9, new Channel(Channel.TYPE_AN, Channel.SUBJECT_AN9, AN9Variables));
-        ArrayList<Variable> AN10Variables = new ArrayList<>();
-        Variable AN10Variable = new Variable();
-        AN10Variable.isVariableOn = false;
-        AN10Variables.add(AN10Variable);
-        instance.channelMap.put(Channel.SUBJECT_AN10, new Channel(Channel.TYPE_AN, Channel.SUBJECT_AN10, AN10Variables));
-        ArrayList<Variable> AN11Variables = new ArrayList<>();
-        Variable AN11Variable = new Variable();
-        AN11Variable.isVariableOn = false;
-        AN11Variables.add(AN11Variable);
-        instance.channelMap.put(Channel.SUBJECT_AN11, new Channel(Channel.TYPE_AN, Channel.SUBJECT_AN11, AN11Variables));
-        ArrayList<Variable> SHTVariables = new ArrayList<>();
-        SHTVariables.add(new Variable());
-        SHTVariables.add(new Variable());
-        SHTVariables.add(new Variable());
-        instance.channelMap.put(Channel.SUBJECT_SHT, new Channel(Channel.TYPE_SHT, Channel.SUBJECT_SHT, SHTVariables));
-        ArrayList<Variable> RS485Variables = new ArrayList<>();
-        RS485Variables.add(new Variable());
-        instance.channelMap.put(Channel.SUBJECT_RS485, new RS485Channel(RS485Variables));
-        ArrayList<Variable> SDIVariables = new ArrayList<>();
-        SDIVariables.add(new Variable());
-        instance.channelMap.put(Channel.SUBJECT_SDI, new Channel(Channel.TYPE_SDI, Channel.SUBJECT_SDI, SDIVariables));
+        instance.channelMap.put(Channel.SUBJECT_P2, new Channel(Channel.TYPE_P, Channel.SUBJECT_P2, "null", Channel.TYPE_SIGNAL_NORMAL));
+        instance.channelMap.put(Channel.SUBJECT_P3, new Channel(Channel.TYPE_P, Channel.SUBJECT_P3, "null",Channel.TYPE_SIGNAL_NORMAL));
+        instance.channelMap.put(Channel.SUBJECT_AN0, new Channel(Channel.TYPE_AN0, Channel.SUBJECT_AN0,"null", Channel.TYPE_SIGNAL_CURRENT));
+        instance.channelMap.put(Channel.SUBJECT_AN1, new Channel(Channel.TYPE_AN, Channel.SUBJECT_AN1,Battery.SUBJECT_3V1, Channel.TYPE_SIGNAL_CURRENT));
+        instance.channelMap.put(Channel.SUBJECT_AN2, new Channel(Channel.TYPE_AN, Channel.SUBJECT_AN2,Battery.SUBJECT_SWV1, Channel.TYPE_SIGNAL_CURRENT));
+        instance.channelMap.put(Channel.SUBJECT_AN3, new Channel(Channel.TYPE_AN, Channel.SUBJECT_AN3,Battery.SUBJECT_SWV1, Channel.TYPE_SIGNAL_CURRENT));
+        instance.channelMap.put(Channel.SUBJECT_AN4, new Channel(Channel.TYPE_AN, Channel.SUBJECT_AN4,Battery.SUBJECT_SWV2, Channel.TYPE_SIGNAL_CURRENT));
+        instance.channelMap.put(Channel.SUBJECT_AN5, new Channel(Channel.TYPE_AN, Channel.SUBJECT_AN5,Battery.SUBJECT_SWV2, Channel.TYPE_SIGNAL_CURRENT));
+        instance.channelMap.put(Channel.SUBJECT_AN6, new Channel(Channel.TYPE_AN, Channel.SUBJECT_AN6,Battery.SUBJECT_SWV3, Channel.TYPE_SIGNAL_CURRENT));
+        instance.channelMap.put(Channel.SUBJECT_AN7, new Channel(Channel.TYPE_AN, Channel.SUBJECT_AN7,Battery.SUBJECT_SWV3, Channel.TYPE_SIGNAL_CURRENT));
+        instance.channelMap.put(Channel.SUBJECT_AN8, new Channel(Channel.TYPE_AN, Channel.SUBJECT_AN8,Battery.SUBJECT_SWV4, Channel.TYPE_SIGNAL_CURRENT));
+        instance.channelMap.put(Channel.SUBJECT_AN9, new Channel(Channel.TYPE_AN, Channel.SUBJECT_AN9,Battery.SUBJECT_SWV4, Channel.TYPE_SIGNAL_CURRENT));
+        instance.channelMap.put(Channel.SUBJECT_AN10, new Channel(Channel.TYPE_AN, Channel.SUBJECT_AN10,Battery.SUBJECT_SWV5, Channel.TYPE_SIGNAL_CURRENT));
+        instance.channelMap.put(Channel.SUBJECT_AN11, new Channel(Channel.TYPE_AN, Channel.SUBJECT_AN11,Battery.SUBJECT_SWV5, Channel.TYPE_SIGNAL_CURRENT));
+        instance.channelMap.put(Channel.SUBJECT_SHT, new SHTChannel());
+        instance.channelMap.put(Channel.SUBJECT_RS485, new RS485Channel());
+        instance.channelMap.put(Channel.SUBJECT_SDI, new Channel(Channel.TYPE_SDI, Channel.SUBJECT_SDI,Battery.SUBJECT_SWV6, Channel.TYPE_SIGNAL_NORMAL));
 
-        instance.batteryList = new ArrayList<>();
-        instance.batteryList.add(new Battery(Battery.SUBJECT_3V1));
-        instance.batteryList.add(new Battery(Battery.SUBJECT_SWV1));
-        instance.batteryList.add(new Battery(Battery.SUBJECT_SWV2));
-        instance.batteryList.add(new Battery(Battery.SUBJECT_SWV3));
-        instance.batteryList.add(new Battery(Battery.SUBJECT_SWV4));
-        instance.batteryList.add(new Battery(Battery.SUBJECT_SWV5));
+        VariableManager variableManager = new VariableManager();
+        variableManager.setVariable(new Variable(Channel.SUBJECT_P2, true));
+        variableManager.setVariable(new Variable(Channel.SUBJECT_P3, true));
+        variableManager.setVariable(new Variable(Channel.SUBJECT_AN0, true));
+        variableManager.setVariable(new Variable(Channel.SUBJECT_AN1, true));
+        variableManager.setVariable(new Variable(Channel.SUBJECT_AN2, true));
+        variableManager.setVariable(new Variable(Channel.SUBJECT_AN3, true));
+        variableManager.setVariable(new Variable(Channel.SUBJECT_AN4, true));
+        variableManager.setVariable(new Variable(Channel.SUBJECT_AN5, true));
+        variableManager.setVariable(new Variable(Channel.SUBJECT_AN6, true));
+        variableManager.setVariable(new Variable(Channel.SUBJECT_AN7, true));
+        variableManager.setVariable(new Variable(Channel.SUBJECT_AN8, false));
+        variableManager.setVariable(new Variable(Channel.SUBJECT_AN9, false));
+        variableManager.setVariable(new Variable(Channel.SUBJECT_AN10, false));
+        variableManager.setVariable(new Variable(Channel.SUBJECT_AN11, false));
+        variableManager.setVariable(new Variable(Channel.SUBJECT_SHT, true, SHTChannel.SENSOR_TEMPERATURE));
+        variableManager.setVariable(new Variable(Channel.SUBJECT_SHT, false, SHTChannel.SENSOR_HUMIDITY));
+        variableManager.setVariable(new Variable(Channel.SUBJECT_SHT, true, SHTChannel.SENSOR_DEW));
+        variableManager.setVariable(new Variable(Channel.SUBJECT_RS485, true));
+        variableManager.setVariable(new Variable(Channel.SUBJECT_SDI, true));
+        instance.variableManager = variableManager;
+
+
+        List<Object> batteryList = new ArrayList<>();
+        batteryList.add(new Battery(Battery.SUBJECT_3V1));
+        batteryList.add(new Battery(Battery.SUBJECT_SWV1));
+        batteryList.add(new Battery(Battery.SUBJECT_SWV2));
+        batteryList.add(new Battery(Battery.SUBJECT_SWV3));
+        batteryList.add(new Battery(Battery.SUBJECT_SWV4));
+        batteryList.add(new Battery(Battery.SUBJECT_SWV5));
+        batteryList.add(new Battery(Battery.SUBJECT_SWV6));
+        instance.batteryList = batteryList;
 
         instance.storageList = new ArrayList<>();
         instance.storageList.add(new Storage());
@@ -127,13 +102,5 @@ public class Configuration {
         instance.measuringList.add(new Measuring());
 
         instance.network = new Network();
-    }
-
-    public int getChannelVariableCount() {
-        int count = 0;
-        for (Channel channel : channelMap.values()) {
-            count += channel.getVariableCount();
-        }
-        return count;
     }
 }

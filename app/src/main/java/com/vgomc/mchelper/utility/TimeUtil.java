@@ -32,11 +32,16 @@ public class TimeUtil {
 
     public static long deviceTime2Long(String time) throws ParseException {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        return df.parse(time.replace(";",":")).getTime();
+        return df.parse(time.replace(";", ":")).getTime();
     }
 
     public static String long2DeviceTime(long time) {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return df.format(new Date(time));
+    }
+
+    public static String long2DeviceDate(long time) {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         return df.format(new Date(time));
     }
 

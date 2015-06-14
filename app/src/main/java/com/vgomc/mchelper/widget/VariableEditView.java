@@ -33,7 +33,7 @@ public class VariableEditView extends LinearLayout {
     private TextView mSubjectTextView;
     private Switch mVariableSwitch;
     private LinearLayout mContentLayout;
-    private EditText mWarmTimeEditText;
+    private TextView mWarmTimeTextView;
     private LinearLayout mWarmTimeLinearLayout;
     private EditText mVariableNameEditText;
     private LinearLayout mSensorAddressLayout;
@@ -53,7 +53,10 @@ public class VariableEditView extends LinearLayout {
     private ArrayAdapter<String> dataTypeAdapter1;
     private ArrayAdapter<String> dataTypeAdapter2;
 
-    private int currentRegisterType;
+    private int mCurrentRegisterType;
+    private String mSubject;
+    private int mChannelType;
+    private Variable mVariable;
 
     public VariableEditView(Context context) {
         super(context);
@@ -85,7 +88,7 @@ public class VariableEditView extends LinearLayout {
         mSubjectTextView = (TextView) findViewById(R.id.tv_view_setting_channel_variable_subject);
         mVariableSwitch = (Switch) findViewById(R.id.sw_view_setting_channel_variable);
         mContentLayout = (LinearLayout) findViewById(R.id.ll_view_setting_channel_content);
-        mWarmTimeEditText = (EditText) findViewById(R.id.et_view_setting_channel_variable_warm_time);
+        mWarmTimeTextView = (TextView) findViewById(R.id.tv_view_setting_channel_variable_warm_time);
         mWarmTimeLinearLayout = (LinearLayout) findViewById(R.id.ll_view_setting_channel_variable_warm_time);
         mVariableNameEditText = (EditText) findViewById(R.id.et_view_setting_channel_variable_name);
         mSensorAddressLayout = (LinearLayout) findViewById(R.id.ll_view_setting_channel_variable_sensor_address);
@@ -102,11 +105,11 @@ public class VariableEditView extends LinearLayout {
         mSignalCurrentRadioButton = (RadioButton) findViewById(R.id.rb_view_setting_channel_signal_type_current);
         mFormulaEditView = (DefaultFormulaEditView) findViewById(R.id.dfev_view_setting_channel);
 
-        registerTypeAdapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.setting_channel_variable_register_type_array));
+        registerTypeAdapter = new ArrayAdapter<>(mContext, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.setting_channel_variable_register_type_array));
         mRegisterTypeSpinner.setAdapter(registerTypeAdapter);
 
-        dataTypeAdapter1 = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.setting_channel_variable_data_type_array_1));
-        dataTypeAdapter2 = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.setting_channel_variable_data_type_array_2));
+        dataTypeAdapter1 = new ArrayAdapter<>(mContext, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.setting_channel_variable_data_type_array_1));
+        dataTypeAdapter2 = new ArrayAdapter<>(mContext, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.setting_channel_variable_data_type_array_2));
     }
 
     private void initListener() {
@@ -115,14 +118,14 @@ public class VariableEditView extends LinearLayout {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 int type = position / 2;
-                if (currentRegisterType != type) {
+                if (mCurrentRegisterType != type) {
                     if (type == 0) {
                         mDataTypeSpinner.setAdapter(dataTypeAdapter1);
                     } else if (type == 1) {
                         mDataTypeSpinner.setAdapter(dataTypeAdapter2);
                     }
                     mDataTypeSpinner.setSelection(0);
-                    currentRegisterType = type;
+                    mCurrentRegisterType = type;
                 }
             }
 
@@ -149,18 +152,12 @@ public class VariableEditView extends LinearLayout {
                 return true;
             }
         });
-        mWarmTimeEditText.setOnTouchListener(new OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_UP) {
-                    BigNumberPickerDialog.getBigNumberPickerDialog(mContext, 6, 0, 600000, Integer.parseInt(mWarmTimeEditText.getText().toString()), mWarmTimeEditText, getResources().getString(R.string.setting_channel_warm_time)).show();
-                }
-                return true;
-            }
-        });
     }
 
-    public void initData(int type, String subject,String channelSubject, Variable variable) {
+    public void initData(int type, String subject, String channelSubject, int signalType, Variable variable) {
+        mSubject = channelSubject;
+        mChannelType = type;
+        mVariable = variable;
         showView(type);
         mSubjectTextView.setText(subject);
         mVariableSwitch.setOnCheckedChangeListener(null);
@@ -169,7 +166,7 @@ public class VariableEditView extends LinearLayout {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    if (Configuration.getInstance().getChannelVariableCount() < Configuration.getInstance().channelVariableMaxCount) {
+                    if (!Configuration.getInstance().variableManager.isVariableMax()) {
                         mContentLayout.setVisibility(View.VISIBLE);
                     } else {
                         ToastUtil.showToast(mContext, R.string.tip_variable_reach_max_count);
@@ -196,34 +193,38 @@ public class VariableEditView extends LinearLayout {
             mDataTypeSpinner.setAdapter(dataTypeAdapter2);
             mDataTypeSpinner.setSelection(variable.dataType);
         }
-        if (variable.signalType == Variable.TYPE_SIGNAL_VOLTAGE) {
+        if (signalType == Channel.TYPE_SIGNAL_VOLTAGE) {
             mSignalVoltageRadioButton.setChecked(true);
-        } else if (variable.signalType == Variable.TYPE_SIGNAL_CURRENT) {
+        } else {
             mSignalCurrentRadioButton.setChecked(true);
         }
         mFormulaEditView.setFactors(variable.isFormulaOn, variable.factors);
-        mWarmTimeEditText.setText(Configuration.getInstance().channelMap.get(channelSubject).warmTime + "");
+        mWarmTimeTextView.setText(Configuration.getInstance().channelMap.get(channelSubject).getWarmTime(mContext));
     }
 
     public Variable getData() {
-        Variable variable = new Variable();
-        variable.isVariableOn = mVariableSwitch.isChecked();
-        variable.name = mVariableNameEditText.getText().toString();
-        variable.sensorAddress = Integer.parseInt(mSensorAddressEditText.getText().toString());
-        variable.registerType = mRegisterTypeSpinner.getSelectedItemPosition();
-        variable.registerAddress = Integer.parseInt(mRegisterAddressEditText.getText().toString());
-        variable.dataType = mDataTypeSpinner.getSelectedItemPosition();
-        variable.signalType = mSignalTypeRadioGroup.getCheckedRadioButtonId() == R.id.rb_view_setting_channel_signal_type_current ? Variable.TYPE_SIGNAL_CURRENT : Variable.TYPE_SIGNAL_VOLTAGE;
-        variable.isFormulaOn = mFormulaEditView.isOn();
+        mVariable.subjectName = mSubject;
+        mVariable.isVariableOn = mVariableSwitch.isChecked();
+        mVariable.name = mVariableNameEditText.getText().toString();
+        if (mChannelType != Channel.TYPE_SHT)
+            mVariable.sensorAddress = mSensorAddressEditText.getText().toString();
+        mVariable.registerType = mRegisterTypeSpinner.getSelectedItemPosition();
+        mVariable.registerAddress = Integer.parseInt(mRegisterAddressEditText.getText().toString());
+        if (mCurrentRegisterType == 0) {
+            mVariable.dataType = mDataTypeSpinner.getSelectedItemPosition();
+        } else {
+            mVariable.dataType = mDataTypeSpinner.getSelectedItemPosition() + 1;
+        }
+        mVariable.isFormulaOn = mFormulaEditView.isOn();
         float[] factors = mFormulaEditView.getFactors();
         if (factors == null)
             return null;
-        variable.factors = factors;
-        return variable;
+        mVariable.factors = factors;
+        return mVariable;
     }
 
-    public int getWarmTime(){
-        return Integer.parseInt(mWarmTimeEditText.getText().toString());
+    public int getSignalType() {
+        return mSignalTypeRadioGroup.getCheckedRadioButtonId() == R.id.rb_view_setting_channel_signal_type_current ? Channel.TYPE_SIGNAL_CURRENT : Channel.TYPE_SIGNAL_VOLTAGE;
     }
 
     public void showView(int type) {

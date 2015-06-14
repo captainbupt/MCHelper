@@ -1,4 +1,6 @@
-package com.vgomc.mchelper.Entity.bluetooth;
+package com.vgomc.mchelper.Entity.bluetooth.inquiry;
+
+import com.vgomc.mchelper.Entity.bluetooth.BaseBluetoothEntity;
 
 /**
  * Created by weizhouh on 6/7/2015.
@@ -35,7 +37,7 @@ public class GPRSStatusEntity extends BaseBluetoothEntity {
             isDebug = Integer.parseInt(datas[5]) == 1;
             strength = Integer.parseInt(datas[6]);
             errorRate = Integer.parseInt(datas[7]);
-            netName = datas[8].replace("\"","");
+            netName = datas[8].replace("\"", "").replace("\"", "");
         } catch (Exception e) {
             e.printStackTrace();
             return false;

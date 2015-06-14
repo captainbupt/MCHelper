@@ -48,7 +48,7 @@ public class ChannelMultipleVariableAdapter extends MyBaseAdapter {
         subjectTextView.setText(channel.subject);
         sensorTextView.setText("传感器" + channel.getSensorCount() + "个");
         variableTextView.setText("变量" + channel.getVariableCount() + "个");
-        variableListView.setAdapter(new ChannelVariableAdapter(mContext, channel.variables));
+        variableListView.setAdapter(new ChannelVariableAdapter(mContext, channel.getVariable()));
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -2,6 +2,8 @@ package com.vgomc.mchelper.view.setting;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -97,16 +99,50 @@ public class SystemInfoView extends BaseCollapsibleView {
                     return true;
                 }
             });
+            mNameEditText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    Configuration.getInstance().name = s.toString();
+                }
+            });
+            mPasswordEditText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    Configuration.getInstance().password = s.toString();
+                }
+            });
         }
 
         private void hideBluetooth() {
             mBluetoothTimeEditText.setVisibility(View.GONE);
             mBluetoothTimeUnitTextView.setVisibility(View.GONE);
+            Configuration.getInstance().bluetoothTimeOn = false;
         }
 
         private void showBluetooth() {
             mBluetoothTimeEditText.setVisibility(View.VISIBLE);
             mBluetoothTimeUnitTextView.setVisibility(View.VISIBLE);
+            Configuration.getInstance().bluetoothTimeOn = true;
         }
     }
 }

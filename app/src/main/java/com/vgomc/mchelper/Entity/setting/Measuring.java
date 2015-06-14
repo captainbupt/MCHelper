@@ -13,22 +13,51 @@ public class Measuring {
     public long beginTime = TimeUtil.time2long(0, 0, 0, 0);
     public long endTime = TimeUtil.time2long(24, 0, 0, 0); // 24小时
     public int interval = 5;
-    public List<Channel> channelList = new ArrayList<>();
-    public List<Integer> variablePositionList = new ArrayList<>();
+    public List<Integer> variableIndexList = new ArrayList<>();
 
     public String getVariableNames(String split) {
-        if (channelList.size() == 0)
-            return "无";
         StringBuilder builder = new StringBuilder();
-        for (int ii = 0; ii < channelList.size(); ii++) {
-            if (variablePositionList.get(ii) < channelList.get(ii).variables.size()) {
-                Variable variable = channelList.get(ii).variables.get(variablePositionList.get(ii));
-                if (variable.isVariableOn) {
-                    builder.append(split + variable.name);
+        for (int ii = 0; ii < variableIndexList.size(); ii++) {
+            Variable variable = Configuration.getInstance().variableManager.getVariable(variableIndexList.get(ii));
+            if (variable != null && variable.isVariableOn) {
+                builder.append(split + variable.name);
+            } else {
+                variableIndexList.remove(ii);
+                ii--;
+            }
+        }
+        if (builder.length() == 0) {
+            return "无";
+        } else {
+            builder.deleteCharAt(0);
+            return builder.toString();
+        }
+    }
+
+    public void setVariableData(int variableIDs) {
+        variableIndexList.clear();
+        for (int ii = 1; variableIDs != 0; variableIDs /= 2, ii++) {
+            if (variableIDs % 2 == 1) {
+                Variable variable = Configuration.getInstance().variableManager.getVariableByDeviceIndex(ii);
+                if (variable != null) {
+                    variableIndexList.add(variable.index);
                 }
             }
         }
-        builder.deleteCharAt(0);
-        return builder.toString();
     }
+
+    public int getVariableId() {
+        List<Variable> variableList = Configuration.getInstance().variableManager.getAllVariableList();
+        char[] binaryString = new char[32];
+        for (int ii = 0; ii < binaryString.length; ii++) {
+            binaryString[ii] = '0';
+        }
+        for (Variable variable : variableList) {
+            if (variableIndexList.contains(variable.index)) {
+                binaryString[variable.deviceIndex - 1] = '1';
+            }
+        }
+        return Integer.parseInt(String.valueOf(binaryString), 2);
+    }
+
 }

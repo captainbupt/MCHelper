@@ -23,11 +23,12 @@ public abstract class BaseFragment extends Fragment {
         mContext = activity;
         mActivity = activity;
     }
-    private void showToast(String content) {
+
+    protected void showToast(String content) {
         ToastUtil.showToast(mContext, content);
     }
 
-    private void showToast(int resId) {
+    protected void showToast(int resId) {
         ToastUtil.showToast(mContext, resId);
     }
 }

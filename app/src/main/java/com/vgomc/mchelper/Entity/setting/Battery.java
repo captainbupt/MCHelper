@@ -12,6 +12,7 @@ public class Battery {
     public static String SUBJECT_SWV3 = "SWV3";
     public static String SUBJECT_SWV4 = "SWV4";
     public static String SUBJECT_SWV5 = "SWV5";
+    public static String SUBJECT_SWV6 = "SWV6";
 
     public final static int MODE_AUTO = 0;
     public final static int MODE_ALWAYS = 1;

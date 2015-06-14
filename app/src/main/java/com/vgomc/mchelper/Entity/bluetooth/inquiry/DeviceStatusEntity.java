@@ -1,5 +1,6 @@
-package com.vgomc.mchelper.Entity.bluetooth;
+package com.vgomc.mchelper.Entity.bluetooth.inquiry;
 
+import com.vgomc.mchelper.Entity.bluetooth.BaseBluetoothEntity;
 import com.vgomc.mchelper.utility.TimeUtil;
 
 /**

@@ -1,5 +1,6 @@
-package com.vgomc.mchelper.Entity.bluetooth;
+package com.vgomc.mchelper.Entity.bluetooth.inquiry;
 
+import com.vgomc.mchelper.Entity.bluetooth.BaseBluetoothEntity;
 import com.vgomc.mchelper.utility.TimeUtil;
 
 /**
@@ -30,8 +31,8 @@ public class DeviceParameterEntity extends BaseBluetoothEntity {
         String[] datas = data.split(",");
         try {
             uid = datas[0];
-            model = datas[1].replace("\"","");
-            version = datas[2].replace("\"","");
+            model = datas[1].replace("\"", "").replace("\"", "");
+            version = datas[2].replace("\"","").replace("\"","");
             index = Integer.parseInt(datas[3]);
             name = datas[4];
             zone = Integer.parseInt(datas[5]);

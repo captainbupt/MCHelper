@@ -100,16 +100,19 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        SettingFragment settingFragment = (SettingFragment) mPagerAdapter.getItem(0);
         switch (item.getItemId()) {
             case R.id.menu_action_bar_read_from_device:
+                settingFragment.readSettingFromDevice();
                 return true;
             case R.id.menu_action_bar_read_from_file:
-                showConfigurationFiles();
+                settingFragment.readSettingFromFile();
                 return true;
             case R.id.menu_action_bar_write_to_device:
+                settingFragment.writeSettingToDevice();
                 return true;
             case R.id.menu_action_bar_write_to_file:
-                showWriteToFileDialog();
+                settingFragment.writeSettingToFile();
                 return true;
             case R.id.menu_action_test:
                 showTextDialog();
@@ -118,6 +121,7 @@ public class MainActivity extends BaseActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
 
     private void showTextDialog() {
         final EditText et = new EditText(mContext);
@@ -134,69 +138,5 @@ public class MainActivity extends BaseActivity {
                         }
                     }
                 }).setNegativeButton("取消", null).show();
-    }
-
-    private void showConfigurationFiles() {
-        final String[] configurationFiles = FileServiceProvider.getConfigurationFileNames();
-        if (configurationFiles == null || configurationFiles.length == 0) {
-            showToast(R.string.menu_action_bar_read_from_file_empty);
-            return;
-        }
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-
-        builder.setTitle(R.string.menu_action_bar_read_from_file_choice)
-                .setItems(configurationFiles, new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Configuration configuration = FileServiceProvider.readObjectFromFile(FileServiceProvider.getExternalStoragePath() + File.separator + configurationFiles[which]);
-                        if (configuration == null) {
-                            showToast(R.string.menu_action_bar_read_from_file_fail);
-                        } else {
-                            showToast(R.string.menu_action_bar_read_from_file_success);
-                            Configuration.setInstance(configuration);
-                            ((SettingFragment) mPagerAdapter.getItem(0)).updateData();
-                        }
-                    }
-                }).show();
-    }
-
-    private void showWriteToFileDialog() {
-        final EditText et = new EditText(mContext);
-
-        new AlertDialog.Builder(this).setTitle(R.string.menu_action_bar_write_to_file_input)
-                .setView(et)
-                .setPositiveButton(R.string.dialog_confirm, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        String input = et.getText().toString();
-                        if (input.equals("")) {
-                            showToast(R.string.menu_action_bar_write_to_file_input_empty);
-                        } else {
-                            String path = FileServiceProvider.getExternalStoragePath() + File.separator + input + FileServiceProvider.SUFFIX;
-                            System.out.println("path: " + path);
-                            File file = new File(path);
-                            if (file.exists()) {
-                                showReplaceDialog(path);
-                            } else {
-                                if (FileServiceProvider.writeObjectToFile(Configuration.getInstance(), path)) {
-                                    showToast(R.string.menu_action_bar_write_to_file_success);
-                                } else {
-                                    showToast(R.string.menu_action_bar_write_to_file_fail);
-                                }
-                            }
-                        }
-                    }
-                }).setNegativeButton("取消", null).show();
-    }
-
-    private void showReplaceDialog(final String path) {
-        new AlertDialog.Builder(mContext).setTitle(R.string.menu_action_bar_write_to_file_existed)
-                .setPositiveButton(R.string.dialog_confirm, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        FileServiceProvider.writeObjectToFile(Configuration.getInstance(), path);
-                        showToast(R.string.menu_action_bar_write_to_file_success);
-                    }
-                }).setNegativeButton(R.string.dialog_cancel, null).create().show();
     }
 }

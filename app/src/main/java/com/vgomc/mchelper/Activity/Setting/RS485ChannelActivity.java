@@ -6,6 +6,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RadioGroup;
 
+import com.vgomc.mchelper.Entity.setting.Battery;
 import com.vgomc.mchelper.Entity.setting.Channel;
 import com.vgomc.mchelper.Entity.setting.Configuration;
 import com.vgomc.mchelper.Entity.setting.RS485Channel;
@@ -20,6 +21,7 @@ import org.holoeverywhere.widget.EditText;
 import org.holoeverywhere.widget.LinearLayout;
 import org.holoeverywhere.widget.RadioButton;
 import org.holoeverywhere.widget.Spinner;
+import org.holoeverywhere.widget.TextView;
 
 /**
  * Created by weizhouh on 5/25/2015.
@@ -37,7 +39,7 @@ public class RS485ChannelActivity extends BaseActivity {
     private EditText mSlaveAddressEditText;
     private Spinner mBaudRateSpinner;
     private ArrayAdapter<String> mBaudRateAdapter;
-    private EditText mWarmTimeEditText;
+    private TextView mWarmTimeTextView;
     private LinearLayout mVariableLayout;
     private MultiVariableView mVariableListView;
 
@@ -57,7 +59,6 @@ public class RS485ChannelActivity extends BaseActivity {
         mRS485Channel.protocol = mProtocolRadioGroup.getCheckedRadioButtonId() == R.id.rb_activity_setting_channel_rs485_protocol_rtu ? RS485Channel.TYPE_PROTOCOL_RTU : RS485Channel.TYPE_PROTOCOL_ASCII;
         mRS485Channel.slaveAddress = Integer.parseInt(mSlaveAddressEditText.getText().toString());
         mRS485Channel.baudRate = Integer.parseInt(mBaudRateAdapter.getItem(mBaudRateSpinner.getSelectedItemPosition()));
-        mRS485Channel.warmTime = Integer.parseInt(mWarmTimeEditText.getText().toString());
         Configuration.getInstance().channelMap.put(Channel.SUBJECT_RS485, mRS485Channel);
     }
 
@@ -70,7 +71,7 @@ public class RS485ChannelActivity extends BaseActivity {
         mProtocolASCIIRadioButton = (RadioButton) findViewById(R.id.rb_activity_setting_channel_rs485_protocol_ascii);
         mSlaveAddressEditText = (EditText) findViewById(R.id.et_activity_setting_channel_rs485_slave_address);
         mBaudRateSpinner = (Spinner) findViewById(R.id.sp_activity_setting_channel_rs485_baud);
-        mWarmTimeEditText = (EditText) findViewById(R.id.et_activity_setting_channel_rs485_warm_time);
+        mWarmTimeTextView = (TextView) findViewById(R.id.tv_activity_setting_channel_rs485_warm_time);
         mBaudRateAdapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.setting_channel_rs485_baud));
         mBaudRateSpinner.setAdapter(mBaudRateAdapter);
         mVariableLayout = (LinearLayout) findViewById(R.id.ll_activity_setting_channel_rs485_variables);
@@ -109,15 +110,6 @@ public class RS485ChannelActivity extends BaseActivity {
                 return true;
             }
         });
-        mWarmTimeEditText.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_UP) {
-                    BigNumberPickerDialog.getBigNumberPickerDialog(mContext, 6, 0, 600000, Integer.parseInt(mWarmTimeEditText.getText().toString()), mWarmTimeEditText, getResources().getString(R.string.setting_channel_warm_time)).show();
-                }
-                return true;
-            }
-        });
     }
 
     private void initDate() {
@@ -141,14 +133,14 @@ public class RS485ChannelActivity extends BaseActivity {
                 mBaudRateSpinner.setSelection(ii);
             }
         }
-        mWarmTimeEditText.setText(mRS485Channel.warmTime + "");
+        mWarmTimeTextView.setText(mRS485Channel.getWarmTime(mContext));
         mVariableListView.setData(mRS485Channel.subject, 32);
     }
 
     private void setSlaveMode() {
         mVariableLayout.setVisibility(View.GONE);
-        mRS485Channel.variables.clear();
-        Configuration.getInstance().channelMap.get(Channel.SUBJECT_SDI).variables.clear();
+        Configuration.getInstance().variableManager.clear(mRS485Channel.subject);
+        Configuration.getInstance().variableManager.clear(Channel.SUBJECT_SDI);
         mVariableListView.removeAllVariable();
     }
 

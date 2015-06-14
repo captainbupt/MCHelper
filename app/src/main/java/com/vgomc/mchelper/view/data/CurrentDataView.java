@@ -8,6 +8,8 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.vgomc.mchelper.Entity.bluetooth.BaseBluetoothEntity;
+import com.vgomc.mchelper.Entity.bluetooth.inquiry.CurrentDataEntity;
 import com.vgomc.mchelper.Entity.data.VariableData;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.activity.data.DataDetailActivity;
@@ -57,18 +59,19 @@ public class CurrentDataView extends BaseCollapsibleView {
         mRefreshButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                BlueToothSeriveProvider.doGetCurrentData(mContext, handler);
+                BlueToothSeriveProvider.doGetCurrentData(mContext, new BlueToothSeriveProvider.OnBluetoothCompletedListener() {
+                    @Override
+                    public void onCompleted(List<BaseBluetoothEntity> bluetoothEntities) {
+                        List[] dataList = new List[CurrentDataEntity.COUNT_TABLE];
+                        for (int ii = 0; ii < CurrentDataEntity.COUNT_TABLE; ii++) {
+                            dataList[ii] = ((CurrentDataEntity) bluetoothEntities.get(ii)).variableDataList;
+                        }
+                        mContentView.setVariableData(dataList);
+                    }
+                });
             }
         });
     }
-
-    Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            mVariableDataLists = (List[]) msg.obj;
-            mContentView.setVariableData((List[]) msg.obj);
-        }
-    };
 
     class CurrentDataContentView extends BaseCollapsibleContentView {
 

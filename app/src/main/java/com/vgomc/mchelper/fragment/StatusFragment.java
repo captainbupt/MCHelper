@@ -1,19 +1,12 @@
 package com.vgomc.mchelper.fragment;
 
-import android.os.Bundle;
-
-import org.holoeverywhere.LayoutInflater;
-
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.vgomc.mchelper.Entity.bluetooth.BaseBluetoothEntity;
-import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.adapter.StatusFragmentAdapter;
 import com.vgomc.mchelper.base.BaseCollapseAdapter;
-import com.vgomc.mchelper.base.BaseFragment;
 import com.vgomc.mchelper.base.BaseListFragment;
 import com.vgomc.mchelper.transmit.bluetooth.BlueToothSeriveProvider;
 
@@ -35,14 +28,11 @@ public class StatusFragment extends BaseListFragment {
     }
 
     private void updateData() {
-        BlueToothSeriveProvider.doGetCurrentStatus(mContext, handler);
+        BlueToothSeriveProvider.doGetCurrentStatus(mContext, new BlueToothSeriveProvider.OnBluetoothCompletedListener() {
+            @Override
+            public void onCompleted(List<BaseBluetoothEntity> bluetoothEntities) {
+                ((StatusFragmentAdapter) mFragmentAdapter).setData(bluetoothEntities);
+            }
+        });
     }
-
-    private Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            List<BaseBluetoothEntity> entities = (List<BaseBluetoothEntity>) msg.obj;
-            ((StatusFragmentAdapter) mFragmentAdapter).setData(entities);
-        }
-    };
 }

@@ -23,29 +23,13 @@
         android:orientation="horizontal">
 
         <org.holoeverywhere.widget.TextView
-            style="@style/title_style"
+            style="@style/layout_left_style"
             android:text="@string/setting_channel_warm_time" />
 
-        <org.holoeverywhere.widget.LinearLayout
-            style="@style/layout_left_style"
-            android:gravity="center_vertical">
+        <org.holoeverywhere.widget.TextView
+            android:id="@+id/tv_activity_setting_channel_sht_warm_time"
+            style="@style/layout_right_style" />
 
-            <org.holoeverywhere.widget.EditText
-                android:id="@+id/et_activity_setting_channel_sht_warm_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:inputType="number"
-                android:maxLength="6"
-                android:textSize="@dimen/text_size_medium" />
-
-            <org.holoeverywhere.widget.TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="@string/setting_channel_warm_time_unit"
-                android:textSize="@dimen/text_size_medium" />
-        </org.holoeverywhere.widget.LinearLayout>
     </org.holoeverywhere.widget.LinearLayout>
 
     <ScrollView

@@ -62,11 +62,11 @@ public class MultiVariableView extends LinearLayout {
         mAddVariableButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Configuration.getInstance().getChannelVariableCount() >= Configuration.getInstance().channelVariableMaxCount) {
+                if (Configuration.getInstance().variableManager.isVariableMax()) {
                     ToastUtil.showToast(mContext, R.string.tip_variable_reach_max_count);
                     return;
                 }
-                showVariableDialog(-1, new Variable());
+                showVariableDialog(-1, new Variable(mChannel.subject, false));
             }
         });
     }
@@ -74,17 +74,16 @@ public class MultiVariableView extends LinearLayout {
     public void setData(String subject, int max_variable) {
         MAX_VARIABLE_COUNT = max_variable;
         this.mChannel = Configuration.getInstance().channelMap.get(subject);
-        mVariableAdapter.setVariabletList(mChannel.variables);
+        mVariableAdapter.setVariabletList(mChannel.getVariable());
     }
 
     public void removeAllVariable() {
-        mChannel.variables.clear();
-        mVariableAdapter.setVariabletList(mChannel.variables);
+        mVariableAdapter.setVariabletList(mChannel.getVariable());
     }
 
     private void showVariableDialog(final int position, Variable variable) {
         final VariableEditView editView = new VariableEditView(mContext);
-        editView.initData(mChannel.type, mChannel.subject + "通道",mChannel.subject, variable);
+        editView.initData(mChannel.type, mChannel.subject + "通道", mChannel.subject, mChannel.signalType, variable);
         new AlertDialog.Builder(mContext).setView(editView).setPositiveButton(R.string.dialog_confirm, new AlertDialog.OnClickListener() {
 
             @Override
@@ -96,29 +95,13 @@ public class MultiVariableView extends LinearLayout {
                             ToastUtil.showToast(mContext, "添加失败，该传感器可支持变量数已达上限");
                             return;
                         }
-                        if (position >= 0) {
-                            mChannel.variables.set(position, variable);
-                        } else {
-                            mChannel.variables.add(variable);
-                        }
+                        mChannel.setVariable(variable);
                     } else {
-                        if (position >= 0) {
-                            mChannel.variables.remove(position);
-                        }
+                        mChannel.removeVariable(variable);
                     }
-                    mVariableAdapter.setVariabletList(mChannel.variables);
+                    mVariableAdapter.setVariabletList(mChannel.getVariable());
                 } else {
                     ToastUtil.showToast(mContext, R.string.tip_invalid_input);
-                    try {
-                        Field field = dialog.getClass()
-                                .getSuperclass().getDeclaredField(
-                                        "mShowing");
-                        field.setAccessible(true);
-                        //   将mShowing变量设为false，表示对话框已关闭
-                        field.set(dialog, false);
-                        dialog.dismiss();
-                    } catch (Exception e) {
-                    }
                 }
             }
         }).create().show();

@@ -14,6 +14,8 @@
     <string name="menu_action_bar_read_from_file_empty">没有找到任何配置文件</string>
     <string name="menu_action_bar_read_from_file_fail">读入文件失败</string>
     <string name="menu_action_bar_read_from_file_success">读入文件成功</string>
+    <string name="menu_action_bar_read_from_device_confirm">开始从设备中读入文件</string>
+    <string name="menu_action_bar_write_to_device_confirm">开始向设备写入配置</string>
 
     <string name="tab_title_setting">配置</string>
     <string name="tab_title_status">状态</string>
@@ -77,6 +79,7 @@
     <string name="setting_battery_pattern">供电模式</string>
     <string name="setting_battery_pattern_order">顺序</string>
     <string name="setting_battery_pattern_custom">自定义</string>
+    <string name="setting_battery_channel_mode_null">暂无</string>
     <string name="setting_battery_channel_mode_auto">自动</string>
     <string name="setting_battery_channel_mode_always">常开</string>
     <string name="setting_battery_channel_mode_external">外部</string>
@@ -180,6 +183,9 @@
     <string name="tip_bluetooth_empty">请求不能为空</string>
     <string name="tip_bluetooth_fail">蓝牙请求失败</string>
     <string name="tip_bluetooth_parse">数据解析异常，请重试</string>
+    <string name="tip_bluetooth_connecting">设备连接中...</string>
+    <string name="tip_bluetooth_transferring">传输中，请稍后...</string>
+    <string name="tip_bluetooth_sending">发送命令: </string>
     <string name="symbol_left"><![CDATA[<]]></string>
     <string name="symbol_right"><![CDATA[>]]></string>
 

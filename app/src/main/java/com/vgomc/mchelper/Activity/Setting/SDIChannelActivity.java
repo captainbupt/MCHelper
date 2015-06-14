@@ -8,7 +8,7 @@ import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.base.BaseActivity;
 import com.vgomc.mchelper.widget.MultiVariableView;
 
-import org.holoeverywhere.widget.EditText;
+import org.holoeverywhere.widget.TextView;
 
 /**
  * Created by weizhouh on 5/25/2015.
@@ -17,7 +17,7 @@ public class SDIChannelActivity extends BaseActivity {
 
     private Channel mSDIChannel;
 
-    private EditText mWarmTimeEditText;
+    private TextView mWarmTimeTextView;
     private MultiVariableView mVariableListView;
 
     @Override
@@ -31,18 +31,17 @@ public class SDIChannelActivity extends BaseActivity {
     @Override
     public void finish() {
         super.finish();
-        mSDIChannel.warmTime = Integer.parseInt(mWarmTimeEditText.getText().toString());
         Configuration.getInstance().channelMap.put(Channel.SUBJECT_SDI, mSDIChannel);
     }
 
     private void initView() {
-        mWarmTimeEditText = (EditText) findViewById(R.id.et_activity_setting_channel_sdi_warm_time);
+        mWarmTimeTextView = (TextView) findViewById(R.id.tv_activity_setting_channel_sdi_warm_time);
         mVariableListView = (MultiVariableView) findViewById(R.id.mvv_activity_setting_channel_sdi_variables);
     }
 
     private void initDate() {
         mSDIChannel = Configuration.getInstance().channelMap.get(Channel.SUBJECT_SDI);
-        mWarmTimeEditText.setText(mSDIChannel.warmTime + "");
+        mWarmTimeTextView.setText(mSDIChannel.getWarmTime(mContext));
         mVariableListView.setData(mSDIChannel.subject, 9);
     }
 

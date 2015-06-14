@@ -52,13 +52,15 @@ public class BluetoothHelper {
         mChatService = new BluetoothHelperService(mContext, mHandler);
     }
 
+    private static String mMessage;
+
     /**
      * Sends a message.
      *
      * @param message A string of text to send.
      */
     public static boolean sendMessage(String message) {
-
+        mMessage = message;
         // If BT is not on, request that it be enabled.
         // setupChat() will then be called during onActivityResult
         if (!mBluetoothAdapter.isEnabled()) {
@@ -105,15 +107,16 @@ public class BluetoothHelper {
                     switch (msg.arg1) {
                         case BluetoothHelperService.STATE_CONNECTED:
                             //mTitle.append(mConnectedDeviceName);
-                            ToastUtil.showToast(mContext, "State connected");
+                            //ToastUtil.showToast(mContext, "State connected");
+                            BluetoothHelper.sendMessage(mMessage);
                             break;
                         case BluetoothHelperService.STATE_CONNECTING:
-                            ToastUtil.showToast(mContext, "State connecting");
+                            //ToastUtil.showToast(mContext, "State connecting");
                             break;
                         case BluetoothHelperService.STATE_LISTEN:
-                            ToastUtil.showToast(mContext, "State listen");
+                            // ToastUtil.showToast(mContext, "State listen");
                         case BluetoothHelperService.STATE_NONE:
-                            ToastUtil.showToast(mContext, "State none");
+                            ToastUtil.showToast(mContext, "Connection failed");
                             break;
                     }
                     break;
@@ -121,7 +124,7 @@ public class BluetoothHelper {
                     byte[] writeBuf = (byte[]) msg.obj;
                     // construct a string from the buffer
                     String writeMessage = new String(writeBuf);
-                    ToastUtil.showToast(mContext, "Write message: " + writeMessage);
+                    // ToastUtil.showToast(mContext, "Write message: " + writeMessage);
                     break;
                 case MESSAGE_READ:
                     byte[] readBuf = (byte[]) msg.obj;
@@ -132,7 +135,7 @@ public class BluetoothHelper {
                     if (mOnReceivedMessageListener != null) {
                         mOnReceivedMessageListener.onReceivedMessage(readBuf, msg.arg1);
                     } else {
-                        ToastUtil.showToast(mContext, "Read message: " + readMessage);
+                        // ToastUtil.showToast(mContext, "Read message: " + readMessage);
                     }
                     break;
                 case MESSAGE_DEVICE_NAME:
@@ -167,6 +170,7 @@ public class BluetoothHelper {
                 if (resultCode == android.app.Activity.RESULT_OK) {
                     // Bluetooth is now enabled, so set up a chat session
                     setupChat();
+                    sendMessage(mMessage);
                 }
         }
     }

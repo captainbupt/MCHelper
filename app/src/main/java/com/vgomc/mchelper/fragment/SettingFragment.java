@@ -1,18 +1,31 @@
 package com.vgomc.mchelper.fragment;
 
-import android.os.Bundle;
+import android.content.DialogInterface;
 
-import org.holoeverywhere.LayoutInflater;
-import org.holoeverywhere.widget.ListView;
+import org.holoeverywhere.app.AlertDialog;
+import org.holoeverywhere.widget.EditText;
 
-import android.view.View;
-import android.view.ViewGroup;
-
+import com.vgomc.mchelper.Entity.bluetooth.BaseBluetoothEntity;
+import com.vgomc.mchelper.Entity.bluetooth.inquiry.BatteryChannelEntity;
+import com.vgomc.mchelper.Entity.bluetooth.inquiry.ChannelEntity;
+import com.vgomc.mchelper.Entity.bluetooth.inquiry.DeviceParameterEntity;
+import com.vgomc.mchelper.Entity.bluetooth.inquiry.GPRSParamEntity;
+import com.vgomc.mchelper.Entity.bluetooth.inquiry.MeasurePlanEntity;
+import com.vgomc.mchelper.Entity.bluetooth.inquiry.StorageTableEntity;
+import com.vgomc.mchelper.Entity.bluetooth.inquiry.VariableEntity;
+import com.vgomc.mchelper.Entity.setting.Battery;
+import com.vgomc.mchelper.Entity.setting.Channel;
+import com.vgomc.mchelper.Entity.setting.Configuration;
+import com.vgomc.mchelper.Entity.setting.RS485Channel;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.adapter.SettingFragmentAdapter;
 import com.vgomc.mchelper.base.BaseCollapseAdapter;
-import com.vgomc.mchelper.base.BaseFragment;
 import com.vgomc.mchelper.base.BaseListFragment;
+import com.vgomc.mchelper.transmit.bluetooth.BlueToothSeriveProvider;
+import com.vgomc.mchelper.transmit.file.FileServiceProvider;
+
+import java.io.File;
+import java.util.List;
 
 /**
  * Created by weizhouh on 5/18/2015.
@@ -34,5 +47,148 @@ public class SettingFragment extends BaseListFragment {
         updateData();
     }
 
+    public void readSettingFromDevice() {
+        new AlertDialog.Builder(mContext).setTitle(R.string.menu_action_bar_read_from_device_confirm)
+                .setPositiveButton(R.string.dialog_confirm, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        BlueToothSeriveProvider.doReadConfiguration(mContext, new BlueToothSeriveProvider.OnBluetoothCompletedListener() {
+                            @Override
+                            public void onCompleted(List<BaseBluetoothEntity> bluetoothEntities) {
+                                DeviceParameterEntity deviceParameterEntity = (DeviceParameterEntity) bluetoothEntities.get(0);
+                                ChannelEntity channelEntity = (ChannelEntity) bluetoothEntities.get(1);
+                                VariableEntity variableEntity = (VariableEntity) bluetoothEntities.get(2);
+                                BatteryChannelEntity batteryChannelEntity = (BatteryChannelEntity) bluetoothEntities.get(3);
+                                MeasurePlanEntity measurePlanEntity = (MeasurePlanEntity) bluetoothEntities.get(4);
+                                StorageTableEntity storageTableEntity = (StorageTableEntity) bluetoothEntities.get(5);
+                                GPRSParamEntity gprsParamEntity = (GPRSParamEntity) bluetoothEntities.get(6);
+                                Configuration configuration = Configuration.getInstance();
+                                configuration.name = deviceParameterEntity.name;
+                                configuration.password = deviceParameterEntity.key;
+                                configuration.timeZone = deviceParameterEntity.zone;
+                                configuration.bluetoothTimeOn = deviceParameterEntity.bluetoothTime == 0;
+                                configuration.bluetoothTime = deviceParameterEntity.bluetoothTime;
+                                RS485Channel rs485Channel = (RS485Channel) configuration.channelMap.get(Channel.SUBJECT_RS485);
+                                rs485Channel.baudRate = deviceParameterEntity.rating;
+                                rs485Channel.setProtocol(deviceParameterEntity.protocol);
+                                configuration.channelMap.put(Channel.SUBJECT_RS485, rs485Channel);
+                                for (int ii = 0; ii < channelEntity.channelArray.length; ii++) {
+                                    Channel channelResult = channelEntity.channelArray[ii];
+                                    Channel channel = configuration.channelMap.get(channelResult.subject);
+                                    if (channel == null) {
+                                        channel = channelResult;
+                                    } else {
+                                        channel.batteryName = channelResult.batteryName;
+                                        channel.signalType = channelResult.signalType;
+                                    }
+                                    configuration.channelMap.put(channel.subject, channel);
+                                }
+                                for (int ii = 0; ii < batteryChannelEntity.batteryArray.length; ii++) {
+                                    Battery batteryResult = batteryChannelEntity.batteryArray[ii];
+                                    Battery battery = null;
+                                    int position = 0;
+                                    for (int jj = 0; jj < configuration.batteryList.size(); jj++) {
+                                        Battery tmpBattery = (Battery) configuration.batteryList.get(jj);
+                                        if (tmpBattery.subject.equals(batteryResult.subject)) {
+                                            battery = tmpBattery;
+                                            position = jj;
+                                        }
+                                    }
+                                    if (battery != null) {
+                                        battery.startTime = batteryResult.startTime;
+                                        battery.liveTime = batteryResult.liveTime;
+                                        battery.mode = batteryResult.mode;
+                                        battery.isOrder = false;
+                                        configuration.batteryList.set(position, battery);
+                                    }
+                                }
+                                configuration.variableManager.clear();
+                                for (int ii = 0; ii < variableEntity.variableArray.length; ii++) {
+                                    configuration.variableManager.setVariable(variableEntity.variableArray[ii]);
+                                }
+                                configuration.measuringList.clear();
+                                for (int ii = 0; ii < measurePlanEntity.measuringArray.length; ii++) {
+                                    configuration.measuringList.add(measurePlanEntity.measuringArray[ii]);
+                                }
+                                configuration.storageList.clear();
+                                for (int ii = 0; ii < storageTableEntity.storageArray.length; ii++) {
+                                    configuration.storageList.add(storageTableEntity.storageArray[ii]);
+                                }
+                                configuration.network = gprsParamEntity.network;
+                                Configuration.setInstance(configuration);
+                                updateData();
+                            }
+                        });
+                    }
+                }).setNegativeButton(R.string.dialog_cancel, null).show();
+    }
+
+    public void writeSettingToDevice() {
+
+    }
+
+    public void readSettingFromFile() {
+        final String[] configurationFiles = FileServiceProvider.getConfigurationFileNames();
+        if (configurationFiles == null || configurationFiles.length == 0) {
+            showToast(R.string.menu_action_bar_read_from_file_empty);
+            return;
+        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+
+        builder.setTitle(R.string.menu_action_bar_read_from_file_choice)
+                .setItems(configurationFiles, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Configuration configuration = FileServiceProvider.readObjectFromFile(FileServiceProvider.getExternalStoragePath() + File.separator + configurationFiles[which]);
+                        if (configuration == null) {
+                            showToast(R.string.menu_action_bar_read_from_file_fail);
+                        } else {
+                            showToast(R.string.menu_action_bar_read_from_file_success);
+                            Configuration.setInstance(configuration);
+                            updateData();
+                        }
+                    }
+                }).setNegativeButton(R.string.dialog_cancel, null).show();
+    }
+
+    public void writeSettingToFile() {
+        final EditText et = new EditText(mContext);
+
+        new AlertDialog.Builder(mContext).setTitle(R.string.menu_action_bar_write_to_file_input)
+                .setView(et)
+                .setPositiveButton(R.string.dialog_confirm, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        String input = et.getText().toString();
+                        if (input.equals("")) {
+                            showToast(R.string.menu_action_bar_write_to_file_input_empty);
+                        } else {
+                            String path = FileServiceProvider.getExternalStoragePath() + File.separator + input + FileServiceProvider.SUFFIX;
+                            System.out.println("path: " + path);
+                            File file = new File(path);
+                            if (file.exists()) {
+                                showReplaceDialog(path);
+                            } else {
+                                if (FileServiceProvider.writeObjectToFile(Configuration.getInstance(), path)) {
+                                    showToast(R.string.menu_action_bar_write_to_file_success);
+                                } else {
+                                    showToast(R.string.menu_action_bar_write_to_file_fail);
+                                }
+                            }
+                        }
+                    }
+                }).setNegativeButton("取消", null).show();
+    }
+
+    private void showReplaceDialog(final String path) {
+        new AlertDialog.Builder(mContext).setTitle(R.string.menu_action_bar_write_to_file_existed)
+                .setPositiveButton(R.string.dialog_confirm, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        FileServiceProvider.writeObjectToFile(Configuration.getInstance(), path);
+                        showToast(R.string.menu_action_bar_write_to_file_success);
+                    }
+                }).setNegativeButton(R.string.dialog_cancel, null).create().show();
+    }
 
 }

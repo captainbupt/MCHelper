@@ -52,8 +52,8 @@ public class ChannelSingleVariableAdapter extends MyBaseAdapter {
         DefaultFormulaTextView formulaViewTextView = (DefaultFormulaTextView) convertView.findViewById(R.id.tv_adapter_setting_channel_single_formula);
         Channel channel = (Channel) getItem(position);
         subjectTextView.setText(channel.subject);
-        variableTextView.setText(channel.variables.get(0).name);
-        formulaViewTextView.setText(channel.variables.get(0).factors);
+        variableTextView.setText(channel.getVariable().get(0).name);
+        formulaViewTextView.setText(channel.getVariable().get(0).factors);
         return convertView;
     }
 }

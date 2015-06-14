@@ -18,17 +18,21 @@ public class RS485Channel extends Channel {
     public int baudRate;
 
     public RS485Channel() {
+        super(TYPE_RS485, SUBJECT_RS485, Battery.SUBJECT_SWV6, TYPE_SIGNAL_NORMAL);
     }
 
-    public RS485Channel(ArrayList<Variable> variables) {
-        super(TYPE_RS485, SUBJECT_RS485, variables);
-    }
+    public void setProtocol(String protocol) {
+        String protocols[] = protocol.split("-");
+        if (protocols[0].equals("ACSII")) {
+            this.protocol = TYPE_PROTOCOL_ASCII;
+        } else {
+            this.protocol = TYPE_PROTOCOL_RTU;
+        }
+        if (protocols[1].equals("M")) {
+            this.mode = TYPE_MODE_MASTER;
+        } else {
+            this.mode = TYPE_MODE_SLAVE;
+        }
 
-    public RS485Channel(ArrayList<Variable> variables, int mode, int protocol, int slaveAddress, int baudRate) {
-        this(variables);
-        this.mode = mode;
-        this.protocol = protocol;
-        this.slaveAddress = slaveAddress;
-        this.baudRate = baudRate;
     }
 }
