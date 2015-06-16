@@ -18,19 +18,21 @@ public class VariableSettingChannel extends BaseBluetoothSettingEntity {
     float k2;
     float k3;
 
-    public VariableSettingChannel(int id, Variable variable) {
-        this.id = id;
+    public VariableSettingChannel(Variable variable) {
+        id = variable.deviceIndex;
         variableName = variable.name;
         channelName = variable.subjectName;
         dataType = Variable.DATA_TYPE[variable.dataType];
         sensorAddress = variable.sensorAddress;
         registerAddress = variable.registerAddress;
         k0 = variable.factors[0];
-
+        k1 = variable.factors[1];
+        k2 = variable.factors[2];
+        k3 = variable.factors[3];
     }
 
     @Override
     public String getRequest() {
-        return String.format("AT+VAR=%d,%s,%s,%s,%s,%d,%.4f,%.4f,%.4f,%.4f", id, variableName, channelName, dataType, sensorAddress, registerAddress, k0, k1, k2, k3);
+        return String.format("AT+VAR=%d,\"%s\",%s,%s,%s,%d,", id, variableName, channelName, dataType, sensorAddress, registerAddress) + k0 + "," + k1 + "," + k2 + "," + k3;
     }
 }

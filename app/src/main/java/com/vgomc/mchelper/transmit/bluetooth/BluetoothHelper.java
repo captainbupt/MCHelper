@@ -14,6 +14,7 @@ import com.vgomc.mchelper.utility.ToastUtil;
 import org.holoeverywhere.app.Activity;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 
 /**
  * Created by weizhouh on 6/6/2015.
@@ -81,7 +82,7 @@ public class BluetoothHelper {
         // Check that there's actually something to send
         if (message.length() > 0) {
             // Get the message bytes and tell the BluetoothHelperService to write
-            byte[] send = message.getBytes();
+            byte[] send = message.getBytes(Charset.forName("GBK"));
             mChatService.write(send);
         }
         return true;
@@ -89,6 +90,7 @@ public class BluetoothHelper {
 
     public interface OnReceivedMessageListener {
         void onReceivedMessage(byte[] messageByte, int length);
+        void onError();
     }
 
     public static void setOnReceivedMessageListener(OnReceivedMessageListener onReceivedMessageListener) {
@@ -117,6 +119,7 @@ public class BluetoothHelper {
                             // ToastUtil.showToast(mContext, "State listen");
                         case BluetoothHelperService.STATE_NONE:
                             ToastUtil.showToast(mContext, "Connection failed");
+                            mOnReceivedMessageListener.onError();
                             break;
                     }
                     break;
@@ -129,9 +132,9 @@ public class BluetoothHelper {
                 case MESSAGE_READ:
                     byte[] readBuf = (byte[]) msg.obj;
                     // construct a string from the valid bytes in the buffer
-                    String readMessage = null;
+                    /*String readMessage = null;
 
-                    readMessage = new String(readBuf, 0, msg.arg1);
+                    readMessage = new String(readBuf, 0, msg.arg1);*/
                     if (mOnReceivedMessageListener != null) {
                         mOnReceivedMessageListener.onReceivedMessage(readBuf, msg.arg1);
                     } else {
@@ -141,7 +144,7 @@ public class BluetoothHelper {
                 case MESSAGE_DEVICE_NAME:
                     // save the connected device's name
                     mConnectedDeviceName = msg.getData().getString(DEVICE_NAME);
-                    ToastUtil.showToast(mContext, "Connected device: " + mConnectedDeviceName);
+                    //ToastUtil.showToast(mContext, "Connected device: " + mConnectedDeviceName);
                     break;
                 case MESSAGE_TOAST:
                     Toast.makeText(mContext, msg.getData().getString(TOAST),
@@ -163,6 +166,8 @@ public class BluetoothHelper {
                     BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
                     // Attempt to connect to the device
                     mChatService.connect(device);
+                }else{
+                    mOnReceivedMessageListener.onError();
                 }
                 break;
             case REQUEST_ENABLE_BT:
@@ -171,6 +176,8 @@ public class BluetoothHelper {
                     // Bluetooth is now enabled, so set up a chat session
                     setupChat();
                     sendMessage(mMessage);
+                }else{
+                    mOnReceivedMessageListener.onError();
                 }
         }
     }

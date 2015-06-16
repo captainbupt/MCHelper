@@ -10,13 +10,21 @@ public class GPRSSettingEntity extends BaseBluetoothSettingEntity {
     public String mode;
     public String command;
 
-    public GPRSSettingEntity(boolean isOn) {
+    public GPRSSettingEntity(boolean isOn, boolean isNormal) {
         if (isOn) {
             command = "ON";
-            mode = "N";
+            if (isNormal) {
+                mode = "N";
+            } else {
+                mode = "D";
+            }
         } else {
             command = "OFF";
-            mode = "T";
+            if (isNormal) {
+                mode = "P";
+            } else {
+                mode = "T";
+            }
         }
     }
 

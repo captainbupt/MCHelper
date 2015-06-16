@@ -138,16 +138,34 @@
 
     <string name="status_control">运行</string>
     <string name="status_control_measuring">测量</string>
+    <string name="status_control_measuring_status_pending">剩余暂停时间(分钟):</string>
+    <string name="status_control_measuring_status_running">运行中</string>
+    <string name="status_control_measuring_tip">请设置暂停时间（分钟）</string>
     <string name="status_control_measuring_start">启动</string>
     <string name="status_control_measuring_pause">暂停</string>
+    <string name="status_control_battery">电源</string>
+    <string name="status_control_battery_status_running">剩余运行时间:</string>
+    <string name="status_control_battery_status_closing">停止中</string>
+    <string name="status_control_battery_tip">请设置打开时间（分钟）</string>
+    <string name="status_control_battery_start">启动</string>
+    <string name="status_control_battery_pause">关闭</string>
     <string name="status_control_network">网络</string>
     <string name="status_control_network_start">启动</string>
+    <string name="status_control_network_start_tip">请选择启动模式</string>
+    <string name="status_control_network_start_normal">正常</string>
+    <string name="status_control_network_start_debug">调试</string>
     <string name="status_control_network_close">关闭</string>
+    <string name="status_control_network_close_tip">请选择关闭模式</string>
+    <string name="status_control_network_close_power">关闭电源</string>
+    <string name="status_control_network_close_tcp">停止TCP连接</string>
     <string name="status_control_bluetooth">蓝牙</string>
     <string name="status_control_bluetooth_start">打开</string>
     <string name="status_control_bluetooth_close">关闭</string>
     <string name="status_control_collector">采集器</string>
     <string name="status_control_collector_reset">复位</string>
+    <string name="status_control_collector_reset_tip">请选择重启模式</string>
+    <string name="status_control_collector_reset_warm">热重启</string>
+    <string name="status_control_collector_reset_cold">冷重启</string>
 
     <string name="data_current">实时数据</string>
     <string name="data_current_detail">详细数据</string>
@@ -162,8 +180,18 @@
 
     <string name="data_history">历史数据</string>
     <string name="data_history_download">历史数据下载</string>
+    <string name="data_history_download_tip">请选择需要下载的记录</string>
+    <string name="data_history_download_all">全部</string>
+    <string name="data_history_download_new">新记录</string>
+    <string name="data_history_download_success">下载成功</string>
     <string name="data_history_memory_backup">备份内存数据</string>
+    <string name="data_history_memory_backup_success">备份成功</string>
+    <string name="data_history_memory_backup_tip">请选择需要备份的数据</string>
+    <string name="data_history_memory_backup_all">全部</string>
+    <string name="data_history_memory_backup_record">设置和记录</string>
     <string name="data_history_clear">清空历史记录</string>
+    <string name="data_history_clear_tip">请选择正确的设备日期</string>
+    <string name="data_history_clear_success">清除历史记录成功</string>
 
     <string name="system_operation">其他</string>
 
@@ -186,6 +214,7 @@
     <string name="tip_bluetooth_connecting">设备连接中...</string>
     <string name="tip_bluetooth_transferring">传输中，请稍后...</string>
     <string name="tip_bluetooth_sending">发送命令: </string>
+    <string name="tip_bluetooth_overtime">操作超时</string>
     <string name="symbol_left"><![CDATA[<]]></string>
     <string name="symbol_right"><![CDATA[>]]></string>
 

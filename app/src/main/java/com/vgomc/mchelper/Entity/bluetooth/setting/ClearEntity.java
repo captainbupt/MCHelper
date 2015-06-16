@@ -13,6 +13,10 @@ public class ClearEntity extends BaseBluetoothSettingEntity {
         this.key = TimeUtil.long2DeviceDate(time);
     }
 
+    public ClearEntity(String date) {
+        this.key = date;
+    }
+
     @Override
     public String getRequest() {
         return "AT+CLRRECORD=" + key;

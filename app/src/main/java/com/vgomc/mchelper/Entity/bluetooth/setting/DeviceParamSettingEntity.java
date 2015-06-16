@@ -15,19 +15,19 @@ public class DeviceParamSettingEntity extends BaseBluetoothSettingEntity {
     int bps;
     String protocol;
 
-    public DeviceParamSettingEntity(int id, String name, int zone, int bluetoothTime, String key, int rs485Rating, int rs485Protocol, int rs485Mode) {
-        this.id = id;
+    public DeviceParamSettingEntity(String name, int zone, int bluetoothTime, String key, RS485Channel rs485Channel) {
         this.name = name;
         this.zone = zone;
         this.bluetoothTime = bluetoothTime;
         this.key = key;
-        this.bps = rs485Rating;
-        if (rs485Protocol == RS485Channel.TYPE_PROTOCOL_ASCII) {
+        this.id = rs485Channel.slaveAddress;
+        this.bps = rs485Channel.baudRate;
+        if (rs485Channel.protocol == RS485Channel.TYPE_PROTOCOL_ASCII) {
             protocol = "ASCII-";
         } else {
             protocol = "RTU-";
         }
-        if (rs485Mode == RS485Channel.TYPE_MODE_MASTER) {
+        if (rs485Channel.mode == RS485Channel.TYPE_MODE_MASTER) {
             protocol += "M";
         } else {
             protocol += "S";
@@ -36,6 +36,6 @@ public class DeviceParamSettingEntity extends BaseBluetoothSettingEntity {
 
     @Override
     public String getRequest() {
-        return String.format("AT+DEVICE=%d,%s,%d,%d,%s,%d,%s", id, name, zone, bluetoothTime, key, bps, protocol);
+        return String.format("AT+DEVICE=%d,\"%s\",%d,%d,\"%s\",%d,%s", id, name, zone, bluetoothTime, key, bps, protocol);
     }
 }

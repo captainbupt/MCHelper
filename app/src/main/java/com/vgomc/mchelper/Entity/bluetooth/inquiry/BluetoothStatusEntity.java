@@ -5,7 +5,7 @@ import com.vgomc.mchelper.Entity.bluetooth.BaseBluetoothEntity;
 /**
  * Created by weizhouh on 6/12/2015.
  */
-public class BluetoothStatuEntity extends BaseBluetoothEntity {
+public class BluetoothStatusEntity extends BaseBluetoothEntity {
 
     public final static String[] STATUS_REPRESENTATION = new String[]{"未初始化","初始化","电源关闭","电源打开","配置","工作"};
     public final static String[] FLAG_REPRESENTATION = new String[]{"配置蓝牙错误"};
@@ -37,5 +37,14 @@ public class BluetoothStatuEntity extends BaseBluetoothEntity {
             return false;
         }
         return true;
+    }
+
+    public String getStatus(){
+        String statusString = "";
+/*        if(flag == 0){
+            statusString = FLAG_REPRESENTATION[0] + "\n";
+        }*/
+        statusString += STATUS_REPRESENTATION[this.status];
+        return statusString;
     }
 }

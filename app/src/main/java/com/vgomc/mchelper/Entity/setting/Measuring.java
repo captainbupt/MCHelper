@@ -46,7 +46,7 @@ public class Measuring {
         }
     }
 
-    public int getVariableId() {
+    public long getVariableId() {
         List<Variable> variableList = Configuration.getInstance().variableManager.getAllVariableList();
         char[] binaryString = new char[32];
         for (int ii = 0; ii < binaryString.length; ii++) {
@@ -57,7 +57,7 @@ public class Measuring {
                 binaryString[variable.deviceIndex - 1] = '1';
             }
         }
-        return Integer.parseInt(String.valueOf(binaryString), 2);
+        return Long.parseLong(String.valueOf(binaryString), 2);
     }
 
 }

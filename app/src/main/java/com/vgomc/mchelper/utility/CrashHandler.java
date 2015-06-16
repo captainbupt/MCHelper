@@ -5,11 +5,14 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
+import android.os.Environment;
 import android.os.Looper;
 import android.text.format.Time;
 import android.util.Log;
 import android.view.Gravity;
 import android.widget.Toast;
+
+import com.vgomc.mchelper.transmit.file.FileServiceProvider;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -186,8 +189,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
             int time = t.hour * 10000 + t.minute * 100 + t.second;
             String fileName = "crash-" + date + "-" + time
                     + CRASH_REPORTER_EXTENSION;
-            FileOutputStream trace = mContext.openFileOutput(fileName,
-                    Context.MODE_PRIVATE);
+            FileOutputStream trace = new FileOutputStream(FileServiceProvider.getExternalPath(mContext) + File.separator + fileName);
             mDeviceCrashInfo.store(trace, "");
             trace.flush();
             trace.close();

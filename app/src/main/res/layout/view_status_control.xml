@@ -4,78 +4,100 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <org.holoeverywhere.widget.LinearLayout
+    <com.vgomc.mchelper.widget.StatusControlView
+        android:id="@+id/scv_view_status_control_measuring"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <org.holoeverywhere.widget.TextView
-            style="@style/layout_left_style"
-            android:text="@string/status_control_measuring" />
-
-        <org.holoeverywhere.widget.FrameLayout style="@style/layout_right_style">
-
-            <org.holoeverywhere.widget.Switch
-                android:id="@+id/sw_view_status_control_measuring"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOff="@string/status_control_measuring_pause"
-                android:textOn="@string/status_control_measuring_start"
-                android:textSize="@dimen/text_size_medium" />
-        </org.holoeverywhere.widget.FrameLayout>
-    </org.holoeverywhere.widget.LinearLayout>
+        android:layout_height="wrap_content" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/color_divider_line" />
 
-    <org.holoeverywhere.widget.LinearLayout
+    <com.vgomc.mchelper.widget.StatusControlView
+        android:id="@+id/scv_view_status_control_battery_1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <org.holoeverywhere.widget.TextView
-            style="@style/layout_left_style"
-            android:text="@string/status_control_network" />
-
-        <org.holoeverywhere.widget.FrameLayout style="@style/layout_right_style">
-
-            <org.holoeverywhere.widget.Switch
-                android:id="@+id/sw_view_status_control_network"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOff="@string/status_control_network_close"
-                android:textOn="@string/status_control_network_start"
-                android:textSize="@dimen/text_size_medium" />
-        </org.holoeverywhere.widget.FrameLayout>
-    </org.holoeverywhere.widget.LinearLayout>
+        android:layout_height="wrap_content" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/color_divider_line" />
 
-    <org.holoeverywhere.widget.LinearLayout
+    <com.vgomc.mchelper.widget.StatusControlView
+        android:id="@+id/scv_view_status_control_battery_2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content" />
 
-        <org.holoeverywhere.widget.TextView
-            style="@style/layout_left_style"
-            android:text="@string/status_control_bluetooth" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_divider_line" />
 
-        <org.holoeverywhere.widget.FrameLayout style="@style/layout_right_style">
+    <com.vgomc.mchelper.widget.StatusControlView
+        android:id="@+id/scv_view_status_control_battery_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-            <org.holoeverywhere.widget.Switch
-                android:id="@+id/sw_view_status_control_bluetooth"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOff="@string/status_control_bluetooth_close"
-                android:textOn="@string/status_control_bluetooth_start"
-                android:textSize="@dimen/text_size_medium" />
-        </org.holoeverywhere.widget.FrameLayout>
-    </org.holoeverywhere.widget.LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_divider_line" />
+
+    <com.vgomc.mchelper.widget.StatusControlView
+        android:id="@+id/scv_view_status_control_battery_4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_divider_line" />
+
+    <com.vgomc.mchelper.widget.StatusControlView
+        android:id="@+id/scv_view_status_control_battery_5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_divider_line" />
+
+    <com.vgomc.mchelper.widget.StatusControlView
+        android:id="@+id/scv_view_status_control_battery_6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_divider_line" />
+
+    <com.vgomc.mchelper.widget.StatusControlView
+        android:id="@+id/scv_view_status_control_battery_7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_divider_line" />
+
+    <com.vgomc.mchelper.widget.StatusControlView
+        android:id="@+id/scv_view_status_control_network"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_divider_line" />
+
+    <com.vgomc.mchelper.widget.StatusControlView
+        android:id="@+id/scv_view_status_control_bluetooth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <View
         android:layout_width="match_parent"

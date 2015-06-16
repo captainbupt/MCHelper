@@ -1,5 +1,7 @@
 package com.vgomc.mchelper.Entity.bluetooth.setting;
 
+import com.vgomc.mchelper.Entity.setting.Battery;
+
 /**
  * Created by weizhouh on 6/12/2015.
  */
@@ -7,14 +9,14 @@ public class BatterySettingEntity extends BaseBluetoothSettingEntity {
 
     String subject;
     int mode;
-    int startTime;
-    int warmTime;
+    long startTime;
+    long warmTime;
 
-    public BatterySettingEntity(String subject, int mode, int startTime, int warmTime) {
-        this.subject = subject;
-        this.mode = mode;
-        this.startTime = startTime;
-        this.warmTime = warmTime;
+    public BatterySettingEntity(Battery battery) {
+        this.subject = battery.subject;
+        this.mode = battery.mode;
+        this.startTime = battery.startTime;
+        this.warmTime = battery.liveTime;
     }
 
     @Override

@@ -5,10 +5,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.vgomc.mchelper.Entity.bluetooth.BaseBluetoothEntity;
+import com.vgomc.mchelper.Entity.bluetooth.inquiry.BatteryStatusEntity;
+import com.vgomc.mchelper.Entity.bluetooth.inquiry.BluetoothStatusEntity;
 import com.vgomc.mchelper.Entity.bluetooth.inquiry.DeviceParameterEntity;
 import com.vgomc.mchelper.Entity.bluetooth.inquiry.DeviceStatusEntity;
 import com.vgomc.mchelper.Entity.bluetooth.inquiry.DeviceTimeEntity;
 import com.vgomc.mchelper.Entity.bluetooth.inquiry.GPRSStatusEntity;
+import com.vgomc.mchelper.Entity.bluetooth.inquiry.MeasurePendEntity;
 import com.vgomc.mchelper.Entity.bluetooth.inquiry.MemoryStatusEntity;
 import com.vgomc.mchelper.Entity.bluetooth.inquiry.SDCardStatusEntity;
 import com.vgomc.mchelper.base.BaseCollapseAdapter;
@@ -43,10 +46,14 @@ public class StatusFragmentAdapter extends BaseCollapseAdapter {
         MemoryStatusEntity memoryStatusEntity = (MemoryStatusEntity) entityList.get(3);
         SDCardStatusEntity sdCardStatusEntity = (SDCardStatusEntity) entityList.get(4);
         GPRSStatusEntity gprsStatusEntity = (GPRSStatusEntity) entityList.get(5);
+        MeasurePendEntity measurePendEntity = (MeasurePendEntity) entityList.get(6);
+        BluetoothStatusEntity bluetoothStatusEntity = (BluetoothStatusEntity) entityList.get(7);
+        BatteryStatusEntity batteryStatusEntity = (BatteryStatusEntity) entityList.get(8);
         ((SystemView) mList.get(0)).setData(deviceParameterEntity.model + "/" + deviceParameterEntity.version, deviceParameterEntity.uid, deviceTimeEntity.time);
         ((StatusView) mList.get(1)).setData(deviceStatusEntity.getBattery(), deviceStatusEntity.getFlagRepresentation(), deviceStatusEntity.getGPS());
         ((StorageView) mList.get(2)).setData(memoryStatusEntity.used, memoryStatusEntity.total, sdCardStatusEntity.total - sdCardStatusEntity.free, sdCardStatusEntity.total);
         ((NetworkView) mList.get(3)).setData(GPRSStatusEntity.STATUS_REPRESENTATION[gprsStatusEntity.status], gprsStatusEntity.netName, gprsStatusEntity.strength, gprsStatusEntity.errorRate, gprsStatusEntity.getFlagRepresentation(), gprsStatusEntity.onTime, gprsStatusEntity.waitTime, gprsStatusEntity.retryTimes);
+        ((ControlView) mList.get(4)).setData(measurePendEntity.pendTime, batteryStatusEntity.onTimes, bluetoothStatusEntity.getStatus());
         notifyDataSetChanged();
     }
 

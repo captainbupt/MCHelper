@@ -66,9 +66,10 @@ public class SettingFragment extends BaseListFragment {
                                 configuration.name = deviceParameterEntity.name;
                                 configuration.password = deviceParameterEntity.key;
                                 configuration.timeZone = deviceParameterEntity.zone;
-                                configuration.bluetoothTimeOn = deviceParameterEntity.bluetoothTime == 0;
+                                configuration.bluetoothTimeOn = deviceParameterEntity.bluetoothTime > 0;
                                 configuration.bluetoothTime = deviceParameterEntity.bluetoothTime;
                                 RS485Channel rs485Channel = (RS485Channel) configuration.channelMap.get(Channel.SUBJECT_RS485);
+                                rs485Channel.slaveAddress = deviceParameterEntity.index;
                                 rs485Channel.baudRate = deviceParameterEntity.rating;
                                 rs485Channel.setProtocol(deviceParameterEntity.protocol);
                                 configuration.channelMap.put(Channel.SUBJECT_RS485, rs485Channel);
@@ -108,11 +109,11 @@ public class SettingFragment extends BaseListFragment {
                                 }
                                 configuration.measuringList.clear();
                                 for (int ii = 0; ii < measurePlanEntity.measuringArray.length; ii++) {
-                                    configuration.measuringList.add(measurePlanEntity.measuringArray[ii]);
+                                    configuration.measuringList.set(ii, measurePlanEntity.measuringArray[ii]);
                                 }
                                 configuration.storageList.clear();
                                 for (int ii = 0; ii < storageTableEntity.storageArray.length; ii++) {
-                                    configuration.storageList.add(storageTableEntity.storageArray[ii]);
+                                    configuration.storageList.set(ii, storageTableEntity.storageArray[ii]);
                                 }
                                 configuration.network = gprsParamEntity.network;
                                 Configuration.setInstance(configuration);
@@ -124,11 +125,22 @@ public class SettingFragment extends BaseListFragment {
     }
 
     public void writeSettingToDevice() {
-
+        new AlertDialog.Builder(mContext).setTitle(R.string.menu_action_bar_write_to_device_confirm)
+                .setPositiveButton(R.string.dialog_confirm, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        BlueToothSeriveProvider.doWriteConfiguration(mContext, Configuration.getInstance(), new BlueToothSeriveProvider.OnBluetoothCompletedListener() {
+                            @Override
+                            public void onCompleted(List<BaseBluetoothEntity> bluetoothEntities) {
+                                showToast(R.string.menu_action_bar_write_to_file_success);
+                            }
+                        });
+                    }
+                }).setNegativeButton(R.string.dialog_cancel, null).show();
     }
 
     public void readSettingFromFile() {
-        final String[] configurationFiles = FileServiceProvider.getConfigurationFileNames();
+        final String[] configurationFiles = FileServiceProvider.getConfigurationFileNames(mContext);
         if (configurationFiles == null || configurationFiles.length == 0) {
             showToast(R.string.menu_action_bar_read_from_file_empty);
             return;
@@ -140,7 +152,7 @@ public class SettingFragment extends BaseListFragment {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Configuration configuration = FileServiceProvider.readObjectFromFile(FileServiceProvider.getExternalStoragePath() + File.separator + configurationFiles[which]);
+                        Configuration configuration = FileServiceProvider.readObjectFromFile(FileServiceProvider.getExternalConfigurationPath(mContext) + File.separator + configurationFiles[which]);
                         if (configuration == null) {
                             showToast(R.string.menu_action_bar_read_from_file_fail);
                         } else {
@@ -163,8 +175,7 @@ public class SettingFragment extends BaseListFragment {
                         if (input.equals("")) {
                             showToast(R.string.menu_action_bar_write_to_file_input_empty);
                         } else {
-                            String path = FileServiceProvider.getExternalStoragePath() + File.separator + input + FileServiceProvider.SUFFIX;
-                            System.out.println("path: " + path);
+                            String path = FileServiceProvider.getExternalConfigurationPath(mContext) + File.separator + input + FileServiceProvider.SUFFIX_CONFIGURATION;
                             File file = new File(path);
                             if (file.exists()) {
                                 showReplaceDialog(path);

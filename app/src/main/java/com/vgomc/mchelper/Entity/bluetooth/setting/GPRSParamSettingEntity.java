@@ -19,6 +19,6 @@ public class GPRSParamSettingEntity extends BaseBluetoothSettingEntity {
 
     @Override
     public String getRequest() {
-        return String.format("AT+GPRSSET=%d,%s,%d", onTime, server, port);
+        return String.format("AT+GPRSSET=%d,\"%s\",%d", onTime, server, port);
     }
 }

@@ -29,7 +29,7 @@ public abstract class BaseBluetoothEntity {
     // 返回true，则蓝牙模块不会继续后续命令的交换
     // 返回false， 则忽视当前错误，继续执行后续命令
     public boolean parseErrorCode(Context context, int errorCode) {
-        new AlertDialog.Builder(context).setTitle("错误代码: " + errorCode).show();
+        new AlertDialog.Builder(context).setTitle("错误代码: " + errorCode).setMessage("发送命令： "+getRequest()).show();
         return true;
     }
 

@@ -10,11 +10,11 @@ public class ChannelSettingEntity extends BaseBluetoothSettingEntity {
     String subject;
     String mode;
 
-    public ChannelSettingEntity(String subject, int mode) {
-        this.subject = subject;
-        if (mode == Channel.TYPE_SIGNAL_CURRENT) {
+    public ChannelSettingEntity(Channel channel) {
+        this.subject = channel.subject;
+        if (channel.signalType == Channel.TYPE_SIGNAL_CURRENT) {
             this.mode = "C";
-        } else if (mode == Channel.TYPE_SIGNAL_VOLTAGE) {
+        } else if (channel.signalType == Channel.TYPE_SIGNAL_VOLTAGE) {
             this.mode = "V";
         } else {
             this.mode = "N";

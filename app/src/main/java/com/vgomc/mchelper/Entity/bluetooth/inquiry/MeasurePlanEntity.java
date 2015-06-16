@@ -27,6 +27,7 @@ public class MeasurePlanEntity extends BaseBluetoothEntity {
                 measuring.endTime = Long.parseLong(measuringInfo[1]) * 60000l;
                 measuring.interval = Integer.parseInt(measuringInfo[2]);
                 measuring.setVariableData(Integer.parseInt(measuringInfo[3], 16));
+                measuring.isOn = true;
                 measuringArray[ii] = measuring;
             }
         } catch (Exception e) {

@@ -31,13 +31,13 @@ public class DeviceParameterEntity extends BaseBluetoothEntity {
         String[] datas = data.split(",");
         try {
             uid = datas[0];
-            model = datas[1].replace("\"", "").replace("\"", "");
-            version = datas[2].replace("\"","").replace("\"","");
+            model = datas[1].replace("\"", "");
+            version = datas[2].replace("\"", "");
             index = Integer.parseInt(datas[3]);
-            name = datas[4];
+            name = datas[4].replace("\"","");
             zone = Integer.parseInt(datas[5]);
             bluetoothTime = Integer.parseInt(datas[6]);
-            key = datas[7];
+            key = datas[7].replace("\"","");
             rating = Integer.parseInt(datas[8]);
             protocol = datas[9];
             lastRead = Integer.parseInt(datas[10]);

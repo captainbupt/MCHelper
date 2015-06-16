@@ -1,7 +1,15 @@
 package com.vgomc.mchelper.Entity.bluetooth.inquiry;
 
+import android.content.Context;
+import android.text.TextUtils;
+
 import com.vgomc.mchelper.Entity.bluetooth.BaseBluetoothEntity;
+import com.vgomc.mchelper.Entity.setting.Configuration;
 import com.vgomc.mchelper.Entity.setting.Variable;
+import com.vgomc.mchelper.Entity.setting.VariableManager;
+import com.vgomc.mchelper.transmit.file.FileServiceProvider;
+
+import java.io.IOException;
 
 /**
  * Created by weizhouh on 6/12/2015.
@@ -9,6 +17,16 @@ import com.vgomc.mchelper.Entity.setting.Variable;
 public class VariableEntity extends BaseBluetoothEntity {
 
     public Variable[] variableArray;
+    String fileName;
+    Context context;
+
+    public VariableEntity() {
+    }
+
+    public VariableEntity(Context context, String fileName) {
+        this.context = context;
+        this.fileName = fileName;
+    }
 
     @Override
     public String getRequest() {
@@ -41,6 +59,45 @@ public class VariableEntity extends BaseBluetoothEntity {
             e.printStackTrace();
             return false;
         }
+        if (TextUtils.isEmpty(fileName)) {
+            return true;
+        }
+        try {
+            writeNameToFile(context, fileName, variableArray);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
         return true;
+    }
+
+    public void writeNameToFile(Context context, String fileName, Variable[] variableArray) throws IOException {
+        StringBuilder builder = new StringBuilder();
+        builder.append("变量组,存储表,时间,电池电压,备用电压,时钟电压,经度,纬度,海拔,设备状态");
+        for (int ii = 0; ii < VariableManager.variableMaxCount; ii++) {
+            String name;
+            if (ii < variableArray.length) {
+                name = variableArray[ii].name;
+            } else {
+                name = "";
+            }
+            builder.append(name);
+            builder.append(",实时值");
+            builder.append(name);
+            builder.append(",平均值");
+            builder.append(name);
+            builder.append(",最大值");
+            builder.append(name);
+            builder.append(",最小值");
+            builder.append(name);
+            builder.append(",时段累积");
+            builder.append(name);
+            builder.append(",永久累积");
+            builder.append(name);
+            builder.append(",最大值时间");
+            builder.append(name);
+            builder.append(",最小值时间");
+        }
+        FileServiceProvider.saveRecord(context, fileName, builder.toString());
     }
 }

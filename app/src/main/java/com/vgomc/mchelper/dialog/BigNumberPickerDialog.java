@@ -2,8 +2,11 @@ package com.vgomc.mchelper.dialog;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.view.MotionEvent;
+import android.view.View;
 
 import com.vgomc.mchelper.R;
+import com.vgomc.mchelper.transmit.bluetooth.BlueToothSeriveProvider;
 import com.vgomc.mchelper.widget.MyBigNumberPicker;
 
 import org.holoeverywhere.app.AlertDialog;
@@ -25,4 +28,5 @@ public class BigNumberPickerDialog {
                 }).create();
 
     }
+
 }

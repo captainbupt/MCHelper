@@ -19,6 +19,8 @@ public class Variable {
     public int registerType = 0;
     public int dataType = 0;
 
+    public Variable(){};
+
     public Variable(String subjectName, boolean isVariableOn) {
         this.subjectName = subjectName;
         this.isVariableOn = isVariableOn;

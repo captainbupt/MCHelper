@@ -28,7 +28,11 @@ public class BatteryStatusEntity extends BaseBluetoothEntity {
                 subjects[ii] = batteryString[0];
                 String[] batteryInfo = batteryString[1].split(",");
                 isOns[ii] = Integer.parseInt(batteryInfo[0]) == 1;
-                onTimes[ii] = Integer.parseInt(batteryInfo[1]);
+                if (isOns[ii]) {
+                    onTimes[ii] = Integer.parseInt(batteryInfo[1]);
+                } else {
+                    onTimes[ii] = 0;
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

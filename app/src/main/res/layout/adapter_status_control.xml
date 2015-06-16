@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <org.holoeverywhere.widget.TextView
+        android:id="@+id/tv_adapter_status_control_subject"
+        style="@style/layout_left_style" />
+
+    <org.holoeverywhere.widget.LinearLayout
+        style="@style/layout_right_style"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <org.holoeverywhere.widget.Button
+            android:id="@+id/btn_adapter_status_control_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_medium" />
+
+        <org.holoeverywhere.widget.Button
+            android:id="@+id/btn_adapter_status_control_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_medium" />
+
+        <org.holoeverywhere.widget.TextView
+            android:id="@+id/tv_adapter_status_control_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_medium" />
+    </org.holoeverywhere.widget.LinearLayout>
+</LinearLayout>

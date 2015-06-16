@@ -55,8 +55,8 @@ public class SystemInfoView extends BaseCollapsibleView {
             mNameEditText.setText(Configuration.getInstance().name);
             mPasswordEditText.setText(Configuration.getInstance().password);
             mTimeZoneTextView.setText(Configuration.getInstance().timeZone + "");
-            mBluetoothTimeSwitch.setChecked(Configuration.getInstance().bluetoothTimeOn);
             mBluetoothTimeEditText.setText(Configuration.getInstance().bluetoothTime + "");
+            mBluetoothTimeSwitch.setChecked(Configuration.getInstance().bluetoothTimeOn);
             if (Configuration.getInstance().bluetoothTimeOn) {
                 showBluetooth();
             } else {
@@ -137,12 +137,14 @@ public class SystemInfoView extends BaseCollapsibleView {
             mBluetoothTimeEditText.setVisibility(View.GONE);
             mBluetoothTimeUnitTextView.setVisibility(View.GONE);
             Configuration.getInstance().bluetoothTimeOn = false;
+            Configuration.getInstance().bluetoothTime = 0;
         }
 
         private void showBluetooth() {
             mBluetoothTimeEditText.setVisibility(View.VISIBLE);
             mBluetoothTimeUnitTextView.setVisibility(View.VISIBLE);
             Configuration.getInstance().bluetoothTimeOn = true;
+            Configuration.getInstance().bluetoothTime = Integer.parseInt(mBluetoothTimeEditText.getText().toString());
         }
     }
 }

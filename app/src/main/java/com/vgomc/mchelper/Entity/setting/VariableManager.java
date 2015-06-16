@@ -12,7 +12,7 @@ import java.util.Vector;
  */
 public class VariableManager implements Serializable {
     // 最大variable数量
-    public int variableMaxCount = 17;
+    public static int variableMaxCount = 17;
 
     Map<String, List<Variable>> mVariableMap;
     // 自己维护一个index， 保证每个variable都有唯一ID，不论是否打开

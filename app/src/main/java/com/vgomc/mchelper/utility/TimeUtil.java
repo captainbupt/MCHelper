@@ -45,4 +45,9 @@ public class TimeUtil {
         return df.format(new Date(time));
     }
 
+    public static String long2TimeString(long time) {
+        int[] timeArray = long2timeArray(time);
+        return timeArray[0] + "时" + timeArray[1] + "分" + timeArray[2] + "秒";
+    }
+
 }

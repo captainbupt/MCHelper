@@ -39,6 +39,7 @@ public class Channel implements Serializable, Cloneable {
     public static final String SUBJECT_SHT = "SHT";
     public static final String SUBJECT_RS485 = "RS485";
     public static final String SUBJECT_SDI = "SDI";
+    public static final String[] SUBJECTS = new String[]{SUBJECT_SHT, SUBJECT_P2, SUBJECT_P3, SUBJECT_AN0, SUBJECT_AN1, SUBJECT_AN2, SUBJECT_AN3, SUBJECT_AN4, SUBJECT_AN5, SUBJECT_AN6, SUBJECT_AN7, SUBJECT_AN8, SUBJECT_AN9, SUBJECT_AN10, SUBJECT_AN11, SUBJECT_RS485, SUBJECT_SDI};
 
 
     public static final int TYPE_SIGNAL_NORMAL = -1;
