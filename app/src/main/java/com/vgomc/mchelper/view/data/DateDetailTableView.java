@@ -1,14 +1,25 @@
 package com.vgomc.mchelper.view.data;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.text.InputType;
+import android.view.View;
 
+import com.vgomc.mchelper.Entity.bluetooth.BaseBluetoothEntity;
 import com.vgomc.mchelper.Entity.data.VariableData;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.base.BaseCollapsibleContentView;
 import com.vgomc.mchelper.base.BaseCollapsibleView;
+import com.vgomc.mchelper.transmit.bluetooth.BlueToothSeriveProvider;
 import com.vgomc.mchelper.utility.TimeUtil;
+import com.vgomc.mchelper.utility.ToastUtil;
 
+import org.holoeverywhere.app.AlertDialog;
+import org.holoeverywhere.widget.Button;
+import org.holoeverywhere.widget.EditText;
 import org.holoeverywhere.widget.TextView;
+
+import java.util.List;
 
 /**
  * Created by weizhouh on 6/6/2015.
@@ -16,12 +27,13 @@ import org.holoeverywhere.widget.TextView;
 public class DateDetailTableView extends BaseCollapsibleView {
 
     private VariableData mVariableData;
-    private int mIndex;
+    private View.OnClickListener setAccumulateListener;
 
-    public DateDetailTableView(Context context, int index, VariableData variableData) {
+    public DateDetailTableView(Context context, int index, VariableData variableData, View.OnClickListener setAccumulateListener) {
         super(context);
         this.mVariableData = variableData;
         setTitle(getResources().getString(R.string.data_current_detail_table) + index);
+        this.setAccumulateListener = setAccumulateListener;
         setContentView(new DataDetailTableContentView(context));
     }
 
@@ -35,6 +47,7 @@ public class DateDetailTableView extends BaseCollapsibleView {
         private TextView mMinTimeTextView;
         private TextView mPeriodTextView;
         private TextView mEverTextView;
+        private Button mResetButton;
 
         public DataDetailTableContentView(Context context) {
             super(context);
@@ -56,6 +69,7 @@ public class DateDetailTableView extends BaseCollapsibleView {
             mMinTimeTextView = (TextView) findViewById(R.id.tv_view_data_detail_table_min_time);
             mPeriodTextView = (TextView) findViewById(R.id.tv_view_data_detail_table_period);
             mEverTextView = (TextView) findViewById(R.id.tv_view_data_detail_table_ever);
+            mResetButton = (Button) findViewById(R.id.btn_view_data_detail_table_reset);
         }
 
         private void initData() {
@@ -67,6 +81,7 @@ public class DateDetailTableView extends BaseCollapsibleView {
             mMinTimeTextView.setText(TimeUtil.long2HMString(mVariableData.minTime));
             mPeriodTextView.setText(mVariableData.periodTotal + "");
             mEverTextView.setText(mVariableData.everTotal + "");
+            mResetButton.setOnClickListener(setAccumulateListener);
         }
 
         @Override

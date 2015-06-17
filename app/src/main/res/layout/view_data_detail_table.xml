@@ -148,7 +148,7 @@
                 android:textSize="@dimen/text_size_medium" />
 
             <org.holoeverywhere.widget.Button
-                android:id="@+id/tv_view_data_detail_table_reset"
+                android:id="@+id/btn_view_data_detail_table_reset"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/data_current_detail_reset"

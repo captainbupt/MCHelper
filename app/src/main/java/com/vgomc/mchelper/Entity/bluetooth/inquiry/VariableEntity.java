@@ -8,7 +8,12 @@ import com.vgomc.mchelper.Entity.setting.Configuration;
 import com.vgomc.mchelper.Entity.setting.Variable;
 import com.vgomc.mchelper.Entity.setting.VariableManager;
 import com.vgomc.mchelper.transmit.file.FileServiceProvider;
+import com.vgomc.mchelper.utility.ToastUtil;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 
 /**
@@ -59,13 +64,23 @@ public class VariableEntity extends BaseBluetoothEntity {
             e.printStackTrace();
             return false;
         }
-        if (TextUtils.isEmpty(fileName)) {
+        if (TextUtils.isEmpty(fileName) || context == null) {
             return true;
         }
+        IOException ioException = null;
         try {
             writeNameToFile(context, fileName, variableArray);
         } catch (IOException e) {
-            e.printStackTrace();
+            ioException = e;
+            ToastUtil.showToast(context, e.toString());
+            try {
+                FileWriter fileWriter = new FileWriter(FileServiceProvider.getExternalPath(context) + File.separator + "crash.info");
+                fileWriter.append(ioException.toString());
+                fileWriter.flush();
+                fileWriter.close();
+            } catch (IOException e1) {
+                e.printStackTrace();
+            }
             return false;
         }
         return true;

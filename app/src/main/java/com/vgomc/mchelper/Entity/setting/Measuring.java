@@ -35,13 +35,17 @@ public class Measuring {
     }
 
     public void setVariableData(int variableIDs) {
+        System.out.println("ids: " + variableIDs);
         variableIndexList.clear();
         for (int ii = 1; variableIDs != 0; variableIDs /= 2, ii++) {
             if (variableIDs % 2 == 1) {
+                System.out.println("ii: " + ii);
                 Variable variable = Configuration.getInstance().variableManager.getVariableByDeviceIndex(ii);
                 if (variable != null) {
                     variableIndexList.add(variable.index);
                 }
+            } else {
+                System.out.println("0");
             }
         }
     }

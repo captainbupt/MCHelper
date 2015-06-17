@@ -22,7 +22,6 @@ public class FileServiceProvider {
     public static final String SUFFIX_RECORD = ".csv";
 
     public static boolean writeObjectToFile(Configuration configuration, String path) {
-        System.out.println(path);
         XStream xstream = new XStream();
         String xml = xstream.toXML(configuration);
         File file = new File(path);
@@ -43,7 +42,7 @@ public class FileServiceProvider {
         return true;
     }
 
-    public static Configuration readObjectFromFile(String path){
+    public static Configuration readObjectFromFile(String path) {
         File file = new File(path);
         if (file.isDirectory())
             return null;
@@ -62,7 +61,6 @@ public class FileServiceProvider {
             }
         } else {
             directoryPath = context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS).getAbsolutePath();
-            System.out.println(directoryPath);
         }
         return directoryPath;
     }
@@ -89,7 +87,6 @@ public class FileServiceProvider {
 
     public static void saveRecord(Context context, String fileName, String record) throws IOException {
         File file = new File(getExternalRecordPath(context) + File.separator + fileName + SUFFIX_RECORD);
-        System.out.println(file.getAbsoluteFile());
         if (!file.exists()) {
             file.createNewFile();
         }

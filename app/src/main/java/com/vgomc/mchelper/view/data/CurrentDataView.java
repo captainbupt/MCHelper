@@ -59,14 +59,14 @@ public class CurrentDataView extends BaseCollapsibleView {
         mRefreshButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                BlueToothSeriveProvider.doGetCurrentData(mContext, new BlueToothSeriveProvider.OnBluetoothCompletedListener() {
+                BlueToothSeriveProvider.doGetCurrentData(mContext, -1, new BlueToothSeriveProvider.OnBluetoothCompletedListener() {
                     @Override
                     public void onCompleted(List<BaseBluetoothEntity> bluetoothEntities) {
-                        List[] dataList = new List[CurrentDataEntity.COUNT_TABLE];
+                        mVariableDataLists = new List[CurrentDataEntity.COUNT_TABLE];
                         for (int ii = 0; ii < CurrentDataEntity.COUNT_TABLE; ii++) {
-                            dataList[ii] = ((CurrentDataEntity) bluetoothEntities.get(ii)).variableDataList;
+                            mVariableDataLists[ii] = ((CurrentDataEntity) bluetoothEntities.get(ii)).variableDataList;
                         }
-                        mContentView.setVariableData(dataList);
+                        mContentView.setVariableData(mVariableDataLists);
                     }
                 });
             }
@@ -77,7 +77,6 @@ public class CurrentDataView extends BaseCollapsibleView {
 
         private NoScrollListView mDataListView;
         private CurrentDataAdapter mDataAdapter;
-        private List[] mVariableDataList;
 
         public CurrentDataContentView(Context context) {
             super(context);
@@ -88,7 +87,6 @@ public class CurrentDataView extends BaseCollapsibleView {
         }
 
         public void setVariableData(List[] dataList) {
-            mVariableDataList = dataList;
             mDataAdapter.setList(dataList[0]);
         }
 

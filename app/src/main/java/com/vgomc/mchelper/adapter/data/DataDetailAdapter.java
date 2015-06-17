@@ -1,6 +1,7 @@
 package com.vgomc.mchelper.adapter.data;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -19,11 +20,13 @@ public class DataDetailAdapter extends BaseCollapseAdapter {
 
     private boolean isFirst;
     private boolean isLast;
+    private View.OnClickListener setAccumulateListener;
 
-    public DataDetailAdapter(Context context, boolean isFirst, boolean isLast) {
+    public DataDetailAdapter(Context context, boolean isFirst, boolean isLast, View.OnClickListener setAccumulateListener) {
         super(context);
         this.isFirst = isFirst;
         this.isLast = isLast;
+        this.setAccumulateListener = setAccumulateListener;
     }
 
     @Override
@@ -43,7 +46,7 @@ public class DataDetailAdapter extends BaseCollapseAdapter {
             return new DataDetailTitleView(mContext, isFirst, isLast, variableData.name);
         } else {
             VariableData variableData = (VariableData) getItem(position - 1);
-            return new DateDetailTableView(mContext, position, variableData);
+            return new DateDetailTableView(mContext, position, variableData, setAccumulateListener);
         }
     }
 }

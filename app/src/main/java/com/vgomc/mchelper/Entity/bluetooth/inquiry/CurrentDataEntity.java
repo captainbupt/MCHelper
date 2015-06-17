@@ -16,14 +16,23 @@ public class CurrentDataEntity extends BaseBluetoothEntity {
     public List<VariableData> variableDataList;
 
     public int tableIndex;
+    public int varId = -1;
 
     public CurrentDataEntity(int tableIndex) {
         this.tableIndex = tableIndex;
     }
 
+    public CurrentDataEntity(int tableIndex, int varId) {
+        this.tableIndex = tableIndex;
+        this.varId = varId;
+    }
+
     @Override
     public String getRequest() {
-        return "AT+DATA?" + tableIndex;
+        if (varId == -1)
+            return "AT+DATA?" + tableIndex;
+        else
+            return "AT+DATA?" + tableIndex + "," + varId;
     }
 
     @Override

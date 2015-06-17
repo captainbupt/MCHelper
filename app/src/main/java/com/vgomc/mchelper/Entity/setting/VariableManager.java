@@ -95,6 +95,7 @@ public class VariableManager implements Serializable {
         for (List<Variable> list : mVariableMap.values()) {
             if (list != null) {
                 for (Variable variable : list) {
+                    System.out.println("device index: " + variable.deviceIndex);
                     if (variable.deviceIndex == index) {
                         return variable;
                     }

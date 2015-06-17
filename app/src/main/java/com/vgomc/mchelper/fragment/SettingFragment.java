@@ -107,12 +107,11 @@ public class SettingFragment extends BaseListFragment {
                                 for (int ii = 0; ii < variableEntity.variableArray.length; ii++) {
                                     configuration.variableManager.setVariable(variableEntity.variableArray[ii]);
                                 }
-                                configuration.measuringList.clear();
-                                for (int ii = 0; ii < measurePlanEntity.measuringArray.length; ii++) {
+                                for (int ii = 0; ii < measurePlanEntity.measuringArray.length && ii < configuration.measuringList.size(); ii++) {
+                                    measurePlanEntity.measuringArray[ii].setVariableData(measurePlanEntity.ids[ii]);
                                     configuration.measuringList.set(ii, measurePlanEntity.measuringArray[ii]);
                                 }
-                                configuration.storageList.clear();
-                                for (int ii = 0; ii < storageTableEntity.storageArray.length; ii++) {
+                                for (int ii = 0; ii < storageTableEntity.storageArray.length && ii < configuration.measuringList.size(); ii++) {
                                     configuration.storageList.set(ii, storageTableEntity.storageArray[ii]);
                                 }
                                 configuration.network = gprsParamEntity.network;
