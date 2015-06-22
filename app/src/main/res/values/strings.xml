@@ -184,12 +184,12 @@
     <string name="data_history_download_all">全部</string>
     <string name="data_history_download_new">新记录</string>
     <string name="data_history_download_success">下载成功</string>
-    <string name="data_history_memory_backup">备份内存数据</string>
+    <string name="data_history_memory_backup">内存数据</string>
     <string name="data_history_memory_backup_success">备份成功</string>
     <string name="data_history_memory_backup_tip">请选择需要备份的数据</string>
     <string name="data_history_memory_backup_all">全部</string>
     <string name="data_history_memory_backup_record">设置和记录</string>
-    <string name="data_history_clear">清空历史记录</string>
+    <string name="data_history_clear">历史记录</string>
     <string name="data_history_clear_tip">请选择正确的设备日期</string>
     <string name="data_history_clear_success">清除历史记录成功</string>
 

@@ -27,6 +27,7 @@ public class DataFragmentAdapter extends BaseCollapseAdapter {
         mList = new ArrayList<>();
         mList.add(new CurrentDataView(mContext));
         mList.add(new HistoryDataView(mContext));
+        mList.add(new com.vgomc.mchelper.view.data.ControlView(mContext));
     }
 
     @Override

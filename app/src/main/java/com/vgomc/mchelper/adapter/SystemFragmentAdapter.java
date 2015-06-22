@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.vgomc.mchelper.base.BaseCollapseAdapter;
+import com.vgomc.mchelper.view.system.SystemCloudView;
 import com.vgomc.mchelper.view.system.SystemOperationView;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class SystemFragmentAdapter extends BaseCollapseAdapter {
         super(context);
         mList = new ArrayList<>();
         mList.add(new SystemOperationView(mContext));
+        mList.add(new SystemCloudView(mContext));
     }
 
     @Override

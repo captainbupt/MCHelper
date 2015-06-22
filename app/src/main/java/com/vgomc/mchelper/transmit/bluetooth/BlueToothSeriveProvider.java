@@ -23,6 +23,7 @@ import com.vgomc.mchelper.Entity.bluetooth.inquiry.StorageTableEntity;
 import com.vgomc.mchelper.Entity.bluetooth.inquiry.VariableEntity;
 import com.vgomc.mchelper.Entity.bluetooth.setting.AccumulateSettingEntity;
 import com.vgomc.mchelper.Entity.bluetooth.setting.BackupSettingEntity;
+import com.vgomc.mchelper.Entity.bluetooth.setting.BaseBluetoothSettingEntity;
 import com.vgomc.mchelper.Entity.bluetooth.setting.BatterySettingEntity;
 import com.vgomc.mchelper.Entity.bluetooth.setting.BatteryStatusSettingEntity;
 import com.vgomc.mchelper.Entity.bluetooth.setting.BluetoothStatusSettingEntity;
@@ -308,7 +309,7 @@ public class BlueToothSeriveProvider {
         doSendMessage(context, entities, onBluetoothCompletedListener, 10000);
     }
 
-    public static void doClearHistory(Context context, long time, OnBluetoothCompletedListener onBluetoothCompletedListener) {
+    public static void doClearHistory(Context context, String time, OnBluetoothCompletedListener onBluetoothCompletedListener) {
         List<BaseBluetoothEntity> entities = new ArrayList<>();
         entities.add(new ClearEntity(time));
         entities.add(new SaveEntity());
@@ -327,6 +328,12 @@ public class BlueToothSeriveProvider {
         entities.add(new AccumulateSettingEntity(varId, value));
         entities.add(new SaveEntity());
         doSendMessage(context, entities, onBluetoothCompletedListener, 10000);
+    }
+
+    public static void doGetDeviceInfo(Context context, OnBluetoothCompletedListener onBluetoothCompletedListener){
+        List<BaseBluetoothEntity> entities = new ArrayList<>();
+        entities.add(new DeviceParameterEntity());
+        doSendMessage(context,entities,onBluetoothCompletedListener, 10000);
     }
 
     public static void doDownload(final Context context, boolean isAll, final OnBluetoothCompletedListener onBluetoothCompletedListener) {

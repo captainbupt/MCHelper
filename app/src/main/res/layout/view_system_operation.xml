@@ -19,19 +19,6 @@
         android:background="@color/color_divider_line" />
 
     <org.holoeverywhere.widget.TextView
-        android:id="@+id/tv_view_system_operation_manager"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/offset_less"
-        android:text="@string/system_operation_manager"
-        android:textSize="@dimen/text_size_medium" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/color_divider_line" />
-
-    <org.holoeverywhere.widget.TextView
         android:id="@+id/tv_view_system_operation_update"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

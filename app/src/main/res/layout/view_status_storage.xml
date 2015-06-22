@@ -43,7 +43,7 @@
 
         <org.holoeverywhere.widget.TextView
             style="@style/layout_left_style"
-            android:text="@string/status_storage_memory" />
+            android:text="@string/status_storage_sdcard" />
 
         <org.holoeverywhere.widget.LinearLayout
             style="@style/layout_right_style"
