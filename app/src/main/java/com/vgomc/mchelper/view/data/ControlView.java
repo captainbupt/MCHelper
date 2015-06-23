@@ -5,21 +5,17 @@ import android.content.DialogInterface;
 import android.text.TextUtils;
 import android.view.View;
 
-import com.vgomc.mchelper.Entity.bluetooth.BaseBluetoothEntity;
+import com.vgomc.mchelper.entity.bluetooth.BaseBluetoothEntity;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.base.BaseCollapsibleContentView;
 import com.vgomc.mchelper.base.BaseCollapsibleView;
 import com.vgomc.mchelper.transmit.bluetooth.BlueToothSeriveProvider;
 import com.vgomc.mchelper.utility.ToastUtil;
 
-import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.app.AlertDialog;
 import org.holoeverywhere.widget.Button;
 import org.holoeverywhere.widget.EditText;
-import org.holoeverywhere.widget.TextView;
-import org.holoeverywhere.widget.datetimepicker.date.DatePickerDialog;
 
-import java.util.Calendar;
 import java.util.List;
 
 /**

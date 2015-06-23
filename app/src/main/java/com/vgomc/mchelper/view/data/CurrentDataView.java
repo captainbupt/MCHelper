@@ -2,29 +2,22 @@ package com.vgomc.mchelper.view.data;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Handler;
-import android.os.Message;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 
-import com.vgomc.mchelper.Entity.bluetooth.BaseBluetoothEntity;
-import com.vgomc.mchelper.Entity.bluetooth.inquiry.CurrentDataEntity;
-import com.vgomc.mchelper.Entity.data.VariableData;
+import com.vgomc.mchelper.entity.bluetooth.BaseBluetoothEntity;
+import com.vgomc.mchelper.entity.bluetooth.inquiry.CurrentDataEntity;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.activity.data.DataDetailActivity;
 import com.vgomc.mchelper.adapter.data.CurrentDataAdapter;
 import com.vgomc.mchelper.base.BaseCollapsibleContentView;
 import com.vgomc.mchelper.base.BaseCollapsibleView;
 import com.vgomc.mchelper.transmit.bluetooth.BlueToothSeriveProvider;
-import com.vgomc.mchelper.utility.ToastUtil;
 import com.vgomc.mchelper.widget.NoScrollListView;
 
-import org.holoeverywhere.LayoutInflater;
 import org.holoeverywhere.widget.Button;
 import org.holoeverywhere.widget.LinearLayout;
-import org.holoeverywhere.widget.ListView;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.vgomc.mchelper.Entity.setting;
+package com.vgomc.mchelper.entity.setting;
 
 import com.vgomc.mchelper.utility.TimeUtil;
 

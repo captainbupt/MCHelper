@@ -1,4 +1,4 @@
-package com.vgomc.mchelper.dialog;
+package com.vgomc.mchelper.utility;
 
 import android.content.Context;
 import android.content.DialogInterface;

@@ -2,8 +2,8 @@ package com.vgomc.mchelper.activity.setting;
 
 import android.os.Bundle;
 
-import com.vgomc.mchelper.Entity.setting.Channel;
-import com.vgomc.mchelper.Entity.setting.Configuration;
+import com.vgomc.mchelper.entity.setting.Channel;
+import com.vgomc.mchelper.entity.setting.Configuration;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.base.BaseActivity;
 import com.vgomc.mchelper.widget.MultiVariableView;

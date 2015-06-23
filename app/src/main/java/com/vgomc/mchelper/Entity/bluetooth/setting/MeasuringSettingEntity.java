@@ -1,6 +1,6 @@
-package com.vgomc.mchelper.Entity.bluetooth.setting;
+package com.vgomc.mchelper.entity.bluetooth.setting;
 
-import com.vgomc.mchelper.Entity.setting.Measuring;
+import com.vgomc.mchelper.entity.setting.Measuring;
 
 /**
  * Created by weizhouh on 6/13/2015.

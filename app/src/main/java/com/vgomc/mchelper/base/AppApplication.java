@@ -6,8 +6,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.util.DisplayMetrics;
 
-import com.vgomc.mchelper.Entity.setting.Configuration;
-import com.vgomc.mchelper.transmit.bluetooth.BluetoothHelper;
+import com.vgomc.mchelper.entity.setting.Configuration;
 import com.vgomc.mchelper.utility.CrashHandler;
 
 import org.holoeverywhere.app.Application;

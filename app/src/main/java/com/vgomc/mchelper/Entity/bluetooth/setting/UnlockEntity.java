@@ -1,10 +1,8 @@
-package com.vgomc.mchelper.Entity.bluetooth.setting;
+package com.vgomc.mchelper.entity.bluetooth.setting;
 
 import android.content.Context;
 import android.content.DialogInterface;
 
-import com.vgomc.mchelper.Entity.bluetooth.BaseBluetoothEntity;
-import com.vgomc.mchelper.Entity.setting.Channel;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.utility.SP;
 

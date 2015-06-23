@@ -1,34 +1,24 @@
 package com.vgomc.mchelper.activity;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.ViewConfiguration;
 import android.widget.RadioGroup;
-import android.widget.SpinnerAdapter;
 
-import com.thoughtworks.xstream.XStream;
-import com.vgomc.mchelper.Entity.setting.Configuration;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.adapter.MainFragmentPagerAdapter;
 import com.vgomc.mchelper.base.BaseActivity;
 import com.vgomc.mchelper.fragment.SettingFragment;
 import com.vgomc.mchelper.transmit.bluetooth.BluetoothHelper;
-import com.vgomc.mchelper.transmit.file.FileServiceProvider;
-import com.vgomc.mchelper.utility.ToastUtil;
 
 import org.holoeverywhere.app.AlertDialog;
-import org.holoeverywhere.widget.ArrayAdapter;
 import org.holoeverywhere.widget.EditText;
 import org.holoeverywhere.widget.ViewPager;
 
-import java.io.File;
 import java.lang.reflect.Field;
-import java.security.Policy;
 
 
 public class MainActivity extends BaseActivity {

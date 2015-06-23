@@ -6,12 +6,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CompoundButton;
 
-import com.vgomc.mchelper.Entity.setting.Channel;
-import com.vgomc.mchelper.Entity.setting.Configuration;
-import com.vgomc.mchelper.Entity.setting.Measuring;
-import com.vgomc.mchelper.Entity.setting.Variable;
+import com.vgomc.mchelper.entity.setting.Configuration;
+import com.vgomc.mchelper.entity.setting.Measuring;
+import com.vgomc.mchelper.entity.setting.Variable;
 import com.vgomc.mchelper.R;
-import com.vgomc.mchelper.dialog.BigNumberPickerDialog;
+import com.vgomc.mchelper.utility.BigNumberPickerDialog;
 import com.vgomc.mchelper.utility.TimeUtil;
 
 import org.holoeverywhere.LayoutInflater;

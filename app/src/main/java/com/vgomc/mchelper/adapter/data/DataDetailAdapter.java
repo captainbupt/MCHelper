@@ -1,17 +1,13 @@
 package com.vgomc.mchelper.adapter.data;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.vgomc.mchelper.Entity.data.VariableData;
+import com.vgomc.mchelper.entity.data.VariableData;
 import com.vgomc.mchelper.base.BaseCollapseAdapter;
-import com.vgomc.mchelper.base.MyBaseAdapter;
 import com.vgomc.mchelper.view.data.DataDetailTitleView;
 import com.vgomc.mchelper.view.data.DateDetailTableView;
-
-import java.util.ArrayList;
 
 /**
  * Created by weizhouh on 6/6/2015.

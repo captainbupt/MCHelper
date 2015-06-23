@@ -1,8 +1,8 @@
-package com.vgomc.mchelper.Entity.bluetooth.setting;
+package com.vgomc.mchelper.entity.bluetooth.setting;
 
 import android.content.Context;
 
-import com.vgomc.mchelper.Entity.setting.VariableManager;
+import com.vgomc.mchelper.entity.setting.VariableManager;
 import com.vgomc.mchelper.transmit.file.FileServiceProvider;
 
 import java.io.IOException;

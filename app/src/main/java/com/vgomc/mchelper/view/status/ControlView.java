@@ -4,15 +4,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 
-import com.vgomc.mchelper.Entity.bluetooth.BaseBluetoothEntity;
-import com.vgomc.mchelper.Entity.setting.Battery;
+import com.vgomc.mchelper.entity.bluetooth.BaseBluetoothEntity;
+import com.vgomc.mchelper.entity.setting.Battery;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.base.BaseCollapsibleContentView;
 import com.vgomc.mchelper.base.BaseCollapsibleView;
-import com.vgomc.mchelper.base.MyBaseAdapter;
-import com.vgomc.mchelper.dialog.BigNumberPickerDialog;
+import com.vgomc.mchelper.utility.BigNumberPickerDialog;
 import com.vgomc.mchelper.transmit.bluetooth.BlueToothSeriveProvider;
 import com.vgomc.mchelper.utility.TimeUtil;
 import com.vgomc.mchelper.utility.ToastUtil;

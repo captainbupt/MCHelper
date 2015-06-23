@@ -1,6 +1,6 @@
-package com.vgomc.mchelper.Entity.bluetooth.setting;
+package com.vgomc.mchelper.entity.bluetooth.setting;
 
-import com.vgomc.mchelper.Entity.setting.RS485Channel;
+import com.vgomc.mchelper.entity.setting.RS485Channel;
 
 /**
  * Created by weizhouh on 6/12/2015.

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.vgomc.mchelper.Entity.data.VariableData;
+import com.vgomc.mchelper.entity.data.VariableData;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.base.MyBaseAdapter;
 

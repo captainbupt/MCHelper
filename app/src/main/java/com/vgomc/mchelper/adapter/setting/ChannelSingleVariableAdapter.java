@@ -4,9 +4,9 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.vgomc.mchelper.Entity.setting.Channel;
-import com.vgomc.mchelper.Entity.setting.Configuration;
-import com.vgomc.mchelper.Entity.setting.Variable;
+import com.vgomc.mchelper.entity.setting.Channel;
+import com.vgomc.mchelper.entity.setting.Configuration;
+import com.vgomc.mchelper.entity.setting.Variable;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.base.MyBaseAdapter;
 import com.vgomc.mchelper.widget.DefaultFormulaTextView;

@@ -5,9 +5,9 @@ import android.content.DialogInterface;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.vgomc.mchelper.Entity.setting.Channel;
-import com.vgomc.mchelper.Entity.setting.Configuration;
-import com.vgomc.mchelper.Entity.setting.Variable;
+import com.vgomc.mchelper.entity.setting.Channel;
+import com.vgomc.mchelper.entity.setting.Configuration;
+import com.vgomc.mchelper.entity.setting.Variable;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.adapter.setting.ChannelVariableAdapter;
 import com.vgomc.mchelper.utility.ToastUtil;
@@ -16,8 +16,6 @@ import org.holoeverywhere.LayoutInflater;
 import org.holoeverywhere.app.AlertDialog;
 import org.holoeverywhere.widget.Button;
 import org.holoeverywhere.widget.LinearLayout;
-
-import java.lang.reflect.Field;
 
 /**
  * Created by weizhouh on 5/26/2015.

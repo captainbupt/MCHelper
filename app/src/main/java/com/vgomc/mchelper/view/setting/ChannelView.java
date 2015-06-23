@@ -4,9 +4,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.view.View;
 
-import com.vgomc.mchelper.Entity.setting.Channel;
-import com.vgomc.mchelper.Entity.setting.Configuration;
-import com.vgomc.mchelper.Entity.setting.Variable;
+import com.vgomc.mchelper.entity.setting.Channel;
+import com.vgomc.mchelper.entity.setting.Configuration;
+import com.vgomc.mchelper.entity.setting.Variable;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.adapter.setting.ChannelMultipleVariableAdapter;
 import com.vgomc.mchelper.adapter.setting.ChannelSingleVariableAdapter;

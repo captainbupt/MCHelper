@@ -1,6 +1,5 @@
-package com.vgomc.mchelper.Entity.setting;
+package com.vgomc.mchelper.entity.setting;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 

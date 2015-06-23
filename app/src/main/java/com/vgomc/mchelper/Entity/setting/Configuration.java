@@ -1,4 +1,4 @@
-package com.vgomc.mchelper.Entity.setting;
+package com.vgomc.mchelper.entity.setting;
 
 import java.util.ArrayList;
 import java.util.HashMap;

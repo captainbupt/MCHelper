@@ -1,10 +1,8 @@
 package com.vgomc.mchelper.fragment;
 
-import android.os.Handler;
-import android.os.Message;
 import android.view.View;
 
-import com.vgomc.mchelper.Entity.bluetooth.BaseBluetoothEntity;
+import com.vgomc.mchelper.entity.bluetooth.BaseBluetoothEntity;
 import com.vgomc.mchelper.adapter.StatusFragmentAdapter;
 import com.vgomc.mchelper.base.BaseCollapseAdapter;
 import com.vgomc.mchelper.base.BaseListFragment;

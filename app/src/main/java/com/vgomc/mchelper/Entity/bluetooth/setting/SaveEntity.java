@@ -1,4 +1,4 @@
-package com.vgomc.mchelper.Entity.bluetooth.setting;
+package com.vgomc.mchelper.entity.bluetooth.setting;
 
 /**
  * Created by weizhouh on 6/13/2015.

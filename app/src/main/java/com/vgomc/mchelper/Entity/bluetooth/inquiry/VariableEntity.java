@@ -1,18 +1,15 @@
-package com.vgomc.mchelper.Entity.bluetooth.inquiry;
+package com.vgomc.mchelper.entity.bluetooth.inquiry;
 
 import android.content.Context;
 import android.text.TextUtils;
 
-import com.vgomc.mchelper.Entity.bluetooth.BaseBluetoothEntity;
-import com.vgomc.mchelper.Entity.setting.Configuration;
-import com.vgomc.mchelper.Entity.setting.Variable;
-import com.vgomc.mchelper.Entity.setting.VariableManager;
+import com.vgomc.mchelper.entity.bluetooth.BaseBluetoothEntity;
+import com.vgomc.mchelper.entity.setting.Variable;
+import com.vgomc.mchelper.entity.setting.VariableManager;
 import com.vgomc.mchelper.transmit.file.FileServiceProvider;
 import com.vgomc.mchelper.utility.ToastUtil;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 

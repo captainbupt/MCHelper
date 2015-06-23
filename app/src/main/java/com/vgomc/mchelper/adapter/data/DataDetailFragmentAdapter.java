@@ -4,13 +4,8 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 
-import com.vgomc.mchelper.Entity.data.VariableData;
-import com.vgomc.mchelper.activity.data.DataDetailActivity;
 import com.vgomc.mchelper.fragment.DataDetailFragment;
-
-import org.holoeverywhere.widget.FrameLayout;
 
 import java.util.ArrayList;
 import java.util.List;

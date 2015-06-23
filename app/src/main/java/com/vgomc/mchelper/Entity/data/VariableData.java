@@ -1,4 +1,4 @@
-package com.vgomc.mchelper.Entity.data;
+package com.vgomc.mchelper.entity.data;
 
 import java.io.Serializable;
 

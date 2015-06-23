@@ -1,11 +1,10 @@
-package com.vgomc.mchelper.Entity.setting;
+package com.vgomc.mchelper.entity.setting;
 
 import android.content.Context;
 
 import com.vgomc.mchelper.R;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;

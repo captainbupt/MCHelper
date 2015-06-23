@@ -1,6 +1,6 @@
-package com.vgomc.mchelper.Entity.bluetooth.inquiry;
+package com.vgomc.mchelper.entity.bluetooth.inquiry;
 
-import com.vgomc.mchelper.Entity.bluetooth.BaseBluetoothEntity;
+import com.vgomc.mchelper.entity.bluetooth.BaseBluetoothEntity;
 import com.vgomc.mchelper.utility.TimeUtil;
 
 import java.text.ParseException;

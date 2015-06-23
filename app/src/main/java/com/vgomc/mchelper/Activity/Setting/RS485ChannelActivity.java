@@ -6,13 +6,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RadioGroup;
 
-import com.vgomc.mchelper.Entity.setting.Battery;
-import com.vgomc.mchelper.Entity.setting.Channel;
-import com.vgomc.mchelper.Entity.setting.Configuration;
-import com.vgomc.mchelper.Entity.setting.RS485Channel;
+import com.vgomc.mchelper.entity.setting.Channel;
+import com.vgomc.mchelper.entity.setting.Configuration;
+import com.vgomc.mchelper.entity.setting.RS485Channel;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.base.BaseActivity;
-import com.vgomc.mchelper.dialog.BigNumberPickerDialog;
+import com.vgomc.mchelper.utility.BigNumberPickerDialog;
 import com.vgomc.mchelper.widget.MultiVariableView;
 
 import org.holoeverywhere.app.AlertDialog;

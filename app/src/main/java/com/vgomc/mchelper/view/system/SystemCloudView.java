@@ -1,10 +1,6 @@
 package com.vgomc.mchelper.view.system;
 
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.mtp.MtpConstants;
-import android.net.Uri;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -14,11 +10,9 @@ import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
-import com.vgomc.mchelper.Entity.bluetooth.BaseBluetoothEntity;
-import com.vgomc.mchelper.Entity.bluetooth.inquiry.DeviceParameterEntity;
-import com.vgomc.mchelper.Entity.system.CloudData;
-import com.vgomc.mchelper.Entity.system.CloudResult;
-import com.vgomc.mchelper.Entity.system.DataValue;
+import com.vgomc.mchelper.entity.bluetooth.BaseBluetoothEntity;
+import com.vgomc.mchelper.entity.bluetooth.inquiry.DeviceParameterEntity;
+import com.vgomc.mchelper.entity.system.CloudData;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.adapter.system.CloudAdapter;
 import com.vgomc.mchelper.base.BaseCollapsibleContentView;
@@ -27,13 +21,9 @@ import com.vgomc.mchelper.transmit.bluetooth.BlueToothSeriveProvider;
 import com.vgomc.mchelper.utility.ToastUtil;
 import com.vgomc.mchelper.widget.NoScrollListView;
 
-import org.holoeverywhere.app.AlertDialog;
 import org.holoeverywhere.app.ProgressDialog;
 import org.holoeverywhere.widget.Button;
 import org.holoeverywhere.widget.LinearLayout;
-import org.holoeverywhere.widget.TextView;
-import org.holoeverywhere.widget.Toast;
-import org.json.JSONObject;
 
 import java.util.List;
 

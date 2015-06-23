@@ -1,13 +1,8 @@
-package com.vgomc.mchelper.Entity.bluetooth;
+package com.vgomc.mchelper.entity.bluetooth;
 
 import android.content.Context;
 
-import com.vgomc.mchelper.view.status.SystemView;
-
 import org.holoeverywhere.app.AlertDialog;
-
-import java.io.UnsupportedEncodingException;
-import java.util.Arrays;
 
 /**
  * Created by weizhouh on 6/1/2015.

@@ -5,9 +5,9 @@ import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.vgomc.mchelper.Entity.setting.Channel;
-import com.vgomc.mchelper.Entity.setting.Configuration;
-import com.vgomc.mchelper.Entity.setting.RS485Channel;
+import com.vgomc.mchelper.entity.setting.Channel;
+import com.vgomc.mchelper.entity.setting.Configuration;
+import com.vgomc.mchelper.entity.setting.RS485Channel;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.activity.setting.RS485ChannelActivity;
 import com.vgomc.mchelper.activity.setting.SDIChannelActivity;

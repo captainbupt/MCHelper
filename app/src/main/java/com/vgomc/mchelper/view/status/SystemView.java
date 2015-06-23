@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.TypedValue;
 import android.view.View;
 
-import com.vgomc.mchelper.Entity.bluetooth.BaseBluetoothEntity;
+import com.vgomc.mchelper.entity.bluetooth.BaseBluetoothEntity;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.base.BaseCollapsibleContentView;
 import com.vgomc.mchelper.base.BaseCollapsibleView;

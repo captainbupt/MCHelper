@@ -8,7 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CompoundButton;
 
-import com.vgomc.mchelper.Entity.setting.Configuration;
+import com.vgomc.mchelper.entity.setting.Configuration;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.base.BaseCollapsibleContentView;
 import com.vgomc.mchelper.base.BaseCollapsibleView;

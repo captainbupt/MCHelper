@@ -1,6 +1,4 @@
-package com.vgomc.mchelper.Entity.setting;
-
-import java.util.ArrayList;
+package com.vgomc.mchelper.entity.setting;
 
 /**
  * Created by weizhouh on 5/22/2015.

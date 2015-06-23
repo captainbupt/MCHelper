@@ -1,25 +1,16 @@
 package com.vgomc.mchelper.view.data;
 
 import android.content.Context;
-import android.content.DialogInterface;
-import android.text.InputType;
 import android.view.View;
 
-import com.vgomc.mchelper.Entity.bluetooth.BaseBluetoothEntity;
-import com.vgomc.mchelper.Entity.data.VariableData;
+import com.vgomc.mchelper.entity.data.VariableData;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.base.BaseCollapsibleContentView;
 import com.vgomc.mchelper.base.BaseCollapsibleView;
-import com.vgomc.mchelper.transmit.bluetooth.BlueToothSeriveProvider;
 import com.vgomc.mchelper.utility.TimeUtil;
-import com.vgomc.mchelper.utility.ToastUtil;
 
-import org.holoeverywhere.app.AlertDialog;
 import org.holoeverywhere.widget.Button;
-import org.holoeverywhere.widget.EditText;
 import org.holoeverywhere.widget.TextView;
-
-import java.util.List;
 
 /**
  * Created by weizhouh on 6/6/2015.

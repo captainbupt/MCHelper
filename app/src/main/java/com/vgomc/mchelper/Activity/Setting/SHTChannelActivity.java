@@ -1,19 +1,15 @@
 package com.vgomc.mchelper.activity.setting;
 
 import android.os.Bundle;
-import android.view.MotionEvent;
-import android.view.View;
 
-import com.vgomc.mchelper.Entity.setting.Channel;
-import com.vgomc.mchelper.Entity.setting.Configuration;
-import com.vgomc.mchelper.Entity.setting.SHTChannel;
-import com.vgomc.mchelper.Entity.setting.Variable;
+import com.vgomc.mchelper.entity.setting.Channel;
+import com.vgomc.mchelper.entity.setting.Configuration;
+import com.vgomc.mchelper.entity.setting.SHTChannel;
+import com.vgomc.mchelper.entity.setting.Variable;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.base.BaseActivity;
-import com.vgomc.mchelper.dialog.BigNumberPickerDialog;
 import com.vgomc.mchelper.widget.VariableEditView;
 
-import org.holoeverywhere.widget.EditText;
 import org.holoeverywhere.widget.TextView;
 
 import java.util.List;

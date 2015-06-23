@@ -4,14 +4,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v4.app.FragmentTransaction;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.DatePicker;
 
-import com.vgomc.mchelper.Entity.bluetooth.BaseBluetoothEntity;
-import com.vgomc.mchelper.Entity.bluetooth.inquiry.CurrentDataEntity;
+import com.vgomc.mchelper.entity.bluetooth.BaseBluetoothEntity;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.adapter.data.HistoryAdapter;
 import com.vgomc.mchelper.base.BaseCollapsibleContentView;
@@ -21,17 +18,12 @@ import com.vgomc.mchelper.transmit.file.FileServiceProvider;
 import com.vgomc.mchelper.utility.ToastUtil;
 import com.vgomc.mchelper.widget.NoScrollListView;
 
-import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.app.AlertDialog;
 import org.holoeverywhere.widget.Button;
 import org.holoeverywhere.widget.LinearLayout;
-import org.holoeverywhere.widget.TextView;
-import org.holoeverywhere.widget.Toast;
-import org.holoeverywhere.widget.datetimepicker.date.DatePickerDialog;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 /**

@@ -1,4 +1,4 @@
-package com.vgomc.mchelper.Entity.system;
+package com.vgomc.mchelper.entity.system;
 
 import org.json.JSONObject;
 

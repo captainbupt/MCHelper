@@ -6,8 +6,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RadioGroup;
 
-import com.vgomc.mchelper.Entity.setting.Battery;
-import com.vgomc.mchelper.Entity.setting.Configuration;
+import com.vgomc.mchelper.entity.setting.Battery;
+import com.vgomc.mchelper.entity.setting.Configuration;
 import com.vgomc.mchelper.R;
 
 import org.holoeverywhere.LayoutInflater;

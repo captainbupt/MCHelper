@@ -2,15 +2,12 @@ package com.vgomc.mchelper.activity.data;
 
 import android.os.Bundle;
 
-import com.vgomc.mchelper.Entity.data.VariableData;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.adapter.data.DataDetailFragmentAdapter;
 import com.vgomc.mchelper.base.BaseActivity;
 import com.vgomc.mchelper.view.data.CurrentDataView;
 
 import org.holoeverywhere.widget.ViewPager;
-
-import java.util.List;
 
 /**
  * Created by weizhouh on 6/6/2015.

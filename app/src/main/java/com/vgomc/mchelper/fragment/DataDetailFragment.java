@@ -3,9 +3,9 @@ package com.vgomc.mchelper.fragment;
 import android.content.DialogInterface;
 import android.view.View;
 
-import com.vgomc.mchelper.Entity.bluetooth.BaseBluetoothEntity;
-import com.vgomc.mchelper.Entity.bluetooth.inquiry.CurrentDataEntity;
-import com.vgomc.mchelper.Entity.data.VariableData;
+import com.vgomc.mchelper.entity.bluetooth.BaseBluetoothEntity;
+import com.vgomc.mchelper.entity.bluetooth.inquiry.CurrentDataEntity;
+import com.vgomc.mchelper.entity.data.VariableData;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.adapter.data.DataDetailAdapter;
 import com.vgomc.mchelper.base.BaseCollapseAdapter;
@@ -18,7 +18,6 @@ import org.holoeverywhere.app.AlertDialog;
 import org.holoeverywhere.widget.EditText;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**

@@ -1,7 +1,7 @@
-package com.vgomc.mchelper.Entity.bluetooth.inquiry;
+package com.vgomc.mchelper.entity.bluetooth.inquiry;
 
-import com.vgomc.mchelper.Entity.bluetooth.BaseBluetoothEntity;
-import com.vgomc.mchelper.Entity.setting.Network;
+import com.vgomc.mchelper.entity.bluetooth.BaseBluetoothEntity;
+import com.vgomc.mchelper.entity.setting.Network;
 
 /**
  * Created by weizhouh on 6/12/2015.

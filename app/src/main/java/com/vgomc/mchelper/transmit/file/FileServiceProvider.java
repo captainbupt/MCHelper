@@ -5,8 +5,7 @@ import android.os.Environment;
 import android.text.TextUtils;
 
 import com.thoughtworks.xstream.XStream;
-import com.vgomc.mchelper.Entity.setting.Configuration;
-import com.vgomc.mchelper.utility.FileUtil;
+import com.vgomc.mchelper.entity.setting.Configuration;
 
 import java.io.File;
 import java.io.FileOutputStream;
