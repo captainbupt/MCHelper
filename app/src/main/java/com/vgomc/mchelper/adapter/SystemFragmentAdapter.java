@@ -19,8 +19,8 @@ public class SystemFragmentAdapter extends BaseCollapseAdapter {
     public SystemFragmentAdapter(Context context) {
         super(context);
         mList = new ArrayList<>();
-        mList.add(new SystemOperationView(mContext));
         mList.add(new SystemCloudView(mContext));
+        mList.add(new SystemOperationView(mContext));
     }
 
     @Override

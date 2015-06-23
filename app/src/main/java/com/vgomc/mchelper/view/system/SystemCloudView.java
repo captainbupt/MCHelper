@@ -2,7 +2,9 @@ package com.vgomc.mchelper.view.system;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.mtp.MtpConstants;
+import android.net.Uri;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -117,6 +119,7 @@ public class SystemCloudView extends BaseCollapsibleView {
             super(context);
             mListView = (NoScrollListView) findViewById(R.id.nslv_system_cloud);
             mAdapter = new CloudAdapter(mContext);
+            mListView.setAdapter(mAdapter);
         }
 
         public void setData(List<Object> data) {

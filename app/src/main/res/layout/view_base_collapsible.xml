@@ -15,6 +15,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:paddingBottom="@dimen/offset_less"
+            android:paddingTop="@dimen/offset_less"
             android:textSize="@dimen/text_size_medium" />
     </org.holoeverywhere.widget.LinearLayout>
 

@@ -10,7 +10,9 @@
         style="@style/layout_left_style" />
 
     <org.holoeverywhere.widget.LinearLayout
-        style="@style/layout_right_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="@integer/radio_right"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 

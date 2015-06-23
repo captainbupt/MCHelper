@@ -53,9 +53,13 @@
             android:text="@string/status_system_time" />
 
         <org.holoeverywhere.widget.LinearLayout
-            style="@style/layout_right_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="@integer/radio_right"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/offset_less"
+            android:paddingRight="@dimen/offset_less">
 
             <org.holoeverywhere.widget.TextView
                 android:id="@+id/tv_view_status_system_time"

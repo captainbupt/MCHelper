@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.ViewConfiguration;
 import android.widget.RadioGroup;
 import android.widget.SpinnerAdapter;
 
@@ -26,6 +27,7 @@ import org.holoeverywhere.widget.EditText;
 import org.holoeverywhere.widget.ViewPager;
 
 import java.io.File;
+import java.lang.reflect.Field;
 import java.security.Policy;
 
 
@@ -40,6 +42,17 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        try {
+            ViewConfiguration config = ViewConfiguration.get(this);
+            Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
+            if(menuKeyField != null) {
+                menuKeyField.setAccessible(true);
+                menuKeyField.setBoolean(config, false);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.

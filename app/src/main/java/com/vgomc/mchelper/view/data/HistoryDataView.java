@@ -2,6 +2,8 @@ package com.vgomc.mchelper.view.data;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.app.FragmentTransaction;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -114,7 +116,15 @@ public class HistoryDataView extends BaseCollapsibleView {
         }
 
         private void initListener() {
-
+            mContentListView.setOnItemLongClickListener(new NoScrollListView.OnNoScrollItemLongClcikListener() {
+                @Override
+                public void onItemClick(View v, Object item, int position, long id) {
+                    Intent share = new Intent(Intent.ACTION_SEND);
+                    share.putExtra(Intent.EXTRA_STREAM, Uri.fromFile((File) item));
+                    share.setType("*/*");//此处可发送多种文件
+                    mContext.startActivity(Intent.createChooser(share, "Share"));
+                }
+            });
         }
 
         public void updateHistoryData() {

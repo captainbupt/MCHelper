@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 
 import com.vgomc.mchelper.Entity.setting.Channel;
 import com.vgomc.mchelper.Entity.setting.Configuration;
+import com.vgomc.mchelper.Entity.setting.Variable;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.base.MyBaseAdapter;
 import com.vgomc.mchelper.widget.DefaultFormulaTextView;
@@ -52,8 +53,14 @@ public class ChannelSingleVariableAdapter extends MyBaseAdapter {
         DefaultFormulaTextView formulaViewTextView = (DefaultFormulaTextView) convertView.findViewById(R.id.tv_adapter_setting_channel_single_formula);
         Channel channel = (Channel) getItem(position);
         subjectTextView.setText(channel.subject);
-        variableTextView.setText(channel.getVariable().get(0).name);
-        formulaViewTextView.setText(channel.getVariable().get(0).factors);
+        Variable variable = channel.getVariable().get(0);
+        if(variable.isVariableOn) {
+            variableTextView.setText(channel.getVariable().get(0).name);
+            formulaViewTextView.setText(channel.getVariable().get(0).factors);
+        }else{
+            variableTextView.setText("关闭");
+            formulaViewTextView.setVisibility(View.GONE);
+        }
         return convertView;
     }
 }

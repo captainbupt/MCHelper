@@ -14,7 +14,12 @@
             style="@style/layout_left_style"
             android:text="@string/data_history_memory_backup" />
 
-        <org.holoeverywhere.widget.FrameLayout style="@style/layout_right_style">
+        <org.holoeverywhere.widget.FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="@integer/radio_right"
+            android:paddingLeft="@dimen/offset_less"
+            android:paddingRight="@dimen/offset_less">
 
             <org.holoeverywhere.widget.Button
                 android:id="@+id/btn_view_data_control_backup"
@@ -40,7 +45,12 @@
             style="@style/layout_left_style"
             android:text="@string/data_history_clear" />
 
-        <org.holoeverywhere.widget.FrameLayout style="@style/layout_right_style">
+        <org.holoeverywhere.widget.FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="@integer/radio_right"
+            android:paddingLeft="@dimen/offset_less"
+            android:paddingRight="@dimen/offset_less">
 
             <org.holoeverywhere.widget.Button
                 android:id="@+id/btn_view_data_control_clear"

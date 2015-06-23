@@ -26,7 +26,7 @@ public class HistoryAdapter extends MyBaseAdapter {
         View view = mInflater.inflate(R.layout.adapter_data_history, parent, false);
         File history = (File) getItem(position);
         ((TextView) view.findViewById(R.id.tv_adapter_history_name)).setText(history.getName());
-        ((TextView) view.findViewById(R.id.tv_adapter_history_size)).setText((history.getTotalSpace() / 1024) + "KB");
+        ((TextView) view.findViewById(R.id.tv_adapter_history_size)).setText((history.length() / 1024) + "KB");
         return view;
     }
 }

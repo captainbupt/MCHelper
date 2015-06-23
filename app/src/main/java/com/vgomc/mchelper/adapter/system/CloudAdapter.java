@@ -20,7 +20,7 @@ public class CloudAdapter extends MyBaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view = mInflater.inflate(R.layout.view_system_cloud, parent, true);
+        View view = mInflater.inflate(R.layout.adapter_system_cloud_data, parent, false);
         DataValue dataValue = (DataValue) getItem(position);
         ((TextView) view.findViewById(R.id.tv_adapter_cloud_name)).setText(dataValue.varName);
         ((TextView) view.findViewById(R.id.tv_adapter_cloud_value)).setText(dataValue.value + dataValue.varUnit);

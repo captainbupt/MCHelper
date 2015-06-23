@@ -2,6 +2,8 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/vgomc/mchelper/Entity/system/CloudData.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/vgomc/mchelper/adapter/setting/ChannelSingleVariableAdapter.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/vgomc/mchelper/view/system/SystemCloudView.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/vgomc/mchelper/view/system/SystemOperationView.java" charset="UTF-8" />
   </component>
 </project>
