@@ -1,6 +1,7 @@
 package com.vgomc.mchelper.transmit.bluetooth;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Handler;
 
 import com.vgomc.mchelper.entity.bluetooth.BaseBluetoothEntity;
@@ -48,11 +49,15 @@ import com.vgomc.mchelper.entity.setting.RS485Channel;
 import com.vgomc.mchelper.entity.setting.Storage;
 import com.vgomc.mchelper.entity.setting.Variable;
 import com.vgomc.mchelper.R;
+import com.vgomc.mchelper.transmit.file.FileServiceProvider;
+import com.vgomc.mchelper.utility.TimeUtil;
 import com.vgomc.mchelper.utility.ToastUtil;
 
 import org.holoeverywhere.app.AlertDialog;
 import org.holoeverywhere.app.ProgressDialog;
 
+import java.io.File;
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -72,7 +77,7 @@ public class BlueToothSeriveProvider {
         void onCompleted(List<BaseBluetoothEntity> bluetoothEntities);
     }
 
-    private static void doSendMessage(final Context context, final List<BaseBluetoothEntity> bluetoothEntities, final OnBluetoothCompletedListener listener, final int timeLimit) {
+    private static void doSendMessage(final Context context, final List<BaseBluetoothEntity> bluetoothEntities, final OnBluetoothCompletedListener listener) {
         if (isTransacting) {
             ToastUtil.showToast(context, R.string.tip_bluetooth_busy);
             return;
@@ -85,7 +90,7 @@ public class BlueToothSeriveProvider {
             @Override
             public void onPasswordConfirm() {
                 BluetoothHelper.initBluetooth(context);
-                BluetoothHelper.setOnReceivedMessageListener(new SequenceOnReceivedMessageListener(context, bluetoothEntities, listener, timeLimit));
+                BluetoothHelper.setOnReceivedMessageListener(new SequenceOnReceivedMessageListener(context, bluetoothEntities, listener));
                 isTransacting = BluetoothHelper.sendMessage(bluetoothEntities.get(0).getRequest());
                 mProgressDialog = new ProgressDialog(context);
                 mProgressDialog.setTitle(R.string.tip_bluetooth_transferring);
@@ -95,10 +100,8 @@ public class BlueToothSeriveProvider {
                 mProgressDialog.setMax(bluetoothEntities.size());
                 mProgressDialog.show();
                 overtimeRunnable.setContext(context);
-                if (timeLimit > 0) {
-                    handler.removeCallbacks(overtimeRunnable);
-                    handler.postDelayed(overtimeRunnable, timeLimit);
-                }
+                handler.removeCallbacks(overtimeRunnable);
+                handler.postDelayed(overtimeRunnable, 30000);
             }
         }));
     }
@@ -136,15 +139,15 @@ public class BlueToothSeriveProvider {
         private Context mContext;
         private int mIndex;
         private ArrayList<Byte> mReceivedMessageBytes;
-        private int mTimeLimit;
+        private int retryTime = 0;
 
-        public SequenceOnReceivedMessageListener(Context context, List<BaseBluetoothEntity> bluetoothEntities, OnBluetoothCompletedListener completedListener, int timeLimit) {
+        public SequenceOnReceivedMessageListener(Context context, List<BaseBluetoothEntity> bluetoothEntities, OnBluetoothCompletedListener completedListener) {
             this.mContext = context;
             mIndex = 0;
             mReceivedMessageBytes = new ArrayList<>();
             this.mBluetoothEntities = bluetoothEntities;
             this.mCompletedListener = completedListener;
-            this.mTimeLimit = timeLimit;
+            retryTime = 0;
         }
 
 
@@ -165,6 +168,7 @@ public class BlueToothSeriveProvider {
             if (OK_PATTERN.matcher(mReceivedMessage).find()) {
                 if (mBluetoothEntities.get(mIndex).parseOKResponse(mReceivedMessage.toString())) {
                     sendMessage();
+                    retryTime = 0;
                 } else {
                     new AlertDialog.Builder(mContext).setTitle(R.string.tip_bluetooth_parse).setMessage(mReceivedMessage).show();
                     isTransacting = false;
@@ -180,6 +184,7 @@ public class BlueToothSeriveProvider {
                     mProgressDialog.dismiss();
                 } else {
                     sendMessage();
+                    retryTime = 0;
                 }
                 mReceivedMessageBytes.clear();
             }
@@ -187,15 +192,29 @@ public class BlueToothSeriveProvider {
 
         @Override
         public void onError() {
-            mProgressDialog.dismiss();
-            isTransacting = false;
+            ToastUtil.showToast(mContext, "蓝牙连接失败，请重试");
+            if (retryTime < 2) {
+                handler.removeCallbacks(overtimeRunnable);
+                ToastUtil.showToast(mContext, "正在重试" + (retryTime + 1) + "次");
+                retryTime++;
+                mIndex--;
+                new AlertDialog.Builder(mContext).setTitle("蓝牙连接失败，请重启采集器的蓝牙，确保蓝牙工作后重试").setPositiveButton("点击重试", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mBluetoothEntities.add(mIndex+1,new UnlockEntity(mContext));
+                        sendMessage();
+                    }
+                }).show();
+            } else {
+                handler.removeCallbacks(overtimeRunnable);
+                mProgressDialog.dismiss();
+                isTransacting = false;
+            }
         }
 
         private void sendMessage() {
-            if (mTimeLimit > 0) {
-                handler.removeCallbacks(overtimeRunnable);
-                handler.postDelayed(overtimeRunnable, mTimeLimit);
-            }
+            handler.removeCallbacks(overtimeRunnable);
+            handler.postDelayed(overtimeRunnable, 30000);
             if (mIndex < mBluetoothEntities.size() - 1) {
                 String request = mBluetoothEntities.get(mIndex + 1).getRequest();
                 mProgressDialog.setMessage(mContext.getResources().getString(R.string.tip_bluetooth_sending) + request);
@@ -220,7 +239,7 @@ public class BlueToothSeriveProvider {
         entities.add(new MeasurePlanEntity());
         entities.add(new StorageTableEntity());
         entities.add(new GPRSParamEntity());
-        doSendMessage(context, entities, onBluetoothCompletedListener, 10000);
+        doSendMessage(context, entities, onBluetoothCompletedListener);
     }
 
     public static void doWriteConfiguration(Context context, Configuration configuration, OnBluetoothCompletedListener onBluetoothCompletedListener) {
@@ -243,7 +262,7 @@ public class BlueToothSeriveProvider {
         }
         entities.add(new GPRSParamSettingEntity(configuration.network));
         entities.add(new SaveEntity());
-        doSendMessage(context, entities, onBluetoothCompletedListener, 10000);
+        doSendMessage(context, entities, onBluetoothCompletedListener);
     }
 
     public static void doGetCurrentStatus(Context context, OnBluetoothCompletedListener onBluetoothCompletedListener) {
@@ -257,7 +276,7 @@ public class BlueToothSeriveProvider {
         entities.add(new MeasurePendEntity());
         entities.add(new BluetoothStatusEntity());
         entities.add(new BatteryStatusEntity());
-        doSendMessage(context, entities, onBluetoothCompletedListener, 10000);
+        doSendMessage(context, entities, onBluetoothCompletedListener);
     }
 
     public static void doGetCurrentData(Context context, int varId, OnBluetoothCompletedListener onBluetoothCompletedListener) {
@@ -268,89 +287,100 @@ public class BlueToothSeriveProvider {
             else
                 entities.add(new CurrentDataEntity(ii, varId));
         }
-        doSendMessage(context, entities, onBluetoothCompletedListener, 10000);
+        doSendMessage(context, entities, onBluetoothCompletedListener);
     }
 
     public static void doSetMeasuringStatus(Context context, int time, OnBluetoothCompletedListener onBluetoothCompletedListener) {
         List<BaseBluetoothEntity> entities = new ArrayList<>();
         entities.add(new MeasuringStatusSettingEntity(time));
-        entities.add(new SaveEntity());
-        doSendMessage(context, entities, onBluetoothCompletedListener, 10000);
+        doSendMessage(context, entities, onBluetoothCompletedListener);
     }
 
     public static void doSetBatteryStatus(Context context, String subject, int time, OnBluetoothCompletedListener onBluetoothCompletedListener) {
         List<BaseBluetoothEntity> entities = new ArrayList<>();
         entities.add(new BatteryStatusSettingEntity(subject, time));
-        entities.add(new SaveEntity());
-        doSendMessage(context, entities, onBluetoothCompletedListener, 10000);
+        doSendMessage(context, entities, onBluetoothCompletedListener);
     }
 
     public static void doSetNetworkStatus(Context context, boolean isOn, boolean isNormal, OnBluetoothCompletedListener onBluetoothCompletedListener) {
         List<BaseBluetoothEntity> entities = new ArrayList<>();
         entities.add(new GPRSSettingEntity(isOn, isNormal));
-        entities.add(new SaveEntity());
-        doSendMessage(context, entities, onBluetoothCompletedListener, 10000);
+        doSendMessage(context, entities, onBluetoothCompletedListener);
     }
 
     public static void doSetBluetoothStatus(Context context, boolean isOn, OnBluetoothCompletedListener onBluetoothCompletedListener) {
         List<BaseBluetoothEntity> entities = new ArrayList<>();
         entities.add(new BluetoothStatusSettingEntity(isOn));
-        entities.add(new SaveEntity());
-        doSendMessage(context, entities, onBluetoothCompletedListener, 10000);
+        doSendMessage(context, entities, onBluetoothCompletedListener);
     }
 
     public static void doReset(Context context, boolean isHard, OnBluetoothCompletedListener onBluetoothCompletedListener) {
         List<BaseBluetoothEntity> entities = new ArrayList<>();
         entities.add(new RestartEntity(isHard));
-        entities.add(new SaveEntity());
-        doSendMessage(context, entities, onBluetoothCompletedListener, 10000);
+        doSendMessage(context, entities, onBluetoothCompletedListener);
     }
 
     public static void doClearHistory(Context context, String time, OnBluetoothCompletedListener onBluetoothCompletedListener) {
         List<BaseBluetoothEntity> entities = new ArrayList<>();
         entities.add(new ClearEntity(time));
         entities.add(new SaveEntity());
-        doSendMessage(context, entities, onBluetoothCompletedListener, 10000);
+        doSendMessage(context, entities, onBluetoothCompletedListener);
     }
 
     public static void doSetTime(Context context, OnBluetoothCompletedListener onBluetoothCompletedListener) {
         List<BaseBluetoothEntity> entities = new ArrayList<>();
         entities.add(new TimeSettingEntity(Calendar.getInstance().getTimeInMillis()));
         entities.add(new SaveEntity());
-        doSendMessage(context, entities, onBluetoothCompletedListener, 10000);
+        doSendMessage(context, entities, onBluetoothCompletedListener);
     }
 
     public static void doSetAccumulate(Context context, int varId, float value, OnBluetoothCompletedListener onBluetoothCompletedListener) {
         List<BaseBluetoothEntity> entities = new ArrayList<>();
         entities.add(new AccumulateSettingEntity(varId, value));
         entities.add(new SaveEntity());
-        doSendMessage(context, entities, onBluetoothCompletedListener, 10000);
+        doSendMessage(context, entities, onBluetoothCompletedListener);
     }
 
-    public static void doGetDeviceInfo(Context context, OnBluetoothCompletedListener onBluetoothCompletedListener){
+    public static void doGetDeviceInfo(Context context, OnBluetoothCompletedListener onBluetoothCompletedListener) {
         List<BaseBluetoothEntity> entities = new ArrayList<>();
         entities.add(new DeviceParameterEntity());
-        doSendMessage(context,entities,onBluetoothCompletedListener, 10000);
+        doSendMessage(context, entities, onBluetoothCompletedListener);
     }
 
     public static void doDownload(final Context context, boolean isAll, final OnBluetoothCompletedListener onBluetoothCompletedListener) {
         List<BaseBluetoothEntity> entities = new ArrayList<>();
         entities.add(new DownloadInquiryEntity(isAll));
+        entities.add(new DeviceParameterEntity());
         doSendMessage(context, entities, new OnBluetoothCompletedListener() {
             @Override
             public void onCompleted(List<BaseBluetoothEntity> bluetoothEntities) {
                 long time = Calendar.getInstance().getTimeInMillis();
                 int start = ((DownloadInquiryEntity) bluetoothEntities.get(0)).start;
                 int count = ((DownloadInquiryEntity) bluetoothEntities.get(0)).count;
+                String unid = ((DeviceParameterEntity) bluetoothEntities.get(1)).uid;
+                String index = ((DeviceParameterEntity) bluetoothEntities.get(1)).index + "";
+                String name = ((DeviceParameterEntity) bluetoothEntities.get(1)).name;
+                String path = FileServiceProvider.getExternalRecordPath(context);
+                File file = new File(path + File.separator + unid);
+                if (!file.exists() || !file.isDirectory())
+                    file.mkdir();
+                String fileName = unid + File.separator + time;
+                try {
+                    FileServiceProvider.saveRecord(context, fileName, "设备编号:" + index + "\n设备名称:" + name + "\n下载日期:" + TimeUtil.long2DeviceTime(time));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    ToastUtil.showToast(context, "写入文件失败，请重试");
+                    return;
+                }
                 List<BaseBluetoothEntity> entities = new ArrayList<>();
-                entities.add(new VariableEntity(context, time + ""));
+                entities.add(new VariableEntity(context, fileName));
                 for (int ii = 1; ii <= count; ii++) {
-                    entities.add(new DownloadingEntity(context, start, ii, 1, time + ""));
+                    entities.add(new DownloadingEntity(context, start, ii, 1, fileName));
                 }
                 entities.add(new SaveEntity());
-                doSendMessage(context, entities, onBluetoothCompletedListener, 20000);
+                doSendMessage(context, entities, onBluetoothCompletedListener);
             }
-        }, 10000);
+        });
     }
 
     public static void doBackup(final Context context, final boolean isAll, final OnBluetoothCompletedListener onBluetoothCompletedListener) {
@@ -365,7 +395,7 @@ public class BlueToothSeriveProvider {
                     return;
                 }
                 BluetoothHelper.initBluetooth(context);
-                BluetoothHelper.setOnReceivedMessageListener(new BackupOnReceiveMessageListener(context, entities, onBluetoothCompletedListener, 1000));
+                BluetoothHelper.setOnReceivedMessageListener(new BackupOnReceiveMessageListener(context, entities, onBluetoothCompletedListener));
                 isTransacting = BluetoothHelper.sendMessage(entities.get(0).getRequest());
                 mProgressDialog = new ProgressDialog(context);
                 mProgressDialog.setTitle(R.string.tip_bluetooth_transferring);
@@ -387,7 +417,7 @@ public class BlueToothSeriveProvider {
         private int mIndex;
         private ArrayList<Byte> mReceivedMessageBytes;
 
-        public BackupOnReceiveMessageListener(Context context, List<BaseBluetoothEntity> bluetoothEntities, OnBluetoothCompletedListener completedListener, int timeLimit) {
+        public BackupOnReceiveMessageListener(Context context, List<BaseBluetoothEntity> bluetoothEntities, OnBluetoothCompletedListener completedListener) {
             this.mContext = context;
             mIndex = 0;
             mReceivedMessageBytes = new ArrayList<>();

@@ -20,6 +20,10 @@ public class UnlockEntity extends BaseBluetoothSettingEntity {
         void onPasswordConfirm();
     }
 
+    public UnlockEntity(Context context){
+        password = SP.getStringSP(context, "default", "key", password);
+    }
+
     public UnlockEntity(final Context context, final OnPasswordConfirmListener onPasswordConfirmListener) {
         password = SP.getStringSP(context, "default", "key", password);
         final EditText editText = new EditText(context);

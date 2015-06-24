@@ -124,7 +124,7 @@ public class SettingFragment extends BaseListFragment {
     }
 
     public void writeSettingToDevice() {
-        new AlertDialog.Builder(mContext).setTitle(R.string.menu_action_bar_write_to_device_confirm)
+        new AlertDialog.Builder(mContext).setTitle(R.string.menu_action_bar_write_to_device_confirm).setMessage("写入配置将改变设备运行方式，确定要修改？")
                 .setPositiveButton(R.string.dialog_confirm, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

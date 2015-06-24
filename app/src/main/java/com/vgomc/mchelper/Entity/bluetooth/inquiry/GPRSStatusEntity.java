@@ -45,6 +45,15 @@ public class GPRSStatusEntity extends BaseBluetoothEntity {
         return true;
     }
 
+    public String getStatusRepresentation() {
+        if (status >= 0 && status < STATUS_REPRESENTATION.length) {
+            return STATUS_REPRESENTATION[status];
+        } else {
+            return "状态参数无法识别：" + status;
+        }
+    }
+
+
     public String getFlagRepresentation() {
         int flag = this.flag;
         StringBuilder builder = new StringBuilder();
@@ -55,7 +64,8 @@ public class GPRSStatusEntity extends BaseBluetoothEntity {
             }
             flag /= 2;
         }
-        builder.deleteCharAt(builder.length() - 1);
+        if (builder.length() >= 1)
+            builder.deleteCharAt(builder.length() - 1);
         return builder.toString();
     }
 }

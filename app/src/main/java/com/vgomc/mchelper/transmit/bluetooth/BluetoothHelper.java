@@ -54,6 +54,7 @@ public class BluetoothHelper {
     }
 
     private static String mMessage;
+    private static boolean isErrorSend = false;
 
     /**
      * Sends a message.
@@ -62,6 +63,8 @@ public class BluetoothHelper {
      */
     public static boolean sendMessage(String message) {
         mMessage = message;
+        isErrorSend = false;
+        System.out.println(message + ", " + isErrorSend);
         // If BT is not on, request that it be enabled.
         // setupChat() will then be called during onActivityResult
         if (!mBluetoothAdapter.isEnabled()) {
@@ -90,6 +93,7 @@ public class BluetoothHelper {
 
     public interface OnReceivedMessageListener {
         void onReceivedMessage(byte[] messageByte, int length);
+
         void onError();
     }
 
@@ -118,8 +122,11 @@ public class BluetoothHelper {
                         case BluetoothHelperService.STATE_LISTEN:
                             // ToastUtil.showToast(mContext, "State listen");
                         case BluetoothHelperService.STATE_NONE:
-                            ToastUtil.showToast(mContext, "Connection failed");
-                            mOnReceivedMessageListener.onError();
+                            System.out.println("error, " + isErrorSend);
+                            if (!isErrorSend) {
+                                mOnReceivedMessageListener.onError();
+                                isErrorSend = true;
+                            }
                             break;
                     }
                     break;
@@ -147,8 +154,7 @@ public class BluetoothHelper {
                     //ToastUtil.showToast(mContext, "Connected device: " + mConnectedDeviceName);
                     break;
                 case MESSAGE_TOAST:
-                    Toast.makeText(mContext, msg.getData().getString(TOAST),
-                            Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(mContext, msg.getData().getString(TOAST), Toast.LENGTH_SHORT).show();
                     break;
             }
         }
@@ -159,6 +165,7 @@ public class BluetoothHelper {
             case REQUEST_CONNECT_DEVICE:
                 // When DeviceListActivity returns with a device to connect
                 if (resultCode == android.app.Activity.RESULT_OK) {
+                    System.out.println("received result");
                     // Get the device MAC address
                     String address = data.getExtras()
                             .getString(DeviceListActivity.EXTRA_DEVICE_ADDRESS);
@@ -166,8 +173,11 @@ public class BluetoothHelper {
                     BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
                     // Attempt to connect to the device
                     mChatService.connect(device);
-                }else{
-                    mOnReceivedMessageListener.onError();
+                } else {
+                    if (!isErrorSend) {
+                        mOnReceivedMessageListener.onError();
+                        isErrorSend = true;
+                    }
                 }
                 break;
             case REQUEST_ENABLE_BT:
@@ -176,8 +186,11 @@ public class BluetoothHelper {
                     // Bluetooth is now enabled, so set up a chat session
                     setupChat();
                     sendMessage(mMessage);
-                }else{
-                    mOnReceivedMessageListener.onError();
+                } else {
+                    if (!isErrorSend) {
+                        mOnReceivedMessageListener.onError();
+                        isErrorSend = true;
+                    }
                 }
         }
     }

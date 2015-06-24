@@ -25,9 +25,9 @@ public class MainFragmentPagerAdapter extends FragmentPagerAdapter {
         super(fm);
         this.mContext = context;
         mFragmentArray = new Fragment[MAX_COUNT];
-        mFragmentArray[0] = new SettingFragment();
+        mFragmentArray[0] = new DataFragment();
         mFragmentArray[1] = new StatusFragment();
-        mFragmentArray[2] = new DataFragment();
+        mFragmentArray[2] = new SettingFragment();
         mFragmentArray[3] = new SystemFragment();
     }
 

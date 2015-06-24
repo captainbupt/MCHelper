@@ -13,6 +13,6 @@ public class RestartEntity extends BaseBluetoothSettingEntity {
 
     @Override
     public String getRequest() {
-        return null;
+        return "AT+RESET=" + type + new String(new byte[]{13});
     }
 }

@@ -124,7 +124,16 @@ public class HistoryDataView extends BaseCollapsibleView {
             File[] recordFiles = file.listFiles();
             List<Object> records = new ArrayList<>();
             for (int ii = 0; ii < recordFiles.length; ii++) {
-                records.add(recordFiles[ii]);
+                if (recordFiles[ii].isFile() && recordFiles[ii].getName().endsWith(".csv")) {
+                    records.add(recordFiles[ii]);
+                } else if (recordFiles[ii].isDirectory()) {
+                    File[] childFiles = recordFiles[ii].listFiles();
+                    for (int jj = 0; jj < childFiles.length; jj++) {
+                        if (childFiles[jj].isFile() && childFiles[jj].getName().endsWith(".csv")) {
+                            records.add(childFiles[jj]);
+                        }
+                    }
+                }
             }
             mHistoryAdapter.setList(records);
         }

@@ -1,6 +1,9 @@
 package com.vgomc.mchelper.widget;
 
 import android.content.Context;
+import android.text.InputFilter;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -23,6 +26,8 @@ import org.holoeverywhere.widget.RadioButton;
 import org.holoeverywhere.widget.Spinner;
 import org.holoeverywhere.widget.Switch;
 import org.holoeverywhere.widget.TextView;
+
+import java.io.UnsupportedEncodingException;
 
 /**
  * Created by weizhouh on 5/24/2015.
@@ -110,6 +115,8 @@ public class VariableEditView extends LinearLayout {
 
         dataTypeAdapter1 = new ArrayAdapter<>(mContext, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.setting_channel_variable_data_type_array_1));
         dataTypeAdapter2 = new ArrayAdapter<>(mContext, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.setting_channel_variable_data_type_array_2));
+
+        mVariableNameEditText.setFilters(new InputFilter[]{inputFilter});
     }
 
     private void initListener() {
@@ -256,4 +263,29 @@ public class VariableEditView extends LinearLayout {
             mDataTypeLayout.setVisibility(View.GONE);
         }
     }
+
+    /**
+     * inputÊäÈë¹ýÂË
+     */
+    private InputFilter inputFilter = new InputFilter() {
+        @Override
+        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+            try {
+                int len = 0;
+                boolean more = false;
+                do {
+                    SpannableStringBuilder builder = new SpannableStringBuilder(dest).replace(dstart, dend, source.subSequence(start, end));
+                    len = builder.toString().getBytes("GBK").length;
+                    more = len > 11;
+                    if (more) {
+                        end--;
+                        source = source.subSequence(start, end);
+                    }
+                } while (more);
+                return source;
+            } catch (UnsupportedEncodingException e) {
+                return "Exception";
+            }
+        }
+    };
 }
