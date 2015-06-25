@@ -66,7 +66,7 @@ public class ControlView extends BaseCollapsibleView {
             if (measuringTime == 0) {
                 mMeasuringControlView.setStatus(getResources().getString(R.string.status_control_measuring_status_running));
             } else {
-                mMeasuringControlView.setStatus(getResources().getString(R.string.status_control_measuring_status_running) + measuringTime);
+                mMeasuringControlView.setStatus(getResources().getString(R.string.status_control_measuring_status_pending) + measuringTime);
             }
             for (int ii = 0; ii < mBatteryControlViews.length; ii++) {
                 if (batteryTime[ii] == 0) {

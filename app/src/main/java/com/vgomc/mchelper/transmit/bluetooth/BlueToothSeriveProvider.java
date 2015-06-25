@@ -201,7 +201,7 @@ public class BlueToothSeriveProvider {
                 new AlertDialog.Builder(mContext).setTitle("蓝牙连接失败，请重启采集器的蓝牙，确保蓝牙工作后重试").setPositiveButton("点击重试", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        mBluetoothEntities.add(mIndex+1,new UnlockEntity(mContext));
+                        mBluetoothEntities.add(mIndex + 1, new UnlockEntity(mContext));
                         sendMessage();
                     }
                 }).show();
@@ -358,15 +358,14 @@ public class BlueToothSeriveProvider {
                 int start = ((DownloadInquiryEntity) bluetoothEntities.get(0)).start;
                 int count = ((DownloadInquiryEntity) bluetoothEntities.get(0)).count;
                 String unid = ((DeviceParameterEntity) bluetoothEntities.get(1)).uid;
-                String index = ((DeviceParameterEntity) bluetoothEntities.get(1)).index + "";
                 String name = ((DeviceParameterEntity) bluetoothEntities.get(1)).name;
                 String path = FileServiceProvider.getExternalRecordPath(context);
                 File file = new File(path + File.separator + unid);
                 if (!file.exists() || !file.isDirectory())
                     file.mkdir();
-                String fileName = unid + File.separator + time;
+                String fileName = unid + File.separator + TimeUtil.long2DigitTime(time);
                 try {
-                    FileServiceProvider.saveRecord(context, fileName, "设备编号:" + index + "\n设备名称:" + name + "\n下载日期:" + TimeUtil.long2DeviceTime(time));
+                    FileServiceProvider.saveRecord(context, fileName, "设备编号:" + unid + "\n设备名称:" + name + "\n下载日期:" + TimeUtil.long2DeviceTime(time));
                 } catch (IOException e) {
                     e.printStackTrace();
                     ToastUtil.showToast(context, "写入文件失败，请重试");
@@ -439,7 +438,6 @@ public class BlueToothSeriveProvider {
                 buffer[ii] = mReceivedMessageBytes.get(ii);
             }
             String mReceivedMessage = new String(buffer, Charset.forName("GBK"));
-            System.out.println("Message:" + mReceivedMessage + ".END");
             Matcher sequenceMatcher = SEQUENCE_PATTERN.matcher(mReceivedMessage);
             while (sequenceMatcher.find()) {
                 String sequence = sequenceMatcher.group().replace(BaseBluetoothEntity.SEPERATOR, "");

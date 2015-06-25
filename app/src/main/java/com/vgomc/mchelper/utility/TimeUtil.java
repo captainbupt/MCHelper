@@ -50,4 +50,9 @@ public class TimeUtil {
         return timeArray[0] + "时" + timeArray[1] + "分" + timeArray[2] + "秒";
     }
 
+    public static String long2DigitTime(long time) {
+        SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
+        return df.format(new Date(time));
+    }
+
 }
