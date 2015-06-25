@@ -265,7 +265,7 @@ public class VariableEditView extends LinearLayout {
     }
 
     /**
-     * inputÊäÈë¹ıÂË
+     * inputè¾“å…¥è¿‡æ»¤
      */
     private InputFilter inputFilter = new InputFilter() {
         @Override

@@ -33,7 +33,7 @@ public class MyTimePickerView extends LinearLayout {
     private int[] mRangeMaxs;
     private int[] mRangeMins;
 
-    public MyTimePickerView(Context context, int mode, long current, long max, long min) {
+    public MyTimePickerView(Context context, int mode, final long current, final long max, long min) {
         super(context);
         setLayoutParams(new LayoutParams(
                 LayoutParams.MATCH_PARENT,
@@ -48,7 +48,9 @@ public class MyTimePickerView extends LinearLayout {
         mMode = mode;
         initView(mode);
         initListener();
-        initData(current);
+        initData();
+        //setTime(max);
+        setTime(current);
     }
 
     private void initView(int mode) {
@@ -76,19 +78,23 @@ public class MyTimePickerView extends LinearLayout {
             mNumberPickers[ii].setOnBigNumberValueChangeListener(new MyBigNumberValueChangeListener(ii, mMaxDigits, mMinDigits, mRangeMaxs, mRangeMins, 4, mNumberPickers));
         }
         mNumberPickers[3].setOnBigNumberValueChangeListener(new MyBigNumberValueChangeListener(3, mMaxDigits, mMinDigits, mRangeMaxs, mRangeMins, 4, mNumberPickers));
-        for (int ii = 0; ii < mNumberPickers.length; ii++) {
-            mNumberPickers[ii].setValue(mMaxDigits[ii]);
-        }
     }
 
-    private void initData(long current) {
+    private void initData() {
+        for (int ii = 0; ii < mNumberPickers.length - 1; ii++) {
+            mNumberPickers[ii].setData(mMaxDigits[ii], mMinDigits[ii], 2);
+            //mNumberPickers[ii].getOnBigNumberValueChangeListener().onValueChange(timeArray[ii]);
+        }
+        mNumberPickers[3].setData(mMaxDigits[3], mMinDigits[3], 3);
+        //mNumberPickers[3].getOnBigNumberValueChangeListener().onValueChange(timeArray[3]);
+    }
+
+    public void setTime(long current) {
         int[] timeArray = TimeUtil.long2timeArray(current);
-        for (int ii = 0; ii < timeArray.length - 1; ii++) {
-            mNumberPickers[ii].setData(mMaxDigits[ii], mMinDigits[ii], 2, timeArray[ii]);
+        for (int ii = 0; ii < timeArray.length; ii++) {
+            mNumberPickers[ii].setValue(timeArray[ii]);
             mNumberPickers[ii].getOnBigNumberValueChangeListener().onValueChange(timeArray[ii]);
         }
-        mNumberPickers[3].setData(mMaxDigits[3], mMinDigits[3], 3, timeArray[3]);
-        mNumberPickers[3].getOnBigNumberValueChangeListener().onValueChange(timeArray[3]);
     }
 
     public long getTime() {

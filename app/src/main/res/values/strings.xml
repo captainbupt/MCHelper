@@ -198,7 +198,7 @@
     <string name="system_operation_cloud">云端</string>
     <string name="system_operation_manager">文件管理</string>
     <string name="system_operation_update">自动更新</string>
-    <string name="system_operation_other">其他</string>
+    <string name="system_operation_other">关于</string>
 
 
     <string name="dialog_confirm">确认</string>

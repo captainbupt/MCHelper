@@ -103,7 +103,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        SettingFragment settingFragment = (SettingFragment) mPagerAdapter.getItem(3);
+        SettingFragment settingFragment = (SettingFragment) mPagerAdapter.getItem(2);
         switch (item.getItemId()) {
             case R.id.menu_action_bar_read_from_device:
                 settingFragment.readSettingFromDevice();

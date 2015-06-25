@@ -1,6 +1,9 @@
 package com.vgomc.mchelper.entity.bluetooth.inquiry;
 
+import android.content.Context;
+
 import com.vgomc.mchelper.entity.bluetooth.BaseBluetoothEntity;
+import com.vgomc.mchelper.utility.ToastUtil;
 
 /**
  * Created by weizhouh on 6/7/2015.
@@ -22,13 +25,22 @@ public class SDCardStatusEntity extends BaseBluetoothEntity {
     public boolean parseData(String data) {
         String[] datas = data.split(",");
         try {
-            total = Float.parseFloat(datas[0].replace("MB",""));
+            total = Float.parseFloat(datas[0].replace("MB", ""));
             free = Float.parseFloat(datas[1].replace("MB", ""));
             format = datas[2];
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
         return true;
+    }
+
+    @Override
+    public boolean parseErrorCode(Context context, int errorCode) {
+        ToastUtil.showToast(context, "获取SD卡信息失败");
+        total = 0;
+        free = 0;
+        format = "";
+        return false;
     }
 }

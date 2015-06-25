@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="text_size_small">10sp</dimen>
-    <dimen name="text_size_less">12sp</dimen>
-    <dimen name="text_size_medium">14sp</dimen>
-    <dimen name="text_size_large">16sp</dimen>
-    <dimen name="text_size_xlarge">18sp</dimen>
-    <dimen name="text_size_xxlarge">20sp</dimen>
-    <dimen name="offset_micro">3dp</dimen>
-    <dimen name="offset_small">6dp</dimen>
-    <dimen name="offset_less">9dp</dimen>
-    <dimen name="offset_lless">12dp</dimen>
-    <dimen name="offset_medium">16dp</dimen>
-    <dimen name="offset_large">24dp</dimen>
+    <dimen name="text_size_small">9sp</dimen>
+    <dimen name="text_size_less">11sp</dimen>
+    <dimen name="text_size_medium">13sp</dimen>
+    <dimen name="text_size_large">15sp</dimen>
+    <dimen name="text_size_xlarge">17sp</dimen>
+    <dimen name="text_size_xxlarge">19sp</dimen>
+    <dimen name="offset_micro">2dp</dimen>
+    <dimen name="offset_small">5dp</dimen>
+    <dimen name="offset_less">7dp</dimen>
+    <dimen name="offset_lless">11dp</dimen>
+    <dimen name="offset_medium">14dp</dimen>
+    <dimen name="offset_large">23dp</dimen>
     <dimen name="offset_xlarge">40dp</dimen>
     <dimen name="offset_xxlarge">55dp</dimen>
     <dimen name="icon_size_small">35dp</dimen>

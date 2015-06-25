@@ -6,5 +6,7 @@
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/vgomc/mchelper/transmit/bluetooth/BluetoothHelper.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/vgomc/mchelper/view/system/SystemCloudView.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/vgomc/mchelper/view/system/SystemOperationView.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/vgomc/mchelper/widget/MaxByteLengthEditText.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/vgomc/mchelper/widget/VariableEditView.java" charset="UTF-8" />
   </component>
 </project>

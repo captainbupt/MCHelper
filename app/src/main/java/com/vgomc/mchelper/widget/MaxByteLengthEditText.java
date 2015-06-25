@@ -48,7 +48,7 @@ public class MaxByteLengthEditText extends EditText {
     }
 
     /**
-     * inputÊäÈë¹ıÂË
+     * inputè¾“å…¥è¿‡æ»¤
      */
     private InputFilter inputFilter = new InputFilter() {
         @Override
