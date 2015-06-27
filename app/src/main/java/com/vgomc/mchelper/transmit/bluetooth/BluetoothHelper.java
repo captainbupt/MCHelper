@@ -32,8 +32,8 @@ public class BluetoothHelper {
     public static final String TOAST = "toast";
 
     // Intent request codes
-    private static final int REQUEST_CONNECT_DEVICE = 100001;
-    private static final int REQUEST_ENABLE_BT = 100002;
+    private static final int REQUEST_CONNECT_DEVICE = 1001;
+    private static final int REQUEST_ENABLE_BT = 1002;
 
     // Local Bluetooth adapter
     private static BluetoothAdapter mBluetoothAdapter;
@@ -122,9 +122,9 @@ public class BluetoothHelper {
                         case BluetoothHelperService.STATE_LISTEN:
                             // ToastUtil.showToast(mContext, "State listen");
                         case BluetoothHelperService.STATE_NONE:
-                            System.out.println("error, " + isErrorSend);
                             if (!isErrorSend) {
-                                mOnReceivedMessageListener.onError();
+                                if (mOnReceivedMessageListener != null)
+                                    mOnReceivedMessageListener.onError();
                                 isErrorSend = true;
                             }
                             break;

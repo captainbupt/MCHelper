@@ -52,7 +52,9 @@ import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.transmit.file.FileServiceProvider;
 import com.vgomc.mchelper.utility.TimeUtil;
 import com.vgomc.mchelper.utility.ToastUtil;
+import com.vgomc.mchelper.widget.MyProgressDialog;
 
+import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.app.AlertDialog;
 import org.holoeverywhere.app.ProgressDialog;
 
@@ -71,7 +73,7 @@ import java.util.regex.Pattern;
  */
 public class BlueToothSeriveProvider {
     private static boolean isTransacting = false;
-    private static ProgressDialog mProgressDialog;
+    private static MyProgressDialog mProgressDialog;
 
     public interface OnBluetoothCompletedListener {
         void onCompleted(List<BaseBluetoothEntity> bluetoothEntities);
@@ -92,7 +94,7 @@ public class BlueToothSeriveProvider {
                 BluetoothHelper.initBluetooth(context);
                 BluetoothHelper.setOnReceivedMessageListener(new SequenceOnReceivedMessageListener(context, bluetoothEntities, listener));
                 isTransacting = BluetoothHelper.sendMessage(bluetoothEntities.get(0).getRequest());
-                mProgressDialog = new ProgressDialog(context);
+                mProgressDialog = new MyProgressDialog(context);
                 mProgressDialog.setTitle(R.string.tip_bluetooth_transferring);
                 mProgressDialog.setMessage(context.getResources().getString(R.string.tip_bluetooth_connecting));
                 mProgressDialog.setCancelable(false);
@@ -104,6 +106,14 @@ public class BlueToothSeriveProvider {
                 handler.postDelayed(overtimeRunnable, 30000);
             }
         }));
+    }
+
+    private static void cancelTransaction() {
+        BluetoothHelper.setOnReceivedMessageListener(null);
+        handler.removeCallbacks(overtimeRunnable);
+        isTransacting = false;
+        if (mProgressDialog != null && mProgressDialog.isShowing())
+            mProgressDialog.dismiss();
     }
 
     static Handler handler = new Handler();
@@ -120,9 +130,7 @@ public class BlueToothSeriveProvider {
 
         @Override
         public void run() {
-            if (mProgressDialog != null && mProgressDialog.isShowing())
-                mProgressDialog.dismiss();
-            isTransacting = false;
+            cancelTransaction();
             if (mContext != null) {
                 ToastUtil.showToast(mContext, R.string.tip_bluetooth_overtime);
             }
@@ -171,8 +179,7 @@ public class BlueToothSeriveProvider {
                     retryTime = 0;
                 } else {
                     new AlertDialog.Builder(mContext).setTitle(R.string.tip_bluetooth_parse).setMessage(mReceivedMessage).show();
-                    isTransacting = false;
-                    mProgressDialog.dismiss();
+                    cancelTransaction();
                 }
                 //mReceivedMessage.delete(0, mReceivedMessage.length());
                 mReceivedMessageBytes.clear();
@@ -180,8 +187,7 @@ public class BlueToothSeriveProvider {
                 String errorResponse = errorMatcher.group();
                 boolean result = mBluetoothEntities.get(mIndex).parseErrorCode(mContext, Integer.parseInt(errorResponse.replace(BaseBluetoothEntity.SEPERATOR, "").replace("ER:", "")));
                 if (result) {
-                    isTransacting = false;
-                    mProgressDialog.dismiss();
+                    cancelTransaction();
                 } else {
                     sendMessage();
                     retryTime = 0;
@@ -197,18 +203,24 @@ public class BlueToothSeriveProvider {
                 handler.removeCallbacks(overtimeRunnable);
                 ToastUtil.showToast(mContext, "正在重试" + (retryTime + 1) + "次");
                 retryTime++;
-                mIndex--;
-                new AlertDialog.Builder(mContext).setTitle("蓝牙连接失败，请重启采集器的蓝牙，确保蓝牙工作后重试").setPositiveButton("点击重试", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        mBluetoothEntities.add(mIndex + 1, new UnlockEntity(mContext));
-                        sendMessage();
-                    }
-                }).show();
+                if (!((Activity) mContext).isFinishing())
+                    new AlertDialog.Builder(mContext).setTitle("蓝牙连接失败，请重启采集器的蓝牙，确保蓝牙工作后重试").setPositiveButton("点击重试", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (mIndex > 0) {
+                                mIndex--;
+                            }
+                            mBluetoothEntities.add(mIndex + 1, new UnlockEntity(mContext));
+                            sendMessage();
+                        }
+                    }).setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            cancelTransaction();
+                        }
+                    }).setCancelable(false).show();
             } else {
-                handler.removeCallbacks(overtimeRunnable);
-                mProgressDialog.dismiss();
-                isTransacting = false;
+                cancelTransaction();
             }
         }
 
@@ -216,16 +228,18 @@ public class BlueToothSeriveProvider {
             handler.removeCallbacks(overtimeRunnable);
             handler.postDelayed(overtimeRunnable, 30000);
             if (mIndex < mBluetoothEntities.size() - 1) {
+                if (mBluetoothEntities.get(mIndex).getClass().equals(UnlockEntity.class)) {
+                    mBluetoothEntities.remove(mIndex);
+                    mIndex--;
+                }
                 String request = mBluetoothEntities.get(mIndex + 1).getRequest();
                 mProgressDialog.setMessage(mContext.getResources().getString(R.string.tip_bluetooth_sending) + request);
                 mProgressDialog.setProgress(mIndex);
                 BluetoothHelper.sendMessage(request);
                 mIndex++;
             } else {
-                isTransacting = false;
-                mProgressDialog.dismiss();
-                handler.removeCallbacks(overtimeRunnable);
-                mCompletedListener.onCompleted(mBluetoothEntities.subList(1, mBluetoothEntities.size()));
+                cancelTransaction();
+                mCompletedListener.onCompleted(mBluetoothEntities);
             }
         }
     }
@@ -396,7 +410,7 @@ public class BlueToothSeriveProvider {
                 BluetoothHelper.initBluetooth(context);
                 BluetoothHelper.setOnReceivedMessageListener(new BackupOnReceiveMessageListener(context, entities, onBluetoothCompletedListener));
                 isTransacting = BluetoothHelper.sendMessage(entities.get(0).getRequest());
-                mProgressDialog = new ProgressDialog(context);
+                mProgressDialog = new MyProgressDialog(context);
                 mProgressDialog.setTitle(R.string.tip_bluetooth_transferring);
                 mProgressDialog.setMessage(context.getResources().getString(R.string.tip_bluetooth_connecting));
                 mProgressDialog.setCancelable(false);
@@ -445,28 +459,33 @@ public class BlueToothSeriveProvider {
                 for (int jj = 0; jj < sequenceByte.length + 4; jj++) {
                     mReceivedMessageBytes.remove(0);
                 }
-                if (sequence.startsWith("START:")) {
-                    mProgressDialog.setMax(Integer.parseInt(sequence.replace("START:", "")));
-                } else if (sequence.startsWith("OK")) {
-                    if (mBluetoothEntities.get(mIndex).parseOKResponse(mReceivedMessage.toString())) {
-                        sendMessage();
+                try {
+                    if (sequence.startsWith("START:")) {
+                        mProgressDialog.setMax(Integer.parseInt(sequence.replace("START:", "")));
+                    } else if (sequence.startsWith("OK")) {
+                        if (mBluetoothEntities.get(mIndex).parseOKResponse(mReceivedMessage.toString())) {
+                            sendMessage();
+                        } else {
+                            new AlertDialog.Builder(mContext).setTitle(R.string.tip_bluetooth_parse).setMessage(mReceivedMessage).show();
+                            cancelTransaction();
+                        }
+                    } else if (sequence.startsWith("ER:")) {
+                        mBluetoothEntities.get(mIndex).parseErrorCode(mContext, Integer.parseInt(sequence.replace("ER:", "")));
+                        cancelTransaction();
                     } else {
-                        new AlertDialog.Builder(mContext).setTitle(R.string.tip_bluetooth_parse).setMessage(mReceivedMessage).show();
-                        isTransacting = false;
+                        mProgressDialog.setProgress(Integer.parseInt(sequence));
                     }
-                } else if (sequence.startsWith("ER:")) {
-                    mBluetoothEntities.get(mIndex).parseErrorCode(mContext, Integer.parseInt(sequence.replace("ER:", "")));
-                    mProgressDialog.dismiss();
-                } else {
-                    mProgressDialog.setProgress(Integer.parseInt(sequence));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    new AlertDialog.Builder(mContext).setTitle(R.string.tip_bluetooth_parse).setMessage(mReceivedMessage).show();
+                    cancelTransaction();
                 }
             }
         }
 
         @Override
         public void onError() {
-            isTransacting = false;
-            mProgressDialog.dismiss();
+            cancelTransaction();
         }
 
         private void sendMessage() {
@@ -476,8 +495,7 @@ public class BlueToothSeriveProvider {
                 mProgressDialog.setMessage(mContext.getResources().getString(R.string.tip_bluetooth_sending) + request);
                 mIndex++;
             } else {
-                isTransacting = false;
-                mProgressDialog.dismiss();
+                cancelTransaction();
                 mCompletedListener.onCompleted(mBluetoothEntities.subList(1, mBluetoothEntities.size()));
             }
         }
