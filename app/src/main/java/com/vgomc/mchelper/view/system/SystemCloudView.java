@@ -69,7 +69,7 @@ public class SystemCloudView extends BaseCollapsibleView {
                         System.out.println(serial);
                         HttpUtils http = new HttpUtils();
                         http.send(HttpRequest.HttpMethod.GET,
-                                "http://api.vgomc.com/dataquery/deviceVariableData/getLastupdatedData/" + serial,
+                                "http://api.vgomc.com/deviceVariableData/getLastupdatedData/" + serial,
                                 new RequestCallBack<String>() {
 
                                     @Override

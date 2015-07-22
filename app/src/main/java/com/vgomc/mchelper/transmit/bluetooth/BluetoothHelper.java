@@ -101,6 +101,10 @@ public class BluetoothHelper {
         BluetoothHelper.mOnReceivedMessageListener = onReceivedMessageListener;
     }
 
+    public static OnReceivedMessageListener getOnReceivedMessageListener() {
+        return mOnReceivedMessageListener;
+    }
+
     private static OnReceivedMessageListener mOnReceivedMessageListener;
 
     private static String mConnectedDeviceName;

@@ -130,9 +130,14 @@ public class BlueToothSeriveProvider {
 
         @Override
         public void run() {
-            cancelTransaction();
             if (mContext != null) {
                 ToastUtil.showToast(mContext, R.string.tip_bluetooth_overtime);
+            }
+            BluetoothHelper.OnReceivedMessageListener listener = BluetoothHelper.getOnReceivedMessageListener();
+            if (listener != null && listener instanceof SequenceOnReceivedMessageListener) {
+                ((SequenceOnReceivedMessageListener) listener).retry();
+            } else {
+                cancelTransaction();
             }
         }
     }
@@ -193,6 +198,21 @@ public class BlueToothSeriveProvider {
                     retryTime = 0;
                 }
                 mReceivedMessageBytes.clear();
+            }
+        }
+
+        public void retry() {
+            if (retryTime < 2) {
+                handler.removeCallbacks(overtimeRunnable);
+                ToastUtil.showToast(mContext, "正在重试" + (retryTime + 1) + "次");
+                retryTime++;
+                if (mIndex > 0) {
+                    mIndex--;
+                }
+                mBluetoothEntities.add(mIndex + 1, new UnlockEntity(mContext));
+                sendMessage();
+            } else {
+                cancelTransaction();
             }
         }
 
