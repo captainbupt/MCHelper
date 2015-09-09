@@ -94,7 +94,6 @@ public class VariableManager implements Serializable {
         for (List<Variable> list : mVariableMap.values()) {
             if (list != null) {
                 for (Variable variable : list) {
-                    System.out.println("device index: " + variable.deviceIndex);
                     if (variable.deviceIndex == index) {
                         return variable;
                     }
@@ -111,8 +110,9 @@ public class VariableManager implements Serializable {
     public List<Variable> getAllVariableList() {
         List<Variable> variableList = new ArrayList<>();
         int index = 1;
-        for (List<Variable> list : mVariableMap.values()) {
-            if (list != null) {
+        for (int ii = 0; ii < Channel.SUBJECTS.length; ii++) {
+            List<Variable> list = mVariableMap.get(Channel.SUBJECTS[ii]);
+            if (list != null && list.size() > 0) {
                 for (Variable variable : list) {
                     if (variable.isVariableOn) {
                         variable.deviceIndex = index;

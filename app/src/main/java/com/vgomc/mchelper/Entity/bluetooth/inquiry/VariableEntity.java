@@ -55,6 +55,11 @@ public class VariableEntity extends BaseBluetoothEntity {
                 variable.factors[1] = Float.parseFloat(variableInfo[6]);
                 variable.factors[2] = Float.parseFloat(variableInfo[7]);
                 variable.factors[3] = Float.parseFloat(variableInfo[8]);
+                if (variable.factors[0] == 0.0f && variable.factors[1] == 1.0f && variable.factors[2] == 0.0f && variable.factors[3] == 0.0f) {
+                    variable.isFormulaOn = false;
+                } else {
+                    variable.isFormulaOn = true;
+                }
                 variableArray[ii] = variable;
             }
         } catch (Exception e) {

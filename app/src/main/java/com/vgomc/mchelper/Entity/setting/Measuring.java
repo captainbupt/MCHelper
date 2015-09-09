@@ -35,17 +35,13 @@ public class Measuring {
     }
 
     public void setVariableData(int variableIDs) {
-        System.out.println("ids: " + variableIDs);
         variableIndexList.clear();
         for (int ii = 1; variableIDs != 0; variableIDs /= 2, ii++) {
             if (variableIDs % 2 == 1) {
-                System.out.println("ii: " + ii);
                 Variable variable = Configuration.getInstance().variableManager.getVariableByDeviceIndex(ii);
                 if (variable != null) {
                     variableIndexList.add(variable.index);
                 }
-            } else {
-                System.out.println("0");
             }
         }
     }
@@ -58,7 +54,7 @@ public class Measuring {
         }
         for (Variable variable : variableList) {
             if (variableIndexList.contains(variable.index)) {
-                binaryString[variable.deviceIndex - 1] = '1';
+                binaryString[32 - variable.deviceIndex] = '1';
             }
         }
         return Long.parseLong(String.valueOf(binaryString), 2);

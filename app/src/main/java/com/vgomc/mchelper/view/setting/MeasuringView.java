@@ -43,6 +43,7 @@ public class MeasuringView extends BaseCollapsibleView {
 
         @Override
         protected void updateData() {
+            mMeasuringChannelAdapter.setList(Configuration.getInstance().measuringList);
             mMeasuringChannelAdapter.notifyDataSetChanged();
         }
 

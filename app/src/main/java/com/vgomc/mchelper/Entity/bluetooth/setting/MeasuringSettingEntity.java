@@ -18,7 +18,7 @@ public class MeasuringSettingEntity extends BaseBluetoothSettingEntity {
         startTime = (int) (measuring.beginTime / 60000l);
         endTime = (int) (measuring.endTime / 60000l);
         interval = measuring.interval;
-        int variableId = (int) measuring.getVariableId();
+        variableId = (int) measuring.getVariableId();
     }
 
     @Override

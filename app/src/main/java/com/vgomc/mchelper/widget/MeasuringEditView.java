@@ -175,6 +175,7 @@ public class MeasuringEditView extends LinearLayout {
             }
         }
         mVariableTextView.setText(mMeasuring.getVariableNames("\n"));
+        System.out.println(String.format("id: %X", mMeasuring.getVariableId()));
     }
 
     private String getTimeText(long time) {
