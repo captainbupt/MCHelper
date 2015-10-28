@@ -43,6 +43,7 @@ public class BatteryView extends BaseCollapsibleView {
 
         @Override
         protected void updateData() {
+            mBatterChannelAdapter.setList(Configuration.getInstance().batteryList);
             mBatterChannelAdapter.notifyDataSetChanged();
         }
 

@@ -24,7 +24,7 @@ public class BatteryChannelAdapter extends MyBaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Battery battery = (Battery) getItem(position);
-        View view = mInflater.inflate(R.layout.adapter_setting_battery);
+        View view = mInflater.inflate(R.layout.adapter_setting_battery, parent, false);
         TextView nameTextView = (TextView) view.findViewById(R.id.tv_adapter_setting_battery_subject);
         TextView modeTextView = (TextView) view.findViewById(R.id.tv_adapter_setting_battery_mode);
         TextView patternTextView = (TextView) view.findViewById(R.id.tv_adapter_setting_battery_pattern);

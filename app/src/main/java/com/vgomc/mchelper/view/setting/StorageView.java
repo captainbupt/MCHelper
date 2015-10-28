@@ -43,6 +43,7 @@ public class StorageView extends BaseCollapsibleView {
 
         @Override
         protected void updateData() {
+            mStorageChannelAdapter.setList(Configuration.getInstance().storageList);
             mStorageChannelAdapter.notifyDataSetChanged();
         }
 
