@@ -2,6 +2,7 @@ package com.vgomc.mchelper.view.status;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -16,15 +17,11 @@ import com.vgomc.mchelper.utility.TimeUtil;
 import com.vgomc.mchelper.utility.ToastUtil;
 import com.vgomc.mchelper.widget.StatusControlView;
 
-import org.holoeverywhere.app.AlertDialog;
-import org.holoeverywhere.widget.Button;
-import org.holoeverywhere.widget.EditText;
+import android.widget.Button;
+import android.widget.EditText;
 
 import java.util.List;
 
-/**
- * Created by weizhouh on 5/31/2015.
- */
 public class ControlView extends BaseCollapsibleView {
     SystemContentView mContentView;
 

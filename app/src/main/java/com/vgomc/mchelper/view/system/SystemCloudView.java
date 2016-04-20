@@ -1,5 +1,6 @@
 package com.vgomc.mchelper.view.system;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -21,15 +22,11 @@ import com.vgomc.mchelper.transmit.bluetooth.BlueToothSeriveProvider;
 import com.vgomc.mchelper.utility.ToastUtil;
 import com.vgomc.mchelper.widget.NoScrollListView;
 
-import org.holoeverywhere.app.ProgressDialog;
-import org.holoeverywhere.widget.Button;
-import org.holoeverywhere.widget.LinearLayout;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
 import java.util.List;
 
-/**
- * Created by weizhouh on 6/22/2015.
- */
 public class SystemCloudView extends BaseCollapsibleView {
 
     private Button mRefreshButton;

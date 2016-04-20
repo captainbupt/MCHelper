@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.holoeverywhere.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <org.holoeverywhere.widget.LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             android:id="@+id/tv_view_setting_battery_edit_subject"
             style="@style/layout_left_style" />
 
@@ -44,21 +44,21 @@
                 android:textSize="@dimen/text_size_medium" />
         </RadioGroup>
 
-    </org.holoeverywhere.widget.LinearLayout>
+    </LinearLayout>
 
-    <org.holoeverywhere.widget.LinearLayout
+    <LinearLayout
         android:id="@+id/ll_view_setting_battery_edit_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <org.holoeverywhere.widget.LinearLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <org.holoeverywhere.widget.TextView
+            <TextView
                 style="@style/layout_left_style"
                 android:text="@string/setting_battery_pattern" />
 
@@ -83,15 +83,15 @@
                     android:text="@string/setting_battery_pattern_custom"
                     android:textSize="@dimen/text_size_medium" />
             </RadioGroup>
-        </org.holoeverywhere.widget.LinearLayout>
+        </LinearLayout>
 
-        <org.holoeverywhere.widget.LinearLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <org.holoeverywhere.widget.TextView
+            <TextView
                 style="@style/layout_left_style"
                 android:text="@string/setting_battery_time_begin" />
 
@@ -99,21 +99,21 @@
                 android:id="@+id/tev_view_setting_battery_edit_time_begin"
                 style="@style/layout_right_style" />
 
-        </org.holoeverywhere.widget.LinearLayout>
+        </LinearLayout>
 
-        <org.holoeverywhere.widget.LinearLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <org.holoeverywhere.widget.TextView
+            <TextView
                 style="@style/layout_left_style"
                 android:text="@string/setting_battery_time_live" />
 
             <com.vgomc.mchelper.widget.TimeEditView
                 android:id="@+id/tev_view_setting_battery_edit_time_last"
                 style="@style/layout_right_style" />
-        </org.holoeverywhere.widget.LinearLayout>
-    </org.holoeverywhere.widget.LinearLayout>
-</org.holoeverywhere.widget.LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

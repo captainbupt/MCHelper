@@ -16,7 +16,7 @@ import com.vgomc.mchelper.base.MyBaseAdapter;
 import com.vgomc.mchelper.utility.ToastUtil;
 import com.vgomc.mchelper.widget.NoScrollListView;
 
-import org.holoeverywhere.widget.TextView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 

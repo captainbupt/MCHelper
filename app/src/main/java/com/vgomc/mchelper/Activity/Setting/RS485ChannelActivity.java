@@ -2,6 +2,7 @@ package com.vgomc.mchelper.activity.setting;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RadioGroup;
@@ -14,13 +15,12 @@ import com.vgomc.mchelper.base.BaseActivity;
 import com.vgomc.mchelper.utility.BigNumberPickerDialog;
 import com.vgomc.mchelper.widget.MultiVariableView;
 
-import org.holoeverywhere.app.AlertDialog;
-import org.holoeverywhere.widget.ArrayAdapter;
-import org.holoeverywhere.widget.EditText;
-import org.holoeverywhere.widget.LinearLayout;
-import org.holoeverywhere.widget.RadioButton;
-import org.holoeverywhere.widget.Spinner;
-import org.holoeverywhere.widget.TextView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 /**
  * Created by weizhouh on 5/25/2015.

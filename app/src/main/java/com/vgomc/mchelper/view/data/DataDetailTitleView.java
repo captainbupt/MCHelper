@@ -6,7 +6,7 @@ import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.base.BaseCollapsibleContentView;
 import com.vgomc.mchelper.base.BaseCollapsibleView;
 
-import org.holoeverywhere.widget.TextView;
+import android.widget.TextView;
 
 /**
  * Created by weizhouh on 6/6/2015.

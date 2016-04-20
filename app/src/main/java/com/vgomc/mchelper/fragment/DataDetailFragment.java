@@ -1,6 +1,7 @@
 package com.vgomc.mchelper.fragment;
 
 import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 
 import com.vgomc.mchelper.entity.bluetooth.BaseBluetoothEntity;
@@ -14,8 +15,7 @@ import com.vgomc.mchelper.transmit.bluetooth.BlueToothSeriveProvider;
 import com.vgomc.mchelper.utility.ToastUtil;
 import com.vgomc.mchelper.view.data.CurrentDataView;
 
-import org.holoeverywhere.app.AlertDialog;
-import org.holoeverywhere.widget.EditText;
+import android.widget.EditText;
 
 import java.util.ArrayList;
 import java.util.List;

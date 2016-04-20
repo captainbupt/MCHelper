@@ -2,6 +2,8 @@ package com.vgomc.mchelper.widget;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RadioGroup;
@@ -10,15 +12,9 @@ import com.vgomc.mchelper.entity.setting.Configuration;
 import com.vgomc.mchelper.entity.setting.Network;
 import com.vgomc.mchelper.R;
 
-import org.holoeverywhere.LayoutInflater;
-import org.holoeverywhere.app.AlertDialog;
-import org.holoeverywhere.widget.EditText;
-import org.holoeverywhere.widget.LinearLayout;
-import org.holoeverywhere.widget.RadioButton;
-
-/**
- * Created by weizhouh on 5/29/2015.
- */
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
 
 public class NetworkEditView extends LinearLayout {
 

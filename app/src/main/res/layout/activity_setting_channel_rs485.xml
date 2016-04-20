@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.holoeverywhere.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <org.holoeverywhere.widget.TextView
+    <TextView
         style="@style/title_style"
         android:text="@string/setting_channel_title_rs485" />
 
@@ -17,18 +17,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <org.holoeverywhere.widget.LinearLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
 
-            <org.holoeverywhere.widget.LinearLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <org.holoeverywhere.widget.TextView
+                <TextView
                     style="@style/layout_left_style"
                     android:text="@string/setting_channel_rs485_model" />
 
@@ -37,7 +37,7 @@
                     style="@style/layout_right_style"
                     android:orientation="horizontal">
 
-                    <org.holoeverywhere.widget.RadioButton
+                    <RadioButton
                         android:id="@+id/rb_activity_setting_channel_rs485_mode_master"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
                         android:text="@string/setting_channel_rs485_model_master"
                         android:textSize="@dimen/text_size_medium" />
 
-                    <org.holoeverywhere.widget.RadioButton
+                    <RadioButton
                         android:id="@+id/rb_activity_setting_channel_rs485_mode_slave"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -53,14 +53,14 @@
                         android:text="@string/setting_channel_rs485_model_slave"
                         android:textSize="@dimen/text_size_medium" />
                 </RadioGroup>
-            </org.holoeverywhere.widget.LinearLayout>
+            </LinearLayout>
 
-            <org.holoeverywhere.widget.LinearLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <org.holoeverywhere.widget.TextView
+                <TextView
                     style="@style/layout_left_style"
                     android:layout_width="match_parent"
                     android:text="@string/setting_channel_rs485_model" />
@@ -71,7 +71,7 @@
                     style="@style/layout_right_style"
                     android:orientation="horizontal">
 
-                    <org.holoeverywhere.widget.RadioButton
+                    <RadioButton
                         android:id="@+id/rb_activity_setting_channel_rs485_protocol_rtu"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -79,7 +79,7 @@
                         android:text="@string/setting_channel_rs485_protocol_rtu"
                         android:textSize="@dimen/text_size_medium" />
 
-                    <org.holoeverywhere.widget.RadioButton
+                    <RadioButton
                         android:id="@+id/rb_activity_setting_channel_rs485_protocol_ascii"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -87,59 +87,59 @@
                         android:text="@string/setting_channel_rs485_protocol_ascii"
                         android:textSize="@dimen/text_size_medium" />
                 </RadioGroup>
-            </org.holoeverywhere.widget.LinearLayout>
+            </LinearLayout>
 
-            <org.holoeverywhere.widget.LinearLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <org.holoeverywhere.widget.TextView
+                <TextView
                     style="@style/layout_left_style"
                     android:text="@string/setting_channel_rs485_slave_address" />
 
-                <org.holoeverywhere.widget.EditText
+                <EditText
                     android:id="@+id/et_activity_setting_channel_rs485_slave_address"
 
                     style="@style/layout_right_style"
                     android:hint="@string/setting_channel_rs485_slave_address_hint"
                     android:inputType="number"
                     android:maxLength="3" />
-            </org.holoeverywhere.widget.LinearLayout>
+            </LinearLayout>
 
-            <org.holoeverywhere.widget.LinearLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <org.holoeverywhere.widget.TextView
+                <TextView
 
                     style="@style/layout_left_style"
                     android:text="@string/setting_channel_rs485_baud" />
 
-                <org.holoeverywhere.widget.Spinner
+                <Spinner
                     android:id="@+id/sp_activity_setting_channel_rs485_baud"
 
                     style="@style/layout_right_style"
                     android:padding="@dimen/offset_less" />
-            </org.holoeverywhere.widget.LinearLayout>
+            </LinearLayout>
 
-            <org.holoeverywhere.widget.LinearLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <org.holoeverywhere.widget.TextView
+                <TextView
 
                     style="@style/layout_left_style"
                     android:text="@string/setting_channel_warm_time" />
 
-                <org.holoeverywhere.widget.TextView
+                <TextView
                     android:id="@+id/tv_activity_setting_channel_rs485_warm_time"
                     style="@style/layout_right_style" />
-            </org.holoeverywhere.widget.LinearLayout>
+            </LinearLayout>
 
-            <org.holoeverywhere.widget.LinearLayout
+            <LinearLayout
                 android:id="@+id/ll_activity_setting_channel_rs485_variables"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -154,7 +154,7 @@
                     android:id="@+id/mvv_activity_setting_channel_rs485_variables"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-            </org.holoeverywhere.widget.LinearLayout>
-        </org.holoeverywhere.widget.LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
     </ScrollView>
-</org.holoeverywhere.widget.LinearLayout>
+</LinearLayout>

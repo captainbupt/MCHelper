@@ -2,6 +2,7 @@ package com.vgomc.mchelper.view.setting;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 
 import com.vgomc.mchelper.entity.setting.Configuration;
@@ -13,11 +14,6 @@ import com.vgomc.mchelper.base.BaseCollapsibleView;
 import com.vgomc.mchelper.widget.NoScrollListView;
 import com.vgomc.mchelper.widget.MeasuringEditView;
 
-import org.holoeverywhere.app.AlertDialog;
-
-/**
- * Created by weizhouh on 5/21/2015.
- */
 public class MeasuringView extends BaseCollapsibleView {
     public MeasuringView(Context context) {
         super(context);

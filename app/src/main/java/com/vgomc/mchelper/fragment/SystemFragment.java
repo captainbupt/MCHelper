@@ -2,8 +2,6 @@ package com.vgomc.mchelper.fragment;
 
 import android.os.Bundle;
 
-import org.holoeverywhere.LayoutInflater;
-
 import android.view.View;
 import android.view.ViewGroup;
 

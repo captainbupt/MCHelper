@@ -9,7 +9,7 @@ import android.util.AttributeSet;
 
 import com.vgomc.mchelper.R;
 
-import org.holoeverywhere.widget.TextView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;

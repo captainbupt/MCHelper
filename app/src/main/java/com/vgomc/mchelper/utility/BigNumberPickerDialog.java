@@ -2,19 +2,12 @@ package com.vgomc.mchelper.utility;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.view.MotionEvent;
-import android.view.View;
+import android.support.v7.app.AlertDialog;
+import android.widget.EditText;
 
 import com.vgomc.mchelper.R;
-import com.vgomc.mchelper.transmit.bluetooth.BlueToothSeriveProvider;
 import com.vgomc.mchelper.widget.MyBigNumberPicker;
 
-import org.holoeverywhere.app.AlertDialog;
-import org.holoeverywhere.widget.EditText;
-
-/**
- * Created by weizhouh on 5/28/2015.
- */
 public class BigNumberPickerDialog {
 
     public static AlertDialog getBigNumberPickerDialog(Context context, int digitNumber, int min, int max, int current, final EditText editText, String title) {

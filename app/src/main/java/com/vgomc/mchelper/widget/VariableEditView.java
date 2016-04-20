@@ -5,6 +5,7 @@ import android.text.InputFilter;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -17,21 +18,17 @@ import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.utility.BigNumberPickerDialog;
 import com.vgomc.mchelper.utility.ToastUtil;
 
-import org.holoeverywhere.LayoutInflater;
-import org.holoeverywhere.widget.AdapterView;
-import org.holoeverywhere.widget.ArrayAdapter;
-import org.holoeverywhere.widget.EditText;
-import org.holoeverywhere.widget.LinearLayout;
-import org.holoeverywhere.widget.RadioButton;
-import org.holoeverywhere.widget.Spinner;
-import org.holoeverywhere.widget.Switch;
-import org.holoeverywhere.widget.TextView;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.Spinner;
+import android.widget.Switch;
+import android.widget.TextView;
 
 import java.io.UnsupportedEncodingException;
 
-/**
- * Created by weizhouh on 5/24/2015.
- */
 public class VariableEditView extends LinearLayout {
 
     private Context mContext;

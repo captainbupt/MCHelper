@@ -3,6 +3,7 @@ package com.vgomc.mchelper.view.system;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.support.v7.app.AlertDialog;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
@@ -17,9 +18,8 @@ import com.vgomc.mchelper.base.BaseCollapsibleContentView;
 import com.vgomc.mchelper.base.BaseCollapsibleView;
 import com.vgomc.mchelper.widget.NoScrollListView;
 
-import org.holoeverywhere.app.AlertDialog;
-import org.holoeverywhere.widget.LinearLayout;
-import org.holoeverywhere.widget.TextView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 /**
  * Created by weizhouh on 6/4/2015.

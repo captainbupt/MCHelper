@@ -1,110 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.holoeverywhere.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <org.holoeverywhere.widget.LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             android:id="@+id/tv_adapter_setting_measuring_subject"
             style="@style/layout_left_style"
             android:text="@string/setting_measuring_plan" />
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             android:id="@+id/tv_adapter_setting_measuring_mode"
             style="@style/layout_right_style" />
 
-    </org.holoeverywhere.widget.LinearLayout>
+    </LinearLayout>
 
 
-    <org.holoeverywhere.widget.LinearLayout
+    <LinearLayout
         android:id="@+id/ll_adapter_setting_measuring_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <org.holoeverywhere.widget.LinearLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <org.holoeverywhere.widget.TextView
+            <TextView
                 style="@style/layout_left_style"
                 android:text="@string/setting_measuring_time" />
 
-            <org.holoeverywhere.widget.LinearLayout
+            <LinearLayout
                 style="@style/layout_right_style"
                 android:orientation="horizontal">
 
-                <org.holoeverywhere.widget.TextView
+                <TextView
                     android:id="@+id/tv_adapter_setting_measuring_begin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_size_medium" />
 
-                <org.holoeverywhere.widget.TextView
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="-"
                     android:textSize="@dimen/text_size_medium" />
 
-                <org.holoeverywhere.widget.TextView
+                <TextView
                     android:id="@+id/tv_adapter_setting_measuring_end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_size_medium" />
 
-            </org.holoeverywhere.widget.LinearLayout>
-        </org.holoeverywhere.widget.LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
 
-        <org.holoeverywhere.widget.LinearLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <org.holoeverywhere.widget.TextView
+            <TextView
                 style="@style/layout_left_style"
                 android:text="@string/setting_measuring_interval"/>
 
-            <org.holoeverywhere.widget.LinearLayout
+            <LinearLayout
                 style="@style/layout_right_style"
                 android:orientation="horizontal">
 
-                <org.holoeverywhere.widget.TextView
+                <TextView
                     android:id="@+id/tv_adapter_setting_measuring_interval"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_size_medium" />
 
-                <org.holoeverywhere.widget.TextView
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="分钟"
                     android:textSize="@dimen/text_size_medium" />
 
-            </org.holoeverywhere.widget.LinearLayout>
-        </org.holoeverywhere.widget.LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
 
-        <org.holoeverywhere.widget.LinearLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <org.holoeverywhere.widget.TextView
+            <TextView
                 style="@style/layout_left_style"
                 android:text="@string/setting_measuring_variables" />
 
 
-            <org.holoeverywhere.widget.TextView
+            <TextView
                 android:id="@+id/tv_adapter_setting_measuring_variable"
                 style="@style/layout_right_style"
                 android:ellipsize="end"
                 android:singleLine="true"/>
 
-        </org.holoeverywhere.widget.LinearLayout>
-    </org.holoeverywhere.widget.LinearLayout>
-</org.holoeverywhere.widget.LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

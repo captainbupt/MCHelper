@@ -1,65 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.holoeverywhere.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <org.holoeverywhere.widget.LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             style="@style/layout_left_style"
             android:text="@string/data_history_memory_backup" />
 
-        <org.holoeverywhere.widget.FrameLayout
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="@integer/radio_right"
             android:paddingLeft="@dimen/offset_less"
             android:paddingRight="@dimen/offset_less">
 
-            <org.holoeverywhere.widget.Button
+            <Button
                 android:id="@+id/btn_view_data_control_backup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:text="备份"
                 android:textSize="@dimen/text_size_medium" />
-        </org.holoeverywhere.widget.FrameLayout>
-    </org.holoeverywhere.widget.LinearLayout>
+        </FrameLayout>
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/color_divider_line" />
 
-    <org.holoeverywhere.widget.LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             style="@style/layout_left_style"
             android:text="@string/data_history_clear" />
 
-        <org.holoeverywhere.widget.FrameLayout
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="@integer/radio_right"
             android:paddingLeft="@dimen/offset_less"
             android:paddingRight="@dimen/offset_less">
 
-            <org.holoeverywhere.widget.Button
+            <Button
                 android:id="@+id/btn_view_data_control_clear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:text="清空"
                 android:textSize="@dimen/text_size_medium" />
-        </org.holoeverywhere.widget.FrameLayout>
-    </org.holoeverywhere.widget.LinearLayout>
+        </FrameLayout>
+    </LinearLayout>
 
-</org.holoeverywhere.widget.LinearLayout>
+</LinearLayout>

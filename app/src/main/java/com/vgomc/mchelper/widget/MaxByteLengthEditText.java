@@ -6,7 +6,7 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.util.AttributeSet;
 
-import org.holoeverywhere.widget.EditText;
+import android.widget.EditText;
 
 import java.io.UnsupportedEncodingException;
 

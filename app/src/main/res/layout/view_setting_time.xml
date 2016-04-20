@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.holoeverywhere.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:orientation="horizontal">
 
-    <org.holoeverywhere.widget.LinearLayout
+    <LinearLayout
         android:id="@+id/ll_view_setting_time_hour"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,7 +13,7 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <org.holoeverywhere.widget.EditText
+        <EditText
             android:id="@+id/et_view_setting_time_hour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -23,14 +23,14 @@
             android:maxLength="2"
             android:textSize="@dimen/text_size_medium" />
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/setting_time_hour"
             android:textSize="@dimen/text_size_medium" />
-    </org.holoeverywhere.widget.LinearLayout>
+    </LinearLayout>
 
-    <org.holoeverywhere.widget.LinearLayout
+    <LinearLayout
         android:id="@+id/ll_view_setting_time_minute"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <org.holoeverywhere.widget.EditText
+        <EditText
             android:id="@+id/et_view_setting_time_minute"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,14 +48,14 @@
             android:maxLength="2"
             android:textSize="@dimen/text_size_medium" />
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/setting_time_minute"
             android:textSize="@dimen/text_size_medium" />
-    </org.holoeverywhere.widget.LinearLayout>
+    </LinearLayout>
 
-    <org.holoeverywhere.widget.LinearLayout
+    <LinearLayout
         android:id="@+id/ll_view_setting_time_second"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <org.holoeverywhere.widget.EditText
+        <EditText
             android:id="@+id/et_view_setting_time_second"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -73,14 +73,14 @@
             android:maxLength="2"
             android:textSize="@dimen/text_size_medium" />
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/setting_time_second"
             android:textSize="@dimen/text_size_medium" />
-    </org.holoeverywhere.widget.LinearLayout>
+    </LinearLayout>
 
-    <org.holoeverywhere.widget.LinearLayout
+    <LinearLayout
         android:id="@+id/ll_view_setting_time_millisecond"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -88,7 +88,7 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <org.holoeverywhere.widget.EditText
+        <EditText
             android:id="@+id/et_view_setting_time_millisecond"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -98,11 +98,11 @@
             android:maxLength="3"
             android:textSize="@dimen/text_size_medium" />
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/setting_time_millisecond"
             android:textSize="@dimen/text_size_medium" />
-    </org.holoeverywhere.widget.LinearLayout>
+    </LinearLayout>
 
-</org.holoeverywhere.widget.LinearLayout>
+</LinearLayout>

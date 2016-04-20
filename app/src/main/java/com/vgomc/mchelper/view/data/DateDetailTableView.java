@@ -9,8 +9,8 @@ import com.vgomc.mchelper.base.BaseCollapsibleContentView;
 import com.vgomc.mchelper.base.BaseCollapsibleView;
 import com.vgomc.mchelper.utility.TimeUtil;
 
-import org.holoeverywhere.widget.Button;
-import org.holoeverywhere.widget.TextView;
+import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * Created by weizhouh on 6/6/2015.

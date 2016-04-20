@@ -1,6 +1,7 @@
 package com.vgomc.mchelper.base;
 
 
+import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -8,8 +9,6 @@ import android.util.DisplayMetrics;
 
 import com.vgomc.mchelper.entity.setting.Configuration;
 import com.vgomc.mchelper.utility.CrashHandler;
-
-import org.holoeverywhere.app.Application;
 
 /**
  * Created by weizhouh on 5/19/2015.

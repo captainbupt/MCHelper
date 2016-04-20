@@ -1,13 +1,13 @@
 package com.vgomc.mchelper.base;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.vgomc.mchelper.R;
 
-import org.holoeverywhere.LayoutInflater;
-import org.holoeverywhere.widget.ListView;
+import android.widget.ListView;
 
 /**
  * Created by weizhouh on 5/18/2015.

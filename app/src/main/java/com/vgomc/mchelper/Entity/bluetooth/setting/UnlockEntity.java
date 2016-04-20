@@ -6,12 +6,9 @@ import android.content.DialogInterface;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.utility.SP;
 
-import org.holoeverywhere.app.AlertDialog;
-import org.holoeverywhere.widget.EditText;
+import android.support.v7.app.AlertDialog;
+import android.widget.EditText;
 
-/**
- * Created by weizhouh on 6/7/2015.
- */
 public class UnlockEntity extends BaseBluetoothSettingEntity {
 
     public static String password = "";

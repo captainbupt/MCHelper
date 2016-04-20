@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <org.holoeverywhere.widget.TextView
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/color_title_background"
@@ -17,26 +17,26 @@
         android:layout_height="1dp"
         android:background="@color/color_divider_line" />
 
-    <org.holoeverywhere.widget.LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             style="@style/layout_left_style"
             android:text="@string/setting_channel_warm_time" />
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             android:id="@+id/tv_activity_setting_channel_sht_warm_time"
             style="@style/layout_right_style" />
 
-    </org.holoeverywhere.widget.LinearLayout>
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <org.holoeverywhere.widget.LinearLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -75,6 +75,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/color_divider_line" />
-        </org.holoeverywhere.widget.LinearLayout>
+        </LinearLayout>
     </ScrollView>
 </LinearLayout>

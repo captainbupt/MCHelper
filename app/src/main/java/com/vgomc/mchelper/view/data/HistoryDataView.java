@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v7.app.AlertDialog;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -18,17 +19,13 @@ import com.vgomc.mchelper.transmit.file.FileServiceProvider;
 import com.vgomc.mchelper.utility.ToastUtil;
 import com.vgomc.mchelper.widget.NoScrollListView;
 
-import org.holoeverywhere.app.AlertDialog;
-import org.holoeverywhere.widget.Button;
-import org.holoeverywhere.widget.LinearLayout;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by weizhouh on 6/6/2015.
- */
 public class HistoryDataView extends BaseCollapsibleView {
 
     private Button mRefreshButton;
@@ -123,14 +120,16 @@ public class HistoryDataView extends BaseCollapsibleView {
             File file = new File(FileServiceProvider.getExternalRecordPath(mContext));
             File[] recordFiles = file.listFiles();
             List<Object> records = new ArrayList<>();
-            for (int ii = 0; ii < recordFiles.length; ii++) {
-                if (recordFiles[ii].isFile() && recordFiles[ii].getName().endsWith(".csv")) {
-                    records.add(recordFiles[ii]);
-                } else if (recordFiles[ii].isDirectory()) {
-                    File[] childFiles = recordFiles[ii].listFiles();
-                    for (int jj = 0; jj < childFiles.length; jj++) {
-                        if (childFiles[jj].isFile() && childFiles[jj].getName().endsWith(".csv")) {
-                            records.add(childFiles[jj]);
+            if(recordFiles != null) {
+                for (File recordFile : recordFiles) {
+                    if (recordFile.isFile() && recordFile.getName().endsWith(".csv")) {
+                        records.add(recordFile);
+                    } else if (recordFile.isDirectory()) {
+                        File[] childFiles = recordFile.listFiles();
+                        for (File childFile : childFiles) {
+                            if (childFile.isFile() && childFile.getName().endsWith(".csv")) {
+                                records.add(childFile);
+                            }
                         }
                     }
                 }

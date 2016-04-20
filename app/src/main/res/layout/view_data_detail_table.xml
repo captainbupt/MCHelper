@@ -1,158 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.holoeverywhere.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <org.holoeverywhere.widget.LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             style="@style/layout_left_style"
             android:text="@string/data_current_detail_current" />
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             android:id="@+id/tv_view_data_detail_table_current"
             style="@style/layout_right_style" />
-    </org.holoeverywhere.widget.LinearLayout>
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/color_divider_line" />
 
-    <org.holoeverywhere.widget.LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             style="@style/layout_left_style"
             android:text="@string/data_current_detail_average" />
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             android:id="@+id/tv_view_data_detail_table_average"
             style="@style/layout_right_style" />
-    </org.holoeverywhere.widget.LinearLayout>
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/color_divider_line" />
 
-    <org.holoeverywhere.widget.LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             style="@style/layout_left_style"
             android:text="@string/data_current_detail_max" />
 
-        <org.holoeverywhere.widget.LinearLayout
+        <LinearLayout
             style="@style/layout_right_style"
             android:orientation="horizontal">
 
-            <org.holoeverywhere.widget.TextView
+            <TextView
                 android:id="@+id/tv_view_data_detail_table_max"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="@dimen/text_size_medium" />
 
-            <org.holoeverywhere.widget.TextView
+            <TextView
                 android:id="@+id/tv_view_data_detail_table_max_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/text_size_medium" />
-        </org.holoeverywhere.widget.LinearLayout>
-    </org.holoeverywhere.widget.LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/color_divider_line" />
 
-    <org.holoeverywhere.widget.LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             style="@style/layout_left_style"
             android:text="@string/data_current_detail_min" />
 
-        <org.holoeverywhere.widget.LinearLayout
+        <LinearLayout
             style="@style/layout_right_style"
             android:orientation="horizontal">
 
-            <org.holoeverywhere.widget.TextView
+            <TextView
                 android:id="@+id/tv_view_data_detail_table_min"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="@dimen/text_size_medium" />
 
-            <org.holoeverywhere.widget.TextView
+            <TextView
                 android:id="@+id/tv_view_data_detail_table_min_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/text_size_medium" />
-        </org.holoeverywhere.widget.LinearLayout>
-    </org.holoeverywhere.widget.LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/color_divider_line" />
 
-    <org.holoeverywhere.widget.LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             style="@style/layout_left_style"
             android:text="@string/data_current_detail_period" />
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             android:id="@+id/tv_view_data_detail_table_period"
             style="@style/layout_right_style" />
-    </org.holoeverywhere.widget.LinearLayout>
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/color_divider_line" />
 
-    <org.holoeverywhere.widget.LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             style="@style/layout_left_style"
             android:text="@string/data_current_detail_ever" />
 
-        <org.holoeverywhere.widget.LinearLayout
+        <LinearLayout
             style="@style/layout_right_style"
             android:orientation="horizontal">
 
-            <org.holoeverywhere.widget.TextView
+            <TextView
                 android:id="@+id/tv_view_data_detail_table_ever"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="@dimen/text_size_medium" />
 
-            <org.holoeverywhere.widget.Button
+            <Button
                 android:id="@+id/btn_view_data_detail_table_reset"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/data_current_detail_reset"
                 android:textSize="@dimen/text_size_medium" />
-        </org.holoeverywhere.widget.LinearLayout>
-    </org.holoeverywhere.widget.LinearLayout>
-</org.holoeverywhere.widget.LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

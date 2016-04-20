@@ -2,12 +2,9 @@ package com.vgomc.mchelper.base;
 
 import android.content.Context;
 
-import org.holoeverywhere.LayoutInflater;
-import org.holoeverywhere.widget.LinearLayout;
+import android.view.LayoutInflater;
+import android.widget.LinearLayout;
 
-/**
- * Created by weizhouh on 5/20/2015.
- */
 public abstract class BaseCollapsibleContentView extends LinearLayout {
 
     protected Context mContext;

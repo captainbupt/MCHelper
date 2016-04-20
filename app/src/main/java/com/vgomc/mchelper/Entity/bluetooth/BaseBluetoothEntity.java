@@ -1,12 +1,8 @@
 package com.vgomc.mchelper.entity.bluetooth;
 
 import android.content.Context;
+import android.support.v7.app.AlertDialog;
 
-import org.holoeverywhere.app.AlertDialog;
-
-/**
- * Created by weizhouh on 6/1/2015.
- */
 public abstract class BaseBluetoothEntity {
 
     public static final String SEPERATOR = new String(new byte[]{13, 10});

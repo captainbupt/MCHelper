@@ -9,8 +9,8 @@ import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.base.MyBaseAdapter;
 import com.vgomc.mchelper.utility.TimeUtil;
 
-import org.holoeverywhere.widget.LinearLayout;
-import org.holoeverywhere.widget.TextView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 /**
  * Created by weizhouh on 5/30/2015.
@@ -22,7 +22,7 @@ public class MeasuringChannelAdapter extends MyBaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view = mInflater.inflate(R.layout.adapter_setting_measuring);
+        View view = mInflater.inflate(R.layout.adapter_setting_measuring, parent, false);
         TextView subjectTextView = (TextView) view.findViewById(R.id.tv_adapter_setting_measuring_subject);
         TextView modeTextVoew = (TextView) view.findViewById(R.id.tv_adapter_setting_measuring_mode);
         TextView beginTextView = (TextView) view.findViewById(R.id.tv_adapter_setting_measuring_begin);

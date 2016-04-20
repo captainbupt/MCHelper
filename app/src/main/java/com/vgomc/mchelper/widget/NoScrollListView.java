@@ -14,7 +14,7 @@ import android.widget.Adapter;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.utility.DimenUtil;
 
-import org.holoeverywhere.widget.LinearLayout;
+import android.widget.LinearLayout;
 
 public class NoScrollListView extends LinearLayout {
 

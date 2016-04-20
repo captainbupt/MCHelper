@@ -1,16 +1,11 @@
 package com.vgomc.mchelper.base;
 
 import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.LayoutInflater;
 import android.widget.BaseAdapter;
-
-import org.holoeverywhere.LayoutInflater;
-import org.holoeverywhere.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.Inflater;
 
 /**
  * Created by weizhouh on 5/21/2015.

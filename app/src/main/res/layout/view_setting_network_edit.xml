@@ -4,17 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <org.holoeverywhere.widget.LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <org.holoeverywhere.widget.LinearLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <org.holoeverywhere.widget.TextView
+            <TextView
                 style="@style/layout_left_style"
                 android:text="@string/setting_network_mode" />
 
@@ -40,61 +40,61 @@
                     android:textSize="@dimen/text_size_medium" />
             </RadioGroup>
 
-        </org.holoeverywhere.widget.LinearLayout>
+        </LinearLayout>
 
 
-        <org.holoeverywhere.widget.LinearLayout
+        <LinearLayout
             android:id="@+id/ll_view_setting_network_edit_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <org.holoeverywhere.widget.LinearLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <org.holoeverywhere.widget.TextView
+                <TextView
                     style="@style/layout_left_style"
                     android:text="@string/setting_network_time" />
 
                 <com.vgomc.mchelper.widget.TimeEditView
                     android:id="@+id/tev_view_setting_network_edit_time"
                     style="@style/layout_right_style" />
-            </org.holoeverywhere.widget.LinearLayout>
+            </LinearLayout>
 
-            <org.holoeverywhere.widget.LinearLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <org.holoeverywhere.widget.TextView
+                <TextView
                     style="@style/layout_left_style"
                     android:text="@string/setting_network_address" />
 
-                <org.holoeverywhere.widget.EditText
+                <EditText
                     android:id="@+id/et_view_setting_network_edit_address"
                     style="@style/layout_right_style"
                     android:maxLength="40"
                     android:singleLine="true" />
 
-            </org.holoeverywhere.widget.LinearLayout>
+            </LinearLayout>
 
-            <org.holoeverywhere.widget.LinearLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <org.holoeverywhere.widget.TextView
+                <TextView
                     style="@style/layout_left_style"
                     android:text="@string/setting_network_port" />
 
-                <org.holoeverywhere.widget.EditText
+                <EditText
                     android:id="@+id/et_view_setting_network_edit_port"
                     style="@style/layout_right_style" />
 
-            </org.holoeverywhere.widget.LinearLayout>
-        </org.holoeverywhere.widget.LinearLayout>
-    </org.holoeverywhere.widget.LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 
 </ScrollView>

@@ -1,154 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.holoeverywhere.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <org.holoeverywhere.widget.LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             style="@style/layout_left_style"
             android:text="@string/status_network_status" />
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             android:id="@+id/tv_view_status_network_status"
             style="@style/layout_right_style" />
-    </org.holoeverywhere.widget.LinearLayout>
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/color_divider_line" />
 
-    <org.holoeverywhere.widget.LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             style="@style/layout_left_style"
             android:text="@string/status_network_name" />
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             android:id="@+id/tv_view_status_network_name"
             style="@style/layout_right_style" />
-    </org.holoeverywhere.widget.LinearLayout>
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/color_divider_line" />
 
-    <org.holoeverywhere.widget.LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             style="@style/layout_left_style"
             android:text="@string/status_network_strength" />
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             android:id="@+id/tv_view_status_network_strength"
             style="@style/layout_right_style" />
 
-    </org.holoeverywhere.widget.LinearLayout>
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/color_divider_line" />
 
-    <org.holoeverywhere.widget.LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             style="@style/layout_left_style"
             android:text="@string/status_network_error_rate" />
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             android:id="@+id/tv_view_status_network_error_rate"
             style="@style/layout_right_style" />
 
-    </org.holoeverywhere.widget.LinearLayout>
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/color_divider_line" />
 
-    <org.holoeverywhere.widget.LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             style="@style/layout_left_style"
             android:text="@string/status_network_error_flag" />
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             android:id="@+id/tv_view_status_network_error_flag"
             style="@style/layout_right_style" />
 
-    </org.holoeverywhere.widget.LinearLayout>
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/color_divider_line" />
 
-    <org.holoeverywhere.widget.LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/text_size_less"
             android:text="@string/status_network_on_time"
             android:textSize="@dimen/text_size_medium" />
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             android:id="@+id/tv_view_status_network_on_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="@dimen/text_size_medium" />
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/text_size_less"
             android:text="@string/status_network_wait_time"
             android:textSize="@dimen/text_size_medium" />
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             android:id="@+id/tv_view_status_network_wait_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="@dimen/text_size_medium" />
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/text_size_less"
             android:text="@string/status_network_retry_time"
             android:textSize="@dimen/text_size_medium" />
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             android:id="@+id/tv_view_status_network_retry_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="@dimen/text_size_medium" />
-    </org.holoeverywhere.widget.LinearLayout>
+    </LinearLayout>
 
-</org.holoeverywhere.widget.LinearLayout>
+</LinearLayout>

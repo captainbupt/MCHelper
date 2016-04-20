@@ -6,20 +6,16 @@ import android.text.Spanned;
 import android.text.style.AbsoluteSizeSpan;
 import android.text.style.SuperscriptSpan;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Switch;
+import android.widget.TextView;
 
-import com.vgomc.mchelper.entity.setting.Variable;
 import com.vgomc.mchelper.R;
+import com.vgomc.mchelper.entity.setting.Variable;
 
-import org.holoeverywhere.LayoutInflater;
-import org.holoeverywhere.widget.EditText;
-import org.holoeverywhere.widget.LinearLayout;
-import org.holoeverywhere.widget.Switch;
-import org.holoeverywhere.widget.TextView;
-
-/**
- * Created by weizhouh on 5/23/2015.
- */
 public class DefaultFormulaEditView extends LinearLayout {
 
     private Context mContext;

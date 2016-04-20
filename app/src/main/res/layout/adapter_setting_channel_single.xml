@@ -5,16 +5,16 @@
     android:gravity="center_vertical"
     android:orientation="horizontal">
 
-    <org.holoeverywhere.widget.TextView
+    <TextView
         android:id="@+id/tv_adapter_setting_channel_single_subject"
         style="@style/layout_left_style" />
 
-    <org.holoeverywhere.widget.LinearLayout
+    <LinearLayout
         style="@style/layout_right_style"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             android:id="@+id/tv_adapter_setting_channel_single_variable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,5 +26,5 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/offset_less"
             android:textSize="@dimen/text_size_medium" />
-    </org.holoeverywhere.widget.LinearLayout>
+    </LinearLayout>
 </LinearLayout>

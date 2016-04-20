@@ -16,8 +16,8 @@ import com.vgomc.mchelper.base.BaseCollapsibleView;
 import com.vgomc.mchelper.transmit.bluetooth.BlueToothSeriveProvider;
 import com.vgomc.mchelper.widget.NoScrollListView;
 
-import org.holoeverywhere.widget.Button;
-import org.holoeverywhere.widget.LinearLayout;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
 import java.util.List;
 

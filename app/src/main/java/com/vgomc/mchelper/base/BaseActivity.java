@@ -1,19 +1,20 @@
 package com.vgomc.mchelper.base;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 
 import com.vgomc.mchelper.transmit.bluetooth.BluetoothHelper;
 import com.vgomc.mchelper.utility.MyActivityManager;
 import com.vgomc.mchelper.utility.ToastUtil;
 
-import org.holoeverywhere.app.Activity;
-
 /**
  * Created by weizhouh on 5/19/2015.
  */
-public class BaseActivity extends Activity {
+public class BaseActivity extends AppCompatActivity {
     protected Context mContext;
     protected Activity mActivity;
     protected Intent mReceivedIntent;

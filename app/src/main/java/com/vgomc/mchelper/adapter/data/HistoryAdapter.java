@@ -9,7 +9,7 @@ import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.base.MyBaseAdapter;
 import com.vgomc.mchelper.widget.TimeEditView;
 
-import org.holoeverywhere.widget.TextView;
+import android.widget.TextView;
 
 import java.io.File;
 

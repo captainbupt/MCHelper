@@ -2,10 +2,13 @@ package com.vgomc.mchelper.activity;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.ViewConfiguration;
+import android.widget.EditText;
 import android.widget.RadioGroup;
 
 import com.vgomc.mchelper.R;
@@ -13,10 +16,6 @@ import com.vgomc.mchelper.adapter.MainFragmentPagerAdapter;
 import com.vgomc.mchelper.base.BaseActivity;
 import com.vgomc.mchelper.fragment.SettingFragment;
 import com.vgomc.mchelper.transmit.bluetooth.BluetoothHelper;
-
-import org.holoeverywhere.app.AlertDialog;
-import org.holoeverywhere.widget.EditText;
-import org.holoeverywhere.widget.ViewPager;
 
 import java.lang.reflect.Field;
 

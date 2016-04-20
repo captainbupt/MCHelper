@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.vgomc.mchelper.utility.ToastUtil;
 
-import org.holoeverywhere.widget.Toast;
+import android.widget.Toast;
 
 /**
  * Created by weizhouh on 6/13/2015.

@@ -8,7 +8,7 @@ import com.vgomc.mchelper.entity.system.DataValue;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.base.MyBaseAdapter;
 
-import org.holoeverywhere.widget.TextView;
+import android.widget.TextView;
 
 /**
  * Created by weizhouh on 6/22/2015.

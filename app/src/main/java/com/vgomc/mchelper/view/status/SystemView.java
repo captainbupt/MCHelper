@@ -12,8 +12,8 @@ import com.vgomc.mchelper.transmit.bluetooth.BlueToothSeriveProvider;
 import com.vgomc.mchelper.utility.TimeUtil;
 import com.vgomc.mchelper.utility.ToastUtil;
 
-import org.holoeverywhere.widget.Button;
-import org.holoeverywhere.widget.TextView;
+import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.List;
 

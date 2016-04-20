@@ -1,18 +1,15 @@
 package com.vgomc.mchelper.base;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.View;
 
 import com.vgomc.mchelper.utility.ToastUtil;
 
-import org.holoeverywhere.app.Activity;
-import org.holoeverywhere.app.Fragment;
-import org.holoeverywhere.widget.Toast;
+import android.widget.Toast;
 
-/**
- * Created by weizhouh on 5/19/2015.
- */
 public abstract class BaseFragment extends Fragment {
     protected Context mContext;
     protected Activity mActivity;

@@ -3,33 +3,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <org.holoeverywhere.widget.LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <org.holoeverywhere.widget.LinearLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <org.holoeverywhere.widget.TextView
+            <TextView
                 android:id="@+id/tv_view_setting_channel_variable_subject"
                 style="@style/layout_left_style" />
 
-            <org.holoeverywhere.widget.LinearLayout
+            <LinearLayout
                 style="@style/layout_right_style"
                 android:gravity="left">
 
-                <org.holoeverywhere.widget.Switch
+                <Switch
                     android:id="@+id/sw_view_setting_channel_variable"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_size_medium" />
-            </org.holoeverywhere.widget.LinearLayout>
-        </org.holoeverywhere.widget.LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
 
-        <org.holoeverywhere.widget.LinearLayout
+        <LinearLayout
             android:id="@+id/ll_view_setting_channel_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,105 +42,105 @@
                 android:layout_marginRight="@dimen/offset_less"
                 android:background="@color/color_divider_line" />
 
-            <org.holoeverywhere.widget.LinearLayout
+            <LinearLayout
                 android:id="@+id/ll_view_setting_channel_variable_warm_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <org.holoeverywhere.widget.TextView
+                <TextView
                     style="@style/layout_left_style"
                     android:text="@string/setting_channel_warm_time" />
 
-                <org.holoeverywhere.widget.TextView
+                <TextView
                     android:id="@+id/tv_view_setting_channel_variable_warm_time"
                     style="@style/layout_right_style" />
 
-            </org.holoeverywhere.widget.LinearLayout>
+            </LinearLayout>
 
-            <org.holoeverywhere.widget.LinearLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <org.holoeverywhere.widget.TextView
+                <TextView
                     style="@style/layout_left_style"
                     android:text="@string/setting_channel_variable_name" />
 
-                <org.holoeverywhere.widget.EditText
+                <EditText
                     android:id="@+id/et_view_setting_channel_variable_name"
                     style="@style/layout_right_style" />
-            </org.holoeverywhere.widget.LinearLayout>
+            </LinearLayout>
 
-            <org.holoeverywhere.widget.LinearLayout
+            <LinearLayout
                 android:id="@+id/ll_view_setting_channel_variable_sensor_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <org.holoeverywhere.widget.TextView
+                <TextView
                     style="@style/layout_left_style"
                     android:text="@string/setting_channel_variable_sensor_address" />
 
-                <org.holoeverywhere.widget.EditText
+                <EditText
                     android:id="@+id/et_view_setting_channel_variable_sensor_address"
                     style="@style/layout_right_style"
                     android:hint="@string/setting_channel_variable_sensor_address_hint" />
-            </org.holoeverywhere.widget.LinearLayout>
+            </LinearLayout>
 
-            <org.holoeverywhere.widget.LinearLayout
+            <LinearLayout
                 android:id="@+id/ll_view_setting_channel_variable_register_type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <org.holoeverywhere.widget.TextView
+                <TextView
                     style="@style/layout_left_style"
                     android:text="@string/setting_channel_variable_register_type" />
 
-                <org.holoeverywhere.widget.Spinner
+                <Spinner
                     android:id="@+id/sp_view_setting_channel_variable_register_type"
                     style="@style/layout_right_style" />
-            </org.holoeverywhere.widget.LinearLayout>
+            </LinearLayout>
 
-            <org.holoeverywhere.widget.LinearLayout
+            <LinearLayout
                 android:id="@+id/ll_view_setting_channel_variable_register_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <org.holoeverywhere.widget.TextView
+                <TextView
                     style="@style/layout_left_style"
                     android:text="@string/setting_channel_variable_register_address" />
 
-                <org.holoeverywhere.widget.EditText
+                <EditText
                     android:id="@+id/et_view_setting_channel_variable_register_address"
                     style="@style/layout_right_style"
                     android:hint="@string/setting_channel_variable_register_address_hint" />
-            </org.holoeverywhere.widget.LinearLayout>
+            </LinearLayout>
 
-            <org.holoeverywhere.widget.LinearLayout
+            <LinearLayout
                 android:id="@+id/ll_view_setting_channel_variable_data_type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <org.holoeverywhere.widget.TextView
+                <TextView
                     style="@style/layout_left_style"
                     android:text="@string/setting_channel_variable_data_type" />
 
-                <org.holoeverywhere.widget.Spinner
+                <Spinner
                     android:id="@+id/sp_view_setting_channel_variable_data_type"
                     style="@style/layout_right_style" />
-            </org.holoeverywhere.widget.LinearLayout>
+            </LinearLayout>
 
-            <org.holoeverywhere.widget.LinearLayout
+            <LinearLayout
                 android:id="@+id/ll_view_setting_channel_variable_signal_type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <org.holoeverywhere.widget.TextView
+                <TextView
                     style="@style/layout_left_style"
                     android:text="@string/setting_channel_variable_signal_type" />
 
@@ -149,7 +149,7 @@
                     style="@style/layout_right_style"
                     android:orientation="horizontal">
 
-                    <org.holoeverywhere.widget.RadioButton
+                    <RadioButton
                         android:id="@+id/rb_view_setting_channel_signal_type_voltage"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -158,7 +158,7 @@
                         android:text="@string/setting_channel_signal_type_voltage"
                         android:textSize="@dimen/text_size_medium" />
 
-                    <org.holoeverywhere.widget.RadioButton
+                    <RadioButton
                         android:id="@+id/rb_view_setting_channel_signal_type_current"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -167,12 +167,12 @@
                         android:text="@string/setting_channel_signal_type_current"
                         android:textSize="@dimen/text_size_medium" />
                 </RadioGroup>
-            </org.holoeverywhere.widget.LinearLayout>
+            </LinearLayout>
 
             <com.vgomc.mchelper.widget.DefaultFormulaEditView
                 android:id="@+id/dfev_view_setting_channel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-        </org.holoeverywhere.widget.LinearLayout>
-    </org.holoeverywhere.widget.LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 </ScrollView>

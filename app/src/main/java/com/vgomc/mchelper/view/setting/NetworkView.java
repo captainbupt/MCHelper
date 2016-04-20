@@ -2,6 +2,7 @@ package com.vgomc.mchelper.view.setting;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 
 import com.vgomc.mchelper.entity.setting.Configuration;
@@ -13,15 +14,11 @@ import com.vgomc.mchelper.utility.TimeUtil;
 import com.vgomc.mchelper.utility.ToastUtil;
 import com.vgomc.mchelper.widget.NetworkEditView;
 
-import org.holoeverywhere.app.AlertDialog;
-import org.holoeverywhere.widget.LinearLayout;
-import org.holoeverywhere.widget.TextView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.lang.reflect.Field;
 
-/**
- * Created by weizhouh on 5/21/2015.
- */
 public class NetworkView extends BaseCollapsibleView {
     public NetworkView(Context context) {
         super(context);

@@ -2,7 +2,9 @@ package com.vgomc.mchelper.widget;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.View;
 
 import com.vgomc.mchelper.entity.setting.Channel;
@@ -12,14 +14,9 @@ import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.adapter.setting.ChannelVariableAdapter;
 import com.vgomc.mchelper.utility.ToastUtil;
 
-import org.holoeverywhere.LayoutInflater;
-import org.holoeverywhere.app.AlertDialog;
-import org.holoeverywhere.widget.Button;
-import org.holoeverywhere.widget.LinearLayout;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
-/**
- * Created by weizhouh on 5/26/2015.
- */
 public class MultiVariableView extends LinearLayout {
 
     private Channel mChannel;

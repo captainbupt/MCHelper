@@ -5,10 +5,10 @@ import android.util.AttributeSet;
 
 import com.vgomc.mchelper.R;
 
-import org.holoeverywhere.LayoutInflater;
-import org.holoeverywhere.widget.Button;
-import org.holoeverywhere.widget.LinearLayout;
-import org.holoeverywhere.widget.TextView;
+import android.view.LayoutInflater;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 /**
  * Created by weizhouh on 6/14/2015.

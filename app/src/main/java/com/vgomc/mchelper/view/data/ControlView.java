@@ -2,6 +2,7 @@ package com.vgomc.mchelper.view.data;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.View;
 
@@ -12,15 +13,11 @@ import com.vgomc.mchelper.base.BaseCollapsibleView;
 import com.vgomc.mchelper.transmit.bluetooth.BlueToothSeriveProvider;
 import com.vgomc.mchelper.utility.ToastUtil;
 
-import org.holoeverywhere.app.AlertDialog;
-import org.holoeverywhere.widget.Button;
-import org.holoeverywhere.widget.EditText;
+import android.widget.Button;
+import android.widget.EditText;
 
 import java.util.List;
 
-/**
- * Created by weizhouh on 6/18/2015.
- */
 public class ControlView extends BaseCollapsibleView {
 
     public ControlView(Context context) {

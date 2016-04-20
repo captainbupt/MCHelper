@@ -2,8 +2,8 @@ package com.vgomc.mchelper.fragment;
 
 import android.content.DialogInterface;
 
-import org.holoeverywhere.app.AlertDialog;
-import org.holoeverywhere.widget.EditText;
+import android.support.v7.app.AlertDialog;
+import android.widget.EditText;
 
 import com.vgomc.mchelper.entity.bluetooth.BaseBluetoothEntity;
 import com.vgomc.mchelper.entity.bluetooth.inquiry.BatteryChannelEntity;

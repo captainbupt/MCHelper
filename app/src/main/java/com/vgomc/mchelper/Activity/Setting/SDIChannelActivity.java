@@ -8,7 +8,7 @@ import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.base.BaseActivity;
 import com.vgomc.mchelper.widget.MultiVariableView;
 
-import org.holoeverywhere.widget.TextView;
+import android.widget.TextView;
 
 /**
  * Created by weizhouh on 5/25/2015.

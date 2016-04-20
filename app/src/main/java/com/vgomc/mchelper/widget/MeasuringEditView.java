@@ -2,6 +2,8 @@ package com.vgomc.mchelper.widget;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -13,19 +15,14 @@ import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.utility.BigNumberPickerDialog;
 import com.vgomc.mchelper.utility.TimeUtil;
 
-import org.holoeverywhere.LayoutInflater;
-import org.holoeverywhere.app.AlertDialog;
-import org.holoeverywhere.widget.EditText;
-import org.holoeverywhere.widget.LinearLayout;
-import org.holoeverywhere.widget.Switch;
-import org.holoeverywhere.widget.TextView;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Switch;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by weizhouh on 5/30/2015.
- */
 public class MeasuringEditView extends LinearLayout {
 
     private Context mContext;

@@ -2,6 +2,7 @@ package com.vgomc.mchelper.view.setting;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
@@ -14,14 +15,10 @@ import com.vgomc.mchelper.base.BaseCollapsibleContentView;
 import com.vgomc.mchelper.base.BaseCollapsibleView;
 import com.vgomc.mchelper.widget.MyBigNumberPicker;
 
-import org.holoeverywhere.app.AlertDialog;
-import org.holoeverywhere.widget.EditText;
-import org.holoeverywhere.widget.Switch;
-import org.holoeverywhere.widget.TextView;
+import android.widget.EditText;
+import android.widget.Switch;
+import android.widget.TextView;
 
-/**
- * Created by weizhouh on 5/20/2015.
- */
 public class SystemInfoView extends BaseCollapsibleView {
 
     public SystemInfoView(Context context) {

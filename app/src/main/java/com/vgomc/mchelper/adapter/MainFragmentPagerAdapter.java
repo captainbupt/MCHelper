@@ -1,6 +1,7 @@
 package com.vgomc.mchelper.adapter;
 
 import android.content.Context;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
@@ -9,8 +10,6 @@ import com.vgomc.mchelper.fragment.DataFragment;
 import com.vgomc.mchelper.fragment.SettingFragment;
 import com.vgomc.mchelper.fragment.StatusFragment;
 import com.vgomc.mchelper.fragment.SystemFragment;
-
-import org.holoeverywhere.app.Fragment;
 
 /**
  * Created by weizhouh on 5/18/2015.

@@ -1,21 +1,15 @@
 package com.vgomc.mchelper.widget;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.listener.MyBigNumberValueChangeListener;
 import com.vgomc.mchelper.utility.TimeUtil;
 
-import org.holoeverywhere.LayoutInflater;
-import org.holoeverywhere.app.Dialog;
-import org.holoeverywhere.widget.LinearLayout;
+import android.widget.LinearLayout;
 
-import java.util.Calendar;
-
-/**
- * Created by weizhouh on 5/27/2015.
- */
 public class MyTimePickerView extends LinearLayout {
 
     public static final int MODE_MSM = 1;

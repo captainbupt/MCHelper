@@ -1,8 +1,11 @@
 package com.vgomc.mchelper.transmit.bluetooth;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 
 import com.vgomc.mchelper.entity.bluetooth.BaseBluetoothEntity;
 import com.vgomc.mchelper.entity.bluetooth.inquiry.BatteryChannelEntity;
@@ -54,10 +57,6 @@ import com.vgomc.mchelper.utility.TimeUtil;
 import com.vgomc.mchelper.utility.ToastUtil;
 import com.vgomc.mchelper.widget.MyProgressDialog;
 
-import org.holoeverywhere.app.Activity;
-import org.holoeverywhere.app.AlertDialog;
-import org.holoeverywhere.app.ProgressDialog;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -67,10 +66,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
-/**
- * Created by weizhouh on 6/3/2015.
- */
 public class BlueToothSeriveProvider {
     private static boolean isTransacting = false;
     private static MyProgressDialog mProgressDialog;

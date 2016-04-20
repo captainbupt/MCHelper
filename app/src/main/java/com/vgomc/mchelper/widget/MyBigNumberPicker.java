@@ -7,8 +7,8 @@ import android.view.Gravity;
 import com.vgomc.mchelper.listener.MyBigNumberPickerListener;
 import com.vgomc.mchelper.utility.ClassUtil;
 
-import org.holoeverywhere.widget.LinearLayout;
-import org.holoeverywhere.widget.NumberPicker;
+import android.widget.LinearLayout;
+import android.widget.NumberPicker;
 
 /**
  * Created by weizhouh on 5/27/2015.

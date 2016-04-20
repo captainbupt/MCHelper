@@ -1,13 +1,9 @@
 package com.vgomc.mchelper.widget;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 
-import org.holoeverywhere.app.Activity;
-import org.holoeverywhere.app.ProgressDialog;
-
-/**
- * Created by weizhouh on 6/26/2015.
- */
 public class MyProgressDialog extends ProgressDialog {
     private Context mContext;
 

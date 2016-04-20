@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.holoeverywhere.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <org.holoeverywhere.widget.LinearLayout
+    <LinearLayout
         android:id="@+id/ll_base_collapsible_title_container"
         style="@style/title_style"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <org.holoeverywhere.widget.TextView
+        <TextView
             android:id="@+id/tv_base_collapsible_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -18,18 +18,18 @@
             android:paddingBottom="@dimen/offset_less"
             android:paddingTop="@dimen/offset_less"
             android:textSize="@dimen/text_size_medium" />
-    </org.holoeverywhere.widget.LinearLayout>
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/color_divider_line" />
 
-    <org.holoeverywhere.widget.FrameLayout
+    <FrameLayout
         android:id="@+id/fl_base_collapsible_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    </org.holoeverywhere.widget.FrameLayout>
+    </FrameLayout>
 
-</org.holoeverywhere.widget.LinearLayout>
+</LinearLayout>

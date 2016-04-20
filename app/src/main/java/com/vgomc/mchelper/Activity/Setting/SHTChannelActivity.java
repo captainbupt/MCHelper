@@ -10,7 +10,7 @@ import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.base.BaseActivity;
 import com.vgomc.mchelper.widget.VariableEditView;
 
-import org.holoeverywhere.widget.TextView;
+import android.widget.TextView;
 
 import java.util.List;
 

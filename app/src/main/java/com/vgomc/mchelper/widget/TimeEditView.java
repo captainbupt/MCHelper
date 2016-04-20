@@ -3,26 +3,15 @@ package com.vgomc.mchelper.widget;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.utility.TimeUtil;
 
-import org.holoeverywhere.LayoutInflater;
-import org.holoeverywhere.app.Dialog;
-import org.holoeverywhere.widget.EditText;
-import org.holoeverywhere.widget.LinearLayout;
-import org.holoeverywhere.widget.NumberPicker;
-import org.holoeverywhere.widget.datetimepicker.DateTimePickerUtils;
-import org.holoeverywhere.widget.datetimepicker.time.RadialPickerLayout;
-import org.holoeverywhere.widget.datetimepicker.time.TimePickerDialog;
-
-import java.util.Calendar;
-
-/**
- * Created by weizhouh on 5/27/2015.
- */
 public class TimeEditView extends LinearLayout {
 
     private int mMode;

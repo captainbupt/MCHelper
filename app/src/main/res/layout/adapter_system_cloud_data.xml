@@ -6,14 +6,14 @@
     android:orientation="horizontal"
     android:padding="@dimen/offset_less">
 
-    <org.holoeverywhere.widget.TextView
+    <TextView
         android:id="@+id/tv_adapter_cloud_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textSize="@dimen/text_size_medium" />
 
-    <org.holoeverywhere.widget.TextView
+    <TextView
         android:id="@+id/tv_adapter_cloud_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,7 +21,7 @@
         android:layout_marginRight="@dimen/offset_less"
         android:textSize="@dimen/text_size_medium" />
 
-    <org.holoeverywhere.widget.TextView
+    <TextView
         android:id="@+id/tv_adapter_cloud_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
