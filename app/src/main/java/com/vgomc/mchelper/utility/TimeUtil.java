@@ -33,7 +33,7 @@ public class TimeUtil {
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
         calendar.add(Calendar.MILLISECOND, (int) time);
-        return df.format(new Date(time));
+        return df.format(calendar.getTime());
     }
 
     public static long deviceTime2Long(String time) throws ParseException {
