@@ -100,6 +100,7 @@ public class Configuration {
         instance.measuringList = new ArrayList<>();
         instance.measuringList.add(new Measuring());
         instance.measuringList.add(new Measuring());
+        instance.measuringList.add(new Measuring());
 
         instance.network = new Network();
     }

@@ -62,4 +62,58 @@
         </FrameLayout>
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_divider_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/layout_left_style"
+            android:text="@string/data_history_photo" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="@integer/radio_right"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/offset_less"
+            android:paddingRight="@dimen/offset_less">
+
+            <Button
+                android:id="@+id/btn_view_data_control_photo_high"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/offset_medium"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/data_history_photo_high"
+                android:textSize="@dimen/text_size_medium" />
+
+            <Button
+                android:id="@+id/btn_view_data_control_photo_med"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/offset_medium"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/data_history_photo_med"
+                android:textSize="@dimen/text_size_medium" />
+
+            <Button
+                android:id="@+id/btn_view_data_control_photo_low"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/offset_medium"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/data_history_photo_low"
+                android:textSize="@dimen/text_size_medium" />
+        </LinearLayout>
+    </LinearLayout>
+
 </LinearLayout>

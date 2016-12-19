@@ -25,6 +25,7 @@ import com.vgomc.mchelper.transmit.bluetooth.BlueToothSeriveProvider;
 import com.vgomc.mchelper.transmit.file.FileServiceProvider;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -105,11 +106,17 @@ public class SettingFragment extends BaseListFragment {
                                 }
                                 configuration.variableManager.clear();
                                 for (int ii = 0; ii < variableEntity.variableArray.length; ii++) {
-                                    configuration.variableManager.setVariable(variableEntity.variableArray[ii]);
+                                    if (variableEntity.variableArray[ii].subjectName.compareTo("NULL") != 0) {
+                                        configuration.variableManager.setVariable(variableEntity.variableArray[ii]);
+                                    }
                                 }
-                                for (int ii = 0; ii < measurePlanEntity.measuringArray.length && ii < configuration.measuringList.size(); ii++) {
-                                    measurePlanEntity.measuringArray[ii].setVariableData(measurePlanEntity.ids[ii]);
-                                    configuration.measuringList.set(ii, measurePlanEntity.measuringArray[ii]);
+                                configuration.measuringList = new ArrayList<>();
+                                for (int ii = 0; ii < measurePlanEntity.measuringArray.length; ii++) {
+                                    // 当measid为3时，代表拍照，不需要配置参数
+                                    if (measurePlanEntity.measuringArray[ii].measId != 3) {
+                                        measurePlanEntity.measuringArray[ii].setVariableData(measurePlanEntity.ids[ii]);
+                                    }
+                                    configuration.measuringList.add(measurePlanEntity.measuringArray[ii]);
                                 }
                                 for (int ii = 0; ii < storageTableEntity.storageArray.length && ii < configuration.measuringList.size(); ii++) {
                                     configuration.storageList.set(ii, storageTableEntity.storageArray[ii]);

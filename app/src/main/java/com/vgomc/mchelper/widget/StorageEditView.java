@@ -131,6 +131,16 @@ public class StorageEditView extends LinearLayout {
         mStorage.isOn = mModeSwitch.isChecked();
         mStorage.isSend = mSendSwitch.isChecked();
         mStorage.interval = Integer.parseInt(mIntervalEditText.getText().toString());
+
+        if(!mStorage.isOn) {
+            mStorage.beginTime=0;
+            mStorage.endTime=0;
+        }
+        else {
+            mStorage.isOn=(mStorage.beginTime>=mStorage.endTime)?false:true;
+        }
+
+
         return mStorage;
     }
 

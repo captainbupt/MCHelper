@@ -18,14 +18,15 @@ public class NetworkView extends BaseCollapsibleView {
         setContentView(new NetworkContentView(mContext));
     }
 
-    public void setData(String status, String network, int strength, int errorRate, String error, int onTime, int waitTime, int retryTime) {
-        ((NetworkContentView) mContentView).setData(status, network, strength, errorRate, error, onTime, waitTime, retryTime);
+    public void setData(String status, String network, String simno,int strength, int errorRate, String error, int onTime, int waitTime, int retryTime) {
+        ((NetworkContentView) mContentView).setData(status, network, simno,strength, errorRate, error, onTime, waitTime, retryTime);
     }
 
     class NetworkContentView extends BaseCollapsibleContentView {
 
         private TextView mStatusTextView;
         private TextView mNameTextView;
+        private TextView mSimNoTextView;
         private TextView mStrengthTextView;
         private TextView mErrorRateTextView;
         private TextView mErrorFlagTextView;
@@ -48,9 +49,10 @@ public class NetworkView extends BaseCollapsibleView {
 
         }
 
-        public void setData(String status, String network, int strength, int errorRate, String error, int onTime, int waitTime, int retryTime) {
+        public void setData(String status, String network, String simno,int strength, int errorRate, String error, int onTime, int waitTime, int retryTime) {
             mStatusTextView.setText(status);
             mNameTextView.setText(network);
+            mSimNoTextView.setText(simno);
             mStrengthTextView.setText(strength + "");
             mErrorRateTextView.setText(errorRate + "");
             mErrorFlagTextView.setText(error);
@@ -62,6 +64,7 @@ public class NetworkView extends BaseCollapsibleView {
         private void initView() {
             mStatusTextView = (TextView) findViewById(R.id.tv_view_status_network_status);
             mNameTextView = (TextView) findViewById(R.id.tv_view_status_network_name);
+            mSimNoTextView=(TextView)findViewById(R.id.tv_view_status_sim_no);
             mStrengthTextView = (TextView) findViewById(R.id.tv_view_status_network_strength);
             mErrorRateTextView = (TextView) findViewById(R.id.tv_view_status_network_error_rate);
             mErrorFlagTextView = (TextView) findViewById(R.id.tv_view_status_network_error_flag);

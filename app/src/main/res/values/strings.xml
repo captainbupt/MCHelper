@@ -129,6 +129,7 @@
     <string name="status_network">网络</string>
     <string name="status_network_status">工作状态</string>
     <string name="status_network_name">网络名称</string>
+    <string name="status_sim_no">SIM卡号</string>
     <string name="status_network_strength">信号强度</string>
     <string name="status_network_error_rate">误码率</string>
     <string name="status_network_error_flag">错误标志</string>
@@ -192,6 +193,10 @@
     <string name="data_history_clear">历史记录</string>
     <string name="data_history_clear_tip">请选择正确的设备日期</string>
     <string name="data_history_clear_success">清除历史记录成功</string>
+    <string name="data_history_photo">拍照</string>
+    <string name="data_history_photo_high">好</string>
+    <string name="data_history_photo_med">较好</string>
+    <string name="data_history_photo_low">差</string>
 
     <string name="system_operation">其他</string>
 

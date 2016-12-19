@@ -35,6 +35,7 @@ public class MeasuringEditView extends LinearLayout {
     private EditText mIntervalEditText;
     private TextView mVariableTextView;
     private LinearLayout mContentLayout;
+    private LinearLayout mVariableLayout;
     private List<String> mVariableItems;
     private List<Boolean> mVariableSelections;
     private List<Variable> mVariableList;
@@ -63,6 +64,10 @@ public class MeasuringEditView extends LinearLayout {
         mIntervalEditText = (EditText) findViewById(R.id.et_view_setting_measuring_interval);
         mVariableTextView = (TextView) findViewById(R.id.tv_view_setting_measuring_variable);
         mContentLayout = (LinearLayout) findViewById(R.id.ll_view_setting_measuring_content);
+        mVariableLayout = (LinearLayout) findViewById(R.id.ll_view_setting_measuring_variable);
+        if(mPosition == 2){
+            mVariableLayout.setVisibility(View.GONE);
+        }
     }
 
     private void initListener() {
@@ -183,6 +188,15 @@ public class MeasuringEditView extends LinearLayout {
     public Measuring getMeasuring() {
         mMeasuring.isOn = mModeSwitch.isChecked();
         mMeasuring.interval = Integer.parseInt(mIntervalEditText.getText().toString());
+
+        if(!mMeasuring.isOn){
+            mMeasuring.beginTime=0;
+            mMeasuring.endTime=0;
+        }
+        else{
+            mMeasuring.isOn=!((mMeasuring.beginTime>=mMeasuring.endTime)||(mMeasuring.variableIndexList.isEmpty()));
+        }
+
         return mMeasuring;
     }
 

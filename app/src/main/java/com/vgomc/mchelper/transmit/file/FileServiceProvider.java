@@ -19,6 +19,7 @@ public class FileServiceProvider {
 
     public static final String SUFFIX_CONFIGURATION = ".xml";
     public static final String SUFFIX_RECORD = ".csv";
+    public static final String SUFFIX_PHOTO = ".jpg";
 
     public static boolean writeObjectToFile(Configuration configuration, String path) {
         XStream xstream = new XStream();
@@ -66,6 +67,16 @@ public class FileServiceProvider {
 
     public static String getExternalConfigurationPath(Context context) {
         String directory = getExternalPath(context) + File.separator + "configurations";
+        File directoryFile = new File(directory);
+        if (!directoryFile.exists() || !directoryFile.isDirectory()) {
+            directoryFile.delete();
+            directoryFile.mkdirs();
+        }
+        return directory;
+    }
+
+    public static String getExternalPhotoPath(Context context) {
+        String directory = getExternalPath(context) + File.separator + "photos";
         File directoryFile = new File(directory);
         if (!directoryFile.exists() || !directoryFile.isDirectory()) {
             directoryFile.delete();

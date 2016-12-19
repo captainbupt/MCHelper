@@ -49,7 +49,7 @@ public class VariableEntity extends BaseBluetoothEntity {
                 variable.name = variableInfo[0].replaceAll("\"", "");
                 variable.subjectName = variableInfo[1];
                 variable.setDataType(variableInfo[2]);
-                variable.sensorAddress = variableInfo[3].replaceAll("\"", "");
+                variable.sensorAddress = variableInfo[3].replaceAll("'", "");
                 variable.setRegisterAddress(Integer.parseInt(variableInfo[4]));
                 variable.factors[0] = Float.parseFloat(variableInfo[5]);
                 variable.factors[1] = Float.parseFloat(variableInfo[6]);

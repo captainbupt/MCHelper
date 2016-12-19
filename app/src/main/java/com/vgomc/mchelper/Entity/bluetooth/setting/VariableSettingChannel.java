@@ -33,6 +33,11 @@ public class VariableSettingChannel extends BaseBluetoothSettingEntity {
 
     @Override
     public String getRequest() {
-        return String.format("AT+VAR=%d,\"%s\",%s,%s,%s,%d,", id, variableName, channelName, dataType, sensorAddress, registerAddress) + k0 + "," + k1 + "," + k2 + "," + k3;
+        if(channelName.compareTo("SDI")==0) {
+            return String.format("AT+VAR=%d,\"%s\",%s,%s,'%s',%d,", id, variableName, channelName, dataType, sensorAddress, registerAddress) + k0 + "," + k1 + "," + k2 + "," + k3;
+        }
+        else{
+            return String.format("AT+VAR=%d,\"%s\",%s,%s,%s,%d,", id, variableName, channelName, dataType, sensorAddress, registerAddress) + k0 + "," + k1 + "," + k2 + "," + k3;
+        }
     }
 }

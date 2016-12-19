@@ -1,6 +1,8 @@
 package com.vgomc.mchelper.widget;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.text.InputFilter;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -142,7 +144,12 @@ public class VariableEditView extends LinearLayout {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_UP) {
-                    BigNumberPickerDialog.getBigNumberPickerDialog(mContext, 3, 1, 254, Integer.parseInt(mSensorAddressEditText.getText().toString()), mSensorAddressEditText, getResources().getString(R.string.setting_channel_variable_sensor_address)).show();
+                    if (mContext instanceof com.vgomc.mchelper.activity.setting.SDIChannelActivity){
+                        ChannelSelectView.getChannelSelectDialog(mContext, mSensorAddressEditText.getText().toString(), mSensorAddressEditText, getResources().getString(R.string.setting_channel_variable_sensor_address)).show();
+                    } else {
+                        BigNumberPickerDialog.getBigNumberPickerDialog(mContext, 3, 1, 254, Integer.parseInt(mSensorAddressEditText.getText().toString()), mSensorAddressEditText, getResources().getString(R.string.setting_channel_variable_sensor_address)).show();
+                    }
+                    //System.out.println(mContext);
                 }
                 return true;
             }

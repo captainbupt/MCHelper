@@ -8,7 +8,7 @@ import com.vgomc.mchelper.entity.bluetooth.BaseBluetoothEntity;
 public class GPRSStatusEntity extends BaseBluetoothEntity {
 
     public static final String[] STATUS_REPRESENTATION = new String[]{"未初始化", "已初始化", "已启动", "完成网络初始化", "已登录移动网", "已连接TCP服务器"};
-    public static final String[] FLAG_REPRESENTATION = new String[]{"GPRS启动错误", "初始化错误（总）", "无SIM卡", "登录移动网络错误", "无法登录TCP服务器（总）", "设置SMS服务错误", "设置SMS接受模式错误", "启动TCP连接错误", "连接TCP服务错误", "不允许发送TCP数据", "发送TCP数据失败", "GPRS服务未允许", "无法注册GPRS服务", "需要输入PIN码", "连接TCP无应答", ""};
+    public static final String[] FLAG_REPRESENTATION = new String[]{"GPRS启动错误", "初始化错误（总）", "无SIM卡", "登录移动网络错误", "无法登录TCP服务器（总）", "设置SMS服务错误", "设置SMS接受模式错误", "启动TCP连接错误", "连接TCP服务错误", "不允许发送TCP数据", "发送TCP数据失败", "GPRS服务未允许", "无法注册GPRS服务", "需要输入PIN码", "连接TCP无应答", "蓝牙状态错误"};
 
     public int status;
     public int flag;
@@ -19,6 +19,7 @@ public class GPRSStatusEntity extends BaseBluetoothEntity {
     public int strength;
     public int errorRate;
     public String netName;
+    public String simNo;
 
     @Override
     public String getRequest() {
@@ -38,6 +39,7 @@ public class GPRSStatusEntity extends BaseBluetoothEntity {
             strength = Integer.parseInt(datas[6]);
             errorRate = Integer.parseInt(datas[7]);
             netName = datas[8].replace("\"", "");
+            simNo=datas[9].replace("\"","");
         } catch (Exception e) {
             e.printStackTrace();
             return false;

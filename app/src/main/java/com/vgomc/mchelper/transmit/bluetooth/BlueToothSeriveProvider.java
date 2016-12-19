@@ -19,11 +19,13 @@ import com.vgomc.mchelper.entity.bluetooth.inquiry.DeviceTimeEntity;
 import com.vgomc.mchelper.entity.bluetooth.inquiry.DownloadInquiryEntity;
 import com.vgomc.mchelper.entity.bluetooth.inquiry.GPRSParamEntity;
 import com.vgomc.mchelper.entity.bluetooth.inquiry.GPRSStatusEntity;
+import com.vgomc.mchelper.entity.bluetooth.inquiry.GetPhotoEntity;
 import com.vgomc.mchelper.entity.bluetooth.inquiry.MeasurePendEntity;
 import com.vgomc.mchelper.entity.bluetooth.inquiry.MeasurePlanEntity;
 import com.vgomc.mchelper.entity.bluetooth.inquiry.MemoryStatusEntity;
 import com.vgomc.mchelper.entity.bluetooth.inquiry.SDCardStatusEntity;
 import com.vgomc.mchelper.entity.bluetooth.inquiry.StorageTableEntity;
+import com.vgomc.mchelper.entity.bluetooth.inquiry.TakePhotoEntity;
 import com.vgomc.mchelper.entity.bluetooth.inquiry.VariableEntity;
 import com.vgomc.mchelper.entity.bluetooth.setting.AccumulateSettingEntity;
 import com.vgomc.mchelper.entity.bluetooth.setting.BackupSettingEntity;
@@ -514,5 +516,125 @@ public class BlueToothSeriveProvider {
                 mCompletedListener.onCompleted(mBluetoothEntities.subList(1, mBluetoothEntities.size()));
             }
         }
+    }
+
+    public static void takePhoto(final Context context, final int resolution, final OnBluetoothCompletedListener onBluetoothCompletedListener) {
+        final List<BaseBluetoothEntity> entities = new ArrayList<>();
+        entities.add(new UnlockEntity(context, new UnlockEntity.OnPasswordConfirmListener() {
+            @Override
+            public void onPasswordConfirm() {
+                entities.add(new TakePhotoEntity(resolution));
+                if (isTransacting) {
+                    ToastUtil.showToast(context, R.string.tip_bluetooth_busy);
+                    return;
+                }
+                BluetoothHelper.initBluetooth(context);
+                BluetoothHelper.setOnReceivedMessageListener(new TakePhotoOnReceivedMessageListener(context, entities, onBluetoothCompletedListener));
+                isTransacting = BluetoothHelper.sendMessage(entities.get(0).getRequest());
+                mProgressDialog = new MyProgressDialog(context);
+                mProgressDialog.setTitle(R.string.tip_bluetooth_transferring);
+                mProgressDialog.setMessage(context.getResources().getString(R.string.tip_bluetooth_connecting));
+                mProgressDialog.setCancelable(false);
+                mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+                mProgressDialog.show();
+            }
+        }));
+    }
+
+    static class TakePhotoOnReceivedMessageListener implements BluetoothHelper.OnReceivedMessageListener {
+
+        private static final Pattern OK_PATTERN = Pattern.compile(BaseBluetoothEntity.SEPERATOR + "OK" + BaseBluetoothEntity.SEPERATOR);
+        private static final Pattern ERROR_PATTERN = Pattern.compile(BaseBluetoothEntity.SEPERATOR + "ER:[-]?[0-9]+" + BaseBluetoothEntity.SEPERATOR);
+
+        private OnBluetoothCompletedListener mCompletedListener;
+        private List<BaseBluetoothEntity> mBluetoothEntities;
+        private Context mContext;
+        private int mIndex;
+        private ArrayList<Byte> mReceivedMessageBytes;
+        private boolean startingPhoto;
+
+        public TakePhotoOnReceivedMessageListener(Context context, List<BaseBluetoothEntity> bluetoothEntities, OnBluetoothCompletedListener completedListener) {
+            this.mContext = context;
+            mIndex = 0;
+            mReceivedMessageBytes = new ArrayList<>();
+            this.mBluetoothEntities = bluetoothEntities;
+            this.mCompletedListener = completedListener;
+            this.startingPhoto = false;
+        }
+
+        @Override
+        public void onReceivedMessage(byte[] messageBytes, int length) {
+            if (length == 0 || messageBytes.length == 0) {
+                return;
+            }
+            for (int ii = 0; ii < length && ii < messageBytes.length; ii++) {
+                mReceivedMessageBytes.add(messageBytes[ii]);
+            }
+            byte[] buffer = new byte[mReceivedMessageBytes.size()];
+            for (int ii = 0; ii < mReceivedMessageBytes.size(); ii++) {
+                buffer[ii] = mReceivedMessageBytes.get(ii);
+            }
+            String mReceivedMessage = new String(buffer, Charset.forName("GBK"));
+            Matcher errorMatcher = ERROR_PATTERN.matcher(mReceivedMessage);
+            if (OK_PATTERN.matcher(mReceivedMessage).find()) {
+                if (mIndex == 0 || // 用默认方式处理解锁
+                        startingPhoto) { // 已经开始拍照
+                    if (mBluetoothEntities.get(mIndex).parseOKResponse(mReceivedMessage.toString())) {
+                        sendMessage();
+                    } else {
+                        new AlertDialog.Builder(mContext).setTitle(R.string.tip_bluetooth_parse).setMessage(mReceivedMessage).show();
+                        cancelTransaction();
+                    }
+                    mReceivedMessageBytes.clear();
+                } else { // 处理拍照事件
+                    startingPhoto = true;
+                    // 清空之前的OK
+                    mReceivedMessageBytes = new ArrayList<>();
+                }
+            } else if (errorMatcher.find()) {
+                String errorResponse = errorMatcher.group();
+                boolean result = mBluetoothEntities.get(mIndex).parseErrorCode(mContext, Integer.parseInt(errorResponse.replace(BaseBluetoothEntity.SEPERATOR, "").replace("ER:", "")));
+                if (result) {
+                    cancelTransaction();
+                } else {
+                    sendMessage();
+                }
+                mReceivedMessageBytes.clear();
+            }
+        }
+
+        @Override
+        public void onError() {
+            cancelTransaction();
+        }
+
+
+        private void sendMessage() {
+            handler.removeCallbacks(overtimeRunnable);
+            handler.postDelayed(overtimeRunnable, 50000);
+            if (mIndex < mBluetoothEntities.size() - 1) {
+                if (mBluetoothEntities.get(mIndex).getClass().equals(UnlockEntity.class)) {
+                    mBluetoothEntities.remove(mIndex);
+                    mIndex--;
+                }
+                String request = mBluetoothEntities.get(mIndex + 1).getRequest();
+                mProgressDialog.setMessage(mContext.getResources().getString(R.string.tip_bluetooth_sending) + request);
+                mProgressDialog.setProgress(mIndex);
+                BluetoothHelper.sendMessage(request);
+                mIndex++;
+            } else {
+                cancelTransaction();
+                mCompletedListener.onCompleted(mBluetoothEntities);
+            }
+        }
+    }
+
+    public static void getPhoto(final Context context, long address, long size, final OnBluetoothCompletedListener onBluetoothCompletedListener) {
+        final List<BaseBluetoothEntity> entities = new ArrayList<>();
+        long target = address + size;
+        for (long tmp = address; tmp < target; tmp += 2048) {
+            entities.add(new GetPhotoEntity(tmp, Math.min(2048, target - tmp)));
+        }
+        doSendMessage(context, entities, onBluetoothCompletedListener);
     }
 }

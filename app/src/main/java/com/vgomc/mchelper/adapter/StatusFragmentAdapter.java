@@ -52,7 +52,7 @@ public class StatusFragmentAdapter extends BaseCollapseAdapter {
         ((SystemView) mList.get(0)).setData(deviceParameterEntity.model + "/" + deviceParameterEntity.version, deviceParameterEntity.uid, deviceTimeEntity.time);
         ((StatusView) mList.get(1)).setData(deviceStatusEntity.getBattery(), deviceStatusEntity.getFlagRepresentation(), deviceStatusEntity.getGPS());
         ((StorageView) mList.get(2)).setData(memoryStatusEntity.used, memoryStatusEntity.total, sdCardStatusEntity.total - sdCardStatusEntity.free, sdCardStatusEntity.total);
-        ((NetworkView) mList.get(3)).setData(gprsStatusEntity.getStatusRepresentation(), gprsStatusEntity.netName, gprsStatusEntity.strength, gprsStatusEntity.errorRate, gprsStatusEntity.getFlagRepresentation(), gprsStatusEntity.onTime, gprsStatusEntity.waitTime, gprsStatusEntity.retryTimes);
+        ((NetworkView) mList.get(3)).setData(gprsStatusEntity.getStatusRepresentation(), gprsStatusEntity.netName, gprsStatusEntity.simNo,gprsStatusEntity.strength, gprsStatusEntity.errorRate, gprsStatusEntity.getFlagRepresentation(), gprsStatusEntity.onTime, gprsStatusEntity.waitTime, gprsStatusEntity.retryTimes);
         ((ControlView) mList.get(4)).setData(measurePendEntity.pendTime, batteryStatusEntity.onTimes, bluetoothStatusEntity.getStatus());
         notifyDataSetChanged();
     }

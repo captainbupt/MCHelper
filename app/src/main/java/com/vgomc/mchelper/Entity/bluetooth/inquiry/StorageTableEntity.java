@@ -27,7 +27,7 @@ public class StorageTableEntity extends BaseBluetoothEntity {
                 storage.endTime = Long.parseLong(storageInfo[1]) * 60000l;
                 storage.interval = Integer.parseInt(storageInfo[2]);
                 storage.isSend = Integer.parseInt(storageInfo[3]) == 1;
-                storage.isOn = true;
+                storage.isOn = (storage.beginTime==storage.endTime)?false:true;
                 storageArray[ii] = storage;
             }
         } catch (Exception e) {
