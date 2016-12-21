@@ -98,9 +98,9 @@ public class Configuration {
         instance.storageList.add(new Storage());
 
         instance.measuringList = new ArrayList<>();
-        instance.measuringList.add(new Measuring());
-        instance.measuringList.add(new Measuring());
-        instance.measuringList.add(new Measuring());
+        instance.measuringList.add(new Measuring(1));
+        instance.measuringList.add(new Measuring(2));
+        instance.measuringList.add(new Measuring(3));
 
         instance.network = new Network();
     }

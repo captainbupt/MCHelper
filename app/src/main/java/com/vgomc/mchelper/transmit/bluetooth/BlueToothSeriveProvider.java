@@ -523,7 +523,7 @@ public class BlueToothSeriveProvider {
         entities.add(new UnlockEntity(context, new UnlockEntity.OnPasswordConfirmListener() {
             @Override
             public void onPasswordConfirm() {
-                entities.add(new TakePhotoEntity(resolution));
+                entities.add(new TakePhotoEntity(resolution, context));
                 if (isTransacting) {
                     ToastUtil.showToast(context, R.string.tip_bluetooth_busy);
                     return;
@@ -577,12 +577,13 @@ public class BlueToothSeriveProvider {
             String mReceivedMessage = new String(buffer, Charset.forName("GBK"));
             Matcher errorMatcher = ERROR_PATTERN.matcher(mReceivedMessage);
             if (OK_PATTERN.matcher(mReceivedMessage).find()) {
-                if (mIndex == 0 || // 用默认方式处理解锁
+                if (!(mBluetoothEntities.get(mIndex) instanceof TakePhotoEntity) || // 用默认方式处理解锁
                         startingPhoto) { // 已经开始拍照
                     if (mBluetoothEntities.get(mIndex).parseOKResponse(mReceivedMessage.toString())) {
                         sendMessage();
                     } else {
-                        new AlertDialog.Builder(mContext).setTitle(R.string.tip_bluetooth_parse).setMessage(mReceivedMessage).show();
+                        new AlertDialog.Builder(mContext).setTitle(R.string.tip_bluetooth_parse)
+                                .setMessage(mBluetoothEntities.get(mIndex).getClass().getName() + "\n" + mReceivedMessage).show();
                         cancelTransaction();
                     }
                     mReceivedMessageBytes.clear();

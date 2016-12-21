@@ -194,7 +194,11 @@ public class MeasuringEditView extends LinearLayout {
             mMeasuring.endTime=0;
         }
         else{
-            mMeasuring.isOn=!((mMeasuring.beginTime>=mMeasuring.endTime)||(mMeasuring.variableIndexList.isEmpty()));
+            if(mPosition == 2){
+                mMeasuring.isOn=!(mMeasuring.beginTime>=mMeasuring.endTime);
+            }else{
+                mMeasuring.isOn=!((mMeasuring.beginTime>=mMeasuring.endTime)||(mMeasuring.variableIndexList.isEmpty()));
+            }
         }
 
         return mMeasuring;

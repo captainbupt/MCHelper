@@ -14,13 +14,16 @@ public abstract class BaseBluetoothEntity {
     public boolean parseOKResponse(String response) {
         response = response.replaceFirst(SEPERATOR, "");
         response = response.replaceFirst(SEPERATOR + "OK" + SEPERATOR, "");
+        while (response.startsWith(SEPERATOR)) {
+            response = response.replaceFirst(SEPERATOR, "");
+        }
         return parseData(response);
     }
 
     // 返回true，则蓝牙模块不会继续后续命令的交换
     // 返回false， 则忽视当前错误，继续执行后续命令
     public boolean parseErrorCode(Context context, int errorCode) {
-        new AlertDialog.Builder(context).setTitle("错误代码: " + errorCode).setMessage("发送命令： "+getRequest()).show();
+        new AlertDialog.Builder(context).setTitle("错误代码: " + errorCode).setMessage("发送命令： " + getRequest()).show();
         return true;
     }
 

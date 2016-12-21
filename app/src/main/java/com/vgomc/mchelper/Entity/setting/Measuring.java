@@ -16,6 +16,10 @@ public class Measuring {
     public int interval = 5;
     public List<Integer> variableIndexList = new ArrayList<>();
 
+    public Measuring(int measId) {
+        this.measId = measId;
+    }
+
     public String getVariableNames(String split) {
         StringBuilder builder = new StringBuilder();
         for (int ii = 0; ii < variableIndexList.size(); ii++) {
@@ -35,7 +39,7 @@ public class Measuring {
         }
     }
 
-    public void setVariableData(int variableIDs) {
+    public void setVariableData(long variableIDs) {
         variableIndexList.clear();
         for (int ii = 1; variableIDs != 0; variableIDs /= 2, ii++) {
             if (variableIDs % 2 == 1) {
@@ -48,6 +52,9 @@ public class Measuring {
     }
 
     public long getVariableId() {
+        if (measId == 3) {
+            return 0x80000000;
+        }
         List<Variable> variableList = Configuration.getInstance().variableManager.getAllVariableList();
         char[] binaryString = new char[32];
         for (int ii = 0; ii < binaryString.length; ii++) {
