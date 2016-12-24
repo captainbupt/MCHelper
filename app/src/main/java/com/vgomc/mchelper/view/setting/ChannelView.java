@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 
+import com.vgomc.mchelper.base.AppApplication;
 import com.vgomc.mchelper.entity.setting.Channel;
 import com.vgomc.mchelper.entity.setting.Configuration;
 import com.vgomc.mchelper.entity.setting.Variable;
@@ -13,6 +14,9 @@ import com.vgomc.mchelper.adapter.setting.ChannelMultipleVariableAdapter;
 import com.vgomc.mchelper.adapter.setting.ChannelSingleVariableAdapter;
 import com.vgomc.mchelper.base.BaseCollapsibleContentView;
 import com.vgomc.mchelper.base.BaseCollapsibleView;
+import com.vgomc.mchelper.entity.setting.VariableManager;
+import com.vgomc.mchelper.transmit.file.FileServiceProvider;
+import com.vgomc.mchelper.utility.FileUtil;
 import com.vgomc.mchelper.utility.ToastUtil;
 import com.vgomc.mchelper.widget.NoScrollListView;
 import com.vgomc.mchelper.widget.VariableEditView;
@@ -77,6 +81,7 @@ public class ChannelView extends BaseCollapsibleView {
                             channel.signalType = editView.getSignalType();
                         Configuration.getInstance().channelMap.put(channel.subject, channel);
                         ChannelView.this.updateData();
+                        Configuration.getInstance().variableManager.isVariableMax(null);
                     } else {
                         ToastUtil.showToast(mContext, R.string.tip_invalid_input);
                     }

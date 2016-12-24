@@ -1,5 +1,12 @@
 package com.vgomc.mchelper.entity.setting;
 
+import android.content.Context;
+
+import com.vgomc.mchelper.base.AppApplication;
+import com.vgomc.mchelper.transmit.file.FileServiceProvider;
+import com.vgomc.mchelper.utility.FileUtil;
+import com.vgomc.mchelper.utility.ToastUtil;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,7 +18,7 @@ import java.util.Map;
  */
 public class VariableManager implements Serializable {
     // 最大variable数量
-    public static int variableMaxCount = 17;
+    public final static int variableMaxCount = 17;
 
     Map<String, List<Variable>> mVariableMap;
     // 自己维护一个index， 保证每个variable都有唯一ID，不论是否打开
@@ -20,7 +27,10 @@ public class VariableManager implements Serializable {
     public VariableManager() {
         mVariableMap = new HashMap<>();
         mMaxIndex = 0;
-        variableMaxCount = 17;
+    }
+
+    public int getMaxIndex() {
+        return mMaxIndex;
     }
 
     public void clear() {
@@ -125,18 +135,24 @@ public class VariableManager implements Serializable {
         return variableList;
     }
 
-    public boolean isVariableMax() {
+    public boolean isVariableMax(Variable currentVariable) {
         int count = 0;
+        boolean isCurrentVariableOn = false;
         for (List<Variable> list : mVariableMap.values()) {
             if (list != null) {
                 for (Variable variable : list) {
                     if (variable.isVariableOn) {
+                        if (currentVariable != null && currentVariable.index == variable.index) {
+                            //当前变量已经打开，只是临时修改，因此不需要考虑满格的问题
+                            isCurrentVariableOn = true;
+                        }
                         count++;
                     }
                 }
             }
         }
-        return count >= variableMaxCount;
+
+        return !isCurrentVariableOn && count >= variableMaxCount;
     }
 
     public void clear(String subject) {

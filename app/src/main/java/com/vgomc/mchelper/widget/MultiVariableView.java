@@ -57,7 +57,7 @@ public class MultiVariableView extends LinearLayout {
         mAddVariableButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Configuration.getInstance().variableManager.isVariableMax()) {
+                if (Configuration.getInstance().variableManager.isVariableMax(null)) {
                     ToastUtil.showToast(mContext, R.string.tip_variable_reach_max_count);
                     return;
                 }

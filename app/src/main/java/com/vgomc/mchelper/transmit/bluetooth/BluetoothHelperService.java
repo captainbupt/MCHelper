@@ -430,7 +430,7 @@ public class BluetoothHelperService {
             // Keep listening to the InputStream while connected
             while (true) {
                 try {
-                    byte[] buffer = new byte[1024];
+                    byte[] buffer = new byte[4096];
                     // Read from the InputStream
                     bytes = mmInStream.read(buffer);
                     // Send the obtained bytes to the UI Activity

@@ -65,6 +65,16 @@ public class FileServiceProvider {
         return directoryPath;
     }
 
+    public static String getExternalLogPath(Context context) {
+        String filePath = getExternalPath(context) + File.separator + "debug.txt";
+        File file = new File(filePath);
+        if (file.exists() && file.isDirectory()) {
+            file.delete();
+        }
+        return filePath;
+    }
+
+
     public static String getExternalConfigurationPath(Context context) {
         String directory = getExternalPath(context) + File.separator + "configurations";
         File directoryFile = new File(directory);

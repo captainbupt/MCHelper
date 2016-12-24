@@ -17,7 +17,7 @@ public class MeasurePlanEntity extends BaseBluetoothEntity {
     }
 
     @Override
-    public boolean parseData(String data) {
+    public boolean parseData(String data, byte[] buffer) {
         String[] datas = data.split(SEPERATOR);
         measuringArray = new Measuring[datas.length];
         ids = new long[datas.length];

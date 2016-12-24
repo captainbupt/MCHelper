@@ -18,7 +18,7 @@ public class DeviceTimeEntity extends BaseBluetoothEntity {
     }
 
     @Override
-    public boolean parseData(String data) {
+    public boolean parseData(String data, byte[] buffer) {
         try {
             time = TimeUtil.deviceTime2Long(data);
         } catch (ParseException e) {

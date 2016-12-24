@@ -27,7 +27,7 @@ public class DeviceParameterEntity extends BaseBluetoothEntity {
     }
 
     @Override
-    public boolean parseData(String data) {
+    public boolean parseData(String data, byte[] buffer) {
         String[] datas = data.split(",");
         try {
             uid = datas[0];

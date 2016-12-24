@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.widget.EditText;
 
+import com.vgomc.mchelper.base.AppApplication;
 import com.vgomc.mchelper.entity.bluetooth.BaseBluetoothEntity;
 import com.vgomc.mchelper.entity.bluetooth.inquiry.BatteryChannelEntity;
 import com.vgomc.mchelper.entity.bluetooth.inquiry.ChannelEntity;
@@ -23,6 +24,7 @@ import com.vgomc.mchelper.base.BaseCollapseAdapter;
 import com.vgomc.mchelper.base.BaseListFragment;
 import com.vgomc.mchelper.transmit.bluetooth.BlueToothSeriveProvider;
 import com.vgomc.mchelper.transmit.file.FileServiceProvider;
+import com.vgomc.mchelper.utility.FileUtil;
 
 import java.io.File;
 import java.util.ArrayList;

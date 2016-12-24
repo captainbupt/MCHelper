@@ -19,10 +19,10 @@ import java.io.OutputStream;
 public class FileUtil {
     private static int FILESIZE = 4 * 1024;
 
-    public static boolean writeFile(String content, String path) {
+    public static boolean writeFile(String content, String path, boolean append) {
         File file = new File(path);
         try {
-            FileWriter fileWriter = new FileWriter(file);
+            FileWriter fileWriter = new FileWriter(file, append);
             fileWriter.write(content);
             fileWriter.close();
         } catch (IOException e) {

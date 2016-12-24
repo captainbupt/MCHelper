@@ -28,7 +28,7 @@ public class DeviceStatusEntity extends BaseBluetoothEntity {
     }
 
     @Override
-    public boolean parseData(String data) {
+    public boolean parseData(String data, byte[] buffer) {
         String[] datas = data.split(",");
         try {
             resetTime = TimeUtil.deviceTime2Long(datas[0]);

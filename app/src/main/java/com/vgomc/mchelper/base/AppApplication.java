@@ -7,6 +7,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.util.DisplayMetrics;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.vgomc.mchelper.entity.setting.Configuration;
 import com.vgomc.mchelper.utility.CrashHandler;
 
@@ -22,15 +23,13 @@ public class AppApplication extends Application {
 
     //公开，静态的工厂方法
     public static AppApplication getInstance() {
-        if (appApplication == null) {
-            appApplication = new AppApplication();
-        }
         return appApplication;
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
+        appApplication = this;
         // Bitmap初始化必须在MyVolley之前，否则会丢出异常
         // BitmapLruCache.init(getApplicationContext());
         // MyVolley.init(getApplicationContext());
@@ -46,6 +45,8 @@ public class AppApplication extends Application {
         }
 
         Configuration.initInstance();
+
+        Fresco.initialize(this);
     }
 
     private String getVersionName() throws Exception {

@@ -32,7 +32,7 @@ public class DownloadingEntity extends BaseBluetoothSettingEntity {
     }
 
     @Override
-    public boolean parseData(String data) {
+    public boolean parseData(String data, byte[] buffer) {
         try {
             String result = parseRecord(data);
             FileServiceProvider.saveRecord(context, fileName, result);

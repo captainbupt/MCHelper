@@ -17,7 +17,7 @@ public class ToastUtil {
      * @param message   需要提醒的文字
      */
     public static void showToast(Context context, String message) {
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show();
     }
 
     /**
@@ -26,7 +26,7 @@ public class ToastUtil {
      * @param message   需要提醒的String字符串id
      */
     public static void showToast(Context context, int message) {
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show();
     }
 
 }

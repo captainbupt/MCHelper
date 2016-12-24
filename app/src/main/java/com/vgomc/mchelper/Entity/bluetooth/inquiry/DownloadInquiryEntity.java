@@ -25,7 +25,7 @@ public class DownloadInquiryEntity extends BaseBluetoothSettingEntity {
     }
 
     @Override
-    public boolean parseData(String data) {
+    public boolean parseData(String data, byte[] buffer) {
         String[] datas = data.split(",");
         try {
             start = Integer.parseInt(datas[1]);
@@ -34,6 +34,6 @@ public class DownloadInquiryEntity extends BaseBluetoothSettingEntity {
             e.printStackTrace();
             return false;
         }
-        return super.parseData(data);
+        return super.parseData(data, buffer);
     }
 }

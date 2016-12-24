@@ -8,7 +8,7 @@ import com.vgomc.mchelper.entity.bluetooth.BaseBluetoothEntity;
 public abstract class BaseBluetoothSettingEntity extends BaseBluetoothEntity {
 
     @Override
-    public boolean parseData(String data) {
+    public boolean parseData(String data, byte[] buffer) {
         return true;
     }
 }

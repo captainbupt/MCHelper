@@ -22,6 +22,7 @@
         <activity android:name=".activity.setting.SDIChannelActivity" />
         <activity android:name=".transmit.bluetooth.DeviceListActivity" />
         <activity android:name=".activity.data.DataDetailActivity" />
+        <activity android:name=".activity.GalleryActivity" />
     </application>
 
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />

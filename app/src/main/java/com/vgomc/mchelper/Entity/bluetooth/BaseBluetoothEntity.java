@@ -9,15 +9,15 @@ public abstract class BaseBluetoothEntity {
 
     public abstract String getRequest();
 
-    public abstract boolean parseData(String data);
+    public abstract boolean parseData(String data, byte[] buffer);
 
-    public boolean parseOKResponse(String response) {
+    public boolean parseOKResponse(String response, byte[] buffer) {
         response = response.replaceFirst(SEPERATOR, "");
         response = response.replaceFirst(SEPERATOR + "OK" + SEPERATOR, "");
         while (response.startsWith(SEPERATOR)) {
             response = response.replaceFirst(SEPERATOR, "");
         }
-        return parseData(response);
+        return parseData(response, buffer);
     }
 
     // 返回true，则蓝牙模块不会继续后续命令的交换

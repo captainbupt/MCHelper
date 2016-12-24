@@ -176,7 +176,7 @@ public class BlueToothSeriveProvider {
             String mReceivedMessage = new String(buffer, Charset.forName("GBK"));
             Matcher errorMatcher = ERROR_PATTERN.matcher(mReceivedMessage);
             if (OK_PATTERN.matcher(mReceivedMessage).find()) {
-                if (mBluetoothEntities.get(mIndex).parseOKResponse(mReceivedMessage.toString())) {
+                if (mBluetoothEntities.get(mIndex).parseOKResponse(mReceivedMessage, buffer)) {
                     sendMessage();
                     retryTime = 0;
                 } else {
@@ -480,7 +480,7 @@ public class BlueToothSeriveProvider {
                     if (sequence.startsWith("START:")) {
                         mProgressDialog.setMax(Integer.parseInt(sequence.replace("START:", "")));
                     } else if (sequence.startsWith("OK")) {
-                        if (mBluetoothEntities.get(mIndex).parseOKResponse(mReceivedMessage.toString())) {
+                        if (mBluetoothEntities.get(mIndex).parseOKResponse(mReceivedMessage.toString(), buffer)) {
                             sendMessage();
                         } else {
                             new AlertDialog.Builder(mContext).setTitle(R.string.tip_bluetooth_parse).setMessage(mReceivedMessage).show();
@@ -523,7 +523,7 @@ public class BlueToothSeriveProvider {
         entities.add(new UnlockEntity(context, new UnlockEntity.OnPasswordConfirmListener() {
             @Override
             public void onPasswordConfirm() {
-                entities.add(new TakePhotoEntity(resolution, context));
+                entities.add(new TakePhotoEntity(resolution));
                 if (isTransacting) {
                     ToastUtil.showToast(context, R.string.tip_bluetooth_busy);
                     return;
@@ -579,7 +579,7 @@ public class BlueToothSeriveProvider {
             if (OK_PATTERN.matcher(mReceivedMessage).find()) {
                 if (!(mBluetoothEntities.get(mIndex) instanceof TakePhotoEntity) || // 用默认方式处理解锁
                         startingPhoto) { // 已经开始拍照
-                    if (mBluetoothEntities.get(mIndex).parseOKResponse(mReceivedMessage.toString())) {
+                    if (mBluetoothEntities.get(mIndex).parseOKResponse(mReceivedMessage.toString(), buffer)) {
                         sendMessage();
                     } else {
                         new AlertDialog.Builder(mContext).setTitle(R.string.tip_bluetooth_parse)
@@ -591,6 +591,8 @@ public class BlueToothSeriveProvider {
                     startingPhoto = true;
                     // 清空之前的OK
                     mReceivedMessageBytes = new ArrayList<>();
+                    mProgressDialog.setMessage("拍照中，请稍候...");
+                    mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                 }
             } else if (errorMatcher.find()) {
                 String errorResponse = errorMatcher.group();

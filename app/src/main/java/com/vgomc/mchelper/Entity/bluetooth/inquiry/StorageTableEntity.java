@@ -16,7 +16,7 @@ public class StorageTableEntity extends BaseBluetoothEntity {
     }
 
     @Override
-    public boolean parseData(String data) {
+    public boolean parseData(String data, byte[] buffer) {
         String[] datas = data.split(SEPERATOR);
         storageArray = new Storage[datas.length];
         try {

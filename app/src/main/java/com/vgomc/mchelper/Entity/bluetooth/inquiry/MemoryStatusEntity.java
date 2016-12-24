@@ -20,7 +20,7 @@ public class MemoryStatusEntity extends BaseBluetoothEntity {
     }
 
     @Override
-    public boolean parseData(String data) {
+    public boolean parseData(String data, byte[] buffer) {
         String[] datas = data.split(",");
         try {
             eraseCount = Integer.parseInt(datas[0]);

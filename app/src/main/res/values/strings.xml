@@ -4,6 +4,7 @@
     <string name="menu_action_bar_write_to_device">写入配置</string>
     <string name="menu_action_bar_read_from_file">打开配置文件</string>
     <string name="menu_action_bar_write_to_file">保存配置文件</string>
+    <string name="menu_action_bar_share">分享</string>
 
     <string name="menu_action_bar_write_to_file_input">请输入文件名称</string>
     <string name="menu_action_bar_write_to_file_input_empty">文件名不能为空</string>
@@ -194,9 +195,11 @@
     <string name="data_history_clear_tip">请选择正确的设备日期</string>
     <string name="data_history_clear_success">清除历史记录成功</string>
     <string name="data_history_photo">拍照</string>
-    <string name="data_history_photo_high">好</string>
-    <string name="data_history_photo_med">较好</string>
-    <string name="data_history_photo_low">差</string>
+    <string name="data_history_photo_high">高清</string>
+    <string name="data_history_photo_med">标准</string>
+    <string name="data_history_photo_low">快速</string>
+    <string name="data_history_photo_local">本地照片</string>
+    <string name="data_history_photo_local_view">查看照片</string>
 
     <string name="system_operation">其他</string>
 

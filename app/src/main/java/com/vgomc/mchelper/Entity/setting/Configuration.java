@@ -19,7 +19,7 @@ public class Configuration {
     public VariableManager variableManager;
     public List<Object> batteryList;
     public List<Object> storageList;
-    public List<Object> measuringList;
+    public List<Object> measuringList;a
     public Network network;
 
 
@@ -81,7 +81,6 @@ public class Configuration {
         variableManager.setVariable(new Variable(Channel.SUBJECT_RS485, true));
         variableManager.setVariable(new Variable(Channel.SUBJECT_SDI, true));
         instance.variableManager = variableManager;
-
 
         List<Object> batteryList = new ArrayList<>();
         batteryList.add(new Battery(Battery.SUBJECT_3V1));

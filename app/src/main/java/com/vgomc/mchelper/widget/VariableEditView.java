@@ -165,7 +165,7 @@ public class VariableEditView extends LinearLayout {
         });
     }
 
-    public void initData(int type, String subject, String channelSubject, int signalType, Variable variable) {
+    public void initData(int type, String subject, String channelSubject, int signalType, final Variable variable) {
         mSubject = channelSubject;
         mChannelType = type;
         mVariable = variable;
@@ -177,7 +177,7 @@ public class VariableEditView extends LinearLayout {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    if (!Configuration.getInstance().variableManager.isVariableMax()) {
+                    if (!Configuration.getInstance().variableManager.isVariableMax(variable)) {
                         mContentLayout.setVisibility(View.VISIBLE);
                     } else {
                         ToastUtil.showToast(mContext, R.string.tip_variable_reach_max_count);

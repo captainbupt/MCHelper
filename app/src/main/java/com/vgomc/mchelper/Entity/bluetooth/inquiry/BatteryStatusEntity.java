@@ -17,7 +17,7 @@ public class BatteryStatusEntity extends BaseBluetoothEntity {
     }
 
     @Override
-    public boolean parseData(String data) {
+    public boolean parseData(String data, byte[] buffer) {
         String[] datas = data.split(SEPERATOR);
         subjects = new String[datas.length];
         isOns = new boolean[datas.length];

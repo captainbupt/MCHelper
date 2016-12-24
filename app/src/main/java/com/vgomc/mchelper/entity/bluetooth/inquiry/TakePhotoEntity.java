@@ -3,11 +3,7 @@ package com.vgomc.mchelper.entity.bluetooth.inquiry;
 import android.content.Context;
 import android.support.v7.app.AlertDialog;
 
-import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.entity.bluetooth.BaseBluetoothEntity;
-import com.vgomc.mchelper.transmit.file.FileServiceProvider;
-import com.vgomc.mchelper.utility.FileUtil;
-import com.vgomc.mchelper.utility.ToastUtil;
 
 /**
  * Created by weizhou1 on 2016/12/19.
@@ -33,7 +29,7 @@ public class TakePhotoEntity extends BaseBluetoothEntity {
     }
 
     @Override
-    public boolean parseData(String data) {
+    public boolean parseData(String data, byte[] buffer) {
         try {
             String[] items = data.split(",");
             address = Long.parseLong(items[0]);
@@ -42,13 +38,13 @@ public class TakePhotoEntity extends BaseBluetoothEntity {
             e.printStackTrace();
             return false;
         }
-        return false;
+        return true;
     }
 
     @Override
     public boolean parseErrorCode(Context context, int errorCode) {
         if (errorCode == 20) {
-            new AlertDialog.Builder(context).setTitle("当前设备无法拍照").show();
+            new AlertDialog.Builder(context).setTitle("设备忙，请稍后再试").show();
             return true;
         }
         return super.parseErrorCode(context, errorCode);

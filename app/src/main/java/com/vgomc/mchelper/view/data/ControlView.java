@@ -2,11 +2,14 @@ package com.vgomc.mchelper.view.data;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
 import android.view.View;
 
+import com.vgomc.mchelper.activity.GalleryActivity;
 import com.vgomc.mchelper.entity.bluetooth.BaseBluetoothEntity;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.base.BaseCollapsibleContentView;
@@ -44,6 +47,7 @@ public class ControlView extends BaseCollapsibleView {
         private Button mPhotoHighButtion;
         private Button mPhotoMedButtion;
         private Button mPhotoLowButtion;
+        private Button mPhotoViewButton;
 
         public ControlContentView(Context context) {
             super(context);
@@ -62,6 +66,7 @@ public class ControlView extends BaseCollapsibleView {
             mPhotoHighButtion = (Button) findViewById(R.id.btn_view_data_control_photo_high);
             mPhotoMedButtion = (Button) findViewById(R.id.btn_view_data_control_photo_med);
             mPhotoLowButtion = (Button) findViewById(R.id.btn_view_data_control_photo_low);
+            mPhotoViewButton = (Button) findViewById(R.id.btn_view_data_control_photo_local_view);
         }
 
         private void initListener() {
@@ -116,6 +121,12 @@ public class ControlView extends BaseCollapsibleView {
             mPhotoHighButtion.setOnClickListener(new TakePhotoOnClickListener(mContext, TakePhotoEntity.RESOLUTION_HIGH));
             mPhotoMedButtion.setOnClickListener(new TakePhotoOnClickListener(mContext, TakePhotoEntity.RESOLUTION_MED));
             mPhotoLowButtion.setOnClickListener(new TakePhotoOnClickListener(mContext, TakePhotoEntity.RESOLUTION_LOW));
+            mPhotoViewButton.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mContext.startActivity(new Intent(mContext, GalleryActivity.class));
+                }
+            });
         }
 
         @Override
@@ -139,7 +150,11 @@ public class ControlView extends BaseCollapsibleView {
             BlueToothSeriveProvider.takePhoto(mContext, resolution, new BlueToothSeriveProvider.OnBluetoothCompletedListener() {
                 @Override
                 public void onCompleted(List<BaseBluetoothEntity> bluetoothEntities) {
-                    TakePhotoEntity entity = (TakePhotoEntity) bluetoothEntities.get(1);
+                    if (bluetoothEntities.size() <= 0 || !(bluetoothEntities.get(0) instanceof TakePhotoEntity)) {
+                        ToastUtil.showToast(mContext, "拍照失败");
+                        return;
+                    }
+                    TakePhotoEntity entity = (TakePhotoEntity) bluetoothEntities.get(0);
                     BlueToothSeriveProvider.getPhoto(mContext, entity.address, entity.fileSize, new BlueToothSeriveProvider.OnBluetoothCompletedListener() {
                         @Override
                         public void onCompleted(List<BaseBluetoothEntity> bluetoothEntities) {
@@ -147,7 +162,7 @@ public class ControlView extends BaseCollapsibleView {
                             try {
                                 FileOutputStream fos = new FileOutputStream(path);
                                 for (BaseBluetoothEntity getPhotoEntity : bluetoothEntities) {
-                                    fos.write(((GetPhotoEntity) getPhotoEntity).content.getBytes());
+                                    fos.write(((GetPhotoEntity) getPhotoEntity).content);
                                 }
                                 fos.close();
                                 ToastUtil.showToast(mContext, "照片保存到：" + path);

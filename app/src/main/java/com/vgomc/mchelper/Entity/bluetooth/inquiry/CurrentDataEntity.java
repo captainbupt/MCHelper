@@ -36,7 +36,7 @@ public class CurrentDataEntity extends BaseBluetoothEntity {
     }
 
     @Override
-    public boolean parseData(String data) {
+    public boolean parseData(String data, byte[] buffer) {
         variableDataList = new ArrayList<>();
         try {
             String[] variableStrings = data.split(SEPERATOR);

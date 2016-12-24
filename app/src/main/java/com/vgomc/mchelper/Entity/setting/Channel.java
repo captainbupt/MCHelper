@@ -94,7 +94,8 @@ public class Channel implements Serializable, Cloneable {
         if (type == TYPE_AN || type == TYPE_AN0 || type == TYPE_P) {
             if (variableList == null || variableList.size() == 0) {
                 Variable variable = new Variable(subject, false);
-                variableList.add(variable);
+                Configuration.getInstance().variableManager.setVariable(variable);
+                variableList = Configuration.getInstance().variableManager.getVariableList(subject);
             }
         }
         return variableList;
