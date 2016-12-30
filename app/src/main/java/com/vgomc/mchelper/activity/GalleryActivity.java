@@ -30,11 +30,16 @@ import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.base.BaseActivity;
 import com.vgomc.mchelper.fragment.SettingFragment;
 import com.vgomc.mchelper.transmit.file.FileServiceProvider;
+import com.vgomc.mchelper.utility.BitmapUtil;
 import com.vgomc.mchelper.utility.ToastUtil;
+
+import org.xutils.common.util.DensityUtil;
 
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -44,7 +49,6 @@ import java.util.List;
 public class GalleryActivity extends BaseActivity {
 
     private ScrollGalleryView scrollGalleryView;
-    private ImageView imageView;
     private ViewPager viewPager;
     private File[] imageFiles;
 
@@ -55,7 +59,6 @@ public class GalleryActivity extends BaseActivity {
 
         scrollGalleryView = (ScrollGalleryView) findViewById(R.id.scroll_gallery_view);
         viewPager = (HackyViewPager) scrollGalleryView.findViewById(com.veinhorn.scrollgalleryview.R.id.viewPager);
-        imageView = (ImageView) findViewById(R.id.imageView);
 
         List<MediaInfo> mediaInfoList = new ArrayList<>();
         File file = new File(FileServiceProvider.getExternalPhotoPath(mContext));
@@ -70,9 +73,14 @@ public class GalleryActivity extends BaseActivity {
             return;
         }
         imageFiles = file.listFiles(filenameFilter);
+        Arrays.sort(imageFiles, new Comparator<File>() {
+            @Override
+            public int compare(File lhs, File rhs) {
+                return -lhs.getName().compareTo(rhs.getName());
+            }
+        });
         for (final File imageFile : imageFiles) {
             // 预加载一遍，不然ScrollGalleryView会出现显示问题
-            setImageView(imageView, imageFile);
             mediaInfoList.add(MediaInfo.mediaLoader(new MediaLoader() {
                 @Override
                 public boolean isImage() {
@@ -81,13 +89,13 @@ public class GalleryActivity extends BaseActivity {
 
                 @Override
                 public void loadMedia(Context context, ImageView imageView, SuccessCallback callback) {
-                    setImageView(imageView, imageFile);
+                    setImageView(imageView, imageFile, DensityUtil.getScreenWidth(), DensityUtil.getScreenHeight());
                     callback.onSuccess();
                 }
 
                 @Override
                 public void loadThumbnail(Context context, ImageView thumbnailView, SuccessCallback callback) {
-                    setImageView(thumbnailView, imageFile);
+                    setImageView(thumbnailView, imageFile, 100, 100);
                     callback.onSuccess();
                 }
             }));
@@ -100,34 +108,9 @@ public class GalleryActivity extends BaseActivity {
                 .addMedia(mediaInfoList);
     }
 
-    private void setImageView(final ImageView imageView, File file) {
-        // To get image using Fresco
-        ImageRequest imageRequest = ImageRequestBuilder
-                .newBuilderWithSource(Uri.fromFile(file))
-                .setProgressiveRenderingEnabled(true)
-                .build();
-
-        ImagePipeline imagePipeline = Fresco.getImagePipeline();
-        DataSource<CloseableReference<CloseableImage>> dataSource =
-                imagePipeline.fetchDecodedImage(imageRequest, mContext);
-
-        dataSource.subscribe(new BaseBitmapDataSubscriber() {
-
-            @Override
-            public void onNewResultImpl(@Nullable Bitmap bitmap) {
-                // You can use the bitmap in only limited ways
-                // No need to do any cleanup.
-                if (imageView != null) {
-                    imageView.setImageBitmap(bitmap);
-                }
-            }
-
-            @Override
-            public void onFailureImpl(DataSource dataSource) {
-                // No cleanup required here.
-            }
-
-        }, CallerThreadExecutor.getInstance());
+    private void setImageView(final ImageView imageView, File file, int width, int height) {
+        Bitmap bitmap = BitmapUtil.compressBmp(file.getAbsolutePath(), width, height);
+        imageView.setImageBitmap(bitmap);
     }
 
     @Override

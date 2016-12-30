@@ -3,12 +3,6 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="invisible"/>
-
     <com.veinhorn.scrollgalleryview.ScrollGalleryView
         android:id="@+id/scroll_gallery_view"
         android:layout_width="match_parent"

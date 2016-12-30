@@ -8,8 +8,8 @@ android {
         applicationId "com.vgomc.mchelper"
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode 4
-        versionName "1.4"
+        versionCode 5
+        versionName "2.0"
     }
     buildTypes {
         release {
@@ -27,6 +27,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'org.xutils:xutils:3.3.32'
     compile 'com.veinhorn.scrollgalleryview:library:1.0.5'
-    compile 'com.facebook.fresco:fresco:1.0.0'
     compile files('libs/xstream-1.4.jar')
 }

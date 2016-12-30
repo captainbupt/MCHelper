@@ -11,6 +11,8 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 import com.vgomc.mchelper.entity.setting.Configuration;
 import com.vgomc.mchelper.utility.CrashHandler;
 
+import org.xutils.x;
+
 /**
  * Created by weizhouh on 5/19/2015.
  */
@@ -45,7 +47,7 @@ public class AppApplication extends Application {
         }
 
         Configuration.initInstance();
-
+        x.Ext.init(this);
         Fresco.initialize(this);
     }
 

@@ -19,7 +19,7 @@ public class Configuration {
     public VariableManager variableManager;
     public List<Object> batteryList;
     public List<Object> storageList;
-    public List<Object> measuringList;a
+    public List<Object> measuringList;
     public Network network;
 
 
