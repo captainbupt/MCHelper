@@ -201,12 +201,15 @@ public class VariableEditView extends LinearLayout {
         mRegisterAddressEditText.setText(variable.registerAddress + "");
         if (variable.registerType / 2 == 0) {
             mDataTypeSpinner.setAdapter(dataTypeAdapter1);
-            mDataTypeSpinner.setSelection(variable.dataType);
+            mDataTypeSpinner.setSelection(0);
             mCurrentDataType = 0;
         } else {
             mDataTypeSpinner.setAdapter(dataTypeAdapter2);
-            mDataTypeSpinner.setSelection(variable.dataType - 1);
             mCurrentDataType = variable.dataType - 1;
+            if (mCurrentDataType >= dataTypeAdapter2.getCount()) {
+                mCurrentDataType = 0;
+            }
+            mDataTypeSpinner.setSelection(mCurrentDataType);
         }
         if (signalType == Channel.TYPE_SIGNAL_VOLTAGE) {
             mSignalVoltageRadioButton.setChecked(true);
