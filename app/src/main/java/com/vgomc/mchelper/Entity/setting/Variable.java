@@ -19,7 +19,10 @@ public class Variable {
     public int registerType = 0;
     public int dataType = 0;
 
-    public Variable(){};
+    public Variable() {
+    }
+
+    ;
 
     public Variable(String subjectName, boolean isVariableOn) {
         this.subjectName = subjectName;
@@ -45,8 +48,23 @@ public class Variable {
         if (subjectName.equals(Channel.SUBJECT_RS485)) {
             this.registerAddress = registerAddress % 100000;
             this.registerType = registerAddress / 100000;
+            if (this.registerType >= 3) {
+                this.registerType--;
+            }
         } else {
             this.registerAddress = registerAddress;
+        }
+    }
+
+    public int getRegisterAddress() {
+        if (subjectName.equals(Channel.SUBJECT_RS485)) {
+            int address = registerAddress + registerType * 100000;
+            if (registerType >= 2) {
+                address += 100000;
+            }
+            return address;
+        } else {
+            return registerAddress;
         }
     }
 }

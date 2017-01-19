@@ -58,6 +58,7 @@ public class VariableEditView extends LinearLayout {
     private ArrayAdapter<String> dataTypeAdapter2;
 
     private int mCurrentRegisterType;
+    private int mCurrentDataType;
     private String mSubject;
     private int mChannelType;
     private Variable mVariable;
@@ -127,10 +128,11 @@ public class VariableEditView extends LinearLayout {
                 if (mCurrentRegisterType != type) {
                     if (type == 0) {
                         mDataTypeSpinner.setAdapter(dataTypeAdapter1);
+                        mDataTypeSpinner.setSelection(0);
                     } else if (type == 1) {
                         mDataTypeSpinner.setAdapter(dataTypeAdapter2);
+                        mDataTypeSpinner.setSelection(mCurrentDataType);
                     }
-                    mDataTypeSpinner.setSelection(0);
                     mCurrentRegisterType = type;
                 }
             }
@@ -144,7 +146,7 @@ public class VariableEditView extends LinearLayout {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_UP) {
-                    if (mContext instanceof com.vgomc.mchelper.activity.setting.SDIChannelActivity){
+                    if (mContext instanceof com.vgomc.mchelper.activity.setting.SDIChannelActivity) {
                         ChannelSelectView.getChannelSelectDialog(mContext, mSensorAddressEditText.getText().toString(), mSensorAddressEditText, getResources().getString(R.string.setting_channel_variable_sensor_address)).show();
                     } else {
                         BigNumberPickerDialog.getBigNumberPickerDialog(mContext, 3, 1, 254, Integer.parseInt(mSensorAddressEditText.getText().toString()), mSensorAddressEditText, getResources().getString(R.string.setting_channel_variable_sensor_address)).show();
@@ -200,9 +202,11 @@ public class VariableEditView extends LinearLayout {
         if (variable.registerType / 2 == 0) {
             mDataTypeSpinner.setAdapter(dataTypeAdapter1);
             mDataTypeSpinner.setSelection(variable.dataType);
-        } else if (variable.registerType / 2 == 1) {
+            mCurrentDataType = 0;
+        } else {
             mDataTypeSpinner.setAdapter(dataTypeAdapter2);
-            mDataTypeSpinner.setSelection(variable.dataType);
+            mDataTypeSpinner.setSelection(variable.dataType - 1);
+            mCurrentDataType = variable.dataType - 1;
         }
         if (signalType == Channel.TYPE_SIGNAL_VOLTAGE) {
             mSignalVoltageRadioButton.setChecked(true);

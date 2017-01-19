@@ -7,7 +7,6 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.util.DisplayMetrics;
 
-import com.facebook.drawee.backends.pipeline.Fresco;
 import com.vgomc.mchelper.entity.setting.Configuration;
 import com.vgomc.mchelper.utility.CrashHandler;
 
@@ -48,7 +47,6 @@ public class AppApplication extends Application {
 
         Configuration.initInstance();
         x.Ext.init(this);
-        Fresco.initialize(this);
     }
 
     private String getVersionName() throws Exception {

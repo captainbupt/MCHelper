@@ -24,7 +24,7 @@ public class VariableSettingChannel extends BaseBluetoothSettingEntity {
         channelName = variable.subjectName;
         dataType = Variable.DATA_TYPE[variable.dataType];
         sensorAddress = variable.sensorAddress;
-        registerAddress = variable.registerAddress;
+        registerAddress = variable.getRegisterAddress();
         k0 = variable.factors[0];
         k1 = variable.factors[1];
         k2 = variable.factors[2];

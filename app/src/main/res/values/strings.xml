@@ -54,7 +54,7 @@
     <string name="setting_channel_variable_sensor_address">传感器地址</string>
     <string name="setting_channel_variable_sensor_address_hint">请输入地址(1~254)</string>
     <string name="setting_channel_variable_register_type">寄存器组</string>
-    <string name="setting_channel_variable_data_type">寄存器组</string>
+    <string name="setting_channel_variable_data_type">数据类型</string>
     <string name="setting_channel_variable_register_address">寄存器地址</string>
     <string name="setting_channel_variable_register_address_hint">请输入地址(1~99999)</string>
     <string name="setting_channel_variable_signal_type">信号类型</string>
