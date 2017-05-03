@@ -80,6 +80,7 @@ public class FileServiceProvider {
         File directoryFile = new File(directory);
         if (!directoryFile.exists() || !directoryFile.isDirectory()) {
             directoryFile.delete();
+            System.out.println("create dirs");
             directoryFile.mkdirs();
         }
         return directory;

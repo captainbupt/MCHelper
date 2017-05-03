@@ -47,8 +47,8 @@ public class RS485ChannelActivity extends BaseActivity {
         super.onCreate(arg0);
         setContentView(R.layout.activity_setting_channel_rs485);
         initView();
-        initListener();
         initDate();
+        initListener();
     }
 
     @Override
@@ -82,11 +82,15 @@ public class RS485ChannelActivity extends BaseActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (checkedId == R.id.rb_activity_setting_channel_rs485_mode_slave) {
-                    new AlertDialog.Builder(mContext).setTitle("确认转为从机模式？").setMessage("已有变量将会被清除(RS485和SDI)").setPositiveButton("确认", new AlertDialog.OnClickListener(
+                    new AlertDialog.Builder(mContext).setTitle("确认转为从机模式？").setMessage("已有变量将会被清除(RS485)").setPositiveButton("确认", new AlertDialog.OnClickListener(
 
                     ) {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            Configuration.getInstance().variableManager.clear(mRS485Channel.subject);
+                            // modified: 不再清除SDI通道的设备
+                            //Configuration.getInstance().variableManager.clear(Channel.SUBJECT_SDI);
+                            mVariableListView.removeAllVariable();
                             setSlaveMode();
                         }
                     }).setNegativeButton("取消", new AlertDialog.OnClickListener() {
@@ -138,9 +142,6 @@ public class RS485ChannelActivity extends BaseActivity {
 
     private void setSlaveMode() {
         mVariableLayout.setVisibility(View.GONE);
-        Configuration.getInstance().variableManager.clear(mRS485Channel.subject);
-        Configuration.getInstance().variableManager.clear(Channel.SUBJECT_SDI);
-        mVariableListView.removeAllVariable();
     }
 
     private void setMasterMode() {

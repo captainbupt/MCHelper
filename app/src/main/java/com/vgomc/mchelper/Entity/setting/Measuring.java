@@ -16,6 +16,9 @@ public class Measuring {
     public int interval = 5;
     public List<Integer> variableIndexList = new ArrayList<>();
 
+    public Measuring() {
+    }
+
     public Measuring(int measId) {
         this.measId = measId;
     }
