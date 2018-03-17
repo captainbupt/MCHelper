@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
@@ -19,6 +20,7 @@ import com.vgomc.mchelper.adapter.system.CloudAdapter;
 import com.vgomc.mchelper.base.BaseCollapsibleContentView;
 import com.vgomc.mchelper.base.BaseCollapsibleView;
 import com.vgomc.mchelper.transmit.bluetooth.BlueToothSeriveProvider;
+import com.vgomc.mchelper.transmit.bluetooth.BluetoothHelper;
 import com.vgomc.mchelper.utility.ToastUtil;
 import com.vgomc.mchelper.widget.NoScrollListView;
 
@@ -65,8 +67,11 @@ public class SystemCloudView extends BaseCollapsibleView {
                         String serial = ((DeviceParameterEntity) bluetoothEntities.get(0)).uid;
                         System.out.println(serial);
                         HttpUtils http = new HttpUtils();
+                        RequestParams params = new RequestParams();
+                        params.addHeader("matchKey", BluetoothHelper.getConnectedDeviceAddress());
                         http.send(HttpRequest.HttpMethod.GET,
-                                "http://api.vgomc.com/deviceVariableData/getLastupdatedData/" + serial,
+                                "http://api.vgomc.com/v2/deviceVariableData/lastData/" + serial,
+                                params,
                                 new RequestCallBack<String>() {
 
                                     @Override
@@ -104,7 +109,7 @@ public class SystemCloudView extends BaseCollapsibleView {
 
         public SystemCloudContentView(Context context) {
             super(context);
-            mListView = (NoScrollListView) findViewById(R.id.nslv_system_cloud);
+            mListView = findViewById(R.id.nslv_system_cloud);
             mAdapter = new CloudAdapter(mContext);
             mListView.setAdapter(mAdapter);
         }

@@ -14,6 +14,7 @@ import com.vgomc.mchelper.view.status.NetworkView;
 import com.vgomc.mchelper.view.status.StatusView;
 import com.vgomc.mchelper.view.status.StorageView;
 import com.vgomc.mchelper.view.status.SystemView;
+import com.vgomc.mchelper.view.system.SystemCloudView;
 
 import java.util.ArrayList;
 
@@ -28,6 +29,7 @@ public class DataFragmentAdapter extends BaseCollapseAdapter {
         mList.add(new CurrentDataView(mContext));
         mList.add(new HistoryDataView(mContext));
         mList.add(new com.vgomc.mchelper.view.data.ControlView(mContext));
+        mList.add(new SystemCloudView(mContext));
     }
 
     @Override

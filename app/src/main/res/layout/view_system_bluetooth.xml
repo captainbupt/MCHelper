@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.vgomc.mchelper.widget.NoScrollListView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:myattr="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nslv_system_bluetooth"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    myattr:dividerColor="@color/color_divider_line"
+    myattr:dividerHeight="1dp" />

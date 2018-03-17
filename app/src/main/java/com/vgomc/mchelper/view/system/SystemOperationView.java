@@ -55,6 +55,7 @@ public class SystemOperationView extends BaseCollapsibleView {
                     int telIndex = content.indexOf(tel);
                     ss.setSpan(new URLSpan("http://www.vgomc.com"), urlIndex, urlIndex + url.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                     ss.setSpan(new URLSpan("tel:01056330522"), telIndex, telIndex + tel.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    //textView.setText("版本号：" + getVersion());
                     textView.setText(ss);
                     textView.setMovementMethod(LinkMovementMethod.getInstance());
                     new AlertDialog.Builder(mContext).setView(textView).setPositiveButton(R.string.dialog_confirm, null).show();

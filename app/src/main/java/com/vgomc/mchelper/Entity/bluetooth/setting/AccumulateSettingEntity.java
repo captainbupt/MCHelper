@@ -15,6 +15,6 @@ public class AccumulateSettingEntity extends BaseBluetoothSettingEntity {
 
     @Override
     public String getRequest() {
-        return "AT+AC=" + variableId + "," + accumulate;
+        return "AT+AC=" + variableId + "," + String.valueOf(accumulate).replaceAll("\\.?0*$", "");
     }
 }

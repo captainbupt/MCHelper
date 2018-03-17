@@ -20,4 +20,10 @@ public class SystemFragment extends BaseListFragment {
     protected BaseCollapseAdapter getBaseCollapseAdapter() {
         return new SystemFragmentAdapter(mContext);
     }
+
+    public void updateDate() {
+        if (mFragmentAdapter != null) {
+            mFragmentAdapter.updateData();
+        }
+    }
 }

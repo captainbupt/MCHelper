@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="@dimen/offset_less">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_adapter_bluetooth_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_medium" />
+
+        <TextView
+            android:id="@+id/tv_adapter_bluetooth_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_medium" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_adapter_bluetooth_connect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/offset_small"
+        android:layout_weight="0"
+        android:minWidth="0dp"
+        android:paddingLeft="@dimen/offset_medium"
+        android:paddingRight="@dimen/offset_medium"
+        android:text="连接"
+        android:textSize="@dimen/text_size_less" />
+
+    <Button
+        android:id="@+id/btn_adapter_bluetooth_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/offset_small"
+        android:layout_weight="0"
+        android:minWidth="0dp"
+        android:paddingLeft="@dimen/offset_medium"
+        android:paddingRight="@dimen/offset_medium"
+        android:text="编辑"
+        android:textSize="@dimen/text_size_less" />
+
+    <Button
+        android:id="@+id/btn_adapter_bluetooth_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/offset_small"
+        android:layout_weight="0"
+        android:minWidth="0dp"
+        android:paddingLeft="@dimen/offset_medium"
+        android:paddingRight="@dimen/offset_medium"
+        android:text="删除"
+        android:textSize="@dimen/text_size_less" />
+</LinearLayout>

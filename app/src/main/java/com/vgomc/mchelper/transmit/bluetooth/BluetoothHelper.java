@@ -7,6 +7,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
+
+import com.vgomc.mchelper.utility.ToastUtil;
 
 import java.nio.charset.Charset;
 
@@ -23,6 +26,7 @@ public class BluetoothHelper {
 
     // Key names received from the BluetoothHelperService Handler
     public static final String DEVICE_NAME = "device_name";
+    public static final String DEVICE_ADDRESS = "device_address";
     public static final String TOAST = "toast";
 
     // Intent request codes
@@ -45,6 +49,34 @@ public class BluetoothHelper {
     private static void setupChat() {
         // Initialize the BluetoothHelperService to perform bluetooth connections
         mChatService = new BluetoothHelperService(mContext, mHandler);
+    }
+
+    public static boolean connect(Context context, String address) {
+        if (mBluetoothAdapter == null) {
+            initBluetooth(context);
+        }
+        if (!mBluetoothAdapter.isEnabled()) {
+            Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            ((Activity) mContext).startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
+            return false;
+        }
+        // Otherwise, setup the chat session
+        if (mChatService == null) setupChat();
+
+
+        // Get the BLuetoothDevice object
+        BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
+        // Attempt to connect to the device
+        mChatService.connect(device);
+        return true;
+    }
+
+    public static String getConnectedDeviceName() {
+        return mConnectedDeviceName;
+    }
+
+    public static String getConnectedDeviceAddress() {
+        return mConnectedDeviceAddress;
     }
 
     private static String mMessage;
@@ -102,6 +134,7 @@ public class BluetoothHelper {
     private static OnReceivedMessageListener mOnReceivedMessageListener;
 
     private static String mConnectedDeviceName;
+    private static String mConnectedDeviceAddress;
     // The Handler that gets information back from the BluetoothHelperService
     private static final Handler mHandler = new Handler() {
         @Override
@@ -111,14 +144,18 @@ public class BluetoothHelper {
                     switch (msg.arg1) {
                         case BluetoothHelperService.STATE_CONNECTED:
                             //mTitle.append(mConnectedDeviceName);
-                            //ToastUtil.showToast(mContext, "State connected");
-                            BluetoothHelper.sendMessage(mMessage);
+                            ToastUtil.showToast(mContext, "设备连接成功！");
+                            if(!TextUtils.isEmpty(mMessage)){
+                                BluetoothHelper.sendMessage(mMessage);
+                            }
                             break;
                         case BluetoothHelperService.STATE_CONNECTING:
-                            //ToastUtil.showToast(mContext, "State connecting");
+                            ToastUtil.showToast(mContext, "设备连接中...");
                             break;
                         case BluetoothHelperService.STATE_LISTEN:
-                            // ToastUtil.showToast(mContext, "State listen");
+                            if(msg.arg2 == BluetoothHelperService.STATE_CONNECTING){
+                                ToastUtil.showToast(mContext, "设备连接失败！");
+                            }
                         case BluetoothHelperService.STATE_NONE:
                             if (!isErrorSend) {
                                 if (mOnReceivedMessageListener != null)
@@ -149,6 +186,7 @@ public class BluetoothHelper {
                 case MESSAGE_DEVICE_NAME:
                     // save the connected device's name
                     mConnectedDeviceName = msg.getData().getString(DEVICE_NAME);
+                    mConnectedDeviceAddress = msg.getData().getString(DEVICE_ADDRESS);
                     //ToastUtil.showToast(mContext, "Connected device: " + mConnectedDeviceName);
                     break;
                 case MESSAGE_TOAST:
@@ -193,7 +231,7 @@ public class BluetoothHelper {
         }
     }
 
-    public static void scanDevice() {
+    private static void scanDevice() {
         // Launch the DeviceListActivity to see devices and do scan
         Intent serverIntent = new Intent(mContext, DeviceListActivity.class);
         ((Activity) mContext).startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE);

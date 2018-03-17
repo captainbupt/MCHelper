@@ -1,7 +1,14 @@
 package com.vgomc.mchelper.activity;
 
+import android.Manifest;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.view.Menu;
@@ -16,6 +23,7 @@ import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.adapter.MainFragmentPagerAdapter;
 import com.vgomc.mchelper.base.BaseActivity;
 import com.vgomc.mchelper.fragment.SettingFragment;
+import com.vgomc.mchelper.fragment.SystemFragment;
 import com.vgomc.mchelper.transmit.bluetooth.BluetoothHelper;
 
 import java.lang.reflect.Field;
@@ -36,7 +44,7 @@ public class MainActivity extends BaseActivity {
         try {
             ViewConfiguration config = ViewConfiguration.get(this);
             Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
-            if(menuKeyField != null) {
+            if (menuKeyField != null) {
                 menuKeyField.setAccessible(true);
                 menuKeyField.setBoolean(config, false);
             }
@@ -92,6 +100,52 @@ public class MainActivity extends BaseActivity {
 
         mRadioGroup.check(R.id.activity_main_radio_button_1);
 
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == 1) {
+            boolean isAllGranted = true;
+
+            // 判断是否所有的权限都已经授予了
+            for (int grant : grantResults) {
+                if (grant != PackageManager.PERMISSION_GRANTED) {
+                    isAllGranted = false;
+                    break;
+                }
+            }
+
+            if (!isAllGranted) {
+                // 弹出对话框告诉用户需要权限的原因, 并引导用户去应用权限管理中手动打开权限按钮
+                openAppDetails();
+            }
+        }
+    }
+
+    private void openAppDetails() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("需要访问“外部存储器”，请到 “应用信息 -> 权限” 中授予！");
+        builder.setPositiveButton("去手动授权", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent();
+                intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                intent.addCategory(Intent.CATEGORY_DEFAULT);
+                intent.setData(Uri.parse("package:" + getPackageName()));
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+                startActivity(intent);
+            }
+        });
+        builder.setNegativeButton("取消", null);
+        builder.show();
     }
 
     @Override
@@ -141,5 +195,13 @@ public class MainActivity extends BaseActivity {
                         }
                     }
                 }).setNegativeButton("取消", null).show();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mPagerAdapter != null) {
+            ((SystemFragment) mPagerAdapter.getItem(3)).updateDate();
+        }
     }
 }

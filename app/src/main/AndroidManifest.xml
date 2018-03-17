@@ -20,7 +20,9 @@
         <activity android:name=".activity.setting.SHTChannelActivity" />
         <activity android:name=".activity.setting.RS485ChannelActivity" />
         <activity android:name=".activity.setting.SDIChannelActivity" />
-        <activity android:name=".transmit.bluetooth.DeviceListActivity" />
+        <activity
+            android:name=".transmit.bluetooth.DeviceListActivity"
+            android:theme="@android:style/Theme.Holo.Light.DarkActionBar" />
         <activity android:name=".activity.data.DataDetailActivity" />
         <activity android:name=".activity.GalleryActivity" />
     </application>

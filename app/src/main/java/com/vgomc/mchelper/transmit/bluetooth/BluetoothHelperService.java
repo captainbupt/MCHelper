@@ -82,10 +82,11 @@ public class BluetoothHelperService {
      */
     private synchronized void setState(int state) {
         if (D) Log.d(TAG, "setState() " + mState + " -> " + state);
+        int originState = mState;
         mState = state;
 
         // Give the new state to the Handler so the UI Activity can update
-        mHandler.obtainMessage(BluetoothHelper.MESSAGE_STATE_CHANGE, state, -1).sendToTarget();
+        mHandler.obtainMessage(BluetoothHelper.MESSAGE_STATE_CHANGE, state, originState).sendToTarget();
     }
 
     /**
@@ -185,6 +186,7 @@ public class BluetoothHelperService {
         Message msg = mHandler.obtainMessage(BluetoothHelper.MESSAGE_DEVICE_NAME);
         Bundle bundle = new Bundle();
         bundle.putString(BluetoothHelper.DEVICE_NAME, device.getName());
+        bundle.putString(BluetoothHelper.DEVICE_ADDRESS, device.getAddress());
         msg.setData(bundle);
         mHandler.sendMessage(msg);
 

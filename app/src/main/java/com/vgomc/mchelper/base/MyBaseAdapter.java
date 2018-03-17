@@ -44,6 +44,14 @@ public abstract class MyBaseAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
+    public void removeItem(int index) {
+        if (index >= mList.size()) {
+            return;
+        }
+        mList.remove(index);
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getCount() {
         if (mList == null)
