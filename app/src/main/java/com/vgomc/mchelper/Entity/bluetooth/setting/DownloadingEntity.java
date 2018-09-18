@@ -34,22 +34,26 @@ public class DownloadingEntity extends BaseBluetoothSettingEntity {
     @Override
     public boolean parseData(String data, byte[] buffer) {
         try {
-            String result = parseRecord(data);
+            String result = parseRecord(buffer);
             FileServiceProvider.saveRecord(context, fileName, result);
         } catch (IOException e) {
             e.printStackTrace();
             return false;
         } catch (Exception e) {
             e.printStackTrace();
-            return true;
+            return false;
         }
         return true;
     }
 
-    public String parseRecord(String data) throws Exception {
-        byte[] bytes = data.getBytes(Charset.forName("GBK"));
+
+    private String parseRecord(byte[] buffer) throws Exception {
+        byte[] bytes = new byte[buffer.length - 2 - 6];
         if (bytes.length != 512) {
             throw new Exception("字节数不是512. 字节：" + bytes.length);
+        }
+        for (int i = 2; i < buffer.length - 6; i++) {
+            bytes[i - 2] = buffer[i];
         }
         StringBuilder builder = new StringBuilder();
         int tableId = bytes[0] & 0xff;
