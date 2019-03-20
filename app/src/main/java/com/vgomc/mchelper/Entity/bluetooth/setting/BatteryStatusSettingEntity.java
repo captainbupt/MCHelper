@@ -25,7 +25,7 @@ public class BatteryStatusSettingEntity extends BaseBluetoothSettingEntity {
     }
 
     @Override
-    public boolean parseErrorCode(Context context, int errorCode) {
+    public boolean parseErrorCode(Context context, int errorCode, String content) {
         ToastUtil.showToast(context, "当前工作状态不允许手动控制");
         return true;
     }

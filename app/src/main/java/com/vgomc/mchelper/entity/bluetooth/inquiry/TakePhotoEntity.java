@@ -42,11 +42,11 @@ public class TakePhotoEntity extends BaseBluetoothEntity {
     }
 
     @Override
-    public boolean parseErrorCode(Context context, int errorCode) {
+    public boolean parseErrorCode(Context context, int errorCode, String content) {
         if (errorCode == 20) {
             new AlertDialog.Builder(context).setTitle("设备忙，请稍后再试").show();
             return true;
         }
-        return super.parseErrorCode(context, errorCode);
+        return super.parseErrorCode(context, errorCode, content);
     }
 }

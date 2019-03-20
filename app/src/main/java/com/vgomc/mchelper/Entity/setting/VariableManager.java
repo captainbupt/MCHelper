@@ -18,7 +18,7 @@ import java.util.Map;
  */
 public class VariableManager implements Serializable {
     // 最大variable数量
-    public final static int variableMaxCount = 17;
+    public final static int variableMaxCount = 32;
 
     Map<String, List<Variable>> mVariableMap;
     // 自己维护一个index， 保证每个variable都有唯一ID，不论是否打开

@@ -8,6 +8,7 @@ import com.vgomc.mchelper.entity.setting.Variable;
 import com.vgomc.mchelper.entity.setting.VariableManager;
 import com.vgomc.mchelper.transmit.file.FileServiceProvider;
 import com.vgomc.mchelper.utility.ToastUtil;
+import com.vgomc.mchelper.view.data.HistoryDataView;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -21,13 +22,15 @@ public class VariableEntity extends BaseBluetoothEntity {
     public Variable[] variableArray;
     String fileName;
     Context context;
+    boolean[] columnList;
 
     public VariableEntity() {
     }
 
-    public VariableEntity(Context context, String fileName) {
+    public VariableEntity(Context context, boolean[] columnList, String fileName) {
         this.context = context;
         this.fileName = fileName;
+        this.columnList = columnList;
     }
 
     @Override
@@ -71,7 +74,7 @@ public class VariableEntity extends BaseBluetoothEntity {
         }
         IOException ioException = null;
         try {
-            writeNameToFile(context, fileName, variableArray);
+            writeNameToFile(context, fileName, variableArray, columnList);
         } catch (IOException e) {
             ioException = e;
             ToastUtil.showToast(context, e.toString());
@@ -88,7 +91,7 @@ public class VariableEntity extends BaseBluetoothEntity {
         return true;
     }
 
-    public void writeNameToFile(Context context, String fileName, Variable[] variableArray) throws IOException {
+    public void writeNameToFile(Context context, String fileName, Variable[] variableArray, boolean[] columnList) throws IOException {
         StringBuilder builder = new StringBuilder();
         builder.append("变量组,存储表,时间,电池电压,备用电压,时钟电压,经度,纬度,海拔,设备状态,");
         for (int ii = 0; ii < VariableManager.variableMaxCount; ii++) {
@@ -98,24 +101,15 @@ public class VariableEntity extends BaseBluetoothEntity {
             } else {
                 name = "";
             }
-            builder.append(name);
-            builder.append("实时值,");
-            builder.append(name);
-            builder.append("平均值,");
-            builder.append(name);
-            builder.append("最大值,");
-            builder.append(name);
-            builder.append("最小值,");
-            builder.append(name);
-            builder.append("时段累积,");
-            builder.append(name);
-            builder.append("永久累积,");
-            builder.append(name);
-            builder.append("最大值时间,");
-            builder.append(name);
-            builder.append("最小值时间,");
+            for (int i = 0; i < HistoryDataView.COLUMN_NAME.length; i++) {
+                if (columnList[i]) {
+                    builder.append(name);
+                    builder.append(HistoryDataView.COLUMN_NAME[i]);
+                    builder.append(",");
+                }
+            }
         }
         builder.deleteCharAt(builder.length() - 1);
-        FileServiceProvider.saveRecord(context, fileName, builder.toString());
+        FileServiceProvider.saveRecord(context, fileName, builder.toString(), true);
     }
 }

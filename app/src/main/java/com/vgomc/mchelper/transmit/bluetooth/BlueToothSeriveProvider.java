@@ -187,7 +187,7 @@ public class BlueToothSeriveProvider {
                 mReceivedMessageBytes.clear();
             } else if (errorMatcher.find()) {
                 String errorResponse = errorMatcher.group();
-                boolean result = mBluetoothEntities.get(mIndex).parseErrorCode(mContext, Integer.parseInt(errorResponse.replace(BaseBluetoothEntity.SEPERATOR, "").replace("ER:", "")));
+                boolean result = mBluetoothEntities.get(mIndex).parseErrorCode(mContext, Integer.parseInt(errorResponse.replace(BaseBluetoothEntity.SEPERATOR, "").replace("ER:", "")), mReceivedMessage);
                 if (result) {
                     cancelTransaction();
                 } else {
@@ -378,7 +378,7 @@ public class BlueToothSeriveProvider {
         doSendMessage(context, entities, onBluetoothCompletedListener);
     }
 
-    public static void doDownload(final Context context, boolean isAll, final OnBluetoothCompletedListener onBluetoothCompletedListener) {
+    public static void doDownload(final Context context, boolean isAll, final boolean[] columnList, final OnBluetoothCompletedListener onBluetoothCompletedListener) {
         List<BaseBluetoothEntity> entities = new ArrayList<>();
         entities.add(new DownloadInquiryEntity(isAll));
         entities.add(new DeviceParameterEntity());
@@ -396,16 +396,16 @@ public class BlueToothSeriveProvider {
                     file.mkdir();
                 String fileName = unid + File.separator + TimeUtil.long2DigitTime(time);
                 try {
-                    FileServiceProvider.saveRecord(context, fileName, "设备编号:" + unid + "\n设备名称:" + name + "\n下载日期:" + TimeUtil.long2DeviceTime(time));
+                    FileServiceProvider.saveRecord(context, fileName, "设备编号:" + unid + "\n设备名称:" + name + "\n下载日期:" + TimeUtil.long2DeviceTime(time), true);
                 } catch (IOException e) {
                     e.printStackTrace();
                     ToastUtil.showToast(context, "写入文件失败，请重试");
                     return;
                 }
                 List<BaseBluetoothEntity> entities = new ArrayList<>();
-                entities.add(new VariableEntity(context, fileName));
+                entities.add(new VariableEntity(context, columnList, fileName));
                 for (int ii = 1; ii <= count; ii++) {
-                    entities.add(new DownloadingEntity(context, start, ii, 1, fileName));
+                    entities.add(new DownloadingEntity(context, start, ii, 1, columnList, fileName));
                 }
                 entities.add(new SaveEntity());
                 doSendMessage(context, entities, onBluetoothCompletedListener);
@@ -487,7 +487,7 @@ public class BlueToothSeriveProvider {
                             cancelTransaction();
                         }
                     } else if (sequence.startsWith("ER:")) {
-                        mBluetoothEntities.get(mIndex).parseErrorCode(mContext, Integer.parseInt(sequence.replace("ER:", "")));
+                        mBluetoothEntities.get(mIndex).parseErrorCode(mContext, Integer.parseInt(sequence.replace("ER:", "")), mReceivedMessage);
                         cancelTransaction();
                     } else {
                         mProgressDialog.setProgress(Integer.parseInt(sequence));
@@ -596,7 +596,7 @@ public class BlueToothSeriveProvider {
                 }
             } else if (errorMatcher.find()) {
                 String errorResponse = errorMatcher.group();
-                boolean result = mBluetoothEntities.get(mIndex).parseErrorCode(mContext, Integer.parseInt(errorResponse.replace(BaseBluetoothEntity.SEPERATOR, "").replace("ER:", "")));
+                boolean result = mBluetoothEntities.get(mIndex).parseErrorCode(mContext, Integer.parseInt(errorResponse.replace(BaseBluetoothEntity.SEPERATOR, "").replace("ER:", "")), mReceivedMessage);
                 if (result) {
                     cancelTransaction();
                 } else {

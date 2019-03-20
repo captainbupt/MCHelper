@@ -8,8 +8,8 @@ android {
         applicationId "com.vgomc.mchelper"
         minSdkVersion 16
         targetSdkVersion 26
-        versionCode 8
-        versionName "2.5"
+        versionCode 9
+        versionName "3.0"
     }
     buildTypes {
         release {

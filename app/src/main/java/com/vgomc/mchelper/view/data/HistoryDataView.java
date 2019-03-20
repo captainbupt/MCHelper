@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
+import android.os.StrictMode;
 import android.support.v7.app.AlertDialog;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -19,8 +21,10 @@ import com.vgomc.mchelper.transmit.file.FileServiceProvider;
 import com.vgomc.mchelper.utility.ToastUtil;
 import com.vgomc.mchelper.widget.NoScrollListView;
 
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -28,6 +32,7 @@ import java.util.List;
 
 public class HistoryDataView extends BaseCollapsibleView {
 
+    public static final String[] COLUMN_NAME = {"实时值", "平均值", "最大值", "最小值", "时段积累值", "永久积累值", "最大值时间", "最小值时间"};
     private Button mRefreshButton;
     private HistoryDataContentView mContentView;
 
@@ -54,29 +59,57 @@ public class HistoryDataView extends BaseCollapsibleView {
         mRefreshButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                new AlertDialog.Builder(mContext).setTitle(R.string.data_history_download_tip).setPositiveButton(R.string.data_history_download_all, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        BlueToothSeriveProvider.doDownload(mContext, true, new BlueToothSeriveProvider.OnBluetoothCompletedListener() {
+                final boolean[] columnList = new boolean[COLUMN_NAME.length];
+                for (int i = 0; i < columnList.length; i++) {
+                    columnList[i] = false;
+                }
+                final AlertDialog alertDialog = new AlertDialog.Builder(mContext).setTitle(R.string.data_history_download_tip)
+                        .setMultiChoiceItems(COLUMN_NAME, null, null)
+                        .setPositiveButton(R.string.data_history_download_all, new DialogInterface.OnClickListener() {
                             @Override
-                            public void onCompleted(List<BaseBluetoothEntity> bluetoothEntities) {
-                                ToastUtil.showToast(mContext, R.string.data_history_download_success);
-                                mContentView.updateHistoryData();
+                            public void onClick(DialogInterface dialog, int which) {
+                                BlueToothSeriveProvider.doDownload(mContext, true, columnList, new BlueToothSeriveProvider.OnBluetoothCompletedListener() {
+                                    @Override
+                                    public void onCompleted(List<BaseBluetoothEntity> bluetoothEntities) {
+                                        ToastUtil.showToast(mContext, R.string.data_history_download_success);
+                                        mContentView.updateHistoryData();
+                                    }
+                                });
                             }
-                        });
-                    }
-                }).setNeutralButton(R.string.data_history_download_new, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        BlueToothSeriveProvider.doDownload(mContext, false, new BlueToothSeriveProvider.OnBluetoothCompletedListener() {
+                        }).setNeutralButton(R.string.data_history_download_new, new DialogInterface.OnClickListener() {
                             @Override
-                            public void onCompleted(List<BaseBluetoothEntity> bluetoothEntities) {
-                                ToastUtil.showToast(mContext, R.string.data_history_download_success);
-                                mContentView.updateHistoryData();
+                            public void onClick(DialogInterface dialog, int which) {
+                                BlueToothSeriveProvider.doDownload(mContext, false, columnList, new BlueToothSeriveProvider.OnBluetoothCompletedListener() {
+                                    @Override
+                                    public void onCompleted(List<BaseBluetoothEntity> bluetoothEntities) {
+                                        ToastUtil.showToast(mContext, R.string.data_history_download_success);
+                                        mContentView.updateHistoryData();
+                                    }
+                                });
                             }
-                        });
+                        }).setNegativeButton(R.string.dialog_cancel, null).show();
+                alertDialog.getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        if (i == 2 && !alertDialog.getListView().isItemChecked(i)) {
+                            alertDialog.getListView().setItemChecked(6, false);
+                            columnList[6] = false;
+                        }
+                        if (i == 6 && alertDialog.getListView().isItemChecked(i)) {
+                            alertDialog.getListView().setItemChecked(2, true);
+                            columnList[2] = true;
+                        }
+                        if (i == 3 && !alertDialog.getListView().isItemChecked(i)) {
+                            alertDialog.getListView().setItemChecked(7, false);
+                            columnList[7] = false;
+                        }
+                        if (i == 7 && alertDialog.getListView().isItemChecked(i)) {
+                            alertDialog.getListView().setItemChecked(3, true);
+                            columnList[3] = true;
+                        }
+                        columnList[i] = alertDialog.getListView().isItemChecked(i);
                     }
-                }).setNegativeButton(R.string.dialog_cancel, null).show();
+                });
             }
         });
     }
@@ -120,7 +153,7 @@ public class HistoryDataView extends BaseCollapsibleView {
             File file = new File(FileServiceProvider.getExternalRecordPath(mContext));
             File[] recordFiles = file.listFiles();
             List<Object> records = new ArrayList<>();
-            if(recordFiles != null) {
+            if (recordFiles != null) {
                 for (File recordFile : recordFiles) {
                     if (recordFile.isFile() && recordFile.getName().endsWith(".csv")) {
                         records.add(recordFile);

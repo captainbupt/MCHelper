@@ -36,7 +36,7 @@ public class SDCardStatusEntity extends BaseBluetoothEntity {
     }
 
     @Override
-    public boolean parseErrorCode(Context context, int errorCode) {
+    public boolean parseErrorCode(Context context, int errorCode, String content) {
         ToastUtil.showToast(context, "获取SD卡信息失败");
         total = 0;
         free = 0;

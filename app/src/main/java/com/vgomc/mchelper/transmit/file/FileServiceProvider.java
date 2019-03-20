@@ -110,13 +110,17 @@ public class FileServiceProvider {
         });
     }
 
-    public static void saveRecord(Context context, String fileName, String record) throws IOException {
+    public static void saveRecord(Context context, String fileName, String record, boolean newLine) throws IOException {
         File file = new File(getExternalRecordPath(context) + File.separator + fileName + SUFFIX_RECORD);
         if (!file.exists()) {
             file.createNewFile();
         }
         FileOutputStream fos = new FileOutputStream(file, true);//true表示在文件末尾追加
-        fos.write((record + "\r\n").getBytes());
+        if (newLine) {
+            fos.write((record + "\r\n").getBytes());
+        } else {
+            fos.write(record.getBytes());
+        }
         fos.close();//流要及时关闭
     }
 

@@ -17,13 +17,15 @@ public class DownloadingEntity extends BaseBluetoothSettingEntity {
     int start, index, count;
     String fileName;
     Context context;
+    boolean[] columnList;
 
-    public DownloadingEntity(Context context, int start, int index, int count, String fileName) {
+    public DownloadingEntity(Context context, int start, int index, int count, boolean[] columnList, String fileName) {
         this.start = start;
         this.context = context;
         this.index = index;
         this.count = count;
         this.fileName = fileName;
+        this.columnList = columnList;
     }
 
     @Override
@@ -33,19 +35,44 @@ public class DownloadingEntity extends BaseBluetoothSettingEntity {
 
     @Override
     public boolean parseData(String data, byte[] buffer) {
+        String result = null;
         try {
-            String result = parseRecord(buffer);
-            FileServiceProvider.saveRecord(context, fileName, result);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
+            result = parseRecord(buffer);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
+        String[] columns = result.split(",");
+        int currentVariableIndex = Integer.parseInt(columns[0]);
+        try {
+            // 上一行已换行，新的记录
+            if (lastVariableIndex == 2) {
+                FileServiceProvider.saveRecord(context, fileName, result, false);
+            }
+            // 上一行未换行
+            if (lastVariableIndex == 1) {
+                // 没有第二组记录，新起一行
+                if (currentVariableIndex == 1) {
+                    FileServiceProvider.saveRecord(context, fileName, "\r\n" + result, false);
+                } else { // 补充上一行
+                    StringBuilder builder = new StringBuilder();
+                    // 只取变量值，且抛掉最后两个
+                    for (int i = 10; i < columns.length - (columns.length - 10) / 17 * 2; i++) {
+                        builder.append(",").append(columns[i]);
+                    }
+                    FileServiceProvider.saveRecord(context, fileName, builder.toString(), true);
+                }
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+        lastVariableIndex = currentVariableIndex;
         return true;
     }
 
+    private static int lastVariableIndex = 2;
 
     private String parseRecord(byte[] buffer) throws Exception {
         byte[] bytes = new byte[buffer.length - 2 - 6];
@@ -87,30 +114,28 @@ public class DownloadingEntity extends BaseBluetoothSettingEntity {
         builder.append(getFloat(bytes, 28, 32));
         builder.append(",");
         builder.append(Integer.toHexString(getInt(bytes, 32, 34)));
-        for (int ii = 0; ii < VariableManager.variableMaxCount; ii++) {
+        for (int ii = 0; ii < 17; ii++) {
             int offset = 28 * ii;
-            builder.append(",");
-            builder.append(getFloat(bytes, 34 + offset, 38 + offset));
-            builder.append(",");
-            builder.append(getFloat(bytes, 38 + offset, 42 + offset));
-            builder.append(",");
-            builder.append(getFloat(bytes, 42 + offset, 46 + offset));
-            builder.append(",");
-            builder.append(getFloat(bytes, 46 + offset, 50 + offset));
-            builder.append(",");
-            builder.append(getFloat(bytes, 50 + offset, 54 + offset));
-            builder.append(",");
-            builder.append(getFloat(bytes, 54 + offset, 58 + offset));
-            builder.append(",");
-            int maxTime = getInt(bytes, 58 + offset, 60 + offset);
-            builder.append(maxTime / 60);
-            builder.append(":");
-            builder.append(maxTime % 60);
-            builder.append(",");
-            int minTime = getInt(bytes, 60 + offset, 62 + offset);
-            builder.append(minTime / 60);
-            builder.append(":");
-            builder.append(minTime % 60);
+            for (int i = 0; i < 6; i++) {
+                if (columnList[i]) {
+                    builder.append(",");
+                    builder.append(getFloat(bytes, i * 4 + 34 + offset, (i + 1) * 4 + 38 + offset));
+                }
+            }
+            if (columnList[6]) {
+                builder.append(",");
+                int maxTime = getInt(bytes, 58 + offset, 60 + offset);
+                builder.append(maxTime / 60);
+                builder.append(":");
+                builder.append(maxTime % 60);
+            }
+            if (columnList[7]) {
+                builder.append(",");
+                int minTime = getInt(bytes, 60 + offset, 62 + offset);
+                builder.append(minTime / 60);
+                builder.append(":");
+                builder.append(minTime % 60);
+            }
         }
         int sum = 0;
         for (int ii = 0; ii < bytes.length - 2; ii++) {

@@ -5,6 +5,8 @@ import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.os.Build;
+import android.os.StrictMode;
 import android.util.DisplayMetrics;
 
 import com.vgomc.mchelper.entity.setting.Configuration;
@@ -43,6 +45,12 @@ public class AppApplication extends Application {
         } catch (Exception e) {
             appVersion = "1.0";
             e.printStackTrace();
+        }
+        // 解决文件分享问题
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            builder.detectFileUriExposure();
         }
 
         Configuration.initInstance();
