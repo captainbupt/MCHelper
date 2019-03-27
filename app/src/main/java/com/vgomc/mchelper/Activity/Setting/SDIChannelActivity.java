@@ -6,6 +6,7 @@ import com.vgomc.mchelper.entity.setting.Channel;
 import com.vgomc.mchelper.entity.setting.Configuration;
 import com.vgomc.mchelper.R;
 import com.vgomc.mchelper.base.BaseActivity;
+import com.vgomc.mchelper.entity.setting.VariableManager;
 import com.vgomc.mchelper.widget.MultiVariableView;
 
 import android.widget.TextView;
@@ -42,7 +43,7 @@ public class SDIChannelActivity extends BaseActivity {
     private void initDate() {
         mSDIChannel = Configuration.getInstance().channelMap.get(Channel.SUBJECT_SDI);
         mWarmTimeTextView.setText(mSDIChannel.getWarmTime(mContext));
-        mVariableListView.setData(mSDIChannel.subject, 9);
+        mVariableListView.setData(mSDIChannel.subject, VariableManager.variableMaxCount);
     }
 
 }

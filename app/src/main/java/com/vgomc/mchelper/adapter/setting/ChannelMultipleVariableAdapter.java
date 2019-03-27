@@ -73,12 +73,12 @@ public class ChannelMultipleVariableAdapter extends MyBaseAdapter {
             mContext.startActivity(new Intent(mContext, SHTChannelActivity.class));
         } else if (type == Channel.TYPE_RS485) {
             mContext.startActivity(new Intent(mContext, RS485ChannelActivity.class));
-        } /*else if (type == Channel.TYPE_SDI) {
-            if (((RS485Channel) Configuration.getInstance().channelMap.get(Channel.SUBJECT_RS485)).mode == RS485Channel.TYPE_MODE_SLAVE) {
+        } else if (type == Channel.TYPE_SDI) {
+            /*if (((RS485Channel) Configuration.getInstance().channelMap.get(Channel.SUBJECT_RS485)).mode == RS485Channel.TYPE_MODE_SLAVE) {
                 ToastUtil.showToast(mContext, "RS485为从机模式，无法设置SDI通道");
                 return;
-            }
+            }*/
             mContext.startActivity(new Intent(mContext, SDIChannelActivity.class));
-        }*/
+        }
     }
 }

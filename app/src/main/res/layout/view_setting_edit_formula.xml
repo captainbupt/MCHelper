@@ -55,6 +55,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:digits="+-.0123456789"
+                    android:inputType="numberDecimal"
                     android:singleLine="true"
                     android:textSize="@dimen/text_size_medium" />
 
@@ -70,6 +71,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:digits="+-.0123456789"
+                    android:inputType="numberDecimal"
                     android:singleLine="true"
                     android:textSize="@dimen/text_size_medium" />
 
@@ -93,6 +95,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:digits="+-.0123456789"
+                    android:inputType="numberDecimal"
                     android:singleLine="true"
                     android:textSize="@dimen/text_size_medium" />
 
@@ -109,6 +112,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:digits="+-.0123456789"
+                    android:inputType="numberDecimal"
                     android:singleLine="true"
                     android:textSize="@dimen/text_size_medium" />
 

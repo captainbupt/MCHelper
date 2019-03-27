@@ -403,9 +403,10 @@ public class BlueToothSeriveProvider {
                     return;
                 }
                 List<BaseBluetoothEntity> entities = new ArrayList<>();
-                entities.add(new VariableEntity(context, columnList, fileName));
+                VariableEntity variableEntity = new VariableEntity(context, columnList, fileName);
+                entities.add(variableEntity);
                 for (int ii = 1; ii <= count; ii++) {
-                    entities.add(new DownloadingEntity(context, start, ii, 1, columnList, fileName));
+                    entities.add(new DownloadingEntity(context, start, ii, 1, columnList, variableEntity, fileName));
                 }
                 entities.add(new SaveEntity());
                 doSendMessage(context, entities, onBluetoothCompletedListener);

@@ -2,6 +2,7 @@ package com.vgomc.mchelper.entity.setting;
 
 import com.vgomc.mchelper.utility.TimeUtil;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,10 +43,12 @@ public class Measuring {
         }
     }
 
-    public void setVariableData(long variableIDs) {
+    public void setVariableData(BigInteger variableIDs) {
         variableIndexList.clear();
-        for (int ii = 1; variableIDs != 0; variableIDs /= 2, ii++) {
-            if (variableIDs % 2 == 1) {
+        BigInteger zeroInteger = new BigInteger("0");
+        BigInteger twoInteger = new BigInteger("2");
+        for (int ii = 1; !variableIDs.equals(zeroInteger); variableIDs = variableIDs.divide(twoInteger), ii++) {
+            if (variableIDs.mod(twoInteger).intValue() == 1) {
                 Variable variable = Configuration.getInstance().variableManager.getVariableByDeviceIndex(ii);
                 if (variable != null) {
                     variableIndexList.add(variable.index);

@@ -1,12 +1,13 @@
 package com.vgomc.mchelper.entity.bluetooth.setting;
 
 import android.content.Context;
+import android.text.TextUtils;
 
-import com.vgomc.mchelper.entity.setting.VariableManager;
+import com.vgomc.mchelper.entity.bluetooth.inquiry.VariableEntity;
 import com.vgomc.mchelper.transmit.file.FileServiceProvider;
+import com.vgomc.mchelper.utility.ToastUtil;
 
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.util.Arrays;
 
 /**
@@ -18,14 +19,16 @@ public class DownloadingEntity extends BaseBluetoothSettingEntity {
     String fileName;
     Context context;
     boolean[] columnList;
+    VariableEntity variableEntity;
 
-    public DownloadingEntity(Context context, int start, int index, int count, boolean[] columnList, String fileName) {
+    public DownloadingEntity(Context context, int start, int index, int count, boolean[] columnList, VariableEntity variableEntity, String fileName) {
         this.start = start;
         this.context = context;
         this.index = index;
         this.count = count;
         this.fileName = fileName;
         this.columnList = columnList;
+        this.variableEntity = variableEntity;
     }
 
     @Override
@@ -44,23 +47,48 @@ public class DownloadingEntity extends BaseBluetoothSettingEntity {
         }
         String[] columns = result.split(",");
         int currentVariableIndex = Integer.parseInt(columns[0]);
+        String currentVariableTime = columns[2];
         try {
-            // 上一行已换行，新的记录
-            if (lastVariableIndex == 2) {
-                FileServiceProvider.saveRecord(context, fileName, result, false);
-            }
-            // 上一行未换行
-            if (lastVariableIndex == 1) {
-                // 没有第二组记录，新起一行
-                if (currentVariableIndex == 1) {
-                    FileServiceProvider.saveRecord(context, fileName, "\r\n" + result, false);
-                } else { // 补充上一行
+
+            if (currentVariableTime.equals(lastVariableTime)) {
+                if (currentVariableIndex == 2) {  // 补充上一行
                     StringBuilder builder = new StringBuilder();
                     // 只取变量值，且抛掉最后两个
-                    for (int i = 10; i < columns.length - (columns.length - 10) / 17 * 2; i++) {
+                    for (int i = 10; i < columns.length; i++) {
                         builder.append(",").append(columns[i]);
                     }
-                    FileServiceProvider.saveRecord(context, fileName, builder.toString(), true);
+                    FileServiceProvider.saveRecord(context, fileName, builder.toString(), false);
+                } else {
+                    ToastUtil.showToast(context, "时间一致且变量组为1，跳过记录");
+                }
+            } else {// 新起一行
+                if (currentVariableIndex == 1) {
+                    // 时间为空，则为第一行，不需要补\r\n
+                    if (!TextUtils.isEmpty(lastVariableTime)) {
+                        FileServiceProvider.saveRecord(context, fileName, "\r\n", false);
+                    }
+                    FileServiceProvider.saveRecord(context, fileName, result, false);
+                } else {
+                    if (!TextUtils.isEmpty(lastVariableTime)) {
+                        FileServiceProvider.saveRecord(context, fileName, "\r\n", false);
+                    }
+                    StringBuilder builder = new StringBuilder();
+                    for (int i = 0; i < 10; i++) {
+                        builder.append(",").append(columns[i]);
+                    }
+                    builder.deleteCharAt(0);
+
+                    for (int i = 0; i < 17; i++) {
+                        for (int j = 0; j < columnList.length; j++) {
+                            if (columnList[j]) {
+                                builder.append(",");
+                            }
+                        }
+                    }
+                    for (int i = 10; i < columns.length; i++) {
+                        builder.append(",").append(columns[i]);
+                    }
+                    FileServiceProvider.saveRecord(context, fileName, builder.toString(), false);
                 }
             }
 
@@ -68,11 +96,11 @@ public class DownloadingEntity extends BaseBluetoothSettingEntity {
             e.printStackTrace();
             return false;
         }
-        lastVariableIndex = currentVariableIndex;
+        lastVariableTime = currentVariableTime;
         return true;
     }
 
-    private static int lastVariableIndex = 2;
+    private static String lastVariableTime = "";
 
     private String parseRecord(byte[] buffer) throws Exception {
         byte[] bytes = new byte[buffer.length - 2 - 6];
@@ -85,6 +113,7 @@ public class DownloadingEntity extends BaseBluetoothSettingEntity {
         StringBuilder builder = new StringBuilder();
         int tableId = bytes[0] & 0xff;
         builder.append(tableId / 16 + 1);
+        int variableIndex = tableId / 16 + 1;
         builder.append(",");
         builder.append(tableId % 16 + 1);
         builder.append(",");
@@ -101,11 +130,11 @@ public class DownloadingEntity extends BaseBluetoothSettingEntity {
         builder.append(":");
         builder.append(bcd2int(bytes[7]));
         builder.append(",");
-        builder.append(getFloat(bytes, 8, 12));
+        builder.append(String.format("%.2f", getFloat(bytes, 8, 12)));
         builder.append(",");
-        builder.append(getFloat(bytes, 12, 16));
+        builder.append(String.format("%.2f", getFloat(bytes, 12, 16)));
         builder.append(",");
-        builder.append(getFloat(bytes, 16, 20));
+        builder.append(String.format("%.2f", getFloat(bytes, 16, 20)));
         builder.append(",");
         builder.append(getFloat(bytes, 20, 24));
         builder.append(",");
@@ -114,24 +143,48 @@ public class DownloadingEntity extends BaseBluetoothSettingEntity {
         builder.append(getFloat(bytes, 28, 32));
         builder.append(",");
         builder.append(Integer.toHexString(getInt(bytes, 32, 34)));
-        for (int ii = 0; ii < 17; ii++) {
+
+        for (int ii = 0; ii < (variableIndex == 1 ? 17 : 15); ii++) {
+            int index = (variableIndex - 1) * 17 + ii;
+            String name;
+            if (index < variableEntity.variableArray.length) {
+                name = variableEntity.variableArray[index].name;
+            } else {
+                name = "";
+            }
+            if ("NULL".equals(name)) {
+                continue;
+            }
             int offset = 28 * ii;
+
+            int maxTime = getInt(bytes, 58 + offset, 60 + offset);
+            boolean isAccumulateInt = (maxTime & 0x8000) > 0;
+            boolean isOtherInt = (maxTime & 0x4000) > 0;
+
             for (int i = 0; i < 6; i++) {
                 if (columnList[i]) {
                     builder.append(",");
-                    builder.append(getFloat(bytes, i * 4 + 34 + offset, (i + 1) * 4 + 38 + offset));
+                    int begin = i * 4 + 34 + offset;
+                    int end = i * 4 + 38 + offset;
+                    if (isAccumulateInt && i == 5) {
+                        builder.append(getInt(bytes, begin, end));
+                    } else if (isOtherInt && i < 5) {
+                        builder.append(getInt(bytes, begin, end));
+                    } else {
+                        builder.append(getFloat(bytes, begin, end));
+                    }
                 }
             }
             if (columnList[6]) {
                 builder.append(",");
-                int maxTime = getInt(bytes, 58 + offset, 60 + offset);
+                maxTime = maxTime & 0x3fff;
                 builder.append(maxTime / 60);
                 builder.append(":");
                 builder.append(maxTime % 60);
             }
             if (columnList[7]) {
                 builder.append(",");
-                int minTime = getInt(bytes, 60 + offset, 62 + offset);
+                int minTime = getInt(bytes, 60 + offset, 62 + offset) & 0x3fff;
                 builder.append(minTime / 60);
                 builder.append(":");
                 builder.append(minTime % 60);
@@ -153,7 +206,26 @@ public class DownloadingEntity extends BaseBluetoothSettingEntity {
     }
 
     public static float getFloat(byte[] bytes) {
-        return Float.intBitsToFloat(getInt(bytes));
+        float value = Float.intBitsToFloat(getInt(bytes));
+        return getFormatFloat(value);
+    }
+
+    public static float getFormatFloat(float value) {
+        String floatStr = String.valueOf(value);
+        int intLenth = floatStr.split("[.]")[0].length();
+        if (floatStr.startsWith("0")) {
+            intLenth--;
+        }
+        if (intLenth > 7) {
+            intLenth = 7;
+        }
+        float format = (float) Math.pow(10, (7 - intLenth));
+        value = (float) (int) (value * format) / format;
+        return value;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(getFormatFloat(0.12345678f));
     }
 
     public static int getInt(byte[] bytes, int start, int end) {
@@ -172,4 +244,5 @@ public class DownloadingEntity extends BaseBluetoothSettingEntity {
         int tmp = b % 0xff;
         return tmp / 16 * 10 + tmp % 16;
     }
+
 }

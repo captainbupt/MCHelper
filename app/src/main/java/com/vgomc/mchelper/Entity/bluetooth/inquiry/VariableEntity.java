@@ -101,6 +101,9 @@ public class VariableEntity extends BaseBluetoothEntity {
             } else {
                 name = "";
             }
+            if ("NULL".equals(name)) {
+                continue;
+            }
             for (int i = 0; i < HistoryDataView.COLUMN_NAME.length; i++) {
                 if (columnList[i]) {
                     builder.append(name);

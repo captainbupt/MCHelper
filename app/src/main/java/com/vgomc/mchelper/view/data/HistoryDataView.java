@@ -140,11 +140,33 @@ public class HistoryDataView extends BaseCollapsibleView {
         private void initListener() {
             mContentListView.setOnItemLongClickListener(new NoScrollListView.OnNoScrollItemLongClcikListener() {
                 @Override
-                public void onItemClick(View v, Object item, int position, long id) {
-                    Intent share = new Intent(Intent.ACTION_SEND);
-                    share.putExtra(Intent.EXTRA_STREAM, Uri.fromFile((File) item));
-                    share.setType("*/*");//此处可发送多种文件
-                    mContext.startActivity(Intent.createChooser(share, "Share"));
+                public void onItemClick(View v, final Object item, int position, long id) {
+                    new AlertDialog.Builder(mContext).setItems(new String[]{"发送", "删除"}, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            final File file = (File) item;
+                            if (i == 0) {
+                                Intent share = new Intent(Intent.ACTION_SEND);
+                                share.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
+                                share.setType("*/*");//此处可发送多种文件
+                                mContext.startActivity(Intent.createChooser(share, "Share"));
+                            } else if (i == 1) {
+                                new AlertDialog.Builder(mContext)
+                                        .setTitle("确认删除：" + file.getName())
+                                        .setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                boolean result = file.delete();
+                                                if(result){
+                                                    updateHistoryData();
+                                                }else{
+                                                    ToastUtil.showToast(mContext, "删除文件失败！");
+                                                }
+                                            }
+                                        }).setNegativeButton("取消", null).show();
+                            }
+                        }
+                    }).show();
                 }
             });
         }
